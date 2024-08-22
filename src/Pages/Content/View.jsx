@@ -55,7 +55,7 @@ const View = () => {
                   <h4 className="p-4 bg-[#0636881a] font-medium">Content Information</h4>
                 </div>
                <div className="grid grid-cols-12 p-4">
-               <div className="col-span-6 flex items-center mb-4">
+               <div className="col-span-6 flex  mb-4">
                   <label className="text-[14px] text-[#0000009c] tracking-wider w-[160px]">Title:</label>
                   <p className="text-[14px] text-black font-medium ms-3">
                     {" "}
@@ -63,26 +63,7 @@ const View = () => {
                     {data?.title || "--"}
                   </p>
                 </div>
-                  <div className="col-span-6 flex items-center mb-4">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Title:</label>
-                   <p className="text-[14px] text-black font-medium ms-3">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
-                    {data?.meta_title || "--"}
-                  </p>
-                </div>
-
-                
-                
-                <div className="col-span-6 flex items-center mb-4">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3"  dangerouslySetInnerHTML={{
-                      __html: data?.meta_description || "--",
-                    }}>
-                    {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
-                  </p>
-                 
-                </div>
-                <div className="col-span-6 flex items-center mb-4">
+                <div className="col-span-6 flex  mb-4">
                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Keywords:</label>
                    <p className="text-[14px] text-black font-medium ms-3"  >
                        {data?.meta_keyword|| "--"}
@@ -90,9 +71,29 @@ const View = () => {
                   </p>
                 
                 </div>
-                <div className="col-span-6 flex items-center mb-4">
+                  <div className="col-span-6 flex  mb-4">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Title:</label>
+                   <p className="text-[14px] text-black font-medium ms-3">
+                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {data?.meta_title || "--"}
+                  </p>
+                </div>
+
+               
+                
+                <div className="col-span-12 flex  mb-4">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px] ">Meta Description:</label>
+                   <p className="text-[14px] text-black font-medium ms-3 w-[85%]"  dangerouslySetInnerHTML={{
+                      __html: data?.meta_description || "--",
+                    }}>
+                    {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
+                  </p>
+                 
+                </div>
+               
+                <div className="col-span-12 flex  mb-4">
                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3"  dangerouslySetInnerHTML={{
+                   <p className="text-[14px] text-black font-medium ms-3  w-[85%]"  dangerouslySetInnerHTML={{
                       __html: data?.description || "--",
                     }}>
                     {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
