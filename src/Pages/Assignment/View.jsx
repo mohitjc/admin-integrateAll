@@ -187,6 +187,9 @@ const View = () => {
     });
   };
 
+ 
+  
+
   return (
     <>
       <Layout>
@@ -350,7 +353,7 @@ const View = () => {
                   Counter Offers
                 </h4>
                 <div className="ml-auto flex gap-2">
-                  {counterOfferData?.status == "counteroffered" ? (
+                  {(counterOfferData && counterOfferData[0]?.status == "counteroffered") ? (
                     <>
                       <Tooltip placement="top" title="Accept">
                         <a
