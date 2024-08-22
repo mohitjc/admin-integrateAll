@@ -109,7 +109,8 @@ const View = () => {
   };
 
   const counterSubmit = () => {
-    let payload = { ...counterForm };
+    let payload = { ...counterForm,status : "pending" };
+ 
     delete payload.estimate_price;
     loader(true);
     ApiClient.post(`counter-offer/create`, payload).then((res) => {
@@ -128,7 +129,7 @@ const View = () => {
     };
 
     loader(true);
-    ApiClient.put(`counter-offer/update?id=${counterOfferData?.id}`, payload).then((res) => {
+    ApiClient.put(`counter-offer/update?id=${counterOfferData?._id}`, payload).then((res) => {
       loader(false);
       if (res?.success) {
         getDetail();
@@ -137,7 +138,7 @@ const View = () => {
     });
   };
  
-  
+ 
 
   return (
     <>
