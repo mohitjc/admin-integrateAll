@@ -16,6 +16,8 @@ import Modal from "../../components/common/Modal";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { RxCrossCircled } from "react-icons/rx";
 import { MdCancel } from "react-icons/md";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { RxRotateCounterClockwise } from "react-icons/rx";
 
 const View = () => {
   const user = useSelector((state) => state.user);
@@ -159,7 +161,7 @@ const View = () => {
     });
   };
 
-  const counterOffer = (status ,id ) => {
+  const counterOffer = (status, id) => {
     if (status == "accepted") {
       let price = getWordPrice(data.word_count);
       setCounterForm({
@@ -170,21 +172,20 @@ const View = () => {
       });
       setCounterModal(true);
     }
- 
   };
 
-  const counterSubmit=()=>{
-    let payload={...counterForm}
-    delete payload.estimate_price
-    loader(true)
-    ApiClient.post(`counter-offer/create`,payload).then(res=>{
-      loader(false)
-      if(res?.success){
-        setCounterModal(false) 
-        getData()
+  const counterSubmit = () => {
+    let payload = { ...counterForm };
+    delete payload.estimate_price;
+    loader(true);
+    ApiClient.post(`counter-offer/create`, payload).then((res) => {
+      loader(false);
+      if (res?.success) {
+        setCounterModal(false);
+        getData();
       }
-    })
-  }
+    });
+  };
 
   return (
     <>
@@ -204,38 +205,36 @@ const View = () => {
                 {shared.addTitle} Details
               </h3>
             </div>
-             </div>
+          </div>
 
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 mb-5 capitalize">
                 <div className="p-4 bg-[#0636881a] flex items-center justify-between">
-                  <h4 className=" font-medium">
-                    Basic Information
-                  </h4>
+                  <h4 className=" font-medium">Basic Information</h4>
                   <div>
-                  {data?.status == "pending" ? 
-            <div className="flex gap-4">
-             <a
-                  className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
-                  onClick={(e) => counterOffer("accepted",id)}
-                >
-                  <IoIosCheckmarkCircleOutline  className="w-5 h-5"/>
-                  
-                  <p className="ms-1">Accept</p>
-                </a>
-              <a
-                  className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
-                  onClick={(e) => statusChange("rejected")}
-                >
-                  
-                  <RxCrossCircled className="w-5 h-5" />
+                    {data?.status == "pending" ? (
+                      <div className="flex gap-4">
+                        <a
+                          className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
+                          onClick={(e) => counterOffer("accepted", id)}
+                        >
+                          <IoIosCheckmarkCircleOutline className="w-5 h-5" />
 
-                 
-                  <p className="ms-1">Reject</p>
-                </a>
-            </div>
-             : ""}      
+                          <p className="ms-1">Accept</p>
+                        </a>
+                        <a
+                          className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
+                          onClick={(e) => statusChange("rejected")}
+                        >
+                          <RxCrossCircled className="w-5 h-5" />
+
+                          <p className="ms-1">Reject</p>
+                        </a>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div className="grid grid-cols-12 p-4">
@@ -263,8 +262,10 @@ const View = () => {
                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
                       Status :
                     </label>
-                    <p className={`${data?.status} text-[14px] text-black font-medium ms-3`}>
-                    {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                    <p
+                      className={`${data?.status} text-[14px] text-black font-medium ms-3`}
+                    >
+                      {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
                       {data?.status || "--"}
                     </p>
                   </div>
@@ -305,63 +306,98 @@ const View = () => {
               </div>
             </div>
           </div>
-         
-         {data?.staff?<>
-          <div className="grid grid-cols-12 gap-6 mb-5">
-            <div className="col-span-12">
-              <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
-                <div>
-                  <h4 className="p-4 bg-[#0636881a] font-medium">
-                    Staff Details
-                  </h4>
-                </div>
-                <div className="grid grid-cols-12 p-4">
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
-                      Name:
-                    </label>
-                    <p className="text-[14px] text-black font-medium ms-3">
-                      {(data && data.staff?.fullName) || "--"}
-                    </p>
-                  </div>
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
-                      Email:
-                    </label>
-                    <p className="text-[14px] text-black font-medium ms-3">
-                      {(data && data.staff?.email) || "--"}
-                    </p>
+
+          {data?.staff ? (
+            <>
+              <div className="grid grid-cols-12 gap-6 mb-5">
+                <div className="col-span-12">
+                  <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
+                    <div>
+                      <h4 className="p-4 bg-[#0636881a] font-medium">
+                        Staff Details
+                      </h4>
+                    </div>
+                    <div className="grid grid-cols-12 p-4">
+                      <div className="col-span-6 flex items-center mb-3">
+                        <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                          Name:
+                        </label>
+                        <p className="text-[14px] text-black font-medium ms-3">
+                          {(data && data.staff?.fullName) || "--"}
+                        </p>
+                      </div>
+                      <div className="col-span-6 flex items-center mb-3">
+                        <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                          Email:
+                        </label>
+                        <p className="text-[14px] text-black font-medium ms-3">
+                          {(data && data.staff?.email) || "--"}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-         </>:<></>}
-            
+            </>
+          ) : (
+            <></>
+          )}
 
-          {total?<>
-            <div>
-                  <h4 className="p-4 bg-[#0636881a] font-medium">Counter Offers</h4>
+          {total ? (
+            <>
+              <div>
+                <h4 className="p-4 bg-[#0636881a] font-medium">
+                  Counter Offers
+                </h4>
+                <div className="ml-auto flex gap-2">
+                  {counterOfferData?.status == "counteroffered" ? (
+                    <>
+                      <Tooltip placement="top" title="Accept">
+                        <a
+                          className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
+                          onClick={(e) => counterSubmit("accept")}
+                        >
+                          <IoCheckmarkDoneOutline className="me-1 w-5 h-5" />
+                          <p> Accept</p>
+                        </a>
+                      </Tooltip>
+
+                      <Tooltip placement="top" title="Reject">
+                        <a
+                          className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
+                          onClick={(e) => counterSubmit("reject")}
+                        >
+                          {/* <RxCross2 /> */}
+                          <RxRotateCounterClockwise className="w-5 h-5 me-1" />
+                          <p>Reject</p>
+                        </a>
+                      </Tooltip>
+                    </>
+                  ) : (
+                    <></>
+                  )}
                 </div>
+              </div>
               <Table
-              className="mb-3"
-              data={counterOfferData}
-              columns={columns}
-              page={filters.page}
-              count={filters.count}
-              filters={filters}
-              total={total}
-              result={(e) => {
-                if (e.event == "page") pageChange(e.value);
-                // if (e.event == "sort") {
-                //   sorting(e.value);
-                //   sortClass(e.value);
-                // }
-              }}
-            />
-          </>:<></>}
-
-             
+                className="mb-3"
+                data={counterOfferData}
+                columns={columns}
+                page={filters.page}
+                count={filters.count}
+                filters={filters}
+                total={total}
+                result={(e) => {
+                  if (e.event == "page") pageChange(e.value);
+                  // if (e.event == "sort") {
+                  //   sorting(e.value);
+                  //   sortClass(e.value);
+                  // }
+                }}
+              />
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </Layout>
       {counterModal ? (
@@ -380,7 +416,7 @@ const View = () => {
                   }}
                 >
                   <div>
-                  <div className="bg-[#00358512] rounded-[8px]  max-w-[200px] p-3 mx-auto text-center">
+                    <div className="bg-[#00358512] rounded-[8px]  max-w-[200px] p-3 mx-auto text-center">
                       <div className="mx-auto w-14 h-14 bg-white text-[#003585] rounded-[50px] flex items-center justify-center shadow">
                         <img
                           src="/assets/img/price.svg"
@@ -420,7 +456,7 @@ const View = () => {
                     />
                   </div>
                   <div className="mt-3 text-right">
-                    <button className="btn btn-primary">Sent Quotation</button>
+                    <button className="btn btn-primary">Send Quotation</button>
                   </div>
                 </form>
               </>
