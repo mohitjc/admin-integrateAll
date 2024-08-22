@@ -125,7 +125,7 @@ const View = () => {
 
   const counterOfferSubmit = (status) => {
     let payload = { 
-      status: status == "accept" ? "offer-received" : "rejected",
+      status: status == "accept" ? "offer-accept" : "offer-rejected",
     };
 
     loader(true);
@@ -133,6 +133,14 @@ const View = () => {
       loader(false);
       if (res?.success) {
         getDetail();
+        let payload={
+          status:payload.status
+        }
+        ApiClient.put(`${shared.editApi}?id=${id}`,payload).then(res=>{
+          if(res.success){
+            
+          }
+        })
         
       }
     });
