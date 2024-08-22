@@ -188,7 +188,7 @@ const Assignment = () => {
         }); 
   };
 
-  const view = (id) => {
+  const view = (id,offerId) => {
     let url = `/${shared.url}/detail/${id}`;
     history(url);
   };

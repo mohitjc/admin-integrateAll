@@ -136,7 +136,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {itm.counterOfferId ? (
+              {/* {itm.counterOfferId ? (
                 <>
                   <Tooltip placement="top" title="View Quote">
                     <span
@@ -149,7 +149,7 @@ const Html = ({
                 </>
               ) : (
                 <></>
-              )}
+              )} */}
 
               {/* {(itm.status == "accepted" || itm.status == "completed") &&
               user?.role != "staff" &&

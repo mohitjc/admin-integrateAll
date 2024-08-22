@@ -18,6 +18,8 @@ import { RxCrossCircled } from "react-icons/rx";
 import { MdCancel } from "react-icons/md";
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import { RxRotateCounterClockwise } from "react-icons/rx";
+import datepipeModel from "../../models/datepipemodel";
+
 
 const View = () => {
   const user = useSelector((state) => state.user);
@@ -41,104 +43,36 @@ const View = () => {
   const history = useNavigate();
   const { id } = useParams();
 
+
+
   const getDetail = () => {
     loader(true);
     ApiClient.get(shared.detailApi, { id: id }).then((res) => {
       loader(false);
       if (res.success) {
         setData(res.data);
+        setcounterOfferData(res?.data?.counterOfferId ?res?.data?.counterOfferId: "" )
       }
     });
   };
-  const getConterOffers = (p = {}) => {
-    let payload = { ...filters, ...p };
-    loader(true);
-    ApiClient.get(shared.counterListApi, { ...payload }).then((res) => {
-      loader(false);
-      if (res.success) {
-        setcounterOfferData(res.data);
-        setTotal(res?.total);
-      }
-    });
-  };
+ 
 
   useEffect(() => {
     getDetail();
-    getConterOffers({ assignment_id: id });
+   
     getWordEstimate();
   }, []);
 
   const getData = () => {
     getDetail();
-    getConterOffers({ assignment_id: id });
+   
   };
 
   const getWordPrice = (word = 0) => {
     return shared.getWordPrice(word, estimates);
   };
 
-  const columns = [
-    {
-      key: "message",
-      name: "Message",
-      render: (row) => {
-        return (
-          <Tooltip placement="top" title={row?.message}>
-            <span className="capitalize" title="">
-              {row?.message ? row?.message?.slice(0, 30) : "--"}
-            </span>
-          </Tooltip>
-        );
-      },
-    },
-    {
-      key: "price",
-      name: "Price ",
-      render: (row) => {
-        return <span className="">$ {row?.counterOffer || "--"}</span>;
-      },
-    },
-    {
-      key: "status",
-      name: "Status",
-      render: (row) => {
-        return (
-          <>
-            <span className={`capitalize ${row?.status ? row.status : ""}`}>
-              {row?.status}
-            </span>
-            {/* <SelectDropdown
-              id="statusDropdown"
-              displayValue="name"
-              placeholder="All Status"
-              intialValue={row?.status}
-              result={(e) => {
-                statusChange(e.value,row);
-              }}
-              options={statusModel.status}
-            /> */}
-          </>
-        );
-      },
-    },
-    {
-      key: "createdAt",
-      name: "Created At",
-      render: (itm) => {
-        return (
-          <>
-            <span>{moment(itm?.createdAt).format("DD-MM-YYYY")}</span>
-          </>
-        );
-      },
-    },
-  ];
-
-  const pageChange = (e) => {
-    setFilter({ ...filters, page: e });
-    getConterOffers({ page: e });
-  };
-
+ 
   const statusChange = (status) => {
     Swal.fire({
       title: "Are you sure?",
@@ -187,6 +121,21 @@ const View = () => {
     });
   };
 
+
+  const counterOfferSubmit = (status) => {
+    let payload = { 
+      status: status == "accept" ? "offer-received" : "rejected",
+    };
+
+    loader(true);
+    ApiClient.put(`counter-offer/update?id=${counterOfferData?.id}`, payload).then((res) => {
+      loader(false);
+      if (res?.success) {
+        getDetail();
+        
+      }
+    });
+  };
  
   
 
@@ -345,62 +294,121 @@ const View = () => {
           ) : (
             <></>
           )}
-
-          {total ? (
-            <>
-              <div>
-                <h4 className="p-4 bg-[#0636881a] font-medium">
-                  Counter Offers
-                </h4>
-                <div className="ml-auto flex gap-2">
-                  {(counterOfferData && counterOfferData[0]?.status == "counteroffered") ? (
-                    <>
-                      <Tooltip placement="top" title="Accept">
-                        <a
-                          className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
-                          onClick={(e) => counterSubmit("accept")}
-                        >
-                          <IoCheckmarkDoneOutline className="me-1 w-5 h-5" />
-                          <p> Accept</p>
-                        </a>
-                      </Tooltip>
-
-                      <Tooltip placement="top" title="Reject">
-                        <a
-                          className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
-                          onClick={(e) => counterSubmit("reject")}
-                        >
-                          {/* <RxCross2 /> */}
-                          <RxRotateCounterClockwise className="w-5 h-5 me-1" />
-                          <p>Reject</p>
-                        </a>
-                      </Tooltip>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              </div>
-              <Table
-                className="mb-3"
-                data={counterOfferData}
-                columns={columns}
-                page={filters.page}
-                count={filters.count}
-                filters={filters}
-                total={total}
-                result={(e) => {
-                  if (e.event == "page") pageChange(e.value);
-                  // if (e.event == "sort") {
-                  //   sorting(e.value);
-                  //   sortClass(e.value);
-                  // }
-                }}
-              />
-            </>
-          ) : (
-            <></>
-          )}
+           {(counterOfferData && counterOfferData != "" )? 
+             <div className="grid grid-cols-12 gap-6">
+             <div className="col-span-12">
+               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
+                 <div className="flex justify-between p-4 bg-[#0636881a] font-medium items-center">
+                   <h4 className="mb-0">Counter Offer Information</h4>
+                   <div className="ml-auto flex gap-2">
+                     {counterOfferData?.status == "counteroffered" ? (
+                       <>
+                         <Tooltip placement="top" title="Accept">
+                           <a
+                             className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
+                             onClick={(e) => counterOfferSubmit("accept")}
+                           >
+                             <IoCheckmarkDoneOutline className="me-1 w-5 h-5" />
+                             <p> Accept</p>
+                           </a>
+                         </Tooltip>
+ 
+                         <Tooltip placement="top" title="Reject">
+                           <a
+                             className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
+                             onClick={(e) => counterOfferSubmit("reject")}
+                           >
+                             {/* <RxCross2 /> */}
+                             <RxRotateCounterClockwise className="w-5 h-5 me-1" />
+                             <p>Reject</p>
+                           </a>
+                         </Tooltip>
+                       </>
+                     ) : (
+                       <></>
+                     )}
+                   </div>
+                 </div>
+                 <div className="grid grid-cols-12 p-4">
+                 <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                       Estimated Offer:
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {counterOfferData?.status == "counteroffered"
+                         ? "$ " + counterOfferData.counterOffer
+                         : counterOfferData && counterOfferData.counterOffer
+                         ? "$ " + counterOfferData.counterOffer
+                         : ""}
+                     </p>
+                   </div>
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                       Counter Offer:
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {counterOfferData?.status == "counteroffered"
+                         ? "$ " + counterOfferData.student_counteroffer
+                         : counterOfferData && counterOfferData.counterOffer
+                         ? "$ " + counterOfferData.counterOffer
+                         : ""}
+                     </p>
+                   </div>
+              
+ 
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Created At :
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {datepipeModel.date(counterOfferData?.createdAt)}
+                     </p>
+                   </div>
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Requested By :
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {counterOfferData?.addedBy?.fullName}
+                     </p>
+                   </div>
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Status :
+                     </label>
+                     <p
+                       className={`text-[14px] text-black font-medium  capitalize ${
+                        counterOfferData?.status ? counterOfferData?.status : ""
+                       }`}
+                     >
+                       {counterOfferData?.status}
+                     </p>
+                   </div>
+                   {/* <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Assignment :
+                     </label>
+                     <p
+                       className={`text-[14px] text-black font-medium  capitalize `}
+                     >
+                       {counterOfferData?.assignment_id?.title}
+                     </p>
+                   </div> */}
+                   <div className="col-span-12 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Message :
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                       {counterOfferData && counterOfferData?.message}
+                     </p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+            : ""}
+          
         </div>
       </Layout>
       {counterModal ? (
