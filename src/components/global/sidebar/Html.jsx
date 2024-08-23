@@ -14,7 +14,7 @@ import { GoFileMedia } from "react-icons/go";
 import { TfiLayoutMediaCenterAlt } from "react-icons/tfi";
 import { MdOutlineAssignment } from "react-icons/md";
 import { RiContractLine } from "react-icons/ri";
-
+import { FaQuestion } from "react-icons/fa";
 import {
   MdContentPaste,
   MdOutlineGroups,
@@ -23,6 +23,7 @@ import {
 import environment from "../../../environment";
 import ApiClient from "../../../methods/api/apiClient";
 import { FiUsers } from "react-icons/fi";
+import { LiaBlogSolid } from "react-icons/lia";
 
 const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
   const [activeplan, setActiveplan] = useState();
@@ -93,6 +94,20 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       icon: <MdOutlineAssignment className="text-inherit shrink-0 text-lg" />,
       url: "/word-estimate",
       key: "readWordCount",
+    },
+
+    {
+      name: "Blogs",
+      icon: <LiaBlogSolid className="text-inherit shrink-0 text-lg" />,
+      url: "/blogs",
+      key: "readBlogs",
+    },
+
+    {
+      name: "Faqs",
+      icon: <FaQuestion className="text-inherit shrink-0 text-lg" />,
+      url: "/faqs",
+      key: "readFaqs",
     },
     // {
     //   name: "Blogs",

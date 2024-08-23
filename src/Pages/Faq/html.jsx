@@ -37,64 +37,21 @@ const Html = ({
   const user = useSelector((state) => state.user);
   const columns = [
     {
-      key: "fullName",
-      name: "Full Name",
+      key: "question",
+      name: "Question",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.fullName}</span>;
+        return <span className="capitalize">{row?.question}</span>;
       },
     },
     {
-      key: "email",
-      name: "Email",
+      key: "answer",
+      name: "Answer",
       sort: true,
       render: (row) => {
-        return <span className="">{row?.email}</span>;
+        return <span className="">{row?.answer}</span>;
       },
-    },
-    // {
-    //   key: "mobileNo",
-    //   name: "Mobile No",
-    //   render: (row) => {
-    //     return (
-    //       <>
-    //         <p className="capitalize">
-    //           {row?.mobileNo ? "+" : ""}
-    //           {row?.mobileNo}
-    //         </p>
-    //       </>
-    //     );
-    //   },
-    // },
-    /* {
-      key: "timezone",
-      name: "Timezone",
-      render: (row) => {
-        return <>{row?.timezone}</>;
-      },
-    }, */
-    {
-      key: "status",
-      name: "Status",
-      render: (row) => {
-        return (
-          <>
-            <div className="w-32" onClick={() => statusChange(row)}>
-              <span
-                className={`bg-[#063688] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
-                          ${
-                            row.status == "deactive"
-                              ? " bg-gray-200 text-black"
-                              : "bg-[#063688] text-white"
-                          }`}
-              >
-                {row.status == "deactive" ? "inactive" : "active"}
-              </span>
-            </div>
-          </>
-        );
-      },
-    },
+    },  
     {
       key: "action",
       name: "Action",
@@ -143,23 +100,7 @@ const Html = ({
         );
       },
     },
-  ];
-
-  /*  const getGroups = () => {
-    let f = {
-      page: 1,
-      count: 10,
-    };
-    ApiClient.get("api/group/list", f).then((res) => {
-      if (res.success) {
-        setGroup(res.data);
-      }
-    });
-  };
- */
-  //   useEffect(() => {
-  //       getGroups()
-  //   }, [])
+  ]; 
 
   return (
     <Layout>
@@ -264,16 +205,7 @@ const Html = ({
                 changestatus(e.value);
               }}
               options={statusModel.list}
-            />
-            {/* <SelectDropdown
-                            id="statusDropdown"
-                            displayValue="name"
-                            placeholder='All Groups'
-                            intialValue={filters.groupId}
-                            theme="search"
-                            result={e => filter({ groupId: e.value })}
-                            options={groups}
-                        /> */}
+            /> 
             {filters.status || filters.groupId ? (
               <>
                 <button

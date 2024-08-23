@@ -53,6 +53,16 @@ function App() {
     { url: "/customers/detail/:id", path: "Customers/View" },
     { url: "/contract", path: "Contract" },
     { url: "/contract/detail/:id", path: "Contract/View" },
+
+    { url: "/blogs", path: "Blogs" },
+    { url: "/blogs/edit/:id", path: "Blogs/AddEdit" },
+    { url: "/blogs/add", path: "Blogs/AddEdit" },
+    { url: "/blogs/detail/:id", path: "Blogs/View" },
+
+    { url: "/faqs", path: "Faqs" },
+    { url: "/faqs/edit/:id", path: "Faqs/AddEdit" },
+    { url: "/faqs/add", path: "Faqs/AddEdit" },
+    { url: "/faqs/detail/:id", path: "Faqs/View" },
   ];
 
   sessionStorage.clear();

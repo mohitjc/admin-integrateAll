@@ -8,7 +8,7 @@ import axios from "axios";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-const Users = () => {
+const Faqs = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
   const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
@@ -79,17 +79,7 @@ const Users = () => {
     getData({ ...f });
   };
 
-  const deleteItem = (id) => {
-    // if (window.confirm("Do you want to delete this")) {
-    //     loader(true)
-    //     ApiClient.delete(shared.deleteApi, { id: id }).then(res => {
-    //         if (res.success) {
-    //             // ToastsStore.success(res.message)
-    //             clear()
-    //         }
-    //         loader(false)
-    //     })
-    // }
+  const deleteItem = (id) => { 
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to delete this`,
@@ -128,21 +118,10 @@ const Users = () => {
     getData({ status: e, page: 1 });
   };
 
-  const statusChange = (itm) => {
-    // if (!(isAllow(`edit${shared.check}`) && itm.addedBy == user._id)) return;
+  const statusChange = (itm) => { 
     if (!isAllow(`edit${shared.check}`)) return;
     let status = "active";
-    if (itm.status == "active") status = "deactive";
-
-    // if (window.confirm(`Do you want to ${status == 'active' ? 'Activate' : 'Deactivate'} this`)) {
-    //     loader(true)
-    //     ApiClient.put(shared.statusApi, { id: itm.id, status }).then(res => {
-    //         if (res.success) {
-    //             getData()
-    //         }
-    //         loader(false)
-    //     })
-    // }
+    if (itm.status == "active") status = "deactive"; 
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to ${
@@ -161,12 +140,7 @@ const Users = () => {
             getData();
           }
           loader(false);
-        });
-        //   Swal.fire({
-
-        //     // text: `Sucessfully ${status == 'active' ? 'Activate' : 'Deactivate'} this`,
-        //     icon: "success"
-        //   });
+        }); 
       }
     });
   };
@@ -253,4 +227,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Faqs;
