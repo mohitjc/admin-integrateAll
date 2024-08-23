@@ -19,6 +19,7 @@ import { lazy } from "react";
 const { persistor, store } = configureStoreProd();
 
 function App() {
+  
   const routes = [
     { url: "/login", path: "Login" },
     { url: "/dashboard", path: "Dashboard" },

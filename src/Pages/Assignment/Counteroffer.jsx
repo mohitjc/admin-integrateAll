@@ -50,10 +50,7 @@ const CounterOfferDetails = () => {
   }, []);
 
   const counterSubmit = (status) => {
-    let payload = {
-      // id:id,
-      // message: counterForm.message,
-      // student_counteroffer: counterForm.counterOffer,
+    let payload = { 
       status: status == "accept" ? "offer-received" : "rejected",
     };
 

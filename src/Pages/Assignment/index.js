@@ -63,6 +63,8 @@ const Assignment = () => {
     });
   };
 
+
+
   const getData = (p = {}) => {
     setLoader(true);
     let filter = { ...filters, ...p};
@@ -188,7 +190,7 @@ const Assignment = () => {
         }); 
   };
 
-  const view = (id) => {
+  const view = (id,offerId) => {
     let url = `/${shared.url}/detail/${id}`;
     history(url);
   };

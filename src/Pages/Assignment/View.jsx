@@ -16,6 +16,10 @@ import Modal from "../../components/common/Modal";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { RxCrossCircled } from "react-icons/rx";
 import { MdCancel } from "react-icons/md";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { RxRotateCounterClockwise } from "react-icons/rx";
+import datepipeModel from "../../models/datepipemodel";
+
 
 const View = () => {
   const user = useSelector((state) => state.user);
@@ -39,104 +43,36 @@ const View = () => {
   const history = useNavigate();
   const { id } = useParams();
 
+
+
   const getDetail = () => {
     loader(true);
     ApiClient.get(shared.detailApi, { id: id }).then((res) => {
       loader(false);
       if (res.success) {
         setData(res.data);
+        setcounterOfferData(res?.data?.counterOfferId ?res?.data?.counterOfferId: "" )
       }
     });
   };
-  const getConterOffers = (p = {}) => {
-    let payload = { ...filters, ...p };
-    loader(true);
-    ApiClient.get(shared.counterListApi, { ...payload }).then((res) => {
-      loader(false);
-      if (res.success) {
-        setcounterOfferData(res.data);
-        setTotal(res?.total);
-      }
-    });
-  };
+ 
 
   useEffect(() => {
     getDetail();
-    getConterOffers({ assignment_id: id });
+   
     getWordEstimate();
   }, []);
 
   const getData = () => {
     getDetail();
-    getConterOffers({ assignment_id: id });
+   
   };
 
   const getWordPrice = (word = 0) => {
     return shared.getWordPrice(word, estimates);
   };
 
-  const columns = [
-    {
-      key: "message",
-      name: "Message",
-      render: (row) => {
-        return (
-          <Tooltip placement="top" title={row?.message}>
-            <span className="capitalize" title="">
-              {row?.message ? row?.message?.slice(0, 30) : "--"}
-            </span>
-          </Tooltip>
-        );
-      },
-    },
-    {
-      key: "price",
-      name: "Price ",
-      render: (row) => {
-        return <span className="">$ {row?.counterOffer || "--"}</span>;
-      },
-    },
-    {
-      key: "status",
-      name: "Status",
-      render: (row) => {
-        return (
-          <>
-            <span className={`capitalize ${row?.status ? row.status : ""}`}>
-              {row?.status}
-            </span>
-            {/* <SelectDropdown
-              id="statusDropdown"
-              displayValue="name"
-              placeholder="All Status"
-              intialValue={row?.status}
-              result={(e) => {
-                statusChange(e.value,row);
-              }}
-              options={statusModel.status}
-            /> */}
-          </>
-        );
-      },
-    },
-    {
-      key: "createdAt",
-      name: "Created At",
-      render: (itm) => {
-        return (
-          <>
-            <span>{moment(itm?.createdAt).format("DD-MM-YYYY")}</span>
-          </>
-        );
-      },
-    },
-  ];
-
-  const pageChange = (e) => {
-    setFilter({ ...filters, page: e });
-    getConterOffers({ page: e });
-  };
-
+ 
   const statusChange = (status) => {
     Swal.fire({
       title: "Are you sure?",
@@ -159,7 +95,7 @@ const View = () => {
     });
   };
 
-  const counterOffer = (status ,id ) => {
+  const counterOffer = (status, id) => {
     if (status == "accepted") {
       let price = getWordPrice(data.word_count);
       setCounterForm({
@@ -170,21 +106,47 @@ const View = () => {
       });
       setCounterModal(true);
     }
- 
   };
 
-  const counterSubmit=()=>{
-    let payload={...counterForm}
-    delete payload.estimate_price
-    loader(true)
-    ApiClient.post(`counter-offer/create`,payload).then(res=>{
-      loader(false)
-      if(res?.success){
-        setCounterModal(false) 
-        getData()
+  const counterSubmit = () => {
+    let payload = { ...counterForm,status : "pending" };
+ 
+    delete payload.estimate_price;
+    loader(true);
+    ApiClient.post(`counter-offer/create`, payload).then((res) => {
+      loader(false);
+      if (res?.success) {
+        setCounterModal(false);
+        getData();
       }
-    })
-  }
+    });
+  };
+
+
+  const counterOfferSubmit = (status) => {
+    let payload = { 
+      status: status == "accept" ? "offer-accept" : "offer-rejected",
+    };
+
+    loader(true);
+    ApiClient.put(`counter-offer/update?id=${counterOfferData?._id}`, payload).then((res) => {
+      loader(false);
+      if (res?.success) {
+        getDetail();
+        let payload={
+          status:payload.status
+        }
+        ApiClient.put(`${shared.editApi}?id=${id}`,payload).then(res=>{
+          if(res.success){
+            
+          }
+        })
+        
+      }
+    });
+  };
+ 
+ 
 
   return (
     <>
@@ -204,38 +166,36 @@ const View = () => {
                 {shared.addTitle} Details
               </h3>
             </div>
-             </div>
+          </div>
 
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 mb-5 capitalize">
                 <div className="p-4 bg-[#0636881a] flex items-center justify-between">
-                  <h4 className=" font-medium">
-                    Basic Information
-                  </h4>
+                  <h4 className=" font-medium">Basic Information</h4>
                   <div>
-                  {data?.status == "pending" ? 
-            <div className="flex gap-4">
-             <a
-                  className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
-                  onClick={(e) => counterOffer("accepted",id)}
-                >
-                  <IoIosCheckmarkCircleOutline  className="w-5 h-5"/>
-                  
-                  <p className="ms-1">Accept</p>
-                </a>
-              <a
-                  className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
-                  onClick={(e) => statusChange("rejected")}
-                >
-                  
-                  <RxCrossCircled className="w-5 h-5" />
+                    {data?.status == "pending" ? (
+                      <div className="flex gap-4">
+                        <a
+                          className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
+                          onClick={(e) => counterOffer("accepted", id)}
+                        >
+                          <IoIosCheckmarkCircleOutline className="w-5 h-5" />
 
-                 
-                  <p className="ms-1">Reject</p>
-                </a>
-            </div>
-             : ""}      
+                          <p className="ms-1">Accept</p>
+                        </a>
+                        <a
+                          className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
+                          onClick={(e) => statusChange("rejected")}
+                        >
+                          <RxCrossCircled className="w-5 h-5" />
+
+                          <p className="ms-1">Reject</p>
+                        </a>
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div className="grid grid-cols-12 p-4">
@@ -263,8 +223,10 @@ const View = () => {
                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
                       Status :
                     </label>
-                    <p className={`${data?.status} text-[14px] text-black font-medium ms-3`}>
-                    {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                    <p
+                      className={`${data?.status} text-[14px] text-black font-medium ms-3`}
+                    >
+                      {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
                       {data?.status || "--"}
                     </p>
                   </div>
@@ -305,63 +267,157 @@ const View = () => {
               </div>
             </div>
           </div>
-         
-         {data?.staff?<>
-          <div className="grid grid-cols-12 gap-6 mb-5">
-            <div className="col-span-12">
-              <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
-                <div>
-                  <h4 className="p-4 bg-[#0636881a] font-medium">
-                    Staff Details
-                  </h4>
-                </div>
-                <div className="grid grid-cols-12 p-4">
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
-                      Name:
-                    </label>
-                    <p className="text-[14px] text-black font-medium ms-3">
-                      {(data && data.staff?.fullName) || "--"}
-                    </p>
-                  </div>
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
-                      Email:
-                    </label>
-                    <p className="text-[14px] text-black font-medium ms-3">
-                      {(data && data.staff?.email) || "--"}
-                    </p>
+
+          {data?.staff ? (
+            <>
+              <div className="grid grid-cols-12 gap-6 mb-5">
+                <div className="col-span-12">
+                  <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
+                    <div>
+                      <h4 className="p-4 bg-[#0636881a] font-medium">
+                        Staff Details
+                      </h4>
+                    </div>
+                    <div className="grid grid-cols-12 p-4">
+                      <div className="col-span-6 flex items-center mb-3">
+                        <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                          Name:
+                        </label>
+                        <p className="text-[14px] text-black font-medium ms-3">
+                          {(data && data.staff?.fullName) || "--"}
+                        </p>
+                      </div>
+                      <div className="col-span-6 flex items-center mb-3">
+                        <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                          Email:
+                        </label>
+                        <p className="text-[14px] text-black font-medium ms-3">
+                          {(data && data.staff?.email) || "--"}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-         </>:<></>}
-            
-
-          {total?<>
-            <div>
-                  <h4 className="p-4 bg-[#0636881a] font-medium">Counter Offers</h4>
-                </div>
-              <Table
-              className="mb-3"
-              data={counterOfferData}
-              columns={columns}
-              page={filters.page}
-              count={filters.count}
-              filters={filters}
-              total={total}
-              result={(e) => {
-                if (e.event == "page") pageChange(e.value);
-                // if (e.event == "sort") {
-                //   sorting(e.value);
-                //   sortClass(e.value);
-                // }
-              }}
-            />
-          </>:<></>}
-
-             
+            </>
+          ) : (
+            <></>
+          )}
+           {(counterOfferData && counterOfferData != "" )? 
+             <div className="grid grid-cols-12 gap-6">
+             <div className="col-span-12">
+               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
+                 <div className="flex justify-between p-4 bg-[#0636881a] font-medium items-center">
+                   <h4 className="mb-0">Counter Offer Information</h4>
+                   <div className="ml-auto flex gap-2">
+                     {counterOfferData?.status == "counteroffered" ? (
+                       <>
+                         <Tooltip placement="top" title="Accept">
+                           <a
+                             className="border border-tranparent cursor-pointer  hover:opacity-70 rounded-lg bg-[#06378b] text-white p-2 !text-primary flex items-center justify-center text-[14px]"
+                             onClick={(e) => counterOfferSubmit("accept")}
+                           >
+                             <IoCheckmarkDoneOutline className="me-1 w-5 h-5" />
+                             <p> Accept</p>
+                           </a>
+                         </Tooltip>
+ 
+                         <Tooltip placement="top" title="Reject">
+                           <a
+                             className="border border-[#06378b] cursor-pointer  hover:opacity-70 rounded-lg bg-transparent  p-2 !text-primary flex items-center justify-center text-[14px] text-[#06378b]"
+                             onClick={(e) => counterOfferSubmit("reject")}
+                           >
+                             {/* <RxCross2 /> */}
+                             <RxRotateCounterClockwise className="w-5 h-5 me-1" />
+                             <p>Reject</p>
+                           </a>
+                         </Tooltip>
+                       </>
+                     ) : (
+                       <></>
+                     )}
+                   </div>
+                 </div>
+                 <div className="grid grid-cols-12 p-4">
+                 <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                       Estimated Offer:
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {counterOfferData?.status == "counteroffered"
+                         ? "$ " + counterOfferData.counterOffer
+                         : counterOfferData && counterOfferData.counterOffer
+                         ? "$ " + counterOfferData.counterOffer
+                         : ""}
+                     </p>
+                   </div>
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                       Counter Offer:
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {counterOfferData?.status == "counteroffered"
+                         ? "$ " + counterOfferData.student_counteroffer
+                         : counterOfferData && counterOfferData.counterOffer
+                         ? "$ " + counterOfferData.counterOffer
+                         : ""}
+                     </p>
+                   </div>
+              
+ 
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Created At :
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {datepipeModel.date(counterOfferData?.createdAt)}
+                     </p>
+                   </div>
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Requested By :
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {counterOfferData?.addedBy?.fullName}
+                     </p>
+                   </div>
+                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Status :
+                     </label>
+                     <p
+                       className={`text-[14px] text-black font-medium  capitalize ${
+                        counterOfferData?.status ? counterOfferData?.status : ""
+                       }`}
+                     >
+                       {counterOfferData?.status}
+                     </p>
+                   </div>
+                   {/* <div className="col-span-6 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Assignment :
+                     </label>
+                     <p
+                       className={`text-[14px] text-black font-medium  capitalize `}
+                     >
+                       {counterOfferData?.assignment_id?.title}
+                     </p>
+                   </div> */}
+                   <div className="col-span-12 flex flex-col lg:flex-row mb-4">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                       Message :
+                     </label>
+                     <p className="text-[14px] text-black font-medium ">
+                       {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                       {counterOfferData && counterOfferData?.message}
+                     </p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+            : ""}
+          
         </div>
       </Layout>
       {counterModal ? (
@@ -380,7 +436,7 @@ const View = () => {
                   }}
                 >
                   <div>
-                  <div className="bg-[#00358512] rounded-[8px]  max-w-[200px] p-3 mx-auto text-center">
+                    <div className="bg-[#00358512] rounded-[8px]  max-w-[200px] p-3 mx-auto text-center">
                       <div className="mx-auto w-14 h-14 bg-white text-[#003585] rounded-[50px] flex items-center justify-center shadow">
                         <img
                           src="/assets/img/price.svg"
@@ -420,7 +476,7 @@ const View = () => {
                     />
                   </div>
                   <div className="mt-3 text-right">
-                    <button className="btn btn-primary">Sent Quotation</button>
+                    <button className="btn btn-primary">Send Quotation</button>
                   </div>
                 </form>
               </>

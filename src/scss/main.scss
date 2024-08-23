@@ -2127,20 +2127,20 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
 }
 
 .rejected {
-  background: #ff090940;
+  background: rgb(255 0 0 / 58%);
   padding: 4px 6px;
   border-radius: 4px;
-  color: #393939d9;
-   width: 122px;
+  color: rgb(255 255 255);
+  width: 122px;
   display: block;
   text-align: center;
 }
 .pending {
-  background: #cfb07e52;
+  background: rgba(207, 176, 126, 0.3215686275);
   padding: 4px 6px;
   border-radius: 4px;
-  color: #393939d9;
-   width: 122px;
+  color: rgb(0 0 0 / 85%);
+  width: 122px;
   display: block;
   text-align: center;
 }
@@ -2154,11 +2154,11 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
   text-align: center;
 }
 .counteroffered {
-  background: rgb(233 233 233);
+  background: rgb(134 238 239 / 31%);
   padding: 4px 6px;
   border-radius: 4px;
-  color: #970505 !important;
-   width: 122px;
+  color: #525252 !important;
+  width: 122px;
   display: block;
   text-align: center;
 }
@@ -2166,7 +2166,7 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
   background: #003585;
   padding: 4px 6px;
   border-radius: 4px;
-  color: #fff;
+  color: #fff !important;
    width: 122px;
   display: block;
   text-align: center;

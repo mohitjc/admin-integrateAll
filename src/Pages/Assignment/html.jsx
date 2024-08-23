@@ -1,6 +1,6 @@
 import Layout from "../../components/global/layout";
 import "./style.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "antd";
 import { FiPlus } from "react-icons/fi";
 import Table from "../../components/Table";
@@ -39,6 +39,12 @@ const Html = ({
   getWordPrice,
 }) => {
   const user = useSelector((state) => state.user);
+  const history=useNavigate()
+
+  const chat=(itm)=>{
+    history(`/chat?assignment_id=${itm.id}`)
+  }
+
 
   const columns = [
     {
@@ -130,7 +136,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {itm.counterOfferId ? (
+              {/* {itm.counterOfferId ? (
                 <>
                   <Tooltip placement="top" title="View Quote">
                     <span
@@ -143,7 +149,7 @@ const Html = ({
                 </>
               ) : (
                 <></>
-              )}
+              )} */}
 
               {/* {(itm.status == "accepted" || itm.status == "completed") &&
               user?.role != "staff" &&
@@ -173,6 +179,19 @@ const Html = ({
               ) : (
                 <></>
               )}
+
+              {itm.status != 'pending' ? <>
+                <Tooltip placement="top" title="Chat">
+                  <a
+                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    onClick={(e) => {
+                      chat(itm)
+                    }}
+                  >
+                    <span class="material-symbols-outlined">chat</span>
+                  </a>
+                </Tooltip>
+              </> : <></>}
             </div>
           </>
         );
