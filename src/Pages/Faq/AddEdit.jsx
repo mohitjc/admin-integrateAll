@@ -21,7 +21,7 @@ const AddEditFaq = () => {
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
-  const inValidEmail = methodModel.emailvalidation(form?.email);
+ 
 
   const formValidation = [
     { key: "question", required: true },

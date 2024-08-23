@@ -60,10 +60,10 @@ function App() {
     { url: "/blogs/add", path: "Blogs/AddEdit" },
     { url: "/blogs/detail/:id", path: "Blogs/View" },
 
-    { url: "/faqs", path: "Faqs" },
-    { url: "/faqs/edit/:id", path: "Faqs/AddEdit" },
-    { url: "/faqs/add", path: "Faqs/AddEdit" },
-    { url: "/faqs/detail/:id", path: "Faqs/View" },
+    { url: "/faqs", path: "Faq" },
+    { url: "/faqs/edit/:id", path: "Faq/AddEdit" },
+    { url: "/faqs/add", path: "Faq/AddEdit" },
+    { url: "/faqs/detail/:id", path: "Faq/View" },
   ];
 
   sessionStorage.clear();
