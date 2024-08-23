@@ -224,7 +224,7 @@ const View = () => {
                       Status :
                     </label>
                     <p
-                      className={`${data?.status} text-[14px] text-black font-medium ms-3`}
+                      className={`${data?.status} text-[14px] text-black font-medium ms-3  `}
                     >
                       {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
                       {data?.status || "--"}
@@ -386,7 +386,7 @@ const View = () => {
                        Status :
                      </label>
                      <p
-                       className={`text-[14px] text-black font-medium  capitalize ${
+                       className={`text-[14px] text-black font-medium  capitalize width-fit ${
                         counterOfferData?.status ? counterOfferData?.status : ""
                        }`}
                      >
