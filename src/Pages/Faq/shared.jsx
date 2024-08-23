@@ -1,14 +1,14 @@
 const shared = {
     check: "Customers",
     title: "Faq's",
-    addTitle: "faq",
+    addTitle: "Faq",
     url: "faqs",
-    addApi: "user/add",
-    editApi: "user/profile",
-    detailApi: "user/profile",
-    listApi: "user/listing",
-    statusApi: "user/status/change",
-    deleteApi: "user/delete",
+    addApi: "faq/add",
+    editApi: "faq/update",
+    detailApi: "faq/detail",
+    listApi: "faq/list",
+    statusApi: "faq/status",
+    deleteApi: "faq/delete",
   };
   
   export default shared;

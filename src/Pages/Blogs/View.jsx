@@ -58,14 +58,14 @@ const ViewBlog = () => {
                   <p className="text-[14px] text-black font-medium ms-3">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
-                    {data && data.title}
+                    {data && data.name}
                   </p>
                 </div>
                   <div className="col-span-6 flex items-center mb-4">
                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Description:</label>
                    <p className="text-[14px] text-black font-medium ms-3">
                     {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
-                    {data && data.description}
+                    {data && data.short_description}
                   </p>
                 </div> 
                </div>

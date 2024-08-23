@@ -15,16 +15,15 @@ const AddEditBlogs = () => {
 
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
-    id: "",
-    title: "",
-    description: "",
+    name: "",
+    short_description: "",
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user); 
 
   const formValidation = [
-    { key: "title", required: true }, 
+    { key: "name", required: true }, 
   ];
 
   const handleSubmit = (e) => {
@@ -34,13 +33,18 @@ const AddEditBlogs = () => {
 
     if (invalid) return;
     let method = "post";
+    let value ;
     let url = shared.addApi;
-    let value = {
-      ...form,
-     
+    value = {
+      ...form,     
     };
 
-    if (value.id) {
+    if (id) {
+      value = {
+        ...form,  
+        id : id,   
+      };
+  
       method = "put";
       url = shared.editApi;
     } else {
@@ -62,23 +66,7 @@ const AddEditBlogs = () => {
       loader(true);
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
-          let value = res.data;
-          let payload = form;
-          Object.keys(payload).map((itm) => {
-            payload[itm] = value[itm];
-          });
-
-          if (payload.role?._id) payload.role = payload.role?._id;
-          payload.id = id;
-          setform({
-            ...payload,
-          });
-
-          let img = images;
-          Object.keys(img).map((itm) => {
-            img[itm] = value[itm];
-          });
-          setImages({ ...img });
+        setform({...form,name : res?.data?.name ,short_description: res?.data?.short_description})
         }
         loader(false);
       });
@@ -101,7 +89,7 @@ const AddEditBlogs = () => {
               </Tooltip>
               <div>
                 <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
-                  {form && form.id ? "Edit" : "Add"} {shared.addTitle}
+                  {id ? "Edit" : "Add"} {shared.addTitle}
                 </h3> 
               </div>
             </div>
@@ -109,10 +97,11 @@ const AddEditBlogs = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className=" mb-3">
                 <FormControl
+                name = "name"
                   type="text"
                   label="Title"
-                  value={form.title}
-                  onChange={(e) => setform({ ...form, title: e })}
+                  value={form.name}
+                  onChange={(e) => setform({ ...form, name: e })}
                   required
                 />
               </div> 
@@ -122,10 +111,10 @@ const AddEditBlogs = () => {
                 <FormControl
                 required
                   type="textarea"
-                  name="description"
+                  name="short_description"
                   label="Description"
-                  value={form.description}
-                  onChange={(e) => setform({ ...form, description: e })}
+                  value={form.short_description}
+                  onChange={(e) => setform({ ...form, short_description: e })}
                 />
               </div>
 

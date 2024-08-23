@@ -37,19 +37,19 @@ const Html = ({
   const user = useSelector((state) => state.user);
   const columns = [
     {
-      key: "title",
+      key: "name",
       name: "Title",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.title}</span>;
+        return <span className="capitalize">{row?.name}</span>;
       },
     },
     {
-      key: "description",
+      key: "short_description",
       name: "Description",
       sort: true,
       render: (row) => {
-        return <span className="">{row?.description}</span>;
+        return <p className="text-truncate">{row?.short_description}</p>;
       },
     }, 
     {

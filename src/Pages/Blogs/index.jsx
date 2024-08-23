@@ -42,7 +42,7 @@ const Blogs = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p,role:'user' };
+    let filter = { ...filters, ...p,  };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
@@ -80,16 +80,6 @@ const Blogs = () => {
   };
 
   const deleteItem = (id) => {
-    // if (window.confirm("Do you want to delete this")) {
-    //     loader(true)
-    //     ApiClient.delete(shared.deleteApi, { id: id }).then(res => {
-    //         if (res.success) {
-    //             // ToastsStore.success(res.message)
-    //             clear()
-    //         }
-    //         loader(false)
-    //     })
-    // }
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to delete this`,
@@ -103,14 +93,10 @@ const Blogs = () => {
         loader(true);
         ApiClient.delete(shared.deleteApi, { id: id }).then((res) => {
           if (res.success) {
-            // ToastsStore.success(res.message)
             clear();
           }
           loader(false);
-        });
-        //   Swal.fire({
-        //     icon: "success"
-        //   });
+        }); 
       }
     });
   };
@@ -136,7 +122,7 @@ const Blogs = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Deactivate"
-      } this user?`,
+      } this blog?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#063688",

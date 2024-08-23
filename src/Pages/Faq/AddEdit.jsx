@@ -14,7 +14,6 @@ const AddEditFaq = () => {
 
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
-    id: "",
     question: "",
     answer: "", 
   });
@@ -34,15 +33,19 @@ const AddEditFaq = () => {
 
     if (invalid) return;
     let method = "post";
+    let value ;
     let url = shared.addApi;
-    let value = {
+   value = {
       ...form,
-  
     };
 
-    if (value.id) {
+    if (id) {
       method = "put";
       url = shared.editApi;
+      value = {
+        ...form,
+        id : id
+      };
     } else {
       delete value.id;
     }
@@ -63,6 +66,7 @@ const AddEditFaq = () => {
       loader(true);
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {    
+          setform({...form,question : res?.data?.question , answer : res?.data?.answer})
         }
         loader(false);
       });
@@ -86,7 +90,7 @@ const AddEditFaq = () => {
               </Tooltip>
               <div>
                 <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
-                  {form && form.id ? "Edit" : "Add"} {shared.addTitle}
+                  {id ? "Edit" : "Add"} {shared.addTitle}
                 </h3>
             
               </div>

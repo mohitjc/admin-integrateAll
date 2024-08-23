@@ -3,12 +3,12 @@ const shared = {
     title: "Blogs",
     addTitle: "Blog",
     url: "blogs",
-    addApi: "user/add",
-    editApi: "user/profile",
-    detailApi: "user/profile",
-    listApi: "user/listing",
-    statusApi: "user/status/change",
-    deleteApi: "user/delete",
+    addApi: "blog/add",
+    editApi: "blog/update",
+    detailApi: "blog/detail",
+    listApi: "blog/listing",
+    statusApi: "blog/status/change",
+    deleteApi: "blog/delete",
   };
   
   export default shared;

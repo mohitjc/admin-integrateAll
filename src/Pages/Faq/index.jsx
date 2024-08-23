@@ -42,7 +42,7 @@ const Faqs = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p,role:'user' };
+    let filter = { ...filters, ...p, };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
@@ -93,14 +93,10 @@ const Faqs = () => {
         loader(true);
         ApiClient.delete(shared.deleteApi, { id: id }).then((res) => {
           if (res.success) {
-            // ToastsStore.success(res.message)
             clear();
           }
           loader(false);
-        });
-        //   Swal.fire({
-        //     icon: "success"
-        //   });
+        }); 
       }
     });
   };
@@ -126,7 +122,7 @@ const Faqs = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Deactivate"
-      } this user?`,
+      } this Faq?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#063688",
