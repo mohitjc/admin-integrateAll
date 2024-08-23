@@ -125,17 +125,16 @@ const View = () => {
 
   const counterOfferSubmit = (status) => {
     let payload = { 
-      status: status == "accept" ? "offer-accept" : "offer-rejected",
+      status: status == "accept" ? "offer-accepted" : "offer-rejected",
     };
-
     loader(true);
     ApiClient.put(`counter-offer/update?id=${counterOfferData?._id}`, payload).then((res) => {
       loader(false);
       if (res?.success) {
         getDetail();
-        let payload={
-          status:payload.status
-        }
+        let payload = { 
+          status: status == "accept" ? "offer-accepted" : "offer-rejected",
+        };
         ApiClient.put(`${shared.editApi}?id=${id}`,payload).then(res=>{
           if(res.success){
             
@@ -378,7 +377,7 @@ const View = () => {
                        Requested By :
                      </label>
                      <p className="text-[14px] text-black font-medium ">
-                       {counterOfferData?.addedBy?.fullName}
+                       {data?.addedBy?.fullName}
                      </p>
                    </div>
                    <div className="col-span-6 flex flex-col lg:flex-row mb-4">
