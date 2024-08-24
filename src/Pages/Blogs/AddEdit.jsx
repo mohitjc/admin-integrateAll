@@ -17,9 +17,9 @@ const AddEditBlogs = () => {
   const [form, setform] = useState({
     name: "",
     short_description: "",
-    keywords:[],
-    meta_desc:"",
-    meta_title:""
+    keywords: [],
+    meta_desc: "",
+    meta_title: "",
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -62,7 +62,6 @@ const AddEditBlogs = () => {
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {
-
         history(`/${shared.url}`);
       }
       loader(false);
@@ -80,17 +79,17 @@ const AddEditBlogs = () => {
   const handleInputChange = (e) => {
     setform({
       ...form,
-      meta_keyword: e
+      meta_keyword: e,
     });
   };
 
   const addKeyword = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (form?.meta_keyword && !form.keywords.includes(form.meta_keyword)) {
       setform({
         ...form,
         keywords: [...form.keywords, form.meta_keyword],
-        meta_keyword: ''
+        meta_keyword: "",
       });
     }
   };
@@ -98,7 +97,7 @@ const AddEditBlogs = () => {
   const removeKeyword = (keywordToRemove) => {
     setform({
       ...form,
-      keywords: form.keywords.filter(keyword => keyword !== keywordToRemove)
+      keywords: form.keywords.filter((keyword) => keyword !== keywordToRemove),
     });
   };
 
@@ -108,7 +107,14 @@ const AddEditBlogs = () => {
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
           let value = res.data;
-          setform({ ...form,keywords: res?.data?.keywords, name: res?.data?.name,meta_desc:res?.data?.meta_desc, meta_title:res?.data?.meta_title, short_description: res?.data?.short_description })
+          setform({
+            ...form,
+            keywords: res?.data?.keywords,
+            name: res?.data?.name,
+            meta_desc: res?.data?.meta_desc,
+            meta_title: res?.data?.meta_title,
+            short_description: res?.data?.short_description,
+          });
           let img = images;
           Object.keys(img).map((itm) => {
             img[itm] = value[itm];
@@ -141,8 +147,8 @@ const AddEditBlogs = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className=" mb-3">
+            <div className="grid grid-cols-12  gap-4">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   name="name"
                   type="text"
@@ -153,32 +159,7 @@ const AddEditBlogs = () => {
                 />
               </div>
 
-              <div>
-                <FormControl
-                  type="text"
-                  name="meta_keyword"
-                  label="Keywords"
-                  value={form.meta_keyword}
-                  onChange={handleInputChange}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault()
-                      addKeyword();
-                    }
-                  }}
-                />
-                <button onClick={addKeyword}>Add</button>
-                <ul>
-                  {form.keywords.map((keyword, index) => (
-                    <li key={index}>
-                      {keyword}
-                      <button onClick={() => removeKeyword(keyword)}>✖</button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className=" mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   name="metaname"
                   type="text"
@@ -188,7 +169,37 @@ const AddEditBlogs = () => {
                   required
                 />
               </div>
-
+              <div className="col-span-full mb-3">
+              <div className="">
+                <label className="text-sm mb-2 block">Keywords</label>
+               <div className="flex items-center w-full gap-3">
+               <input
+                  type="text"
+                  className="relative  bg-white w-full rounded-lg h-10 flex items-center gap-2 overflow-hidden border border-[#00000036] px-3"
+                  name="meta_keyword"
+                  label="Keywords"
+                  value={form.meta_keyword}
+                  onChange={handleInputChange}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.preventDefault();
+                      addKeyword();
+                    }
+                  }}
+                />
+                <button onClick={addKeyword} className="btn btn-primary">
+                  Add
+                </button>
+               </div>
+              </div>
+              <ul className="flex items-center mt-2">
+                {form.keywords.map((keyword, index) => (
+                  <li key={index} className="bg-[#e0e7f1] text-[#2b2b2b] py-[4px] px-[10px] text-xs rounded-[4px] me-1">
+                    {keyword}
+                    <button onClick={() => removeKeyword(keyword)} className="ms-1 text-xs">✖</button>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="col-span-full mb-3">
               <div className=" mb-3">
@@ -199,7 +210,8 @@ const AddEditBlogs = () => {
                   label="Description"
                   value={form.short_description}
                   onChange={(e) => setform({ ...form, short_description: e })}
-                /></div>
+                />
+              </div>
               <div className=" mb-3">
                 <FormControl
                   required
@@ -209,7 +221,10 @@ const AddEditBlogs = () => {
                   value={form.meta_desc}
                   onChange={(e) => setform({ ...form, meta_desc: e })}
                 />
-              </div></div>
+              </div>
+            </div>
+            </div>
+          
 
             <div className="mb-3">
               <label className="lablefontcls">Image</label>
