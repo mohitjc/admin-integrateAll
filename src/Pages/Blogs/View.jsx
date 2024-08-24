@@ -7,6 +7,7 @@ import shared from "./shared";
 import loader from "../../methods/loader";
 import { Tooltip } from "antd";
 import { useSelector } from "react-redux";
+import methodModel from "../../methods/methods";
 
 const ViewBlog = () => {
   const user = useSelector((state) => state.user);
@@ -68,6 +69,32 @@ const ViewBlog = () => {
                     {data && data.short_description}
                   </p>
                 </div> 
+                <div className="col-span-6 flex items-center mb-4">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Title:</label>
+                   <p className="text-[14px] text-black font-medium ms-3">
+                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {data && data.meta_title}
+                  </p>
+                </div> 
+                <div className="col-span-6 flex items-center mb-4">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Description:</label>
+                   <p className="text-[14px] text-black font-medium ms-3">
+                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {data && data.meta_desc}
+                  </p></div>
+                  <div className="col-span-6 flex items-center mb-4">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Description:</label>
+                   <p className="text-[14px] text-black font-medium ms-3">
+                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {data && data.keywords.map((itm)=>itm).join(",")}
+                  </p>
+                </div> 
+                    <div className="col-span-full">
+                      <label className="profileheddingcls">Images</label>
+                      <div className="flex gap-2 flex-wrap items-center">
+                              <img src={methodModel.noImg(data?.image)} width="140" />
+                      </div>
+                    </div>
                </div>
               </div>
              

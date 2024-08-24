@@ -9,21 +9,27 @@ import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import environment from "../../environment";
+import ImageUpload from "../../components/common/ImageUpload";
 
 const AddEditBlogs = () => {
   const { id } = useParams();
-
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
     name: "",
     short_description: "",
+    keywords:[],
+    meta_desc:"",
+    meta_title:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
-  const user = useSelector((state) => state.user); 
+  const user = useSelector((state) => state.user);
 
   const formValidation = [
-    { key: "name", required: true }, 
+    { key: "name", required: true },
+    { key: "meta_desc", required: true },
+    { key: "meta_title", required: true },
+    { key: "short_description", required: true },
   ];
 
   const handleSubmit = (e) => {
@@ -33,18 +39,20 @@ const AddEditBlogs = () => {
 
     if (invalid) return;
     let method = "post";
-    let value ;
+    let value;
     let url = shared.addApi;
     value = {
-      ...form,     
+      ...form,
+      ...images,
     };
 
     if (id) {
       value = {
-        ...form,  
-        id : id,   
+        ...form,
+        id: id,
+        ...images,
       };
-  
+
       method = "put";
       url = shared.editApi;
     } else {
@@ -54,10 +62,43 @@ const AddEditBlogs = () => {
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {
-   
+
         history(`/${shared.url}`);
       }
       loader(false);
+    });
+  };
+
+  const imageResult = (e, key) => {
+    images[key] = e.value;
+    setImages(images);
+    if (submitted == true) {
+      setSubmitted(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setform({
+      ...form,
+      meta_keyword: e
+    });
+  };
+
+  const addKeyword = (e) => {
+    e.preventDefault()
+    if (form?.meta_keyword && !form.keywords.includes(form.meta_keyword)) {
+      setform({
+        ...form,
+        keywords: [...form.keywords, form.meta_keyword],
+        meta_keyword: ''
+      });
+    }
+  };
+
+  const removeKeyword = (keywordToRemove) => {
+    setform({
+      ...form,
+      keywords: form.keywords.filter(keyword => keyword !== keywordToRemove)
     });
   };
 
@@ -66,7 +107,13 @@ const AddEditBlogs = () => {
       loader(true);
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
-        setform({...form,name : res?.data?.name ,short_description: res?.data?.short_description})
+          let value = res.data;
+          setform({ ...form,keywords: res?.data?.keywords, name: res?.data?.name,meta_desc:res?.data?.meta_desc, meta_title:res?.data?.meta_title, short_description: res?.data?.short_description })
+          let img = images;
+          Object.keys(img).map((itm) => {
+            img[itm] = value[itm];
+          });
+          setImages({ ...img });
         }
         loader(false);
       });
@@ -90,33 +137,91 @@ const AddEditBlogs = () => {
               <div>
                 <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
                   {id ? "Edit" : "Add"} {shared.addTitle}
-                </h3> 
+                </h3>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className=" mb-3">
                 <FormControl
-                name = "name"
+                  name="name"
                   type="text"
                   label="Title"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
                   required
                 />
-              </div> 
- 
+              </div>
+
+              <div>
+                <FormControl
+                  type="text"
+                  name="meta_keyword"
+                  label="Keywords"
+                  value={form.meta_keyword}
+                  onChange={handleInputChange}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      addKeyword();
+                    }
+                  }}
+                />
+                <button onClick={addKeyword}>Add</button>
+                <ul>
+                  {form.keywords.map((keyword, index) => (
+                    <li key={index}>
+                      {keyword}
+                      <button onClick={() => removeKeyword(keyword)}>✖</button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className=" mb-3">
+                <FormControl
+                  name="metaname"
+                  type="text"
+                  label="Meta Title"
+                  value={form.meta_title}
+                  onChange={(e) => setform({ ...form, meta_title: e })}
+                  required
+                />
+              </div>
+
             </div>
             <div className="col-span-full mb-3">
+              <div className=" mb-3">
                 <FormControl
-                required
+                  required
                   type="textarea"
                   name="short_description"
                   label="Description"
                   value={form.short_description}
                   onChange={(e) => setform({ ...form, short_description: e })}
+                /></div>
+              <div className=" mb-3">
+                <FormControl
+                  required
+                  type="textarea"
+                  name="meta_desc"
+                  label="Meta Description"
+                  value={form.meta_desc}
+                  onChange={(e) => setform({ ...form, meta_desc: e })}
                 />
-              </div>
+              </div></div>
+
+            <div className="mb-3">
+              <label className="lablefontcls">Image</label>
+              <br></br>
+              <ImageUpload
+                model="users"
+                result={(e) => imageResult(e, "image")}
+                value={images.image || form.image}
+                multiple={false}
+                label="Choose Images"
+              />
+            </div>
 
             <div className="text-right">
               <button
