@@ -237,8 +237,10 @@ export default function Chat() {
                           
                           {itm.type=='IMAGE'?<>
                           <img src={methodModel.noImg(itm.content)} className="w-[150px] object-contain" />
+                          {datepipeModel.datetime(itm?.createdAt)}
                           </>:<>
                             <p>{itm.content}</p>
+                            {datepipeModel.datetime(itm?.createdAt)}
                           </>}
                         </div>
                       </div>
@@ -250,8 +252,10 @@ export default function Chat() {
                         <div className="ml-3 bg-blue-100 text-blue-900 p-2 rounded-lg">
                         {itm.type=='IMAGE'?<>
                           <img src={methodModel.noImg(itm.content)} className="w-[150px] object-contain" />
+                          {datepipeModel.datetime(itm?.createdAt)}
                           </>:<>
                             <p>{itm.content}</p>
+                            {datepipeModel.datetime(itm?.createdAt)}
                           </>}
                         </div>
                       </div>
