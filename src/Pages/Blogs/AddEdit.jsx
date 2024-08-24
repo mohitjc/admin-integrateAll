@@ -170,28 +170,14 @@ const AddEditBlogs = () => {
                 />
               </div>
               <div className="col-span-full mb-3">
-              <div className="">
-                <label className="text-sm mb-2 block">Keywords</label>
-               <div className="flex items-center w-full gap-3">
-               <input
-                  type="text"
-                  className="relative  bg-white w-full rounded-lg h-10 flex items-center gap-2 overflow-hidden border border-[#00000036] px-3"
-                  name="meta_keyword"
+              <FormControl
+                  name="metaname"
+                  type="badge"
                   label="Keywords"
                   value={form.meta_keyword}
-                  onChange={handleInputChange}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      addKeyword();
-                    }
-                  }}
+                  onChange={(e) => setform({ ...form, meta_keyword: e })}
+                  required
                 />
-                <button onClick={addKeyword} className="btn btn-primary">
-                  Add
-                </button>
-               </div>
-              </div>
               <ul className="flex items-center mt-2">
                 {form.keywords.map((keyword, index) => (
                   <li key={index} className="bg-[#e0e7f1] text-[#2b2b2b] py-[4px] px-[10px] text-xs rounded-[4px] me-1">
