@@ -175,7 +175,7 @@ const Login = () => {
             <Link to="/" className=" xl:w-[150px] z-[99] mb-10 block mx-auto text-center">
                   <img
                     src="/assets/img/logo.png"
-                    className="md:w-[160px] lg:w-[140px] w-[130px]  mx-auto"
+                    className="md:w-[160px] lg:w-[140px]   mx-auto"
                     alt="logo"
                   />
                 </Link>
