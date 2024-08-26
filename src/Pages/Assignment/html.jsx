@@ -8,7 +8,8 @@ import SelectDropdown from "../../components/common/SelectDropdown";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
-import { PiMoneyWavyLight } from "react-icons/pi";
+
+import { IoChatboxOutline } from "react-icons/io5";
 
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -188,7 +189,9 @@ const Html = ({
                       chat(itm)
                     }}
                   >
-                    <span class="material-symbols-outlined">chat</span>
+                    <IoChatboxOutline />
+
+                  
                   </a>
                 </Tooltip>
               </> : <></>}
