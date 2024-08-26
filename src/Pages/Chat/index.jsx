@@ -7,8 +7,10 @@ import methodModel from "../../methods/methods";
 import environment from "../../environment";
 import loader from "../../methods/loader";
 import datepipeModel from "../../models/datepipemodel";
+import { useNavigate } from "react-router-dom";
 
 export default function Chat() {
+  const history = useNavigate()
   const user=useSelector(state=>state.user)
   const currectChat=useRef()
   const messages=useRef()
@@ -44,11 +46,45 @@ export default function Chat() {
     });
   };
 
+  const ReadChat=(assignment_id)=>{
+    let payload;
+    if (user?.role == 'staff') {
+      payload = {
+        user_id: user._id,
+        room_id: assignment_id,
+      }
+    }else if(methodModel.getPrams('role') == "user"){
+      payload = {
+        user_id: user._id,
+        room_id: assignment_id,
+      }
+    }
+    loader(true)
+    ApiClient.put('chat/user/read-all-messages',payload,environment.chat_api).then(res=>{
+      loader(false)
+      if(res.success){
+        // let room_id=res.data.room_id
+        // setChatRoomId(room_id)
+        // currectChat.current=room_id
+      }
+    })
+  }
+
 
   const joinChat=(assignment_id)=>{
-    let payload={
-      chat_by:user._id,
-      chat_with:assignment_id
+    let payload;
+    if (methodModel.getPrams('role') == "staff") {
+      payload = {
+        chat_by: user._id,
+        chat_with: assignment_id,
+        role: "staff"
+      }
+    }else if(methodModel.getPrams('role') == "user"){
+      payload = {
+        chat_by: user._id,
+        chat_with: assignment_id,
+        role: "user"
+      }
     }
     loader(true)
     ApiClient.post('chat/user/join-group',payload,{},environment.chat_api).then(res=>{
@@ -103,6 +139,7 @@ export default function Chat() {
         room_id: chatRoomId,
         user_id: user?._id,
       };
+      ReadChat(chatRoomId)
       if (!activeRooms.current.includes(chatRoomId)) {
         console.log("activeRooms inner", activeRooms);
         activeRooms.current.push(chatRoomId);
@@ -127,7 +164,6 @@ export default function Chat() {
       content:text,
       assignment_id:assignment?.id || assignment?._id
     }
-    console.log("value",value)
     socketModel.emit("send-message", value);
     setText('')
   }
@@ -158,7 +194,7 @@ export default function Chat() {
       <Layout>
         <div className="">
         <div className="flex items-center  mb-5">
-        <button className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn  text-[#fff] bg-[#063688] border transition-all  mr-3"><i className="fa fa-angle-left text-lg"></i></button>
+        <button onClick={()=>history("/assignment")} className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn  text-[#fff] bg-[#063688] border transition-all  mr-3"><i className="fa fa-angle-left text-lg"></i></button>
        <h3 className="text-[20px] font-[600]">Chat</h3>
        </div>
           <div className="bg-gray-100 h-[600px] flex border border-gray-200">
@@ -234,7 +270,10 @@ export default function Chat() {
                   </div>
                 </div>
               </div>
-              <div className="p-4 flex-1 overflow-y-auto bg-white h-[600px]" id="chat-box">
+              chatMessages
+              {chatMessages?.length == 0 ?
+              <img src="assets/img/chat.jpg" className="h-[450px] object-contain"/>
+              :<div className="p-4 flex-1 overflow-y-auto bg-white h-[600px]" id="chat-box">
                 {chatMessages.map((itm, i) => {
                   return <Fragment key={i}>
                     {itm.sender == user?._id ? <>
@@ -279,7 +318,7 @@ export default function Chat() {
                   </Fragment>
                 })}
                
-              </div>
+              </div>}
               <div className="border-t border-gray-200 bg-[#f2f3f4] p-4">
                 <form className="flex items-center relative" onSubmit={e=>{e.preventDefault();handleSubmit()}}>
                   <label className="absolute left-[10px] cursor-pointer">

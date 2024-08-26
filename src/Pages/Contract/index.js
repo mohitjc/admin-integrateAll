@@ -53,7 +53,14 @@ const Contract = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p };
+    let filter ;
+
+    
+    if(user?.role == "staff"){
+      filter ={...filters, ...p , staffId:user?.id || user?._id}
+    }else{
+      filter = { ...filters, ...p }
+    }
 
     ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {

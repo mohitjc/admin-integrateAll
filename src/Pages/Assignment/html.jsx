@@ -46,7 +46,11 @@ const Html = ({
   const history=useNavigate()
 
   const chat=(itm)=>{
-    history(`/chat?assignment_id=${itm.id}`)
+    history(`/chat?assignment_id=${itm.id}&role=user`)
+  }
+
+  const Staffchat=(itm)=>{
+    history(`/chat?assignment_id=${itm.id}&role=staff`)
   }
 
 
@@ -188,10 +192,24 @@ const Html = ({
               )}
 
               {(itm.status != 'pending' && user?.role != "staff") ? <>
-                <Tooltip placement="top" title="Chat">
+                <Tooltip placement="top" title="Chat with student">
                   <a
                     className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => chat(itm)}
+                  >
+                    <span class="material-symbols-outlined">chat</span>
+                    {itm?.unreadMessagesCount != 0 && <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {itm?.unreadMessagesCount}
+                    </span>}
+                  </a>
+                </Tooltip>
+              </> : <></>}
+
+              {(itm.status != 'pending') ? <>
+                <Tooltip placement="top" title="Chat with staff">
+                  <a
+                    className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    onClick={(e) => Staffchat(itm)}
                   >
                     <span class="material-symbols-outlined">chat</span>
                     {itm?.unreadMessagesCount != 0 && <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
