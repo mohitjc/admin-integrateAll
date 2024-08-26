@@ -357,8 +357,8 @@ const View = () => {
                      <p className="text-[14px] text-black font-medium ">
                        {counterOfferData?.status == "counteroffered"
                          ? "$ " + counterOfferData.student_counteroffer
-                         : counterOfferData && counterOfferData.counterOffer
-                         ? "$ " + counterOfferData.counterOffer
+                         : counterOfferData && counterOfferData.student_counteroffer
+                         ? "$ " + counterOfferData.student_counteroffer
                          : ""}
                      </p>
                    </div>
