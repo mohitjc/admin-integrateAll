@@ -34,10 +34,12 @@ const Html = ({
   changestatus,
   isAllow,
   viewQuote,
+  setcompleteModalModal,
   status,
   total = { total },
   sortClass,
   getWordPrice,
+  setcompleteData
 }) => {
   const user = useSelector((state) => state.user);
   const history=useNavigate()
@@ -169,9 +171,11 @@ const Html = ({
                   <Tooltip placement="top" title="Complete Assignment">
                     <a
                       className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                      onClick={(e) =>
-                        statusChange("completed", itm, "Complete")
-                      }
+                      onClick={(e) =>{
+                        setcompleteData(itm);
+                        setcompleteModalModal(true);
+                        // statusChange("completed", itm, "Complete")
+                      }}
                     >
                       <span class="material-symbols-outlined">check</span>
                     </a>
