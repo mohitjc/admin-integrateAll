@@ -54,43 +54,44 @@ const ViewBlog = () => {
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 "> 
                <div className="grid grid-cols-12 p-4">
-               <div className="col-span-6 flex items-center mb-4">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider w-[160px]">Title:</label>
-                  <p className="text-[14px] text-black font-medium ms-3">
+               <div className="col-span-6 flex  flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Title:</label>
+                  <p className="text-[14px] text-black font-medium ">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
                     {data && data.name}
                   </p>
                 </div>
-                  <div className="col-span-6 flex items-center mb-4">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
-                    {data && data.short_description}
-                  </p>
-                </div> 
-                <div className="col-span-6 flex items-center mb-4">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Title:</label>
-                   <p className="text-[14px] text-black font-medium ms-3">
+                <div className="col-span-6 flex  flex-col mb-5">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Meta Title:</label>
+                   <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
                     {data && data.meta_title}
                   </p>
                 </div> 
-                <div className="col-span-6 flex items-center mb-4">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3">
+                  <div className="col-span-12 flex  flex-col mb-5 ">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Description:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {data && data.short_description}
+                  </p>
+                </div> 
+                
+                <div className="col-span-12 flex  flex-col mb-5 ">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Meta Description:</label>
+                   <p className="text-[14px] text-black font-medium w-[82%]">
                     {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
                     {data && data.meta_desc}
                   </p></div>
-                  <div className="col-span-6 flex items-center mb-4">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3">
+                  <div className="col-span-6 flex  flex-col mb-5  ">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Keywords:</label>
+                   <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
                     {data && data.keywords.map((itm)=>itm).join(",")}
                   </p>
                 </div> 
                     <div className="col-span-full">
-                      <label className="profileheddingcls">Images</label>
+                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1">Images</label>
                       <div className="flex gap-2 flex-wrap items-center">
                               <img src={methodModel.noImg(data?.image)} width="140" />
                       </div>

@@ -49,7 +49,7 @@ const Html = ({
       name: "Description",
       sort: true,
       render: (row) => {
-        return <p className="text-truncate">{row?.short_description}</p>;
+        return <p className="ellipses">{row?.short_description}</p>;
       },
     }, 
     {
