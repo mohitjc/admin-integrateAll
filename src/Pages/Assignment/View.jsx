@@ -302,7 +302,7 @@ const View = () => {
           ) : (
             <></>
           )}
-           {(counterOfferData && counterOfferData != "" )? 
+           {(counterOfferData && counterOfferData != "" && user?.role != "staff")? 
              <div className="grid grid-cols-12 gap-6">
              <div className="col-span-12">
                <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
