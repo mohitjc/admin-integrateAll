@@ -35,7 +35,7 @@ const View = () => {
             <Tooltip placement="top" title="Back">
               <span
                 onClick={() => history(-1)}
-                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#05388fed] text-white"
+                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#05388fed] text-white hover:text-black"
               >
                 <i className="fa fa-angle-left text-lg"></i>
               </span>
@@ -55,25 +55,25 @@ const View = () => {
                   <h4 className="p-4 bg-[#0636881a] font-medium">Content Information</h4>
                 </div>
                <div className="grid grid-cols-12 p-4">
-               <div className="col-span-6 flex  mb-4">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider w-[160px]">Title:</label>
-                  <p className="text-[14px] text-black font-medium ms-3">
+               <div className="col-span-6 flex  flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Title:</label>
+                  <p className="text-[14px] text-black font-medium">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
                     {data?.title || "--"}
                   </p>
                 </div>
-                <div className="col-span-6 flex  mb-4">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Keywords:</label>
-                   <p className="text-[14px] text-black font-medium ms-3"  >
+                <div className="col-span-6 flex  flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Keywords:</label>
+                   <p className="text-[14px] text-black font-medium"  >
                        {data?.meta_keyword|| "--"}
                     {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
                   </p>
                 
                 </div>
-                  <div className="col-span-6 flex  mb-4">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Meta Title:</label>
-                   <p className="text-[14px] text-black font-medium ms-3">
+                  <div className="col-span-6 flex  flex-col mb-5">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Meta Title:</label>
+                   <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
                     {data?.meta_title || "--"}
                   </p>
@@ -81,9 +81,9 @@ const View = () => {
 
                
                 
-                <div className="col-span-12 flex  mb-4">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px] ">Meta Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3 w-[85%]"  dangerouslySetInnerHTML={{
+                <div className="col-span-12  flex   flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1   ">Meta Description:</label>
+                   <p className="text-[14px] text-black font-medium "  dangerouslySetInnerHTML={{
                       __html: data?.meta_description || "--",
                     }}>
                     {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
@@ -91,9 +91,9 @@ const View = () => {
                  
                 </div>
                
-                <div className="col-span-12 flex  mb-4">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider  w-[160px]">Description:</label>
-                   <p className="text-[14px] text-black font-medium ms-3  w-[85%]"  dangerouslySetInnerHTML={{
+                <div className="col-span-12   flex  flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Description:</label>
+                   <p className="text-[14px] text-black font-medium  "  dangerouslySetInnerHTML={{
                       __html: data?.description || "--",
                     }}>
                     {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}

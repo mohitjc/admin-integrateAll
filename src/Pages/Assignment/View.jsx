@@ -198,49 +198,49 @@ const View = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-12 p-4">
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
                       Title:
                     </label>
-                    <p className="text-[14px] text-black font-medium ms-3">
+                    <p className="text-[14px] text-black font-medium">
                       {" "}
                       {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
                       {data && data.title}
                     </p>
                   </div>
 
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                       Due Date :
                     </label>
-                    <p className="text-[14px] text-black font-medium ms-3">
+                    <p className="text-[14px] text-black font-medium">
                       {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
                       {moment(data?.dueDate).format("DD-MM-YYYY") || "--"}
                     </p>
                   </div>
-                  <div className="col-span-6 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                       Status :
                     </label>
                     <p
-                      className={`${data?.status} text-[14px] text-black font-medium ms-3  `}
+                      className={`${data?.status} text-[14px] text-black font-medium  `}
                     >
                       {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
                       {data?.status || "--"}
                     </p>
                   </div>
-                  <div className="col-span-12 flex items-center mb-3">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                  <div className="col-span-12 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                       Description:
                     </label>
                     <p
                       dangerouslySetInnerHTML={{ __html: data?.description }}
-                      className="text-[14px] text-black font-medium ms-3 desc-text w-[85%]"
+                      className="text-[14px] text-black font-medium desc-text"
                     ></p>
                   </div>
                   {data?.url ? (
-                    <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                      <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                    <div className="col-span-6 flex flex-col mb-5">
+                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                         Document :
                       </label>
 
@@ -278,19 +278,19 @@ const View = () => {
                       </h4>
                     </div>
                     <div className="grid grid-cols-12 p-4">
-                      <div className="col-span-6 flex items-center mb-3">
-                        <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                      <div className="col-span-6 flex flex-col mb-5">
+                        <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
                           Name:
                         </label>
-                        <p className="text-[14px] text-black font-medium ms-3">
+                        <p className="text-[14px] text-black font-medium">
                           {(data && data.staff?.fullName) || "--"}
                         </p>
                       </div>
-                      <div className="col-span-6 flex items-center mb-3">
-                        <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                      <div className="col-span-6 flex flex-col mb-5">
+                        <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
                           Email:
                         </label>
-                        <p className="text-[14px] text-black font-medium ms-3">
+                        <p className="text-[14px] text-black font-medium">
                           {(data && data.staff?.email) || "--"}
                         </p>
                       </div>
@@ -338,8 +338,8 @@ const View = () => {
                    </div>
                  </div>
                  <div className="grid grid-cols-12 p-4">
-                 <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                 <div className="col-span-6 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 w-[130px]">
                        Estimated Offer:
                      </label>
                      <p className="text-[14px] text-black font-medium ">
@@ -350,8 +350,8 @@ const View = () => {
                          : ""}
                      </p>
                    </div>
-                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                   <div className="col-span-6 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 w-[130px]">
                        Counter Offer:
                      </label>
                      <p className="text-[14px] text-black font-medium ">
@@ -364,24 +364,24 @@ const View = () => {
                    </div>
               
  
-                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                   <div className="col-span-6 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
                        Created At :
                      </label>
                      <p className="text-[14px] text-black font-medium ">
                        {datepipeModel.date(counterOfferData?.createdAt)}
                      </p>
                    </div>
-                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                   <div className="col-span-6 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
                        Requested By :
                      </label>
                      <p className="text-[14px] text-black font-medium ">
                        {data?.addedBy?.fullName}
                      </p>
                    </div>
-                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                   <div className="col-span-6 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
                        Status :
                      </label>
                      <p
@@ -392,8 +392,8 @@ const View = () => {
                        {counterOfferData?.status}
                      </p>
                    </div>
-                   {/* <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                   {/* <div className="col-span-6 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
                        Assignment :
                      </label>
                      <p
@@ -402,8 +402,8 @@ const View = () => {
                        {counterOfferData?.assignment_id?.title}
                      </p>
                    </div> */}
-                   <div className="col-span-12 flex flex-col lg:flex-row mb-4">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                   <div className="col-span-12 flex flex-col mb-5">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
                        Message :
                      </label>
                      <p className="text-[14px] text-black font-medium ">
