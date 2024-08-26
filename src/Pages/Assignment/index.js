@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import Modal from "../../components/common/Modal";
 import FormControl from "../../components/common/FormControl";
 import ImageUpload from "../../components/common/ImageUpload";
+import { toast } from "react-toastify";
 
 const Assignment = () => {
   const user = useSelector((state) => state.user);
@@ -156,88 +157,23 @@ const Assignment = () => {
     getData({ status: e, page: 1 });
   };
 
-  const statusChange = (status, itm, title = '') => {
-        let t = title;
-        if (!t) title = status === 'accepted' ? 'Accept' : 'Reject';
+  const statusChange = () => {
 
-          ApiClient.put(`${shared.editApi}?id=${itm?.id}`,{assignment_file:doc}, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then((res) => {
-          if (res.success) {
-            getData();
-          }
-          loader(false);
-        }).catch((error) => {
-          console.error('Error:', error);
-          loader(false);
-        });
+    if (!doc) {
+      toast.error("First Upload Assignment")
+    }
 
-  
-    // Swal.fire({
-    //   title: "Are you sure?",
-    //   html: `
-    //     <p>Do you want to ${title} this assignment?</p>
-    //     <div className="mb-3">
-    //             <label className="text-sm">Document</label>
-    //             <div>
-    //            ${ <ImageUpload
-    //             value={doc}
-    //             model="document"
-    //             apiUrl="upload/upload/document"
-    //             type="doc"
-    //             accept=""
-    //             label="Upload Docs"
-    //             result={e=>{
-    //               setDoc(e.value)
-    //             }}
-    //             />}
-    //             </div>
-               
-    //         </div>
-    //   `,
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#063688",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes",
-    //   preConfirm: () => {
-    //     // Retrieve the file from the input
-    //     const fileInput = Swal.getPopup().querySelector('#fileInput');
-    //     const file = fileInput.files[0];
-        
-    //     if (!file) {
-    //       Swal.showValidationMessage('Please select a file');
-    //       return false;
-    //     }
-  
-    //     // Create FormData to send the file along with other data
-    //     const formData = new FormData();
-    //     formData.append('file', file);
-    //     formData.append('status', status);
-  
-    //     return { formData };
-    //   }
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     loader(true);
-        
-    //     ApiClient.put(`${shared.editApi}?id=${itm?.id}`, result.value.formData, {
-    //       headers: {
-    //         'Content-Type': 'multipart/form-data'
-    //       }
-    //     }).then((res) => {
-    //       if (res.success) {
-    //         getData();
-    //       }
-    //       loader(false);
-    //     }).catch((error) => {
-    //       console.error('Error:', error);
-    //       loader(false);
-    //     });
-    //   }
-    // });
+    ApiClient.put(`${shared?.editApi}?id=${completeData?.id}`, { assignment_file: doc ,status:"completed"}).then((res) => {
+      if (res.success) {
+        setcompleteModalModal(false)
+        setDoc('')
+        getData();
+      }
+      loader(false);
+    }).catch((error) => {
+      console.error('Error:', error);
+      loader(false);
+    });
   };  
 
   const edit = (p={}) => {
@@ -381,6 +317,7 @@ const Assignment = () => {
         viewQuote={viewQuote}
         setcompleteData={setcompleteData}
         setcompleteModalModal={setcompleteModalModal}
+        setDoc={setDoc}
       />
 
       {counterModal?<>
@@ -430,9 +367,9 @@ const Assignment = () => {
         setcompleteModalModal(false)
       }}
       body={<>
-        <form onSubmit={e=>{e.preventDefault();completeSubmit()}}>
+        {/* <form onSubmit={e=>{e.preventDefault();statusChange()}}> */}
         <div className="mb-3">
-                <label className="text-sm">Document</label>
+                <label className="text-sm">Upload Assignment</label>
                 <div>
                 <ImageUpload
                 value={doc}
@@ -449,9 +386,9 @@ const Assignment = () => {
                
             </div>
           <div className="mt-3 text-right">
-            <button className="btn btn-primary">Add</button>
+            <button className="btn btn-primary" onClick={()=>statusChange()}>Send Assignment</button>
           </div>
-        </form>
+        {/* </form> */}
       </>}
       />
       </>:<></>}

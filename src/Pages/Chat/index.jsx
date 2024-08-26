@@ -124,7 +124,8 @@ export default function Chat() {
     let value={
       room_id:chatRoomId,
       type:'TEXT',
-      content:text
+      content:text,
+      assignment_id:assignment?.id || assignment?._id
     }
     console.log("value",value)
     socketModel.emit("send-message", value);
@@ -142,7 +143,8 @@ export default function Chat() {
         let value={
           room_id:chatRoomId,
           type:'IMAGE',
-          content:res.image
+          content:res.image,
+          assignment_id:assignment?.id || assignment?._id
         }
         console.log("value",value)
         socketModel.emit("send-message", value);

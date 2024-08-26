@@ -88,6 +88,7 @@ const Html = ({
              
               <ImageUpload
                 model="users"
+                accept="image/*"
                 result={(e) => imageResult(e, "image")}
                 value={images.image || form.image}
                 multiple={false}

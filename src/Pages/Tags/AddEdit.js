@@ -187,6 +187,7 @@ const AddEdit = () => {
                 <ImageUpload
                   model="users"
                   result={(e) => imageResult(e, "image")}
+                  accept="image/*"
                   value={images.image || form.image}
                   multiple={false}
                   label="Choose Images"

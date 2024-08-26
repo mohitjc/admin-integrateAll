@@ -39,7 +39,8 @@ const Html = ({
   total = { total },
   sortClass,
   getWordPrice,
-  setcompleteData
+  setcompleteData,
+  setDoc
 }) => {
   const user = useSelector((state) => state.user);
   const history=useNavigate()
@@ -174,6 +175,7 @@ const Html = ({
                       onClick={(e) =>{
                         setcompleteData(itm);
                         setcompleteModalModal(true);
+                        setDoc('')
                         // statusChange("completed", itm, "Complete")
                       }}
                     >
