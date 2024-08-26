@@ -144,33 +144,59 @@ const Assignment = () => {
     getData({ status: e, page: 1 });
   };
 
-  const statusChange = (status,itm,title='') => { 
-    let t=title
-    if(!t) title=status=='accepted'?'Accept':'Reject'
-
+  const statusChange = (status, itm, title = '') => {
+    let t = title;
+    if (!t) title = status === 'accepted' ? 'Accept' : 'Reject';
+  
     Swal.fire({
       title: "Are you sure?",
-      text: `Do you want to ${title} this assignment ?`,
+      html: `
+        <p>Do you want to ${title} this assignment?</p>
+        <input type="file" id="fileInput" class="swal2-input" />
+      `,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#063688",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes",
+      preConfirm: () => {
+        // Retrieve the file from the input
+        const fileInput = Swal.getPopup().querySelector('#fileInput');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+          Swal.showValidationMessage('Please select a file');
+          return false;
+        }
+  
+        // Create FormData to send the file along with other data
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('status', status);
+  
+        return { formData };
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         loader(true);
-        ApiClient.put(`${shared.editApi}?id=${itm?.id}`, {  status }).then((res) => {
+        
+        // Upload the file and status
+        ApiClient.put(`${shared.editApi}?id=${itm?.id}`, result.value.formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }).then((res) => {
           if (res.success) {
             getData();
           }
           loader(false);
-        }); 
+        }).catch((error) => {
+          console.error('Error:', error);
+          loader(false);
+        });
       }
     });
-
-        
-     
-  };
+  };  
 
   const edit = (p={}) => {
     let payload={
