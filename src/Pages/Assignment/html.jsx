@@ -34,10 +34,13 @@ const Html = ({
   changestatus,
   isAllow,
   viewQuote,
+  setcompleteModalModal,
   status,
   total = { total },
   sortClass,
   getWordPrice,
+  setcompleteData,
+  setDoc
 }) => {
   const user = useSelector((state) => state.user);
   const history=useNavigate()
@@ -169,9 +172,12 @@ const Html = ({
                   <Tooltip placement="top" title="Complete Assignment">
                     <a
                       className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                      onClick={(e) =>
-                        statusChange("completed", itm, "Complete")
-                      }
+                      onClick={(e) =>{
+                        setcompleteData(itm);
+                        setcompleteModalModal(true);
+                        setDoc('')
+                        // statusChange("completed", itm, "Complete")
+                      }}
                     >
                       <span class="material-symbols-outlined">check</span>
                     </a>
@@ -184,14 +190,13 @@ const Html = ({
               {(itm.status != 'pending' && user?.role != "staff") ? <>
                 <Tooltip placement="top" title="Chat">
                   <a
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                    onClick={(e) => {
-                      chat(itm)
-                    }}
+                    className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    onClick={(e) => chat(itm)}
                   >
-                    <IoChatboxOutline />
-
-                  
+                    <span class="material-symbols-outlined">chat</span>
+                    {itm?.unreadMessagesCount != 0 && <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {itm?.unreadMessagesCount}
+                    </span>}
                   </a>
                 </Tooltip>
               </> : <></>}

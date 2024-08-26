@@ -11,6 +11,9 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Modal from "../../components/common/Modal";
 import FormControl from "../../components/common/FormControl";
+import ImageUpload from "../../components/common/ImageUpload";
+import { toast } from "react-toastify";
+
 const Assignment = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
@@ -20,9 +23,15 @@ const Assignment = () => {
   const [total, setTotal] = useState(0);
   const [loaging, setLoader] = useState(true);
   const [counterModal, setCounterModal] = useState(false);
+  const [doc,setDoc] = useState("")
+  const [completeModal,setcompleteModalModal] = useState(false)
   const [counterForm, setCounterForm] = useState({
     counterOffer:''
   });
+  const [completeForm, setcompleteForm] = useState({
+    counterOffer:''
+  });
+  const [completeData, setcompleteData] = useState({});
   const[status,setStatus] = useState("pending")
   const history = useNavigate();
 
@@ -33,6 +42,10 @@ const Assignment = () => {
       cls = "fa-sort-down";
     return "fa " + cls;
   };
+
+  const completeSubmit = () =>{
+
+  }
 
   const sorting = (key) => {
     let sorder = "asc";
@@ -144,33 +157,24 @@ const Assignment = () => {
     getData({ status: e, page: 1 });
   };
 
-  const statusChange = (status,itm,title='') => { 
-    let t=title
-    if(!t) title=status=='accepted'?'Accept':'Reject'
+  const statusChange = () => {
 
-    Swal.fire({
-      title: "Are you sure?",
-      text: `Do you want to ${title} this assignment ?`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#063688",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        loader(true);
-        ApiClient.put(`${shared.editApi}?id=${itm?.id}`, {  status }).then((res) => {
-          if (res.success) {
-            getData();
-          }
-          loader(false);
-        }); 
+    if (!doc) {
+      toast.error("First Upload Assignment")
+    }
+
+    ApiClient.put(`${shared?.editApi}?id=${completeData?.id}`, { assignment_file: doc ,status:"completed"}).then((res) => {
+      if (res.success) {
+        setcompleteModalModal(false)
+        setDoc('')
+        getData();
       }
+      loader(false);
+    }).catch((error) => {
+      console.error('Error:', error);
+      loader(false);
     });
-
-        
-     
-  };
+  };  
 
   const edit = (p={}) => {
     let payload={
@@ -311,6 +315,9 @@ const Assignment = () => {
         uploadFile={uploadFile}
         status={status}
         viewQuote={viewQuote}
+        setcompleteData={setcompleteData}
+        setcompleteModalModal={setcompleteModalModal}
+        setDoc={setDoc}
       />
 
       {counterModal?<>
@@ -349,6 +356,39 @@ const Assignment = () => {
             <button className="btn btn-primary">Add</button>
           </div>
         </form>
+      </>}
+      />
+      </>:<></>}
+
+      {completeModal?<>
+        <Modal
+      title="Complete Assignment"
+      result={e=>{
+        setcompleteModalModal(false)
+      }}
+      body={<>
+        {/* <form onSubmit={e=>{e.preventDefault();statusChange()}}> */}
+        <div className="mb-3">
+                <label className="text-sm">Upload Assignment</label>
+                <div>
+                <ImageUpload
+                value={doc}
+                model="document"
+                apiUrl="upload/upload/document"
+                type="doc"
+                accept=""
+                label="Upload Docs"
+                result={e=>{
+                  setDoc(e.value)
+                }}
+                />
+                </div>
+               
+            </div>
+          <div className="mt-3 text-right">
+            <button className="btn btn-primary" onClick={()=>statusChange()}>Send Assignment</button>
+          </div>
+        {/* </form> */}
       </>}
       />
       </>:<></>}

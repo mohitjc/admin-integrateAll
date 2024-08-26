@@ -39,6 +39,13 @@ const noImg = (img, modal = "img") => {
   return value;
 };
 
+const document = (img, modal = "img") => {
+  let value = "/assets/img/placeholder.png";
+  // if (img) value = environment.api + 'img/' + img
+  if (img) value = `${environment.api}document/${img}`;
+  return value;
+};
+
 const getPrams = (p) => {
   const params = new URLSearchParams(window.location.search);
   return params.get(p);
@@ -298,5 +305,6 @@ const methodModel = {
   containsSpaceonly,
   msToTime,
   urlValidation,
+  document
 };
 export default methodModel;

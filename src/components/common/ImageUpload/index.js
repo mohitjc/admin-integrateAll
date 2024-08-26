@@ -7,6 +7,7 @@ import loader from "../../../methods/loader";
 const ImageUpload = ({
   model,
   result,
+  accept,
   value,
   multiple,
   required,
@@ -69,6 +70,7 @@ const ImageUpload = ({
         uploadImage={uploadImage}
         img={img}
         model={model}
+        accept={accept}
         required={required}
         loader={loading}
         err={err}
