@@ -369,8 +369,8 @@ const Assignment = () => {
       body={<>
         {/* <form onSubmit={e=>{e.preventDefault();statusChange()}}> */}
         <div className="mb-3">
-                <label className="text-sm">Upload Assignment</label>
-                <div>
+                <label className="text-sm  mb-3 block">Upload Assignment</label>
+                <div className="upload-big">
                 <ImageUpload
                 value={doc}
                 model="document"
