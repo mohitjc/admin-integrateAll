@@ -155,7 +155,12 @@ export default function Chat() {
     <>
       <Layout>
         <div className="">
+        <div className="flex items-center  mb-5">
+        <button className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn  text-[#fff] bg-[#063688] border transition-all  mr-3"><i className="fa fa-angle-left text-lg"></i></button>
+       <h3 className="text-[20px] font-[600]">Chat</h3>
+       </div>
           <div className="bg-gray-100 h-[600px] flex border border-gray-200">
+          
             {/* <div className="w-80 bg-white border-r border-gray-200  flex flex-col">
              <div className="py-4 px-4 border-b border-gray-200 bg-[#00358503]">
                 <div className="relative">
@@ -210,16 +215,18 @@ export default function Chat() {
             </div> */}
 
             <div className="flex-1 flex flex-col">
-              <div className="p-3 px-4 border-b border-gray-200 bg-[#00358503]">
+              
+              <div className="p-3 px-4 border-b border-gray-200 bg-[#003585d9] rounded-[4px]">
+             
                 <div className="flex items-center">
                   {/* <div className="w-12 h-12  rounded-full">
                     <img src="assets/img/skill/team3.png" />
                   </div> */}
                   <div className="ms-3">
-                    <h1 className="text-[17px] font-semibold leading-[20px]">
+                    <h1 className="text-[17px] font-semibold leading-[20px] text-white capitalize">
                       {assignment?.title}
                     </h1>
-                    <span className="text-[#00000094] text-[12px] leading-[14px]">
+                    <span className="text-[#00000094] text-[12px] leading-[14px] text-white">
                      Due Date: {datepipeModel.date(assignment?.dueDate)}
                     </span>
                   </div>
@@ -231,7 +238,7 @@ export default function Chat() {
                     {itm.sender == user?._id ? <>
                       <div className="mb-4 flex items-start flex-row-reverse">
                         <div className="w-10 h-10  rounded-full">
-                          <img src={methodModel.userImg(itm.sender_image)} />
+                          <img src={methodModel.userImg(itm.sender_image)} className="w-10 h-10  rounded-full" />
                         </div>
                         <div className="me-3 bg-gray-200 text-green-900 p-2 rounded-lg">
                           
@@ -271,7 +278,7 @@ export default function Chat() {
                 })}
                
               </div>
-              <div className="border-t border-gray-200 bg-gray-50 p-4">
+              <div className="border-t border-gray-200 bg-[#f2f3f4] p-4">
                 <form className="flex items-center relative" onSubmit={e=>{e.preventDefault();handleSubmit()}}>
                   <label className="absolute left-[10px] cursor-pointer">
                   <svg xmlns="http://www.w3.org/2000/svg" class=" text-[20px] w-[20px] " viewBox="0 0 45.7 45.7"><path d="M6.6,45.7A6.7,6.7,0,0,1,0,39.1V6.6A6.7,6.7,0,0,1,6.6,0H39.1a6.7,6.7,0,0,1,6.6,6.6V39.1h0a6.7,6.7,0,0,1-6.6,6.6ZM39,4H6.6A2.6,2.6,0,0,0,4,6.6V39.1a2.6,2.6,0,0,0,2.6,2.6H39.1a2.6,2.6,0,0,0,2.6-2.6V6.6A2.7,2.7,0,0,0,39,4Zm4.7,35.1Zm-4.6-.4H6.6a2.1,2.1,0,0,1-1.8-1.1,2,2,0,0,1,.3-2.1l8.1-10.4a1.8,1.8,0,0,1,1.5-.8,2.4,2.4,0,0,1,1.6.7l4.2,5.1,6.6-8.5a1.8,1.8,0,0,1,1.6-.8,1.8,1.8,0,0,1,1.5.8L40.7,35.5a2,2,0,0,1,.1,2.1A1.8,1.8,0,0,1,39.1,38.7Zm-17.2-4H35.1l-6.5-8.6-6.5,8.4C22,34.6,22,34.7,21.9,34.7Zm-11.2,0H19l-4.2-5.1Z" fill="#00000075"></path></svg>

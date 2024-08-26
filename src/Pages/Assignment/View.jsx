@@ -223,7 +223,7 @@ const View = () => {
                       Status :
                     </label>
                     <p
-                      className={`${data?.status} text-[14px] text-black font-medium  `}
+                      className={`${data?.status} text-[14px] text-black font-medium  width-fit`}
                     >
                       {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
                       {data?.status || "--"}
@@ -339,7 +339,7 @@ const View = () => {
                  </div>
                  <div className="grid grid-cols-12 p-4">
                  <div className="col-span-6 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
                        Estimated Offer:
                      </label>
                      <p className="text-[14px] text-black font-medium ">
@@ -351,7 +351,7 @@ const View = () => {
                      </p>
                    </div>
                    <div className="col-span-6 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
                        Counter Offer:
                      </label>
                      <p className="text-[14px] text-black font-medium ">
@@ -365,7 +365,7 @@ const View = () => {
               
  
                    <div className="col-span-6 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                        Created At :
                      </label>
                      <p className="text-[14px] text-black font-medium ">
@@ -373,7 +373,7 @@ const View = () => {
                      </p>
                    </div>
                    <div className="col-span-6 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                        Requested By :
                      </label>
                      <p className="text-[14px] text-black font-medium ">
@@ -381,7 +381,7 @@ const View = () => {
                      </p>
                    </div>
                    <div className="col-span-6 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                        Status :
                      </label>
                      <p
@@ -393,7 +393,7 @@ const View = () => {
                      </p>
                    </div>
                    {/* <div className="col-span-6 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                        Assignment :
                      </label>
                      <p
@@ -403,7 +403,7 @@ const View = () => {
                      </p>
                    </div> */}
                    <div className="col-span-12 flex flex-col mb-5">
-                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  w-[130px]">
+                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                        Message :
                      </label>
                      <p className="text-[14px] text-black font-medium ">

@@ -119,7 +119,7 @@ const CounterOfferDetails = () => {
                 </div>
                 <div className="grid grid-cols-12 p-4">
                 <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider ">
                       Estimated Offer:
                     </label>
                     <p className="text-[14px] text-black font-medium ">
@@ -131,7 +131,7 @@ const CounterOfferDetails = () => {
                     </p>
                   </div>
                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider ">
                       Counter Offer:
                     </label>
                     <p className="text-[14px] text-black font-medium ">
@@ -145,7 +145,7 @@ const CounterOfferDetails = () => {
              
 
                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider  ">
                       Created At :
                     </label>
                     <p className="text-[14px] text-black font-medium ">
@@ -153,7 +153,7 @@ const CounterOfferDetails = () => {
                     </p>
                   </div>
                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider  ">
                       Requested By :
                     </label>
                     <p className="text-[14px] text-black font-medium ">
@@ -161,7 +161,7 @@ const CounterOfferDetails = () => {
                     </p>
                   </div>
                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider  ">
                       Status :
                     </label>
                     <p
@@ -173,7 +173,7 @@ const CounterOfferDetails = () => {
                     </p>
                   </div>
                   <div className="col-span-6 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider  ">
                       Assignment :
                     </label>
                     <p
@@ -183,7 +183,7 @@ const CounterOfferDetails = () => {
                     </p>
                   </div>
                   <div className="col-span-12 flex flex-col lg:flex-row mb-4">
-                    <label className="text-[14px] text-[#0000009c] tracking-wider  w-[130px]">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider  ">
                       Message :
                     </label>
                     <p className="text-[14px] text-black font-medium ">
