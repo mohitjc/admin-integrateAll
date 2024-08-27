@@ -81,7 +81,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       name: "Contract",
       icon: <RiContractLine className="text-inherit shrink-0 text-lg" />,
       url: "/contract",
-      key: "readstaff",
+      key: "readcontract",
     },
     {
       name: "Content Management",

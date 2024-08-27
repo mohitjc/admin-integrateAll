@@ -206,14 +206,14 @@ const Html = ({
               </> : <></>}
 
               {(itm.status != 'pending' && itm?.staffDetail?.fullName) ? <>
-                <Tooltip placement="top" title="Chat with staff">
+                <Tooltip placement="top" title={user?.role != "staff" ? "Chat with admin" : "Chat with staff"}>
                   <a
                     className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => Staffchat(itm)}
                   >
                     <span class="material-symbols-outlined">chat</span>
-                    {itm?.unreadMessagesCount != 0 && <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                      {itm?.unreadMessagesCount}
+                    {itm?.unreadMessagesCountForStaff != 0 && <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {itm?.unreadMessagesCountForStaff}
                     </span>}
                   </a>
                 </Tooltip>
