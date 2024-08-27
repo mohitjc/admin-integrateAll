@@ -95,6 +95,12 @@ export default function Chat() {
   useEffect(()=>{
     socketModel.on("receive-message", (data) => {
       console.log("data", data);
+      const payload = {
+        user_id: user?.id || user?._id,
+        message_id: data?._id,
+        role: "user"
+      }
+      socketModel.emit("read-message", payload);
       if (currectChat.current == data.data.room_id) {
         messages.current.push({ ...data.data });
 
@@ -125,6 +131,7 @@ export default function Chat() {
         room_id: chatRoomId,
         user_id: user?._id,
       };
+      socketModel.emit("join-room", value);
       ReadChat(chatRoomId)
       if (!activeRooms.current.includes(chatRoomId)) {
         console.log("activeRooms inner", activeRooms);
