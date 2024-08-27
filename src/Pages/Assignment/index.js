@@ -163,7 +163,7 @@ const Assignment = () => {
       toast.error("First Upload Assignment")
     }
 
-    ApiClient.put(`${shared?.editApi}?id=${completeData?.id}`, { assignment_file: doc ,status:"completed"}).then((res) => {
+    ApiClient.put(`${shared?.editApi}?id=${completeData?.id}`, { answer_url: doc ,status:"completed"}).then((res) => {
       if (res.success) {
         setcompleteModalModal(false)
         setDoc('')

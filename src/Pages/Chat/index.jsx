@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 export default function Chat() {
   const history = useNavigate()
   const user=useSelector(state=>state.user)
+  // const imageExtensions = ["jpg", "jpeg", "png", "gif", "bmp"];
   const currectChat=useRef()
   const messages=useRef()
   const [chatMessages, setChatMessages] = useState([]);
@@ -156,7 +157,13 @@ export default function Chat() {
 
   const uploadImage=(e)=>{
     let files=e.target.files
-    console.log("files",files)
+    // const fileExtension = files?.name?.split(".").pop().toLowerCase();
+    // let isTrue = imageExtensions.includes(fileExtension);
+
+    // let url = isTrue
+    //   ? "upload/image?modelName=users"
+    //   : "upload/document?modelName=documents";
+
     loader(true)
     ApiClient.multiImageUpload('user/uploadImage',files).then(res=>{
        e.target.value=''
@@ -257,7 +264,6 @@ export default function Chat() {
                   </div>
                 </div>
               </div>
-              chatMessages
               {chatMessages?.length == 0 ?
               <img src="assets/img/chat.jpg" className="h-[450px] object-contain"/>
               :<div className="p-4 flex-1 overflow-y-auto bg-white h-[600px]" id="chat-box">

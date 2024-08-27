@@ -4,7 +4,11 @@ const status=[
   {id:'completed',name:'Completed'},
   {id:'counteroffered',name:'Counter Offered'},
   {id:'pending',name:'Pending'},
+  {id:'contractcreated',name:'Contract Created'},
+  {id:'offer-received',name:'offer-received'}
 ]
+
+// ['pending', 'completed', 'overdue','accepted','rejected','counteroffered',"contractcreated","offer-received","quotation-submitted","staff-accepted"],
 
 const getWordPrice=(w=0,estimates=[])=>{
   let word=Number(w||0)

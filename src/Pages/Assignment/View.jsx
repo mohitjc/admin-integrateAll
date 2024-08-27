@@ -262,6 +262,31 @@ const View = () => {
                   ) : (
                     ""
                   )}
+
+                  {data?.answer_url ? (
+                    <div className="col-span-6 flex flex-col mb-5">
+                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                        Complete Assignment :
+                      </label>
+
+                      <a
+                        className="relative w-[50px] h-[50px]"
+                        target="_new"
+                        href={methodModel.document(data?.answer_url, "document")}
+                      >
+                        <i
+                          class="fa fa-download absolute right-0 bottom-0 bg-[#06378b] text-white p-2 text-[8px] rounded-[50px]"
+                          aria-hidden="true"
+                        ></i>
+
+                        <span class="material-symbols-outlined text-[50px]">
+                          draft
+                        </span>
+                      </a>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
