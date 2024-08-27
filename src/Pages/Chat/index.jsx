@@ -21,7 +21,7 @@ export default function Chat() {
   const [text, setText] = useState('');
   const [cloader, setCLoader] = useState('');
   const [assignment, setAssignment] = useState();
-
+  let role = methodModel.getPrams('role')
   let ar = sessionStorage.getItem("activeRooms");
   const activeRooms = useRef(ar ? JSON.parse(ar) : []);
 
@@ -47,18 +47,11 @@ export default function Chat() {
   };
 
   const ReadChat=(assignment_id)=>{
-    let payload;
-    if (user?.role == 'staff') {
-      payload = {
+    let payload = {
         user_id: user._id,
         room_id: assignment_id,
       }
-    }else if(methodModel.getPrams('role') == "user"){
-      payload = {
-        user_id: user._id,
-        room_id: assignment_id,
-      }
-    }
+   
     loader(true)
     ApiClient.put('chat/user/read-all-messages',payload,environment.chat_api).then(res=>{
       loader(false)
@@ -72,20 +65,12 @@ export default function Chat() {
 
 
   const joinChat=(assignment_id)=>{
-    let payload;
-    if (methodModel.getPrams('role') == "staff") {
-      payload = {
+    let payload = {
         chat_by: user._id,
         chat_with: assignment_id,
-        role: "staff"
+        role: role
       }
-    }else if(methodModel.getPrams('role') == "user"){
-      payload = {
-        chat_by: user._id,
-        chat_with: assignment_id,
-        role: "user"
-      }
-    }
+
     loader(true)
     ApiClient.post('chat/user/join-group',payload,{},environment.chat_api).then(res=>{
       loader(false)
@@ -162,7 +147,8 @@ export default function Chat() {
       room_id:chatRoomId,
       type:'TEXT',
       content:text,
-      assignment_id:assignment?.id || assignment?._id
+      assignment_id:assignment?.id || assignment?._id,
+      role: role
     }
     socketModel.emit("send-message", value);
     setText('')
@@ -180,7 +166,8 @@ export default function Chat() {
           room_id:chatRoomId,
           type:'IMAGE',
           content:res.image,
-          assignment_id:assignment?.id || assignment?._id
+          assignment_id:assignment?.id || assignment?._id,
+          role: role
         }
         console.log("value",value)
         socketModel.emit("send-message", value);

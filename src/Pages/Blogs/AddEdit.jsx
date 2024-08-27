@@ -176,7 +176,7 @@ const AddEditBlogs = () => {
                   label="Keywords"
                   value={form.meta_keyword}
                   onChange={(e) => setform({ ...form, meta_keyword: e })}
-                  required
+                  
                 />
               <ul className="flex items-center mt-2">
                 {form.keywords.map((keyword, index) => (

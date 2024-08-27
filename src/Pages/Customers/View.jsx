@@ -89,13 +89,6 @@ const View = () => {
                     {data?.mobileNo || "--"}
                   </p>
                 </div>
-                  <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Role:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
-                  </p>
-                  {data?.role?.name || "--"}
-                </div>
                </div>
               </div>
              
