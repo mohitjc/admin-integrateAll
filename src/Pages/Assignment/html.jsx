@@ -206,7 +206,7 @@ const Html = ({
               </> : <></>}
 
               {(itm.status != 'pending' && itm?.staffDetail?.fullName) ? <>
-                <Tooltip placement="top" title={user?.role != "staff" ?  "Chat with admin" : "Chat with staff"}>
+                <Tooltip placement="top" title={user?.role == "staff" ?  "Chat with admin" : "Chat with staff"}>
                   <a
                     className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => Staffchat(itm)}
