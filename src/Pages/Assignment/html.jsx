@@ -171,7 +171,7 @@ const Html = ({
                  
                 </>
               )} */}
-              {(user?.role == "staff" && itm.status != "completed") ? (
+              {(user?.role == "staff" ) ? (
                 <>
                   <Tooltip placement="top" title="Complete Assignment">
                     <a
