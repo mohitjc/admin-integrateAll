@@ -229,6 +229,30 @@ const View = () => {
                       {data?.status || "--"}
                     </p>
                   </div>
+                  {data?.url ? (
+                    <div className="col-span-6 flex flex-col mb-5">
+                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                        Document :
+                      </label>
+
+                      <a
+                        className="relative w-[35px] h-[35px]"
+                        target="_new"
+                        href={methodModel.document(data?.url, "document")}
+                      >
+                        <i
+                          class="fa fa-download absolute right-0 bottom-0 bg-[#06378b] text-white p-[6px] text-[8px] rounded-[50px]"
+                          aria-hidden="true"
+                        ></i>
+
+                        <span class="material-symbols-outlined text-[30px]">
+                          draft
+                        </span>
+                      </a>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                   <div className="col-span-12 flex flex-col mb-5">
                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                       Description:
@@ -238,30 +262,7 @@ const View = () => {
                       className="text-[14px] text-black font-medium desc-text"
                     ></p>
                   </div>
-                  {data?.url ? (
-                    <div className="col-span-6 flex flex-col mb-5">
-                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
-                        Document :
-                      </label>
-
-                      <a
-                        className="relative w-[50px] h-[50px]"
-                        target="_new"
-                        href={methodModel.document(data?.url, "document")}
-                      >
-                        <i
-                          class="fa fa-download absolute right-0 bottom-0 bg-[#06378b] text-white p-2 text-[8px] rounded-[50px]"
-                          aria-hidden="true"
-                        ></i>
-
-                        <span class="material-symbols-outlined text-[50px]">
-                          draft
-                        </span>
-                      </a>
-                    </div>
-                  ) : (
-                    ""
-                  )}
+                  
 
                   {data?.answer_url ? (
                     <div className="col-span-6 flex flex-col mb-5">
