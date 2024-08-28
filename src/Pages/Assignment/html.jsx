@@ -191,7 +191,7 @@ const Html = ({
                 <></>
               )}
 
-              {(itm.status != 'pending' && user?.role != "staff") ? <>
+              {(itm.status != 'pending') ? <>
                 <Tooltip placement="top" title="Chat with student">
                   <a
                     className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
