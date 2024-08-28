@@ -124,7 +124,6 @@ export default function Chat() {
     }
     
   },[])
-
   useEffect(() => {
     if (chatRoomId != "") {
       let value = {
