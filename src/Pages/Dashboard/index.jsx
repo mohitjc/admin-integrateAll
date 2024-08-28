@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../../components/global/layout";
+import { useNavigate } from "react-router-dom";
 import Chart from "../../components/Charts/Chart";
 import { IoHandRightOutline } from "react-icons/io5";
 import PieChart from "../../components/Charts/Piechart";
@@ -28,7 +29,7 @@ const Dashboard = () => {
   const getAllCounts = () => {
     ApiClient.get("dashboard/all-counts").then((res) => {
       if (res.success) {
-        setData(res.data?.[0]);
+        setData(res?.data?.[0]);
       }
     });
   };
@@ -62,13 +63,15 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    // getAllCounts();
+    getAllCounts();
     // getOrders();
   }, []);
 
   useEffect(() => {
     // getRewardGraph();
   }, [aggregation]);
+
+  const history = useNavigate();
 
   const getRewardGraph = () => {
     loader(true)
@@ -128,7 +131,7 @@ const Dashboard = () => {
 
         <div className="shadow-box w-full bg-white rounded-lg mt-6 p-6">
         <div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="  border text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow">
+            <div className="  border cursor-pointer text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow" onClick={(e)=>history("/user")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d1.svg"
@@ -140,10 +143,10 @@ const Dashboard = () => {
                 Total Staff
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
-                {data?.totalUsers} 34
+                {data?.totalStaffCount}
               </dd>
             </div>
-            <div className="  border text-center border-gray-200  px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow">
+            <div className="  border cursor-pointer text-center border-gray-200  px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow" onClick={(e)=>history("/customers")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d1.svg"
@@ -155,10 +158,10 @@ const Dashboard = () => {
               Total Students
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
-              {data?.totalProducts} 34
+              {data?.totalUsersCount}
               </dd>
             </div>
-            <div className="  border text-center border-gray-200  px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow">
+            <div className="  border cursor-pointer text-center border-gray-200  px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow" onClick={(e)=>history("/contract")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d4.svg"
@@ -167,14 +170,14 @@ const Dashboard = () => {
                 />
               </div>
               <dt className="text-base leading-7 text-black/40 mb-1">
-              Total Categories
+              Total Contract
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
-              {data?.totalCategory} 34
+              {data?.totalContractsCount}
               </dd>
             </div>
 
-            <div className="  border text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow">
+            <div className="  border cursor-pointer text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a] inner-shadow " onClick={(e)=>history("/assignment")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d2.svg"
@@ -186,7 +189,7 @@ const Dashboard = () => {
               Total Assignment
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
-              {data?.totalReview} 34
+              {data?.totalAssignmentsCount}
               </dd>
             </div>
           

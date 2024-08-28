@@ -87,7 +87,7 @@ const ViewBlog = () => {
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Keywords:</label>
                    <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
-                    {data && data.keywords.map((itm)=>itm).join(",")}
+                    {data && data.meta_keywords.map((itm)=>itm).join(",")}
                   </p>
                 </div> 
                     <div className="col-span-full">

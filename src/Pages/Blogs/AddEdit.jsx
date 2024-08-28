@@ -18,6 +18,7 @@ const AddEditBlogs = () => {
     name: "",
     short_description: "",
     keywords: [],
+    meta_keywords:[],
     meta_desc: "",
     meta_title: "",
   });
@@ -79,17 +80,17 @@ const AddEditBlogs = () => {
   const handleInputChange = (e) => {
     setform({
       ...form,
-      meta_keyword: e,
+      meta_keywords: e,
     });
   };
 
   const addKeyword = (e) => {
     e.preventDefault();
-    if (form?.meta_keyword && !form.keywords.includes(form.meta_keyword)) {
+    if (form?.meta_keywords && !form.keywords.includes(form.meta_keywords)) {
       setform({
         ...form,
-        keywords: [...form.keywords, form.meta_keyword],
-        meta_keyword: "",
+        keywords: [...form.keywords, form.meta_keywords],
+        meta_keywords: "",
       });
     }
   };
@@ -110,6 +111,7 @@ const AddEditBlogs = () => {
           setform({
             ...form,
             keywords: res?.data?.keywords,
+            meta_keywords:res?.data?.meta_keywords,
             name: res?.data?.name,
             meta_desc: res?.data?.meta_desc,
             meta_title: res?.data?.meta_title,
@@ -174,12 +176,12 @@ const AddEditBlogs = () => {
                   name="metaname"
                   type="badge"
                   label="Keywords"
-                  value={form.meta_keyword}
-                  onChange={(e) => setform({ ...form, meta_keyword: e })}
+                  value={form.meta_keywords}
+                  onChange={(e) => setform({ ...form, meta_keywords: e })}
                   
                 />
               <ul className="flex items-center mt-2">
-                {form.keywords.map((keyword, index) => (
+                {form.meta_keywords.map((keyword, index) => (
                   <li key={index} className="bg-[#e0e7f1] text-[#2b2b2b] py-[4px] px-[10px] text-xs rounded-[4px] me-1">
                     {keyword}
                     <button onClick={() => removeKeyword(keyword)} className="ms-1 text-xs">✖</button>
