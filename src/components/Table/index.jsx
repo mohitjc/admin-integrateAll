@@ -158,7 +158,66 @@ const Table = ({
             )}
           </>
         ) : (
-          <div className="p-4 text-center">{nodata}</div>
+          // <div className="p-4 text-center">{nodata}</div>
+          <div className="px-4 pb-4">
+          <div className="relative overflow-x-auto border border-[#0000000d]  rounded-bl-[6px] rounded-br-[6px]">
+           
+            <table className="xl:w-full lg:w-[1300px] md:w-[1200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 capitalize bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                {/* Top header */}
+                {topHead?.length ? (
+                  <tr className="bg-gray-200 border-b border-black">
+                    {topHead.map((itm, i) => (
+                      <th
+                        scope="col"
+                        className={`px-6 py-3 text-center ${
+                          topHead.length - 1 === i
+                            ? ""
+                            : "border-r border-black"
+                        }`}
+                        colSpan={itm?.colSpan || 0}
+                        key={i}
+                      >
+                        {itm.name}
+                      </th>
+                    ))}
+                  </tr>
+                ) : null}
+                {/* Main header */}
+                <tr>
+                  {columns.map((itm) => (
+                    <th
+                      scope="col"
+                      className={`px-2 py-3   ${
+                        itm.sort ? "cursor-pointer" : ""
+                      }`}
+                      onClick={() => headclick(itm)}
+                      key={itm.key}
+                    >
+                      <span className="inline-flex items-center gap-1">
+                        <span> {itm.name} </span>
+                        {itm.sort ? (
+                          <>
+                            <span className="">
+                              <HiOutlineArrowDown className=" inline text-sm" />
+                            </span>
+                          </>
+                        ) : null}
+                      </span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td colspan="7">
+                <div className="p-4 text-center">{nodata}</div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         )}
       </div>
     </>
