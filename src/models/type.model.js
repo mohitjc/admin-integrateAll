@@ -11,14 +11,14 @@ export const rolePermissions = [
     name: "Students",
     key: "Customers",
   },
-  {
-    name: "Content",
-    key: "Content",
-  },
-  {
-    name: "Assignment",
-    key: "Assignment",
-  },
+  // {
+  //   name: "Content",
+  //   key: "Content",
+  // },
+  // {
+  //   name: "Assignment",
+  //   key: "Assignment",
+  // },
 ];
 
 export const rolePermission = [
