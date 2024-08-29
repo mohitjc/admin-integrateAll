@@ -113,7 +113,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     },
 
     {
-      name: "News Letter",
+      name: "Newsletter",
       icon: <PiNewspaper className="text-inherit shrink-0 text-lg"/>,
       url: "/newsletter",
       key: "readNewsletter",
