@@ -271,7 +271,7 @@ export default function Chat() {
                 </div>
               </div>
               {chatMessages?.length == 0 ?
-              <img src="assets/img/chat.jpg" className="h-[450px] object-contain"/>
+              <img src="assets/img/chat.png" className="h-[450px] object-contain"/>
               :<div className="p-4 flex-1 overflow-y-auto bg-white h-[600px]" id="chat-box">
                 {chatMessages.map((itm, i) => {
                   return <Fragment key={i}>
