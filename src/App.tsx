@@ -64,6 +64,9 @@ function App() {
     { url: "/faqs/edit/:id", path: "Faq/AddEdit" },
     { url: "/faqs/add", path: "Faq/AddEdit" },
     { url: "/faqs/detail/:id", path: "Faq/View" },
+
+
+    { url: "/newsletter", path: "Newsletter" },
   ];
 
   sessionStorage.clear();

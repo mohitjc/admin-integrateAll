@@ -109,6 +109,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/faqs",
       key: "readFaqs",
     },
+
+    {
+      name: "News Letter",
+      icon: <FaQuestion className="text-inherit shrink-0 text-lg" />,
+      url: "/newsletter",
+      key: "readNewsletter",
+    },
     // {
     //   name: "Blogs",
     //   icon: (

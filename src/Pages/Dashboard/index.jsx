@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const user=useSelector(state=>state.user)
+
   const [data, setData] = useState();
   const [productData, setProductData] = useState([]);
   const [orderData, setOrderData] = useState([]);
@@ -34,7 +35,6 @@ const Dashboard = () => {
     });
   };
 
-  
 
   const getOrders=(p={})=>{
     let f={
