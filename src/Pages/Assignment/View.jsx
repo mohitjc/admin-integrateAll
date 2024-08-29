@@ -364,28 +364,24 @@ const View = () => {
                    </div>
                  </div>
                  <div className="grid grid-cols-12 p-4">
+                 {counterOfferData?.status == "counteroffered" &&
                  <div className="col-span-6 flex flex-col mb-5">
                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
-                     Counter Offer:
+                       Estimated Offer:
                      </label>
-                     <p className="text-[14px] text-black font-medium ">
-                       {counterOfferData?.status == "counteroffered"
-                         ? "$ " + counterOfferData.counterOffer
-                         : counterOfferData && counterOfferData.counterOffer
-                         ? "$ " + counterOfferData.counterOffer
-                         : "--"}
+                     <p className="text-[14px] text-black font-medium ">            
+                        {"$" + counterOfferData.counterOffer }  
                      </p>
                    </div>
+                  }
                    <div className="col-span-6 flex flex-col mb-5">
                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
-                     Estimated Offer:
+                       Counter Offer:
                      </label>
                      <p className="text-[14px] text-black font-medium ">
                        {counterOfferData?.status == "counteroffered"
                          ? "$ " + counterOfferData.student_counteroffer
-                         : counterOfferData && counterOfferData.student_counteroffer
-                         ? "$ " + counterOfferData.student_counteroffer
-                         : "--"}
+                         : "$" +counterOfferData.counterOffer }
                      </p>
                    </div>
               
