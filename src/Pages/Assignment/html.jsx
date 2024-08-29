@@ -9,6 +9,7 @@ import shared from "./shared";
 import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 
+
 import { IoChatboxOutline } from "react-icons/io5";
 
 import moment from "moment";
@@ -197,7 +198,9 @@ const Html = ({
                       className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                       onClick={(e) => chat(itm)}
                     >
-                      <span class="material-symbols-outlined">chat</span>
+                      <IoChatboxOutline />
+
+                      {/* <span class="material-symbols-outlined">chat</span> */}
                       {itm?.unreadMessagesCount != 0 && (
                         <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                           {itm?.unreadMessagesCount}
@@ -224,7 +227,7 @@ const Html = ({
                       className="relative border cursor-pointer hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                       onClick={(e) => Staffchat(itm)}
                     >
-                      <span class="material-symbols-outlined">chat</span>
+                         <IoChatboxOutline />
                       {itm?.unreadMessagesCountForStaff != 0 && (
                         <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                           {itm?.unreadMessagesCountForStaff}

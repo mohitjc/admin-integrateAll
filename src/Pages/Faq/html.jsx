@@ -41,7 +41,7 @@ const Html = ({
       name: "Question",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.question}</span>;
+        return <span className="capitalize ellipses">{row?.question}</span>;
       },
     },
     {
@@ -49,7 +49,7 @@ const Html = ({
       name: "Answer",
       sort: true,
       render: (row) => {
-        return <span className="">{row?.answer}</span>;
+        return <span className="ellipses">{row?.answer}</span>;
       },
     },  
     {

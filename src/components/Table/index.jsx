@@ -63,7 +63,7 @@ const Table = ({
                         {topHead.map((itm, i) => (
                           <th
                             scope="col"
-                            className={`px-6 py-3 text-center ${
+                            className={`px-2 py-3 text-center ${
                               topHead.length - 1 === i
                                 ? ""
                                 : "border-r border-black"
@@ -81,7 +81,7 @@ const Table = ({
                       {columns.map((itm) => (
                         <th
                           scope="col"
-                          className={`px-6 py-3   ${
+                          className={`px-2 py-3   ${
                             itm.sort ? "cursor-pointer" : ""
                           }`}
                           key={itm.key}
@@ -109,7 +109,7 @@ const Table = ({
                         key={itm.id}
                       >
                         {columns.map((citm) => (
-                          <td className={`px-6 py-4 ${citm.className}`} key={citm.key}>
+                          <td className={`px-2 py-4 ${citm.className}`} key={citm.key}>
                             {citm.render(itm) || "--"}
                           </td>
                         ))}
@@ -170,7 +170,7 @@ const Table = ({
                     {topHead.map((itm, i) => (
                       <th
                         scope="col"
-                        className={`px-6 py-3 text-center ${
+                        className={`px-2 py-3 text-center ${
                           topHead.length - 1 === i
                             ? ""
                             : "border-r border-black"

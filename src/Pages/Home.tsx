@@ -443,7 +443,7 @@ const Home = () => {
                       <div className="relative flex flex-col sm:flex-row sm:space-x-4">
                         <a
                           href="#_"
-                          className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-[#063688] rounded-md sm:mb-0 hover:bg-orange-700 sm:w-auto"
+                          className="flex items-center w-full px-2 py-3 mb-3 text-lg text-white bg-[#063688] rounded-md sm:mb-0 hover:bg-orange-700 sm:w-auto"
                         >
                           Try It Free
                           <svg
@@ -462,7 +462,7 @@ const Home = () => {
                         </a>
                         <a
                           href="#_"
-                          className="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"
+                          className="flex items-center px-2 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"
                         >
                           Learn More
                         </a>

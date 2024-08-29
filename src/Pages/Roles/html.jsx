@@ -103,7 +103,7 @@ const Html = ({
                   <tr className="">
                     <th
                       scope="col"
-                      className="px-6 py-4"
+                      className="px-2 py-4"
                       onClick={(e) => sorting("name")}
                     >
                       Role Name{" "}
@@ -111,10 +111,10 @@ const Html = ({
                         <HiOutlineArrowDown className="shrink-0 inline text-sm" />
                       </span>
                     </th>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-2 py-4">
                       Status
                     </th>
-                    <th scope="col" className="px-6 py-4">
+                    <th scope="col" className="px-2 py-4">
                       Action
                     </th>
                   </tr>
@@ -129,8 +129,8 @@ const Html = ({
                       )
                         return (
                           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td className="px-6 py-4">{itm.name}</td>
-                            <td className="px-6 py-4">
+                            <td className="px-2 py-4">{itm.name}</td>
+                            <td className="px-2 py-4">
                               <div
                                 className="w-32"
                                 onClick={() => statusChange(itm)}
@@ -151,7 +151,7 @@ const Html = ({
                             </td>
 
                             {/* dropdown */}
-                            <td className="px-6 py-4">
+                            <td className="px-2 py-4">
                               <div className="flex items-center justify-start gap-1.5">
                                 {isAllow(`editRoles`) && itm.name == "Staff" ? (
                                   <Tooltip placement="top" title="Edit">

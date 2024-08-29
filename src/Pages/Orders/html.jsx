@@ -371,22 +371,22 @@ const Html = ({
               <table className="w-full">
                 <thead>
                   <tr>
-                    <th className="text-left px-6 py-4">Order ID</th>
-                    <th className="text-left px-6 py-4">Date</th>
-                    <th className="text-left px-6 py-4">Name</th>
-                    <th className="text-left px-6 py-4">Employee</th>
-                    <th className="text-left px-6 py-4">Price</th>
+                    <th className="text-left px-2 py-4">Order ID</th>
+                    <th className="text-left px-2 py-4">Date</th>
+                    <th className="text-left px-2 py-4">Name</th>
+                    <th className="text-left px-2 py-4">Employee</th>
+                    <th className="text-left px-2 py-4">Price</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data?.map((_order) => {
                     return (
                       <tr>
-                        <td className="w-[150px] px-6 py-4">{_order.id}</td>
-                        <td className="w-[150px] px-6 py-4">
+                        <td className="w-[150px] px-2 py-4">{_order.id}</td>
+                        <td className="w-[150px] px-2 py-4">
                           {moment(_order?.createdTime).format("LL")}
                         </td>
-                        <td className="w-[400px] px-6 py-4">
+                        <td className="w-[400px] px-2 py-4">
                           <div className="flex gap-1 flex-wrap">
                             {_order?.lineItems?.elements.map((itm) => {
                               return (
@@ -397,10 +397,10 @@ const Html = ({
                             })}
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-2 py-4">
                           {_order?.employee?.name || "--"}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-2 py-4">
                           ${pipeModel.number(_order?.total)}
                         </td>
                       </tr>

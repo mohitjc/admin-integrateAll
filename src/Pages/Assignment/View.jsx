@@ -271,16 +271,16 @@ const View = () => {
                       </label>
 
                       <a
-                        className="relative w-[50px] h-[50px]"
+                        className="relative w-[35px] h-[35px]"
                         target="_new"
                         href={methodModel.noImg(data?.answer_url, "img")}
                       >
                         <i
-                          class="fa fa-download absolute right-0 bottom-0 bg-[#06378b] text-white p-2 text-[8px] rounded-[50px]"
+                          class="fa fa-download absolute right-0 bottom-0 bg-[#06378b] text-white p-[6px] text-[8px] rounded-[50px]"
                           aria-hidden="true"
                         ></i>
 
-                        <span class="material-symbols-outlined text-[50px]">
+                        <span class="material-symbols-outlined text-[30px]">
                           draft
                         </span>
                       </a>
