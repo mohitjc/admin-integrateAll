@@ -779,11 +779,7 @@ input.searchbar.mr-2 {
   .w-\[calc\(100\%-80px\)\] {
     width: 100% !important;
 }
-.main-sidebar {
-  position: absolute;
-  top: 70px !important;
-  z-index: 998;
-}
+
 }
 
 
@@ -921,11 +917,6 @@ input.searchbar.mr-2 {
     display: flex;
   }
 
-  .main-sidebar {
-    position: absolute;
-    top: 60px;
-    z-index: 998;
-  }
 
   .main-navbar {
     padding-left: 60px;
@@ -948,9 +939,7 @@ input.searchbar.mr-2 {
     flex-wrap: wrap;
   }
 
-  .main-wrapper main.main {
-    width: 100% !important;
-  }
+
 
   .d-flex.justify-content-between.align-items-end.mb-3 {
     display: block !important;
@@ -1262,9 +1251,6 @@ input.searchbar.mr-2 {
     display: none;
   }
 
-  .min-sidebar~div>main.main {
-    width: 100% !important;
-  }
 
   // proffile dropdown
   .dropdown.ml-auto {
@@ -1590,13 +1576,6 @@ p.profile_data {
   color: #fff;
 }
 
-
-@media (max-width:1000px){
-  .w-\[calc\(100\%-280px\)\] {
-    width:100% !important;
-}
-
-}
 
 @media screen and (min-width:320px) and (max-width:767px) {
   .min-sidebar~div>.main-sidebar a.col_side:hover {
@@ -2241,3 +2220,11 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
 .width-fit {
   width: fit-content;
 }
+.min-sidebar ~ div > main.main {
+  width: calc(100% - 66px);
+}
+@media (max-width: 767px) {
+  .w-\[calc\(100\%-280px\)\] {
+    width: 100% !important;
+  }
+  }
