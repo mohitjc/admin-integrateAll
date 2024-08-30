@@ -197,7 +197,7 @@ export default function Chat() {
         <button onClick={()=>history("/assignment")} className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn  text-[#fff] bg-[#063688] border transition-all  mr-3"><i className="fa fa-angle-left text-lg"></i></button>
        <h3 className="text-[20px] font-[600]">Chat</h3>
        </div>
-          <div className="bg-gray-100 h-[600px] flex border border-gray-200">
+          <div className="bg-gray-100 h-[655px] flex border border-gray-200">
           
             {/* <div className="w-80 bg-white border-r border-gray-200  flex flex-col">
              <div className="py-4 px-4 border-b border-gray-200 bg-[#00358503]">
@@ -271,7 +271,7 @@ export default function Chat() {
                 </div>
               </div>
               {chatMessages?.length == 0 ?
-              <img src="assets/img/chat.png" className="h-[450px] object-contain"/>
+              <img src="assets/img/lets-chat.jpg" className="h-[500px] object-cover"/>
               :<div className="p-4 flex-1 overflow-y-auto bg-white h-[600px]" id="chat-box">
                 {chatMessages.map((itm, i) => {
                   return <Fragment key={i}>
