@@ -218,6 +218,7 @@ const View = () => {
                       {moment(data?.dueDate).format("DD-MM-YYYY") || "--"}
                     </p>
                   </div>
+                  
                   <div className="col-span-6 flex flex-col mb-5">
                     <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
                       Status :

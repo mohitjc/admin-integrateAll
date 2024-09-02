@@ -55,7 +55,7 @@ const Table = ({
             {/* Table view */}
             {theme === "table" && (
               <div className="relative overflow-x-auto border border-[#eee] sm:rounded-lg ">
-                <table className="xl:w-full lg:w-[1200px] md:w-[1000px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table className="2xl:w-full xl:w-[1400px] lg:w-[1300px] md:w-[1200px] w-[1200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 capitalize bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     {/* Top header */}
                     {topHead?.length ? (
@@ -162,7 +162,7 @@ const Table = ({
           <div className="px-4 pb-4">
           <div className="relative overflow-x-auto border border-[#0000000d]  rounded-bl-[6px] rounded-br-[6px]">
            
-            <table className="xl:w-full lg:w-[1300px] md:w-[1200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="xl:w-full lg:w-[1300px] md:w-[1200px] w-[1200px] text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 capitalize bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 {/* Top header */}
                 {topHead?.length ? (
