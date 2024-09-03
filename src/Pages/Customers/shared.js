@@ -1,7 +1,7 @@
 const shared = {
   check: "Customers",
-  title: "Students",
-  addTitle: "Student",
+  title: "Client",
+  addTitle: "Client",
   url: "customers",
   addApi: "user/add",
   editApi: "user/profile",

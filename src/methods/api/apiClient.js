@@ -1,7 +1,7 @@
 /*
  * @file: index.js
  * @description: It Contain rest functions for api call .
- * @author: Poonam
+ * @author: Mohit Kumar
  */
 
 import axios from "axios";
@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 import loader from "../loader";
 import environment from "../../environment";
 import methodModel from "../methods";
-import { BlockBlobClient, AnonymousCredential } from "@azure/storage-blob";
 
 var config = {
   headers: { "Content-Type": "application/json" },

@@ -8,7 +8,7 @@ export const rolePermissions = [
     key: "staff",
   },
   {
-    name: "Students",
+    name: "Client",
     key: "Customers",
   },
   // {

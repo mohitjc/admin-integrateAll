@@ -2,7 +2,7 @@
  * @file: index.js
  * @description: Auth functions here
  * @date: 10 June 2020
- * @author: Poonam
+ * @author: Mohit
  * */
 
 

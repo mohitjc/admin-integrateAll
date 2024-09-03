@@ -23,12 +23,6 @@ function App() {
   const routes = [
     { url: "/login", path: "Login" },
     { url: "/dashboard", path: "Dashboard" },
-    { url: "/assignment", path: "Assignment" },
-    { url: "/assignment/detail/:id", path: "Assignment/View" },
-    {
-      url: "/assignment/counter-offer/detail/:id",
-      path: "Assignment/Counteroffer",
-    },
     { url: "*", path: "NotFoundPage" },
     { url: "/profile", path: "Profile" },
     { url: "/profile/:tab", path: "Settings" },
@@ -40,10 +34,6 @@ function App() {
     { url: "/user/detail/:id", path: "Users/View" },
     { url: "/", element: <Navigate to="/login" /> },
     { url: "/chat", path: "Chat" },
-    { url: "/word-estimate", path: "WordCount/AddEdit" },
-    { url: "/word-estimate/detail/:id", path: "WordCount/View" },
-    { url: "/word-estimate/add", path: "WordCount/AddEdit" },
-    { url: "/word-estimate/edit/:id", path: "WordCount/AddEdit" },
     { url: "/content", path: "Content" },
     { url: "/content/detail/:slug", path: "Content/View" },
     { url: "/content/add", path: "Content/AddEdit" },

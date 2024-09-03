@@ -68,104 +68,45 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key: "readstaff",
     },
     {
-      name: "Students",
+      name: "Client",
       icon: <MdOutlineGroups className="text-inherit shrink-0 text-lg" />,
       url: "/customers",
       key: "readCustomers",
     },
-    {
-      name: "Assignments",
-      icon: <MdOutlineAssignment className="text-inherit shrink-0 text-lg" />,
-      url: "/assignment",
-      key: "",
-    },
-    {
-      name: "Contract",
-      icon: <RiContractLine className="text-inherit shrink-0 text-lg" />,
-      url: "/contract",
-      key: "",
-    },
-    {
-      name: "Content Management",
-      icon: <MdContentPaste className="text-inherit shrink-0 text-lg" />,
-      url: "/content",
-      key: "readContent",
-    },
-    {
-      name: "Word Estimate",
-      icon: <MdOutlineAssignment className="text-inherit shrink-0 text-lg" /> ,
-      url: "/word-estimate",
-      key: "readWordCount",
-    },
-
-    {
-      name: "Blogs",
-      icon: <LiaBlogSolid className="text-inherit shrink-0 text-lg" />,
-      url: "/blogs",
-      key: "readBlogs",
-    },
-
-    {
-      name: "Faqs",
-      icon: <MdOutlineQuestionMark className="text-inherit shrink-0 text-lg"/>,
-      url: "/faqs",
-      key: "readFaqs",
-    },
-
-    {
-      name: "Newsletter",
-      icon: <PiNewspaper className="text-inherit shrink-0 text-lg"/>,
-      url: "/newsletter",
-      key: "readNewsletter",
-    },
     // {
-    //   name: "Blogs",
-    //   icon: (
-    //     <TfiLayoutMediaCenterAlt className="text-[#fff] shrink-0 text-lg" />
-    //   ),
-    //   url: "/blog",
-    //   key: "readBlogs",
+    //   name: "Contract",
+    //   icon: <RiContractLine className="text-inherit shrink-0 text-lg" />,
+    //   url: "/contract",
+    //   key: "",
     // },
     // {
     //   name: "Content Management",
-    //   icon: <MdContentPaste className="text-[#fff] shrink-0 text-lg" />,
-    //   url: "/content-management",
-    //   tab: "content-management",
-    //   menu: [
-    //     {
-    //       name: "FAQ",
-    //       icon: <FaQuestion className="text-[#fff] shrink-0 text-lg" />,
-    //       url: "/faq",
-    //       key: "readFAQ",
-    //     },
-    //     {
-    //       name: "Content",
-    //       icon: <MdContentPaste className="text-[#fff] shrink-0 text-lg" />,
-    //       url: "/content",
-    //       key: "readContent",
-    //     },
-    //     {
-    //       name: "Newsletter",
-    //       icon: <PiNewspaper className="text-[#fff] shrink-0 text-lg" />,
-    //       url: "/newsletter",
-    //       key: "readNewsletter",
-    //     },
-    //     {
-    //       name: "Subscribers",
-    //       icon: (
-    //         <MdOutlineMarkEmailRead className="text-[#fff] shrink-0 text-lg" />
-    //       ),
-    //       url: "/subscribers",
-    //       key: "readSubscribers",
-    //     },
-    //   ],
+    //   icon: <MdContentPaste className="text-inherit shrink-0 text-lg" />,
+    //   url: "/content",
+    //   key: "readContent",
     // },
+
     // {
-    //   name: "Settings",
-    //   icon: <FiSettings className="text-[#fff] shrink-0 text-lg" />,
-    //   url: "/profile/settings",
-    //   key: "settings",
+    //   name: "Blogs",
+    //   icon: <LiaBlogSolid className="text-inherit shrink-0 text-lg" />,
+    //   url: "/blogs",
+    //   key: "readBlogs",
     // },
+
+    // {
+    //   name: "Faqs",
+    //   icon: <MdOutlineQuestionMark className="text-inherit shrink-0 text-lg"/>,
+    //   url: "/faqs",
+    //   key: "readFaqs",
+    // },
+
+    // {
+    //   name: "Newsletter",
+    //   icon: <PiNewspaper className="text-inherit shrink-0 text-lg"/>,
+    //   url: "/newsletter",
+    //   key: "readNewsletter",
+    // },
+
   ];
 
   return (

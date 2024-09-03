@@ -1,5 +1,5 @@
 {
-  "name": "essp-admin",
+  "name": "builder-admin",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -7,13 +7,11 @@
     "node": "~20.11.1"
   },
   "dependencies": {
-    "@azure/storage-blob": "^12.17.0",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@tinymce/tinymce-react": "^4.3.2",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.89",
     "@types/react": "^18.2.66",

@@ -2,7 +2,7 @@
  * @file: user.js
  * @description: Reducers and actions for store/manipulate user's  data
  * @date: 28.11.2019
- * @author: Poonam
+ * @author: Mohit
  */
 
 /******** Reducers ********/
