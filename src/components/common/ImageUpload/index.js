@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import ApiClient from "../../../methods/api/apiClient";
 import Html from "./html";
 import "./style.scss";
-import loader from "../../../methods/loader";
 
 const ImageUpload = ({
   model,
@@ -19,10 +18,10 @@ const ImageUpload = ({
   const [loading, setLoader] = useState(false);
 
   const uploadImage = async (e) => {
-    let url = "user/uploadImage";
+    let url = "upload/Image";
     let files = e.target.files;
     if (files?.length > 1) {
-      url = "user/uploadImage";
+      url = "upload/Image";
     }
 
     let images = [];

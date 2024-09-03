@@ -11,7 +11,6 @@ import {
 
 import environment from "../../../environment";
 import ApiClient from "../../../methods/api/apiClient";
-import { FiUsers } from "react-icons/fi";
 
 const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
   const [activeplan, setActiveplan] = useState();
@@ -56,24 +55,24 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/dashboard",
       key: "readDashboard",
     },
-    {
-      name: "Staff",
-      icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-      menu:[
-        {
-          name: "Staff",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/user",
-          key: "readstaff",
-        },
-        {
-          name: "Staff Role",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/user/role",
-          key: "readstaff",
-        },
-      ]
-    },
+    // {
+    //   name: "Staff",
+    //   icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+    //   menu:[
+    //     {
+    //       name: "Staff",
+    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+    //       url: "/user",
+    //       key: "readstaff",
+    //     },
+    //     {
+    //       name: "Staff Role",
+    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+    //       url: "/user/role",
+    //       key: "readstaff",
+    //     },
+    //   ]
+    // },
     {
       name: "Client",
       icon: <MdOutlineGroups className="text-inherit shrink-0 text-lg" />,

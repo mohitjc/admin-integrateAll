@@ -117,6 +117,7 @@ export default function FormControl({
             minLength={minlength}
             min={min}
             disabled={disabled}
+            autoComplete="off"
             onChange={(e) => onChange(methodModel.isNumber(e))}
           />
         ) : type == "badge" ? (
@@ -128,6 +129,7 @@ export default function FormControl({
                 placeholder={placeholder}
                 value={text}
                 disabled={disabled}
+                autoComplete="off"
                 onChange={(e) => setText(e.target.value)}
               />
               <button
@@ -167,6 +169,7 @@ export default function FormControl({
                         onChange={(e) => onChange(itm.id)}
                         className="mr-2"
                         name={name}
+                        autoComplete="off"
                         disabled={disabled}
                       />
                       {itm.name}
@@ -186,6 +189,7 @@ export default function FormControl({
             maxLength={maxlength}
             minLength={minlength}
             disabled={disabled}
+            autoComplete="off"
             onChange={(e) => {
               console.log("e", e.target);
               onChange(e.target.value);
@@ -206,6 +210,7 @@ export default function FormControl({
                     checked={value?.includes(itm.id) ? true : false}
                     onChange={(e) => addItem(itm.id)}
                     className="mr-2"
+                    autoComplete="off"
                   />
                   {itm.name}
                 </label>
@@ -224,6 +229,7 @@ export default function FormControl({
             minLength={minlength}
             min={min}
             disabled={disabled}
+            autoComplete="off"
             onChange={(e) => {
               console.log("e", e.target);
               onChange(e.target.value);

@@ -131,7 +131,6 @@ const ChangePassword = (p) => {
                           className="shadow-box bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
                           value={form.newPassword}
                           placeholder="Enter new password"
-                          minLength={9}
                           maxLength={16}
                           onChange={(e) =>
                             setForm({ ...form, newPassword: e.target.value })
@@ -172,7 +171,6 @@ const ChangePassword = (p) => {
                         className="shadow-box bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
                         placeholder="Enter Confirm Password"
                         value={form.confirmPassword}
-                        minLength={9}
                         maxLength={16}
                         onChange={(e) =>
                           setForm({ ...form, confirmPassword: e.target.value })

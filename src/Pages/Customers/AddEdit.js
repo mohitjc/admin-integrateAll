@@ -101,7 +101,7 @@ const AddEdit = () => {
   return (
     <>
       <Layout>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="off">
           <div className="pprofile1">
             <div className="flex items-center mb-8">
               <Tooltip placement="top" title="Back">
@@ -192,7 +192,7 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
-              <div className="mb-3">
+              {/* <div className="mb-3">
                 <FormControl
                   type="date"
                   label="DOB"
@@ -200,7 +200,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, dob: e })}
                   required
                 />
-              </div>
+              </div> */}
               <div className="col-span-full">
                 <h4>Address</h4>
               </div>

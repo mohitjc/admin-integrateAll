@@ -47,50 +47,14 @@ const Html = ({
   };
   const columns = [
     {
-      key: "fullName",
-      name: "Full Name",
+      key: "name",
+      name: "Name",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.fullName}</span>;
+        return <span className="capitalize">{row?.name}</span>;
       },
     },
-    {
-      key: "email",
-      name: "Email",
-      sort: true,
-      render: (row) => {
-        return <span className="">{row?.email}</span>;
-      },
-    },
-    // {
-    //   key: "role",
-    //   name: "role",
-    //   sort: true,
-    //   render: (row) => {
-    //     return <span className="">{row?.roleDetails?.name}</span>;
-    //   },
-    // },
-    /* {
-      key: "mobileNo",
-      name: "Mobile No",
-      render: (row) => {
-        return (
-          <>
-            <p className="capitalize">
-              {row?.mobileNo ? "+" : ""}
-              {row?.mobileNo}
-            </p>
-          </>
-        );
-      },
-    },
-     {
-      key: "timezone",
-      name: "Timezone",
-      render: (row) => {
-        return <>{row?.timezone}</>;
-      },
-    }, */
+
     {
       key: "status",
       name: "Status",
