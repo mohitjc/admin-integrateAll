@@ -283,8 +283,7 @@ const AddEdit = () => {
                 )}
               </div>
             </div>
-            {form?.role == "staff" ? (
-              <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
+            {/* <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
                 <div className="scrollbar w-full overflow-auto">
                   <div class="table_section tablepadding">
                     <p className="text-xl font-semibold text-[#111827] px-4 py-3">
@@ -383,10 +382,7 @@ const AddEdit = () => {
                     </table>
                   </div>
                 </div>
-              </div>
-            ) : (
-              ""
-            )}
+              </div> */}
             <div className="text-right">
               <button
                 type="submit"

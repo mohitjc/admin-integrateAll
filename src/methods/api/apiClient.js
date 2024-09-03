@@ -21,10 +21,12 @@ const handleError = (err, hideError) => {
   let message = "";
   if (err) {
     if (err && err.error && err.error.code == 401) {
-      localStorage.removeItem("persist:admin-app");
-      localStorage.removeItem("token");
+    
       hideError = true;
-      methodModel.route("/");
+      // localStorage.removeItem("persist:admin-app");
+      // localStorage.removeItem("token");
+      // methodModel.route("/");
+      document.getElementById('logoutBtn')?.click()
     }
     message = err && err.error && err.error.message;
     if (!message) message = err.message;

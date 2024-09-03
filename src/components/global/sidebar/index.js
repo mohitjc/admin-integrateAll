@@ -53,6 +53,8 @@ const Sidebar = ({ isOpen }) => {
     return value;
   };
 
+ 
+
   const isAllow = (url = "") => {
     let permissions = user?.permissions?.[0];
     let arr = url.split(",");

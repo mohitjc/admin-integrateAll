@@ -130,16 +130,16 @@ const Html = ({
 
                 <Menu.Item className="">
                   {({ active }) => (
-                    <a
-                      type="submit"
+                    <span
+                      id="logoutBtn"
                       onClick={() => Logout()}
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block w-full px-4 py-2 text-left text-sm ancortag flex items-center gap-2"
+                        "block w-full px-4 py-2 text-left text-sm ancortag flex items-center gap-2 cursor-pointer"
                       )}
                     >
                       <LuLogOut /> Logout
-                    </a>
+                    </span>
                   )}
                 </Menu.Item>
               </div>

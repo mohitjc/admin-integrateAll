@@ -32,6 +32,10 @@ function App() {
     { url: "/user/edit/:id", path: "Users/AddEdit" },
     { url: "/user/add", path: "Users/AddEdit" },
     { url: "/user/detail/:id", path: "Users/View" },
+    { url: "/user/role", path: "Roles" },
+    { url: "/user/role/edit/:id", path: "Roles/AddEdit" },
+    { url: "/user/role/add", path: "Roles/AddEdit" },
+    { url: "/user/role/detail/:id", path: "Roles/View" },
     { url: "/", element: <Navigate to="/login" /> },
     { url: "/chat", path: "Chat" },
     { url: "/content", path: "Content" },
@@ -44,18 +48,14 @@ function App() {
     { url: "/customers/detail/:id", path: "Customers/View" },
     { url: "/contract", path: "Contract" },
     { url: "/contract/detail/:id", path: "Contract/View" },
-
     { url: "/blogs", path: "Blogs" },
     { url: "/blogs/edit/:id", path: "Blogs/AddEdit" },
     { url: "/blogs/add", path: "Blogs/AddEdit" },
     { url: "/blogs/detail/:id", path: "Blogs/View" },
-
     { url: "/faqs", path: "Faq" },
     { url: "/faqs/edit/:id", path: "Faq/AddEdit" },
     { url: "/faqs/add", path: "Faq/AddEdit" },
     { url: "/faqs/detail/:id", path: "Faq/View" },
-
-
     { url: "/newsletter", path: "Newsletter" },
   ];
 

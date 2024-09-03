@@ -2,43 +2,22 @@ import React, { useEffect, useState } from "react";
 import ApiClient from "../../methods/api/apiClient";
 import "./style.scss";
 import loader from "../../methods/loader";
-import userTableModel from "../../models/table.model";
 import Html from "./html";
 import { useNavigate } from "react-router-dom";
 import environment from "../../environment";
 import axios from "axios";
+import shared from "./shared";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-
-const Roles = (p) => {
+const Users = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
-  const [filters, setFilter] = useState({
-    page: 1,
-    count: 50,
-    search: "",
-    catType: "",
-  });
+  const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
   const [data, setData] = useState([]);
-  const [tab, setTab] = useState("list");
   const [total, setTotal] = useState(0);
   const [loaging, setLoader] = useState(true);
-  const [tableCols, setTableCols] = useState([]);
   const history = useNavigate();
-  useEffect(() => {
-    let cols = [];
-    for (let i = 0; i <= 2; i++) {
-      cols.push(userTableModel.category[i]);
-    }
-    setTableCols(cols);
-  }, []);
-
-  useEffect(() => {
-    if (user.loggedIn) {
-      setFilter({ ...filters, search: searchState.data });
-      getData({ search: searchState.data, page: 1 });
-    }
-  }, []);
+  const isAdmin = user?.role?.name == "Admin";
 
   const sortClass = (key) => {
     let cls = "fa-sort";
@@ -63,39 +42,21 @@ const Roles = (p) => {
     getData({ sortBy, key, sorder });
   };
 
-  const uTableCols = () => {
-    let exp = [];
-    if (tableCols) exp = tableCols;
-    let value = [];
-    userTableModel.category.map((itm) => {
-      if (itm != exp.find((it) => it.key == itm.key)) {
-        value.push(itm);
-      }
-    });
-    return value;
-  };
-
-  const addCol = (itm) => {
-    setTableCols([...tableCols, itm]);
-  };
-
-  const removeCol = (index) => {
-    let exp = tableCols;
-    exp.splice(index, 1);
-    setTableCols([...exp]);
-  };
-
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p };
-    ApiClient.get("role/listing", filter).then((res) => {
+    let filter = { ...filters, ...p,role:'staff' };
+
+
+    ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {
         setData(
-          res.data.map((itm) => {
-            itm.id = itm._id;
-            return itm;
-          })
+          res.data
+            .map((itm) => {
+              itm.id = itm._id;
+              return itm;
+            })
         );
+
         setTotal(res.total);
       }
       setLoader(false);
@@ -104,18 +65,39 @@ const Roles = (p) => {
 
   const clear = () => {
     let f = {
+      groupId: "",
       search: "",
       status: "",
       page: 1,
+      role: "",
     };
     setFilter({ ...filters, ...f });
-    getData(f);
+    getData({ ...f });
+  };
+
+  const filter = (p = {}) => {
+    let f = {
+      page: 1,
+      ...p,
+    };
+    setFilter({ ...filters, ...f });
+    getData({ ...f });
   };
 
   const deleteItem = (id) => {
+    // if (window.confirm("Do you want to delete this")) {
+    //     loader(true)
+    //     ApiClient.delete(shared.deleteApi, { id: id }).then(res => {
+    //         if (res.success) {
+    //             // ToastsStore.success(res.message)
+    //             clear()
+    //         }
+    //         loader(false)
+    //     })
+    // }
     Swal.fire({
       title: "Are you sure?",
-      text: `Do you want to delete this role.`,
+      text: `Do you want to delete this`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#063688",
@@ -124,12 +106,16 @@ const Roles = (p) => {
     }).then((result) => {
       if (result.isConfirmed) {
         loader(true);
-        ApiClient.delete("role/delete", { id: id }).then((res) => {
+        ApiClient.delete(shared.deleteApi, { id: id }).then((res) => {
           if (res.success) {
+            // ToastsStore.success(res.message)
             clear();
           }
           loader(false);
         });
+        //   Swal.fire({
+        //     icon: "success"
+        //   });
       }
     });
   };
@@ -138,53 +124,31 @@ const Roles = (p) => {
     setFilter({ ...filters, page: e });
     getData({ page: e });
   };
-
-  const ChangeRole = (e) => {
-    setFilter({ ...filters, catType: e, page: 1 });
-    getData({ catType: e, page: 1 });
+  const count = (e) => {
+    setFilter({ ...filters, count: e });
+    getData({ ...filters, count: e });
   };
-  const ChangeStatus = (e) => {
+  const changestatus = (e) => {
     setFilter({ ...filters, status: e, page: 1 });
     getData({ status: e, page: 1 });
   };
 
-  const exportCsv = () => {
-    loader(true);
-    ApiClient.get("user/csv").then((res) => {
-      if (res.success) {
-        let url = res.path;
-        let downloadAnchor = document.getElementById("downloadJS");
-        downloadAnchor.href = url;
-        downloadAnchor.click();
-      }
-      loader(false);
-    });
-  };
-
-  const colClick = (col, itm) => {
-    if (col.key == "healthClinicId") {
-    }
+  const getRolesData = (id) => {
+    setFilter({ ...filters, role: id, page: 1 });
+    getData({ role: id, page: 1 });
   };
 
   const statusChange = (itm) => {
-    if (!isAllow("editRoles")) {
-      return;
-    }
-
+    // if (!(isAllow(`edit${shared.check}`) && itm.addedBy == user._id)) return;
+    if (!isAllow(`edit${shared.check}`)) return;
     let status = "active";
-
-    // if (
-    //   itm.id == "64b15102b14de6c28838f7d2" ||
-    //   itm.id == "64b152a909d268f038611929"
-    // ) {
-    //   return;
-    // }
     if (itm.status == "active") status = "deactive";
+
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to ${
-        status == "active" ? "Activate" : "Deactivate"
-      } this role.`,
+        status == "active" ? "Activate" : "Inactivate"
+      } this user?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#063688",
@@ -193,35 +157,44 @@ const Roles = (p) => {
     }).then((result) => {
       if (result.isConfirmed) {
         loader(true);
-        ApiClient.put(`role/status/change`, { id: itm.id, status }).then(
-          (res) => {
-            if (res.success) {
-              getData();
-            }
-            loader(false);
+        ApiClient.put(shared.statusApi, { id: itm.id, status }).then((res) => {
+          if (res.success) {
+            getData();
           }
-        );
+          loader(false);
+        });
       }
     });
   };
 
-  const view = (id) => {
-    history("/roles/" + id);
-  };
-
   const edit = (id) => {
-    history(`/roles/edit/${id}`);
+    history(`/${shared.url}/edit/${id}`);
   };
 
-  const tabChange = (tab) => {
-    setTab(tab);
+  const view = (id) => {
+    let url = `/${shared.url}/detail/${id}`;
+    history(url);
+  };
+
+  const uploadFile = (e) => {
+    let files = e.target.files;
+    let file = files?.item(0);
+    let url = "user/import-users";
+    if (!file) return;
+    loader(true);
+    ApiClient.postFormFileData(url, { file }).then((res) => {
+      if (res.success) {
+        console.log("res", res);
+      }
+      loader(false);
+    });
   };
 
   const exportfun = async () => {
     const token = await localStorage.getItem("token");
     const req = await axios({
       method: "get",
-      url: `${environment.api}api/export/region`,
+      url: `${environment.api}api/export/excel`,
       responseType: "blob",
       body: { token: token },
     });
@@ -230,48 +203,51 @@ const Roles = (p) => {
     });
     const link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
-    link.download = `Roles.xlsx`;
+    link.download = `${shared.title}.xlsx`;
     link.click();
   };
 
   const isAllow = (key = "") => {
-    let permissions = user.role?.permissions?.[0];
+    let permissions = user?.permissions?.[0];
     let value = permissions?.[key];
-    // if (user?.role?._id === environment.adminRoleId) value = true;
+    if(user.role=='admin') value=true
     // return true;
     return value;
   };
 
+  useEffect(() => {
+    if (user && user.loggedIn) {
+      setFilter({ ...filters, search: searchState.data });
+      getData({ search: searchState.data, page: 1 });
+    }
+  }, []);
+
   return (
     <>
       <Html
-        clear={clear}
+        edit={edit}
         view={view}
+        clear={clear}
         sortClass={sortClass}
         sorting={sorting}
         isAllow={isAllow}
-        edit={edit}
-        colClick={colClick}
-        tabChange={tabChange}
-        exportfun={exportfun}
-        tab={tab}
-        ChangeRole={ChangeRole}
-        ChangeStatus={ChangeStatus}
+        count={count}
         pageChange={pageChange}
-        addCol={addCol}
         deleteItem={deleteItem}
-        exportCsv={exportCsv}
-        uTableCols={uTableCols}
-        removeCol={removeCol}
         filters={filters}
-        tableCols={tableCols}
+        setFilter={setFilter}
+        filter={filter}
         loaging={loaging}
         data={data}
         total={total}
         statusChange={statusChange}
+        changestatus={changestatus}
+        exportfun={exportfun}
+        getRolesData={getRolesData}
+        uploadFile={uploadFile}
       />
     </>
   );
 };
 
-export default Roles;
+export default Users;

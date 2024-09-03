@@ -2,30 +2,16 @@ import { React, useEffect, useState } from "react";
 import { Disclosure, Transition } from "@headlessui/react";
 import styles from "./index.module.css";
 import { NavLink, useLocation } from "react-router-dom";
-import { Tooltip } from "antd";
-import { RiHome6Line, RiUserSettingsLine } from "react-icons/ri";
+import { RiHome6Line } from "react-icons/ri";
 import { TiArrowSortedDown } from "react-icons/ti";
-import { TbCategoryPlus } from "react-icons/tb";
-import { BiCartAdd } from "react-icons/bi";
-import { PiBellSimpleLight, PiNewspaper } from "react-icons/pi";
-import { GrUserSettings } from "react-icons/gr";
-import { VscSymbolMisc } from "react-icons/vsc";
-import { GoFileMedia } from "react-icons/go";
-import { TfiLayoutMediaCenterAlt } from "react-icons/tfi";
-import { MdOutlineAssignment } from "react-icons/md";
-import { RiContractLine } from "react-icons/ri";
-import { FaQuestion } from "react-icons/fa";
-import { MdOutlineQuestionMark } from "react-icons/md";
 
 import {
-  MdContentPaste,
   MdOutlineGroups,
 } from "react-icons/md";
 
 import environment from "../../../environment";
 import ApiClient from "../../../methods/api/apiClient";
 import { FiUsers } from "react-icons/fi";
-import { LiaBlogSolid } from "react-icons/lia";
 
 const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
   const [activeplan, setActiveplan] = useState();
@@ -51,6 +37,15 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     }
   }, []);
 
+  const activecls = (tab) => {
+    let url = window.location.href;
+    let value = false;
+    tab?.map((itm) => {
+      if (url.includes(itm)) value = true;
+    });
+    return value;
+  };
+
   const menus = [
     {
       name: "Main Menu",
@@ -64,8 +59,20 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Staff",
       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-      url: "/user",
-      key: "readstaff",
+      menu:[
+        {
+          name: "Staff",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/user",
+          key: "readstaff",
+        },
+        {
+          name: "Staff Role",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/user/role",
+          key: "readstaff",
+        },
+      ]
     },
     {
       name: "Client",
@@ -130,22 +137,22 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                             <>
                               <Disclosure
                                 as="div"
-                                defaultOpen={tabclass(itm.tab)}
+                                defaultOpen={activecls(itm.menu.map((itm) => itm.url))}
                               >
                                 {({ open }) => (
                                   <>
                                     <tooltip placement="right" title={itm.name}>
-                                      <Disclosure.Button className="w-full p-2.5 rounded-md flex items-center justify-between text-[#fff]  hover:!text-[#fff] gap-[12px] hover:bg-[#063688] transition-all duration-300">
+                                      <Disclosure.Button className="w-full p-2.5 rounded-md flex items-center justify-between gap-[12px] transition-all duration-300">
                                         <span className="text-sm font-normal text-inherit flex items-center gap-[12px] crm">
                                           {itm.icon}
-                                          <span className=" text-inherit leading-none sidebar_text">
+                                          <span className="text-inherit leading-none sidebar_text">
                                             {itm.name}
                                           </span>
                                         </span>
                                         <TiArrowSortedDown
                                           className={`${
                                             open ? "" : "-rotate-90 transform"
-                                          } h-4 w-4 transition-all duration-500  text-[#fff]`}
+                                          } h-4 w-4 transition-all duration-500`}
                                         />
                                       </Disclosure.Button>
                                     </tooltip>
@@ -167,10 +174,10 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                                     {" "}
                                                     <NavLink
                                                       className={(isActive) =>
-                                                        "p-2.5 rounded-md block text-sm font-normal text-[#d6d6d6] hover:text-[#fff] cursor-pointer  hover:bg-[#063688] !no-underline transition-all " +
+                                                        "p-2.5 rounded-md block text-sm font-normal text-[#333] cursor-pointer !no-underline transition-all " +
                                                         (location?.pathname ==
                                                           sitm.url &&
-                                                          " !text-[#fff] !font-medium")
+                                                          " !text-[#fff] bg-[#063688] !font-medium")
                                                       }
                                                       to={sitm.url}
                                                     >
