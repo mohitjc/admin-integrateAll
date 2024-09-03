@@ -63,7 +63,7 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    getAllCounts();
+    // getAllCounts();
     // getOrders();
   }, []);
 
