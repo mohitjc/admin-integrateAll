@@ -26,8 +26,8 @@ const AddEdit = () => {
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
   const formValidation = [
-    { key: "mobileNo", required: true },
-    { key: "email", required: true, message: "Email is required", email: true },
+    // { key: "mobileNo", required: true },
+    // { key: "email", required: true, message: "Email is required", email: true },
   ];
 
   const handleSubmit = (e) => {
@@ -209,6 +209,7 @@ const AddEdit = () => {
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
                   required
+                  disabled
                 />
               </div>
             </div>

@@ -75,7 +75,6 @@ export const CategoryType = {
 };
 export const roleType = {
   id: "",
-  name: "",
   status: "active",
   permissions: roleGetAllKeys(),
 };

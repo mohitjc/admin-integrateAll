@@ -4,6 +4,9 @@ const environment = {
   map_api_key: '',
   userRoleId: '66d6bdf107668a7723efdf9a',
   adminRoleId: '66d6bdf107668a7723efdf99',
+  staffRoleId: '66d6e50c3ddf17b1e36f5e6d',
+  contractorRoleId: '66d6e4ff3ddf17b1e36f5e6c',
+  supplierRoleId: '66d6e5163ddf17b1e36f5e6e',
 };
 
 export default environment;

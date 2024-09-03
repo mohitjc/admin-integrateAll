@@ -44,7 +44,7 @@ const View = () => {
     if(!data?.permissions) return
     let permissions = data?.permissions;
     Object.keys(permissions).map((itm) => {
-      if (!permissions[itm]) value = false;
+      if (!permissions?.[itm]) value = false;
     });
     return value;
   };
@@ -52,7 +52,7 @@ const View = () => {
   const isAllPCheck = (key = "read") => {
     let value = true;
     permissions.map((itm) => {
-      if (!data?.permissions[`${key}${itm.key}`]) value = false;
+      if (!data?.permissions?.[`${key}${itm.key}`]) value = false;
     });
     return value;
   };
@@ -60,7 +60,7 @@ const View = () => {
   const isCheckAll = (key) => {
     let value = true;
     permission.map((itm) => {
-      if (!data?.permissions[`${itm.key}${key}`]) value = false;
+      if (!data?.permissions?.[`${itm.key}${key}`]) value = false;
     });
     return value;
   };
@@ -101,22 +101,7 @@ const View = () => {
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
-                    {data && data.fullName}
-                  </p>
-                </div>
-                  <div className="col-span-6 flex flex-col mb-5">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Email:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
-                    {data && data.email}
-                  </p>
-                </div>
-
-                  <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Mobile Number:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
-                    {data?.mobileNo || "--"}
+                    {data && data.name}
                   </p>
                 </div>
                </div>
@@ -144,6 +129,7 @@ const View = () => {
                             <input
                               type="checkbox"
                               checked={isAllChecked()}
+                              disabled
                               className="h-4 w-4"
                             />
                               <span className="ms-2"> All</span>
@@ -158,6 +144,7 @@ const View = () => {
                                   <input
                                     type="checkbox"
                                     className="h-4 w-4"
+                                    disabled
                                     checked={isAllPCheck(itm.key)}
                                   />
                                  <span className="ms-2"> {itm.name}</span>
@@ -180,6 +167,7 @@ const View = () => {
                                     type="checkbox"
                                     className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
                                     name={itm.key}
+                                    disabled
                                     checked={isCheckAll(itm.key)}
                                   />
                                 </td>
@@ -192,10 +180,11 @@ const View = () => {
                                             type="checkbox"
                                             className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
                                             checked={
-                                              data?.permissions[
+                                              data?.permissions?.[
                                                 `${pitm.key}${itm.key}`
                                               ]
                                             }
+                                            disabled
                                           />
                                         </label>
                                       </div>

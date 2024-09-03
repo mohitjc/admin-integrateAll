@@ -11,6 +11,7 @@ import {
 
 import environment from "../../../environment";
 import ApiClient from "../../../methods/api/apiClient";
+import { FiUsers } from "react-icons/fi";
 
 const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
   const [activeplan, setActiveplan] = useState();
@@ -55,24 +56,42 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/dashboard",
       key: "readDashboard",
     },
-    // {
-    //   name: "Staff",
-    //   icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-    //   menu:[
-    //     {
-    //       name: "Staff",
-    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-    //       url: "/user",
-    //       key: "readstaff",
-    //     },
-    //     {
-    //       name: "Staff Role",
-    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-    //       url: "/user/role",
-    //       key: "readstaff",
-    //     },
-    //   ]
-    // },
+    {
+      name: "Roles and Permissions",
+      icon: <MdOutlineGroups className="text-inherit shrink-0 text-lg" />,
+      url: "/role",
+      key: "",
+    },
+    {
+      name: "Staff",
+      icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+      url: "/user",
+      key: "readstaff",
+    },
+    {
+      name: "Supplier",
+      icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+      menu:[
+        {
+          name: "Supplier",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/supplier",
+          key: "",
+        },
+        {
+          name: "Material",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/material",
+          key: "",
+        },
+      ]
+    },
+    {
+      name: "Contractor",
+      icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+      url: "/contractor",
+      key: "",
+    },
     {
       name: "Client",
       icon: <MdOutlineGroups className="text-inherit shrink-0 text-lg" />,

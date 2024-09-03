@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/global/layout";
-import "./style.scss";
 import { Link } from "react-router-dom";
-import { Button, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import { FiEdit3, FiPlus } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
 import Table from "../../components/Table";
@@ -14,7 +13,7 @@ import ApiClient from "../../methods/api/apiClient";
 import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { LiaEdit, LiaTrashAlt } from "react-icons/lia";
-import environment from "../../environment";
+import { LuImport } from "react-icons/lu";
 const Html = ({
   sorting,
   filter,
@@ -33,51 +32,69 @@ const Html = ({
   isAllow,
   total = { total },
   sortClass,
-  getRolesData,
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
-  const [roles, setRoles] = useState([]);
-
-  const getRolesList = () => {
-    ApiClient.get("role/listing").then((res) => {
-      if (res.success) {
-        setRoles(res.data);
-      }
-    });
-  };
   const columns = [
     {
-      key: "name",
-      name: "Name",
+      key: "fullName",
+      name: "Full Name",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.name}</span>;
+        return <span className="capitalize">{row?.fullName}</span>;
       },
     },
-
+    {
+      key: "email",
+      name: "Email",
+      sort: true,
+      render: (row) => {
+        return <span className="">{row?.email}</span>;
+      },
+    },
     // {
-    //   key: "status",
-    //   name: "Status",
+    //   key: "mobileNo",
+    //   name: "Mobile No",
     //   render: (row) => {
     //     return (
     //       <>
-    //         <div className="w-32" onClick={() => statusChange(row)}>
-    //           <span
-    //             className={`bg-[#063688] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
-    //                       ${
-    //                         row.status == "deactive"
-    //                           ? " bg-gray-200 text-black"
-    //                           : "bg-[#063688] text-white"
-    //                       }`}
-    //           >
-    //             {row.status == "deactive" ? "inactive" : "active"}
-    //           </span>
-    //         </div>
+    //         <p className="capitalize">
+    //           {row?.mobileNo ? "+" : ""}
+    //           {row?.mobileNo}
+    //         </p>
     //       </>
     //     );
     //   },
     // },
+    /* {
+      key: "timezone",
+      name: "Timezone",
+      render: (row) => {
+        return <>{row?.timezone}</>;
+      },
+    }, */
+    {
+      key: "status",
+      name: "Status",
+      render: (row) => {
+        return (
+          <>
+            <div className="w-32" onClick={() => statusChange(row)}>
+              <span
+                className={`bg-[#063688] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
+                          ${
+                            row.status == "deactive"
+                              ? " bg-gray-200 text-black"
+                              : "bg-[#063688] text-white"
+                          }`}
+              >
+                {row.status == "deactive" ? "inactive" : "active"}
+              </span>
+            </div>
+          </>
+        );
+      },
+    },
     {
       key: "action",
       name: "Action",
@@ -97,7 +114,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {isAllow(`edit${shared.check}`)&&(itm.id==environment.staffRoleId||itm.id==environment.contractorRoleId) ? (
+              {isAllow(`edit${shared.check}`) ? (
                 <Tooltip placement="top" title="Edit">
                   <a
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -109,7 +126,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {/* {isAllow(`delete${shared.check}`) ? (
+              {isAllow(`delete${shared.check}`) ? (
                 <Tooltip placement="top" title="Delete">
                   <span
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -120,7 +137,7 @@ const Html = ({
                 </Tooltip>
               ) : (
                 <></>
-              )} */}
+              )}
             </div>
           </>
         );
@@ -140,9 +157,9 @@ const Html = ({
     });
   };
  */
-  useEffect(() => {
-    getRolesList();
-  }, []);
+  //   useEffect(() => {
+  //       getGroups()
+  //   }, [])
 
   return (
     <Layout>
@@ -164,7 +181,7 @@ const Html = ({
                         <PiFileCsv className="text-typo text-xl" />  Export CSV
                     </button> */}
 
-          {/* {isAllow(`add${shared.check}`) ? (
+          {isAllow(`add${shared.check}`) ? (
             <Link
               className="bg-primary leading-10 mr-3 h-10 flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2"
               to={`/${shared.url}/add`}
@@ -173,7 +190,7 @@ const Html = ({
             </Link>
           ) : (
             <></>
-          )} */}
+          )}
         </div>
       </div>
 
@@ -238,19 +255,7 @@ const Html = ({
           </form>
 
           <div className="flex gap-2 ml-auto">
-            {/* {user?.role?.name == "Admin" && (
-              <SelectDropdown
-                id="statusDropdown"
-                displayValue="name"
-                placeholder="All Roles"
-                intialValue={filters.role}
-                result={(e) => {
-                  getRolesData(e.value);
-                }}
-                options={roles.filter((item) => item.name != "Customer")}
-              />
-            )} */}
-            {/* <SelectDropdown
+            <SelectDropdown
               id="statusDropdown"
               displayValue="name"
               placeholder="All Status"
@@ -259,9 +264,17 @@ const Html = ({
                 changestatus(e.value);
               }}
               options={statusModel.list}
-            /> */}
-          
-            {filters.status? (
+            />
+            {/* <SelectDropdown
+                            id="statusDropdown"
+                            displayValue="name"
+                            placeholder='All Groups'
+                            intialValue={filters.groupId}
+                            theme="search"
+                            result={e => filter({ groupId: e.value })}
+                            options={groups}
+                        /> */}
+            {filters.status || filters.groupId ? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"
@@ -278,7 +291,8 @@ const Html = ({
 
         {!loaging ? (
           <>
-            <Table
+           <div className="px-4 pb-4">
+          <Table
               className="mb-3"
               data={data}
               columns={columns}
@@ -295,6 +309,7 @@ const Html = ({
                 if (e.event == "count") count(e.value);
               }}
             />
+          </div>
           </>
         ) : (
           <></>
