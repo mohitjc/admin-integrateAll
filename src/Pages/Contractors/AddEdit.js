@@ -4,14 +4,10 @@ import loader from "../../methods/loader";
 import methodModel from "../../methods/methods";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/global/layout";
-import statusModel from "../../models/status.model";
 import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
-import timezoneModel from "../../models/timezone.model";
 import shared from "./shared";
-import datepipeModel from "../../models/datepipemodel";
 import { useSelector } from "react-redux";
-import PhoneInput from "react-phone-input-2";
 import {
   rolePermission,
   rolePermissions,
@@ -22,7 +18,6 @@ import environment from "../../environment";
 const AddEdit = () => {
   const { id } = useParams();
   const [images, setImages] = useState({ image: "" });
-  const [roleOptions, setRoleOptions] = useState([]); 
   const [form1, setForm1] = useState({ ...roleType });
   const permissions = rolePermissions;
   const permission = rolePermission;
@@ -30,8 +25,12 @@ const AddEdit = () => {
     fullName: "",
     email: "",
     mobileNo: "",
-    role: environment.staffRoleId,
-    loginPannel: "",
+    role: environment.contractorRoleId,
+    address:'',
+    address2:'',
+    state:'',
+    zipCode:'',
+    country:'',
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -55,7 +54,7 @@ const AddEdit = () => {
         ...form,
         ...form1,
         id: id,
-        role:environment.staffRoleId
+        role:environment.contractorRoleId
       };
     if (id) {
       method = "put";
@@ -283,107 +282,57 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
+
+              <div className="col-span-full">
+                <h4>Address</h4>
+              </div>
+
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Street Address"
+                  value={form.address}
+                  onChange={(e) => setform({ ...form, address: e })}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Street Address Line 2"
+                  value={form.address2}
+                  onChange={(e) => setform({ ...form, address2: e })}
+                />
+              </div>
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="State / Province"
+                  value={form.state}
+                  onChange={(e) => setform({ ...form, state: e })}
+                />
+              </div>
+
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Postal / Zip Code"
+                  value={form.zipCode}
+                  maxlength="6"
+                  onChange={(e) => setform({ ...form, zipCode: e })}
+                />
+              </div>
+
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Country"
+                  value={form.country}
+                  onChange={(e) => setform({ ...form, country: e })}
+                />
+              </div>
             </div>
-            {/* <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
-                <div className="scrollbar w-full overflow-auto">
-                  <div class="table_section tablepadding">
-                    <p className="text-xl font-semibold text-[#111827] px-4 py-3">
-                      Permissions
-                    </p>
-                    <table class="w-full">
-                      <thead class="table_head roleTable">
-                        <tr class="border-b border-[#EAECF0]">
-                          <th
-                            scope="col"
-                            class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                          ></th>
-                          <th
-                            scope="col"
-                            class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                          >
-                            <input
-                              type="checkbox"
-                              onChange={(e) => HandleAll(e.target.checked)}
-                              checked={isAllChecked()}
-                              className="h-4 w-4 me-1"
-                            />
-                            All
-                          </th>
-                          {permission.map((itm) => {
-                            return (
-                              <>
-                                <th
-                                  scope="col"
-                                  class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                                >
-                                  <input
-                                    type="checkbox"
-                                    className="h-4 w-4 me-1"
-                                    onChange={(e) =>
-                                      HandleAllRead(e.target.checked, itm.key)
-                                    }
-                                    checked={isAllPCheck(itm.key)}
-                                  />
-                                  {itm.name}
-                                </th>
-                              </>
-                            );
-                          })}
-                        </tr>
-                      </thead>
-                      <tbody className="roleTable">
-                        {permissions.map((itm) => {
-                          return (
-                            <>
-                              <tr>
-                                <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                  {itm.name}
-                                </td>
-                                <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                  <input
-                                    type="checkbox"
-                                    className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
-                                    name={itm.key}
-                                    onChange={(e) =>
-                                      handleAllPermission(e.target)
-                                    }
-                                    checked={isCheckAll(itm.key)}
-                                  />
-                                </td>
-                                {permission.map((pitm) => {
-                                  return (
-                                    <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                      <div Name="checkList">
-                                        <label className="mb-0">
-                                          <input
-                                            type="checkbox"
-                                            className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
-                                            checked={
-                                              form1.permissions[
-                                                `${pitm.key}${itm.key}`
-                                              ]
-                                            }
-                                            onChange={(e) =>
-                                              setpermission(
-                                                `${pitm.key}${itm.key}`,
-                                                e.target.checked
-                                              )
-                                            }
-                                          />
-                                        </label>
-                                      </div>
-                                    </td>
-                                  );
-                                })}
-                              </tr>
-                            </>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div> */}
+            
             <div className="text-right">
               <button
                 type="submit"

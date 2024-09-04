@@ -1,8 +1,8 @@
 const shared = {
-  check: "Role",
-  title: "Roles",
-  addTitle: "Role",
-  url: "role",
+  check: "Project",
+  title: "Project",
+  addTitle: "Project",
+  url: "project",
   addApi: "role/add",
   editApi: "role/update",
   detailApi: "role/detail",

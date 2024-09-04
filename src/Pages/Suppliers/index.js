@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ApiClient from "../../methods/api/apiClient";
-import "./style.scss";
 import loader from "../../methods/loader";
 import Html from "./html";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +16,6 @@ const Users = () => {
   const [total, setTotal] = useState(0);
   const [loaging, setLoader] = useState(true);
   const history = useNavigate();
-  const isAdmin = user?.role?.name == "Admin";
 
   const sortClass = (key) => {
     let cls = "fa-sort";
@@ -44,19 +42,17 @@ const Users = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p,role:environment.staffRoleId };
+    let filter = { ...filters, ...p,role:environment.supplierRoleId };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {
         setData(
-          res.data
-            .map((itm) => {
-              itm.id = itm._id;
-              return itm;
-            })
+          res.data.map((itm) => {
+            itm.id = itm._id;
+            return itm;
+          })
         );
-
         setTotal(res.total);
       }
       setLoader(false);
@@ -69,7 +65,6 @@ const Users = () => {
       search: "",
       status: "",
       page: 1,
-      role: "",
     };
     setFilter({ ...filters, ...f });
     getData({ ...f });
@@ -133,21 +128,25 @@ const Users = () => {
     getData({ status: e, page: 1 });
   };
 
-  const getRolesData = (id) => {
-    setFilter({ ...filters, role: id, page: 1 });
-    getData({ role: id, page: 1 });
-  };
-
   const statusChange = (itm) => {
     // if (!(isAllow(`edit${shared.check}`) && itm.addedBy == user._id)) return;
     if (!isAllow(`edit${shared.check}`)) return;
     let status = "active";
     if (itm.status == "active") status = "deactive";
 
+    // if (window.confirm(`Do you want to ${status == 'active' ? 'Activate' : 'Deactivate'} this`)) {
+    //     loader(true)
+    //     ApiClient.put(shared.statusApi, { id: itm.id, status }).then(res => {
+    //         if (res.success) {
+    //             getData()
+    //         }
+    //         loader(false)
+    //     })
+    // }
     Swal.fire({
       title: "Are you sure?",
       text: `Do you want to ${
-        status == "active" ? "Activate" : "Inactivate"
+        status == "active" ? "Activate" : "Deactivate"
       } this user?`,
       icon: "warning",
       showCancelButton: true,
@@ -163,6 +162,11 @@ const Users = () => {
           }
           loader(false);
         });
+        //   Swal.fire({
+
+        //     // text: `Sucessfully ${status == 'active' ? 'Activate' : 'Deactivate'} this`,
+        //     icon: "success"
+        //   });
       }
     });
   };
@@ -174,20 +178,6 @@ const Users = () => {
   const view = (id) => {
     let url = `/${shared.url}/detail/${id}`;
     history(url);
-  };
-
-  const uploadFile = (e) => {
-    let files = e.target.files;
-    let file = files?.item(0);
-    let url = "user/import-users";
-    if (!file) return;
-    loader(true);
-    ApiClient.postFormFileData(url, { file }).then((res) => {
-      if (res.success) {
-        console.log("res", res);
-      }
-      loader(false);
-    });
   };
 
   const exportfun = async () => {
@@ -205,6 +195,20 @@ const Users = () => {
     link.href = window.URL.createObjectURL(blob);
     link.download = `${shared.title}.xlsx`;
     link.click();
+  };
+
+  const uploadFile = (e) => {
+    let files = e.target.files;
+    let file = files?.item(0);
+    let url = "user/import-users";
+    if (!file) return;
+    loader(true);
+    ApiClient.postFormFileData(url, { file }).then((res) => {
+      if (res.success) {
+        console.log("res", res);
+      }
+      loader(false);
+    });
   };
 
   const isAllow = (key = "") => {
@@ -243,7 +247,6 @@ const Users = () => {
         statusChange={statusChange}
         changestatus={changestatus}
         exportfun={exportfun}
-        getRolesData={getRolesData}
         uploadFile={uploadFile}
       />
     </>

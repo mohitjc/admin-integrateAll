@@ -56,28 +56,28 @@ const Html = ({
       },
     },
 
-    // {
-    //   key: "status",
-    //   name: "Status",
-    //   render: (row) => {
-    //     return (
-    //       <>
-    //         <div className="w-32" onClick={() => statusChange(row)}>
-    //           <span
-    //             className={`bg-[#063688] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
-    //                       ${
-    //                         row.status == "deactive"
-    //                           ? " bg-gray-200 text-black"
-    //                           : "bg-[#063688] text-white"
-    //                       }`}
-    //           >
-    //             {row.status == "deactive" ? "inactive" : "active"}
-    //           </span>
-    //         </div>
-    //       </>
-    //     );
-    //   },
-    // },
+    {
+      key: "status",
+      name: "Status",
+      render: (row) => {
+        return (
+          <>
+            <div className="w-32" onClick={() => statusChange(row)}>
+              <span
+                className={`bg-[#063688] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
+                          ${
+                            row.status == "deactive"
+                              ? " bg-gray-200 text-black"
+                              : "bg-[#063688] text-white"
+                          }`}
+              >
+                {row.status == "deactive" ? "inactive" : "active"}
+              </span>
+            </div>
+          </>
+        );
+      },
+    },
     {
       key: "action",
       name: "Action",
@@ -97,7 +97,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {isAllow(`edit${shared.check}`)&&(itm.id==environment.staffRoleId||itm.id==environment.contractorRoleId) ? (
+              {isAllow(`edit${shared.check}`) ? (
                 <Tooltip placement="top" title="Edit">
                   <a
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -109,7 +109,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {/* {isAllow(`delete${shared.check}`) ? (
+              {isAllow(`delete${shared.check}`) ? (
                 <Tooltip placement="top" title="Delete">
                   <span
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -120,7 +120,7 @@ const Html = ({
                 </Tooltip>
               ) : (
                 <></>
-              )} */}
+              )}
             </div>
           </>
         );
@@ -164,7 +164,7 @@ const Html = ({
                         <PiFileCsv className="text-typo text-xl" />  Export CSV
                     </button> */}
 
-          {/* {isAllow(`add${shared.check}`) ? (
+          {isAllow(`add${shared.check}`) ? (
             <Link
               className="bg-primary leading-10 mr-3 h-10 flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2"
               to={`/${shared.url}/add`}
@@ -173,7 +173,7 @@ const Html = ({
             </Link>
           ) : (
             <></>
-          )} */}
+          )}
         </div>
       </div>
 
@@ -238,19 +238,7 @@ const Html = ({
           </form>
 
           <div className="flex gap-2 ml-auto">
-            {/* {user?.role?.name == "Admin" && (
-              <SelectDropdown
-                id="statusDropdown"
-                displayValue="name"
-                placeholder="All Roles"
-                intialValue={filters.role}
-                result={(e) => {
-                  getRolesData(e.value);
-                }}
-                options={roles.filter((item) => item.name != "Customer")}
-              />
-            )} */}
-            {/* <SelectDropdown
+            <SelectDropdown
               id="statusDropdown"
               displayValue="name"
               placeholder="All Status"
@@ -259,7 +247,7 @@ const Html = ({
                 changestatus(e.value);
               }}
               options={statusModel.list}
-            /> */}
+            />
           
             {filters.status? (
               <>
