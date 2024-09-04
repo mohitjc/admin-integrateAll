@@ -94,9 +94,21 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     },
     {
       name: "Client",
-      icon: <MdOutlineGroups className="text-inherit shrink-0 text-lg" />,
-      url: "/customers",
-      key: "readCustomers",
+      icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+      menu:[
+        {
+          name: "Client",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/customers",
+          key: "readCustomers",
+        },
+        {
+          name: "Project",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/projects",
+          key: "",
+        },
+      ]
     },
     // {
     //   name: "Contract",
