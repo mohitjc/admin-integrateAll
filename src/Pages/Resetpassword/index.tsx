@@ -101,7 +101,6 @@ const Resetpassword = () => {
                   type={eyes.newPassword ? "text" : "password"}
                   className="mb-5 relative  bg-white w-full  rounded-lg h-12 flex items-center gap-2 overflow-hidden  mb-0 bginput w-full pl-[55px]"
                   value={form.newPassword}
-                  minLength={9}
                   maxLength={16}
                   onChange={(e) =>
                     setForm({ ...form, newPassword: e.target.value })
@@ -128,7 +127,7 @@ const Resetpassword = () => {
 
               {submitted && getError("newPassword").invalid ? (
                 <div className="invalid-feedback d-block">
-                  Min Length must be 12 characters long
+                  Min Length must be 8 characters long
                 </div>
               ) : (
                 <></>
@@ -144,7 +143,6 @@ const Resetpassword = () => {
                   type={eyes.confirmPassword ? "text" : "password"}
                   className="mb-5 relative  bg-white w-full  rounded-lg h-12 flex items-center gap-2 overflow-hidden  mb-0 bginput w-full pl-[55px]"
                   value={form.confirmPassword}
-                  minLength={9}
                   maxLength={16}
                   onChange={(e) =>
                     setForm({ ...form, confirmPassword: e.target.value })
