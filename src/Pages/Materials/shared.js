@@ -3,12 +3,12 @@ const shared = {
   title: "Materials",
   addTitle: "Material",
   url: "material",
-  addApi: "role/add",
-  editApi: "role/update",
-  detailApi: "role/detail",
-  listApi: "role/listing",
-  statusApi: "role/update",
-  deleteApi: "role/delete",
+  addApi: "material/add",
+  editApi: "material/update",
+  detailApi: "material/detail",
+  listApi: "material/listing",
+  statusApi: "material/status/change",
+  deleteApi: "material/delete",
 };
 
 export default shared;

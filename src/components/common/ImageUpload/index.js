@@ -6,12 +6,13 @@ import "./style.scss";
 const ImageUpload = ({
   model,
   result,
-  accept,
+  accept="image/*",
   value,
   multiple,
   required,
   err,
   label = "",
+  type="img"
 }) => {
   const inputElement = useRef();
   const [img, setImg] = useState("");
@@ -29,9 +30,9 @@ const ImageUpload = ({
     setLoader(true);
     ApiClient.multiImageUpload(url, files, {}, "file").then((res) => {
       console.log("res", res);
-      if (res.image) {
+      if (res.fileName) {
         // let image = res.files.map((itm) => itm.fileName);
-        let image = [res.image]
+        let image = [res.fileName]
         if (!multiple) {
           setImg(image[0]);
           result({ event: "value", value: image[0] });
@@ -63,6 +64,7 @@ const ImageUpload = ({
   return (
     <>
       <Html
+      type={type}
         label={label}
         multiple={multiple}
         inputElement={inputElement}

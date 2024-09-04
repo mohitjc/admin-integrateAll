@@ -14,15 +14,8 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
-    category:'',
-    price:'',
-    vat_included:'',
-    vat:'',
-    unit:'',
-    quantity:''
   });
   const [images, setImages] = useState({ image: "" });
-  const [category, setCategory] = useState([]);
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
@@ -41,7 +34,6 @@ const AddEdit = () => {
     let url = shared.addApi;
     
      let value = {
-      standAlone:true,
         ...form,
         ...images,
         id: id,
@@ -50,7 +42,6 @@ const AddEdit = () => {
       method = "put";
       url = shared.editApi;
     } else {
-    
       delete value.id;
     }
     loader(true);
@@ -62,16 +53,6 @@ const AddEdit = () => {
       loader(false);
     });
   };
-
-
-  const getCategory=()=>{
-    ApiClient.get('category/listing',{status:'active'}).then(res=>{
-      if(res.success){
-        setCategory(res.data)
-      }
-    })
-  }
-
   useEffect(() => {
     if (id) {
       loader(true);
@@ -83,8 +64,6 @@ const AddEdit = () => {
           Object.keys(payload).map((itm) => {
             payload[itm] = value[itm];
           });
-
-          if(payload.category?._id) payload.category=payload.category?._id
 
           payload.id = id;
           setform({
@@ -100,7 +79,6 @@ const AddEdit = () => {
         loader(false);
       });
     }
-    getCategory()
   }, [id]);
 
 
@@ -111,6 +89,8 @@ const AddEdit = () => {
       setSubmitted(false);
     }
   };
+
+
 
   return (
     <>
@@ -143,75 +123,6 @@ const AddEdit = () => {
                   label="Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
-                  required
-                />
-              </div>
-             
-              <div className=" mb-3">
-                <FormControl
-                  type="select"
-                  label="Category"
-                  value={form.category}
-                  theme="search"
-                  placeholder="Select Option"
-                  options={category}
-                  onChange={(e) => setform({ ...form, category: e })}
-                  required
-                />
-              </div>
-              <div className=" mb-3">
-                <FormControl
-                  type="text"
-                  label="Price"
-                  value={form.price}
-                  onChange={(e) => setform({ ...form, price: e })}
-                  required
-                />
-              </div>
-              <div className=" mb-3">
-                <FormControl
-                  type="select"
-                  label="VAT Included"
-                  value={form.vat_included}
-                  theme="search"
-                  placeholder="Select Option"
-                  options={
-                    [
-                      {id:'yes',name:'Yes'},
-                      {id:'no',name:'No'},
-                    ]
-                  }
-                  onChange={(e) => setform({ ...form, vat_included: e })}
-                  required
-                />
-              </div>
-              {form.vat_included=='yes'?<>
-                <div className=" mb-3">
-                <FormControl
-                  type="number"
-                  label="VAT"
-                  value={form.vat}
-                  onChange={(e) => setform({ ...form, vat: e })}
-                  required
-                />
-              </div>
-              </>:<></>}
-             
-              <div className=" mb-3">
-                <FormControl
-                  type="number"
-                  label="Unit"
-                  value={form.unit}
-                  onChange={(e) => setform({ ...form, unit: e })}
-                  required
-                />
-              </div>
-              <div className=" mb-3">
-                <FormControl
-                  type="number"
-                  label="Quantity"
-                  value={form.quantity}
-                  onChange={(e) => setform({ ...form, quantity: e })}
                   required
                 />
               </div>
