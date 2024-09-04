@@ -68,12 +68,12 @@ const ChangePassword = (p) => {
           </h3>
         </div>
 
-        <div className="input_form p-6 shadow-box overflow-hidden rounded-lg bg-white grid grid-cols-12">
-          <div className="col-span-12 md:col-span-7">
+        <div className=" grid grid-cols-12">
+          <div className="col-span-12  xl:col-span-7 input_form p-6 shadow-box overflow-hidden rounded-lg bg-white">
             <form onSubmit={handleSubmit}>
               <div className="items-center ">
                 <div className="">
-                  <div className="flex flex-col md:flex-row  items-center gap-4 mb-6">
+                  <div className="flex flex-col lg:flex-row  lg:items-center items-start gap-4 mb-6">
                     <label className="text-typo text-base font-medium w-96">
                       Current Password<span className="start">*</span>
                     </label>
@@ -81,7 +81,7 @@ const ChangePassword = (p) => {
                       <div className="relative ">
                         <input
                           type={eyes.currentPassword ? "text" : "password"}
-                          className="shadow-box bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
+                          className="border bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
                           value={form.currentPassword}
                           maxLength="20"
                           placeholder="Enter current password"
@@ -119,7 +119,7 @@ const ChangePassword = (p) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col md:flex-row  items-center gap-4 mb-6 ">
+                  <div className="flex flex-col lg:flex-row lg:items-center items-start gap-4 mb-6 ">
                     <label className="text-typo text-base font-medium w-96">
                       New Password<span className="start">*</span>
                     </label>
@@ -128,7 +128,7 @@ const ChangePassword = (p) => {
                       <div className="relative ">
                         <input
                           type={eyes.password ? "text" : "password"}
-                          className="shadow-box bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
+                          className="border bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
                           value={form.newPassword}
                           placeholder="Enter new password"
                           maxLength={16}
@@ -160,7 +160,7 @@ const ChangePassword = (p) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col md:flex-row  items-center gap-4 mb-6">
+                  <div className="flex flex-col lg:flex-row  lg:items-center items-start gap-4 mb-6">
                     <label className="text-typo text-base font-medium w-96">
                       Confirm Password<span className="start">*</span>
                     </label>
@@ -168,7 +168,7 @@ const ChangePassword = (p) => {
                     <div className="relative w-full ">
                       <input
                         type={eyes.confirmPassword ? "text" : "password"}
-                        className="shadow-box bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
+                        className="border bg-white w-full text-sm placeholder:text-gray-500 rounded-lg h-10 flex items-center gap-2 overflow-hidden px-2 !ring-primary !outline-primary"
                         placeholder="Enter Confirm Password"
                         value={form.confirmPassword}
                         maxLength={16}
