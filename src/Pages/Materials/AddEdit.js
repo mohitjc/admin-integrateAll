@@ -13,6 +13,12 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
+    category:'',
+    price:'',
+    vat_included:'',
+    vat:'',
+    unit:'',
+    quantity:''
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -78,6 +84,7 @@ const AddEdit = () => {
 
 
 
+
   return (
     <>
       <Layout>
@@ -109,6 +116,80 @@ const AddEdit = () => {
                   label="Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
+                  required
+                />
+              </div>
+             
+              <div className=" mb-3">
+                <FormControl
+                  type="select"
+                  label="Category"
+                  value={form.category}
+                  theme="search"
+                  placeholder="Select Option"
+                  options={
+                    [
+                      {id:'yes',name:'Yes'},
+                      {id:'no',name:'No'},
+                    ]
+                  }
+                  onChange={(e) => setform({ ...form, category: e })}
+                  required
+                />
+              </div>
+              <div className=" mb-3">
+                <FormControl
+                  type="text"
+                  label="Price"
+                  value={form.price}
+                  onChange={(e) => setform({ ...form, price: e })}
+                  required
+                />
+              </div>
+              <div className=" mb-3">
+                <FormControl
+                  type="select"
+                  label="VAT Included"
+                  value={form.vat_included}
+                  theme="search"
+                  placeholder="Select Option"
+                  options={
+                    [
+                      {id:'yes',name:'Yes'},
+                      {id:'no',name:'No'},
+                    ]
+                  }
+                  onChange={(e) => setform({ ...form, vat_included: e })}
+                  required
+                />
+              </div>
+              {/* {form.vat_included=='yes'?<>
+                <div className=" mb-3">
+                <FormControl
+                  type="number"
+                  label="VAT"
+                  value={form.vat}
+                  onChange={(e) => setform({ ...form, vat: e })}
+                  required
+                />
+              </div>
+              </>:<></>} */}
+             
+              <div className=" mb-3">
+                <FormControl
+                  type="number"
+                  label="Unit"
+                  value={form.unit}
+                  onChange={(e) => setform({ ...form, unit: e })}
+                  required
+                />
+              </div>
+              <div className=" mb-3">
+                <FormControl
+                  type="number"
+                  label="Quantity"
+                  value={form.quantity}
+                  onChange={(e) => setform({ ...form, quantity: e })}
                   required
                 />
               </div>

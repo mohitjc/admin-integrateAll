@@ -19,7 +19,7 @@ const AddEdit = () => {
     fullName: "",
     email: "",
     mobileNo: "",
-    dob:'',
+    company:'',
     address:'',
     address2:'',
     state:'',
@@ -173,15 +173,15 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
-              {/* <div className="mb-3">
+              <div className=" mb-3">
                 <FormControl
-                  type="date"
-                  label="DOB"
-                  value={form.dob}
-                  onChange={(e) => setform({ ...form, dob: e })}
+                  type="text"
+                  label="Company"
+                  value={form.company}
+                  onChange={(e) => setform({ ...form, company: e })}
                   required
                 />
-              </div> */}
+              </div>
               <div className="col-span-full">
                 <h4>Address</h4>
               </div>

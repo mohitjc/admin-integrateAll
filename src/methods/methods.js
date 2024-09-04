@@ -61,7 +61,7 @@ const isNumber = (e) => {
   // let min = key.min;
   // if (min && Number(key.value)<Number(min)) key.value = min;
 
-  if (key.value.length > maxlength) key.value = key.value.slice(0, maxlength);
+  if (key.value.length > maxlength&&maxlength>0) key.value = key.value.slice(0, maxlength);
   key.value = key.value.replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "$1");
 
   return key.value;

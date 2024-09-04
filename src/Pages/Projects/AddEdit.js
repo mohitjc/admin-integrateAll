@@ -13,6 +13,11 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
+    address:'',
+    address2:'',
+    state:'',
+    zipCode:'',
+    country:'',
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -110,6 +115,55 @@ const AddEdit = () => {
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
                   required
+                />
+              </div>
+
+              <div className="col-span-full">
+                <h4>Address</h4>
+              </div>
+
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Street Address"
+                  value={form.address}
+                  onChange={(e) => setform({ ...form, address: e })}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Street Address Line 2"
+                  value={form.address2}
+                  onChange={(e) => setform({ ...form, address2: e })}
+                />
+              </div>
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="State / Province"
+                  value={form.state}
+                  onChange={(e) => setform({ ...form, state: e })}
+                />
+              </div>
+
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Postal / Zip Code"
+                  value={form.zipCode}
+                  maxlength="6"
+                  onChange={(e) => setform({ ...form, zipCode: e })}
+                />
+              </div>
+
+              <div className="mb-3">
+                <FormControl
+                  type="text"
+                  label="Country"
+                  value={form.country}
+                  onChange={(e) => setform({ ...form, country: e })}
                 />
               </div>
             </div>
