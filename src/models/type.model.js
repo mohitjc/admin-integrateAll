@@ -11,6 +11,18 @@ export const rolePermissions = [
     name: "Client",
     key: "Customers",
   },
+  {
+    name: "Contractors",
+    key: "Contractor",
+  },
+  {
+    name: "Material",
+    key: "Materials",
+  },
+  {
+    name: "Suppliers",
+    key: "Supplier",
+  },
   // {
   //   name: "Content",
   //   key: "Content",

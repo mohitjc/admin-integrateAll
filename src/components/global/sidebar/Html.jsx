@@ -72,7 +72,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       name: "Roles and Permissions",
       icon: <img src="assets/img/usero.svg" alt=""/>,
       url: "/role",
-      key: "",
+      key: "readRoles",
     },
     {
       name: "Staff",
@@ -84,7 +84,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       name: "Contractor",
       icon: <img src="assets/img/contractor.svg" alt=""/>,
       url: "/contractor",
-      key: "",
+      key: "readContractor",
     },
     {
       name: "Materials",
@@ -94,21 +94,21 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           name: "Category",
           icon: <img src="assets/img/usero.svg" alt=""/>,
           url: "/category",
-          key: "",
+          key: "readMaterial",
         },
         {
           name: "Materials",
           icon: <img src="assets/img/contractor.svg" alt=""/>,
           url: "/material",
-          key: "",
+          key: "readMaterial",
         },
       ],
     },
     {
-      name: "Supplier",
+      name: "Suppliers",
       icon: <img src="assets/img/box.svg" alt=""/>,
       url: "/supplier",
-      key: "",
+      key: "readSupplier",
     },
    
     {
@@ -130,7 +130,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           name: "Project",
           icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
           url: "/project",
-          key: "",
+          key: "readCustomers",
         },
       ],
     },
