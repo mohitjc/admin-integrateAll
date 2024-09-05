@@ -6,6 +6,7 @@ import SelectDropdown from "../../common/SelectDropdown";
 import ImageUpload from "../../common/ImageUpload";
 
 import FormControl from "../../common/FormControl";
+import { useNavigate } from "react-router-dom";
 
 const Html = ({
   handleSubmit,
@@ -17,6 +18,7 @@ const Html = ({
   uploadImage,
   submitted,
 }) => {
+  const history=useNavigate()
   return (
     <>
       <div className="wrapper_section">
@@ -111,9 +113,9 @@ const Html = ({
             </div> */}
           </div>
           <div className="text-right mt-3">
-            {/* <button type="button" className="text-white bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-3">
+            <button type="button" onClick={()=>history('/profile')} className="text-white bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-3">
               Cancel
-            </button> */}
+            </button>
             <button className="text-white bg-[#063688] bg-[#063688] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
               Save
             </button>
