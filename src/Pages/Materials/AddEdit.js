@@ -226,7 +226,7 @@ const AddEdit = () => {
              
               <div className=" mb-3">
                 <FormControl
-                  type="number"
+                  type="text"
                   label="Unit"
                   value={form.unit}
                   onChange={(e) => setform({ ...form, unit: e })}

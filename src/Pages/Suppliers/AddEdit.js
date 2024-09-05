@@ -356,7 +356,7 @@ const AddEdit = () => {
 
                       <div className=" mb-3">
                         <FormControl
-                          type="number"
+                          type="text"
                           label="Unit"
                           value={itm.unit}
                           onChange={(e) => updateMaterial(i,'unit',e)}
