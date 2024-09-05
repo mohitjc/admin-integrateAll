@@ -17,7 +17,8 @@ const AddEdit = () => {
   const [materials, setMeterials] = useState([{name:''}]);
   const [form, setform] = useState({
     id: "",
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     mobileNo: "",
     company: '',
@@ -178,25 +179,25 @@ const AddEdit = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className=" mb-3">
-                <FormControl
-                  type="text"
-                  label="Full Name"
-                  value={form.fullName}
-                  onChange={(e) => setform({ ...form, fullName: e })}
-                  required
-                />
-              </div>
-              {/* <div className=" mb-3">
-                <FormControl
-                  type="text"
-                  name="full_name"
-                  label="Last Name"
-                  value={form.lastName}
-                  onChange={(e) => setform({ ...form, lastName: e })}
-                  required
-                />
-              </div> */}
+            <div className="">
+              <FormControl
+                type="text"
+                label="First Name"
+                value={form.firstName}
+                onChange={(e) => setform({ ...form, firstName: e })}
+                required
+              />
+            </div>
+
+            <div className="">
+              <FormControl
+                type="text"
+                label="Last Name"
+                value={form.lastName}
+                onChange={(e) => setform({ ...form, lastName: e })}
+                required
+              />
+            </div>
 
               <div className=" mb-3">
                 <FormControl

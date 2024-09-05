@@ -44,18 +44,18 @@ const Users = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p,role:'staff' };
+    let filter = { ...filters, ...p };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {
-        setData(
-          res.data
-            .map((itm) => {
-              itm.id = itm._id;
-              return itm;
-            })
-        );
+        let data=res.data.map((itm) => {
+          itm.id = itm._id;
+          return itm;
+        })
+
+        data=data.filter(itm=>(itm.id==environment.staffRoleId||itm.id==environment.contractorRoleId))
+        setData(data);
 
         setTotal(res.total);
       }

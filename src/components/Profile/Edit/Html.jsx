@@ -33,14 +33,14 @@ const Html = ({
             <div className="col-span-12 md:col-span-6">
               <FormControl
                 type="text"
-                label="Full Name"
-                value={form.fullName}
-                onChange={(e) => setForm({ ...form, fullName: e })}
+                label="First Name"
+                value={form.firstName}
+                onChange={(e) => setForm({ ...form, firstName: e })}
                 required
               />
             </div>
 
-            {/* <div className="col-span-12 md:col-span-6">
+            <div className="col-span-12 md:col-span-6">
               <FormControl
                 type="text"
                 label="Last Name"
@@ -48,7 +48,7 @@ const Html = ({
                 onChange={(e) => setForm({ ...form, lastName: e })}
                 required
               />
-            </div> */}
+            </div>
 
             <div className="col-span-12 md:col-span-6">
               <label className="text-sm mb-2 block">

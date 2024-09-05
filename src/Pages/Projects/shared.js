@@ -1,14 +1,14 @@
 const shared = {
   check: "Project",
-  title: "Project",
+  title: "Projects",
   addTitle: "Project",
   url: "project",
-  addApi: "role/add",
-  editApi: "role/update",
-  detailApi: "role/detail",
-  listApi: "role/listing",
-  statusApi: "role/update",
-  deleteApi: "role/delete",
+  addApi: "property/add",
+  editApi: "property/update",
+  detailApi: "property/detail",
+  listApi: "property/listing",
+  statusApi: "property/status/change",
+  deleteApi: "property/delete",
 };
 
 export default shared;

@@ -47,7 +47,6 @@ const AddEdit = () => {
     
       delete value.id;
     }
-    value.permissions=[]
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {

@@ -27,7 +27,8 @@ const AddEdit = () => {
   const permissions = rolePermissions;
   const permission = rolePermission;
   const [form, setform] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     mobileNo: "",
     role: environment.staffRoleId,
@@ -222,36 +223,25 @@ const AddEdit = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className=" mb-3">
-                <FormControl
-                  type="text"
-                  name="full_name"
-                  label="Full Name"
-                  value={form.fullName}
-                  onChange={(e) => setform({ ...form, fullName: e })}
-                  required
-                />
-              </div>
-              {/* <div className="mobile_number mb-3">
-                <FormControl 
-                  type="select"
-                  name="role"
-                  label="Role"
-                  value={form.role}
-                  options={roleOptions}
-                  onChange={(e) => {
-                    setform({ ...form, role: e });
-                  }}
-                  required
-                  theme="search"
-                  disabled
-                />
-                {submitted && !form.role && (
-                  <div className="invalid-feedback d-block">
-                    Role is required
-                  </div>
-                )}
-              </div> */}
+            <div className="">
+              <FormControl
+                type="text"
+                label="First Name"
+                value={form.firstName}
+                onChange={(e) => setform({ ...form, firstName: e })}
+                required
+              />
+            </div>
+
+            <div className="">
+              <FormControl
+                type="text"
+                label="Last Name"
+                value={form.lastName}
+                onChange={(e) => setform({ ...form, lastName: e })}
+                required
+              />
+            </div>
               <div className="mobile_number mb-3">
                 <FormControl
                   type="phone"

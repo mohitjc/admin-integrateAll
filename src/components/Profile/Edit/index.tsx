@@ -16,7 +16,8 @@ const EditProfile = () => {
     id: "",
     email: "",
     mobileNo: "",
-    fullName: "",
+    firstName:'',
+    lastName:'',
   });
   const [images, setImages]: any = useState({ image: "" });
   const history = useNavigate();
