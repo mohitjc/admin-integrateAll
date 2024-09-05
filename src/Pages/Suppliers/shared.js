@@ -3,7 +3,7 @@ const shared = {
   title: "Supplier",
   addTitle: "Supplier",
   url: "supplier",
-  addApi: "user/add",
+  addApi: "user/supplier/create",
   editApi: "user/profile",
   detailApi: "user/profile",
   listApi: "user/listing",

@@ -75,28 +75,16 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key: "",
     },
     {
+      name: "Category",
+      icon: <img src="assets/img/usero.svg" alt=""/>,
+      url: "/category",
+      key: "",
+    },
+    {
       name: "Staff",
       icon: <img src="assets/img/usero.svg" alt=""/>,
       url: "/user",
       key: "readstaff",
-    },
-    {
-      name: "Supplier",
-      icon: <img src="assets/img/box.svg" alt=""/>,
-      menu: [
-        {
-          name: "Supplier",
-          icon: <img src="assets/img/dashboard.svg" alt=""/>,
-          url: "/supplier",
-          key: "",
-        },
-        {
-          name: "Material",
-          icon: <img src="assets/img/dashboard.svg" alt=""/>,
-          url: "/materials",
-          key: "",
-        },
-      ],
     },
     {
       name: "Contractor",
@@ -104,6 +92,19 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/contractor",
       key: "",
     },
+    {
+      name: "Material",
+      icon: <img src="assets/img/contractor.svg" alt=""/>,
+      url: "/material",
+      key: "",
+    },
+    {
+      name: "Supplier",
+      icon: <img src="assets/img/box.svg" alt=""/>,
+      url: "/supplier",
+      key: "",
+    },
+   
     {
       name: "Client",
       icon: <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +123,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         {
           name: "Project",
           icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/projects",
+          url: "/project",
           key: "",
         },
       ],

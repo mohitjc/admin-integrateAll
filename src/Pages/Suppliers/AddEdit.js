@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import ApiClient from "../../methods/api/apiClient";
 import loader from "../../methods/loader";
 import methodModel from "../../methods/methods";
@@ -14,18 +14,20 @@ const AddEdit = () => {
   const { id } = useParams();
 
   const [images, setImages] = useState({ image: "" });
+  const [materials, setMeterials] = useState([{name:''}]);
   const [form, setform] = useState({
     id: "",
     fullName: "",
     email: "",
     mobileNo: "",
-    company:'',
-    address:'',
-    address2:'',
-    state:'',
-    zipCode:'',
-    country:'',
+    company: '',
+    address: '',
+    address2: '',
+    state: '',
+    zipCode: '',
+    country: '',
   });
+  const [category, setCategory] = useState([]);
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
@@ -46,6 +48,7 @@ const AddEdit = () => {
     let url = shared.addApi;
     let value = {
       ...form,
+      material:materials,
       role: environment.supplierRoleId,
     };
 
@@ -66,7 +69,37 @@ const AddEdit = () => {
     });
   };
 
+  const getCategory=()=>{
+    ApiClient.get('category/listing',{status:'active'}).then(res=>{
+      if(res.success){
+        setCategory(res.data)
+      }
+    })
+  }
 
+  const getMaterials=()=>{
+    let prm={
+      supplier:id
+    }
+    ApiClient.get('material/listing',prm).then(res=>{
+      if(res.success){
+        let arr=res.data
+        arr=arr.map(itm=>{
+          return {
+            name:itm.name,
+            category:itm.category,
+            id:itm.id,
+            price:itm.price,
+            quantity:itm.quantity,
+            unit:itm.unit,
+            vat_included:itm.vat_included,
+            vat:itm.vat,
+          }
+        })
+        setMeterials(arr)
+      }
+    })
+  }
 
   useEffect(() => {
     if (id) {
@@ -93,9 +126,32 @@ const AddEdit = () => {
         }
         loader(false);
       });
+      getMaterials()
     }
+    getCategory()
   }, [id]);
 
+
+  const updateMaterial=(i,key,value)=>{
+    let arr=materials
+    arr[i][key]=value
+    setMeterials([...arr])
+  }
+
+  const addMaterial=()=>{
+    let arr=materials
+    arr.push({
+      name:'',
+    })
+    setMeterials([...arr])
+  }
+
+  const removeMaterial=(mi)=>{
+    let arr=materials
+   arr=arr.filter((itm,i)=>i!=mi)
+    setMeterials([...arr])
+  }
+  
 
   return (
     <>
@@ -141,7 +197,7 @@ const AddEdit = () => {
                   required
                 />
               </div> */}
-              
+
               <div className=" mb-3">
                 <FormControl
                   type="text"
@@ -230,7 +286,108 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, country: e })}
                 />
               </div>
+
+              {!id?<>
+                <div className="col-span-full">
+              <h5 className="mb-2">Materials</h5>
+                {materials.map((itm, i) => {
+                  return <Fragment key={i}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 shadow border p-3 mb-3">
+                      <div className=" mb-3">
+                        <FormControl
+                          type="text"
+                          label="Name"
+                          value={itm.name}
+                          onChange={(e) => updateMaterial(i,'name',e)}
+                          required
+                        />
+                      </div>
+
+                      <div className=" mb-3">
+                        <FormControl
+                          type="select"
+                          label="Category"
+                          theme="search"
+                          placeholder="Select Option"
+                          options={category}
+                          value={itm.category}
+                          onChange={(e) => updateMaterial(i,'category',e)}
+                          required
+                        />
+                      </div>
+                      <div className=" mb-3">
+                        <FormControl
+                          type="text"
+                          label="Price"
+                          value={itm.price}
+                          onChange={(e) => updateMaterial(i,'price',e)}
+                          required
+                        />
+                      </div>
+                      <div className=" mb-3">
+                        <FormControl
+                          type="select"
+                          label="VAT Included"
+                          theme="search"
+                          placeholder="Select Option"
+                          options={
+                            [
+                              { id: 'yes', name: 'Yes' },
+                              { id: 'no', name: 'No' },
+                            ]
+                          }
+                          value={itm.vat_included}
+                          onChange={(e) => updateMaterial(i,'vat_included',e)}
+                          required
+                        />
+                      </div>
+                      {itm.vat_included == 'yes' ? <>
+                        <div className=" mb-3">
+                          <FormControl
+                            type="number"
+                            label="VAT"
+                            value={itm.vat}
+                            onChange={(e) => updateMaterial(i,'vat',e)}
+                            required
+                          />
+                        </div>
+                      </> : <></>}
+
+                      <div className=" mb-3">
+                        <FormControl
+                          type="number"
+                          label="Unit"
+                          value={itm.unit}
+                          onChange={(e) => updateMaterial(i,'unit',e)}
+                          required
+                        />
+                      </div>
+                      <div className=" mb-3">
+                        <FormControl
+                          type="number"
+                          label="Quantity"
+                          value={itm.quantity}
+                          onChange={(e) => updateMaterial(i,'quantity',e)}
+                          required
+                        />
+                      </div>
+                      <div className="text-right col-span-full">
+                     
+                        {materials.length > 1 ? <>
+                          <button type="button" onClick={() => removeMaterial(i)} className="text-white bg-[#ff2626] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Remove</button>
+                        </> : <></>}
+                      </div>
+                    </div>
+                  </Fragment>
+                })}
+                <div className="text-right mb-4">
+                <button type="button" onClick={addMaterial} className="text-white bg-[#063688] bg-[#063688] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Material</button>
+                </div>
+              </div>
+              </>:<></>}
+
               
+
             </div>
 
             <div className="text-right">

@@ -9,6 +9,7 @@ import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import ImageUpload from "../../components/common/ImageUpload";
+import environment from "../../environment";
 
 const AddEdit = () => {
   const { id } = useParams();
@@ -16,13 +17,15 @@ const AddEdit = () => {
     name: "",
     category:'',
     price:'',
-    vat_included:'',
+    vat_included:false,
     vat:'',
     unit:'',
-    quantity:''
+    quantity:'',
+    supplier:''
   });
   const [images, setImages] = useState({ image: "" });
   const [category, setCategory] = useState([]);
+  const [supplier, setSupplier] = useState([]);
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
@@ -41,9 +44,9 @@ const AddEdit = () => {
     let url = shared.addApi;
     
      let value = {
-      standAlone:true,
         ...form,
         ...images,
+        standAlone:form.supplier?false:true,
         id: id,
       };
     if (id) {
@@ -72,6 +75,14 @@ const AddEdit = () => {
     })
   }
 
+  const getSupplier=()=>{
+    ApiClient.get('user/listing',{status:'active',role:environment.supplierRoleId}).then(res=>{
+      if(res.success){
+        setSupplier(res.data)
+      }
+    })
+  }
+
   useEffect(() => {
     if (id) {
       loader(true);
@@ -85,6 +96,8 @@ const AddEdit = () => {
           });
 
           if(payload.category?._id) payload.category=payload.category?._id
+          if(payload.supplier?._id) payload.supplier=payload.supplier?._id
+          
 
           payload.id = id;
           setform({
@@ -100,6 +113,7 @@ const AddEdit = () => {
         loader(false);
       });
     }
+    getSupplier()
     getCategory()
   }, [id]);
 
@@ -146,6 +160,19 @@ const AddEdit = () => {
                   required
                 />
               </div>
+
+              <div className=" mb-3">
+                <FormControl
+                  type="select"
+                  label="Supplier"
+                  value={form.supplier}
+                  theme="search"
+                  placeholder="Select Option"
+                  displayValue="fullName"
+                  options={supplier}
+                  onChange={(e) => setform({ ...form, supplier: e })}
+                />
+              </div>
              
               <div className=" mb-3">
                 <FormControl
@@ -177,15 +204,15 @@ const AddEdit = () => {
                   placeholder="Select Option"
                   options={
                     [
-                      {id:'yes',name:'Yes'},
-                      {id:'no',name:'No'},
+                      {id:true,name:'Yes'},
+                      {id:false,name:'No'},
                     ]
                   }
                   onChange={(e) => setform({ ...form, vat_included: e })}
                   required
                 />
               </div>
-              {form.vat_included=='yes'?<>
+              {form.vat_included?<>
                 <div className=" mb-3">
                 <FormControl
                   type="number"

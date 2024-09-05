@@ -67,6 +67,48 @@ const View = () => {
                     {data && data.name}
                   </p>
                 </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Category:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.category?.name}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Supplier:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.supplier?.fullName}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Price:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.price}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Quantity:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.quantity}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Vat Included:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.vat_included?'Yes':'No'}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">vat:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.vat}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Unit:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {data && data.unit}
+                  </p>
+                </div>
                </div>
               </div>
              
