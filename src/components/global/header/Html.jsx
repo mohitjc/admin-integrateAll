@@ -31,7 +31,7 @@ const Html = ({
       component="header"
       className={`${
         isOpen ? "min-sidebar w-[calc(100%-80px)]" : "w-[calc(100%-280px)] "
-      } shadow-btn py-1.5 bg-white border-b  fixed transition-[width] duration-300 ml-auto right-0 z-10 flex items-center !px-5
+      } shadow-btn py-1.5 bg-[#f8f9fa] border-b  fixed transition-[width] duration-300 ml-auto right-0 z-10 flex items-center !px-5
       `}
     >
       <button
