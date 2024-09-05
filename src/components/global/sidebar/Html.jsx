@@ -120,12 +120,12 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           url: "/customers",
           key: "readCustomers",
         },
-        {
-          name: "Project",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/project",
-          key: "",
-        },
+        // {
+        //   name: "Project",
+        //   icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+        //   url: "/project",
+        //   key: "",
+        // },
       ],
     },
     // {
