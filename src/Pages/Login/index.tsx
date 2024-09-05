@@ -9,7 +9,7 @@ import methodModel from "../../methods/methods";
 import { useDispatch, useSelector } from "react-redux";
 import { login_success } from "../actions/user";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import socketModel from "../../models/socketModel";
+// import socketModel from "../../models/socketModel";
 
 const Login = () => {
   const history = useNavigate();
@@ -106,7 +106,7 @@ const Login = () => {
     loader(true);
     ApiClient.post(url, data).then(async (res) => {
       if (res.success == true) {
-        socketModel.emit("user-online", { user_id: user._id });
+        // socketModel.emit("user-online", { user_id: user._id });
 
         if (remember) {
           localStorage.setItem("remember", JSON.stringify(data));
