@@ -37,15 +37,8 @@ const Html = ({
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
-  const [roles, setRoles] = useState([]);
 
-  const getRolesList = () => {
-    ApiClient.get("role/listing").then((res) => {
-      if (res.success) {
-        setRoles(res.data);
-      }
-    });
-  };
+
   const columns = [
     {
       key: "name",
@@ -127,22 +120,6 @@ const Html = ({
       },
     },
   ];
-
-  /*  const getGroups = () => {
-    let f = {
-      page: 1,
-      count: 10,
-    };
-    ApiClient.get("api/group/list", f).then((res) => {
-      if (res.success) {
-        setGroup(res.data);
-      }
-    });
-  };
- */
-  useEffect(() => {
-    getRolesList();
-  }, []);
 
   return (
     <Layout>

@@ -65,11 +65,11 @@ const Users = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      category: "",
       search: "",
       status: "",
       page: 1,
-      role: "",
+      supplier: "",
     };
     setFilter({ ...filters, ...f });
     getData({ ...f });

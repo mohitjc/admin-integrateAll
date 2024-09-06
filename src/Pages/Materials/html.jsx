@@ -37,15 +37,8 @@ const Html = ({
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
-  const [roles, setRoles] = useState([]);
-
-  const getRolesList = () => {
-    ApiClient.get("role/listing").then((res) => {
-      if (res.success) {
-        setRoles(res.data);
-      }
-    });
-  };
+  const [category, setCategory] = useState([]);
+  const [supplier, setSupplier] = useState([]);
   const columns = [
     {
       key: "name",
@@ -61,6 +54,14 @@ const Html = ({
       sort: true,
       render: (row) => {
         return <span className="capitalize">{row?.supplier_detail?.fullName||'--'}</span>;
+      },
+    },
+    {
+      key: "category",
+      name: "Category",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.category_detail?.name||'--'}</span>;
       },
     },
     {
@@ -135,20 +136,24 @@ const Html = ({
     },
   ];
 
-  /*  const getGroups = () => {
-    let f = {
-      page: 1,
-      count: 10,
-    };
-    ApiClient.get("api/group/list", f).then((res) => {
-      if (res.success) {
-        setGroup(res.data);
+  const getCategory=()=>{
+    ApiClient.get('category/listing',{status:'active'}).then(res=>{
+      if(res.success){
+        setCategory(res.data)
       }
-    });
-  };
- */
+    })
+  }
+
+  const getSupplier=()=>{
+    ApiClient.get('user/listing',{status:'active',role:environment.supplierRoleId}).then(res=>{
+      if(res.success){
+        setSupplier(res.data)
+      }
+    })
+  }
   useEffect(() => {
-    getRolesList();
+    getCategory()
+    getSupplier()
   }, []);
 
   return (
@@ -255,8 +260,32 @@ const Html = ({
               }}
               options={statusModel.list}
             />
+
+<SelectDropdown
+              id="statusDropdown"
+              displayValue="name"
+              placeholder="All Category"
+              intialValue={filters.category}
+              result={(e) => {
+                filter({category:e.value});
+              }}
+              theme="search"
+              options={category}
+            />
+
+<SelectDropdown
+              id="statusDropdown"
+              displayValue="fullName"
+              placeholder="All Supplier"
+              intialValue={filters.supplier}
+               theme="search"
+              result={(e) => {
+                filter({supplier:e.value});
+              }}
+              options={supplier}
+            />
           
-            {filters.status? (
+            {filters.status||filters.supplier||filters.category? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

@@ -8,6 +8,7 @@ import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
+import environment from "../../environment";
 
 const AddEdit = () => {
   const { id } = useParams();
@@ -17,9 +18,11 @@ const AddEdit = () => {
     address2:'',
     state:'',
     zipCode:'',
+    client:'',
     country:'',
   });
   const history = useNavigate();
+  const [clients, setClients] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
   const formValidation = [
@@ -56,6 +59,15 @@ const AddEdit = () => {
       loader(false);
     });
   };
+
+  const getClients=()=>{
+    ApiClient.get('user/listing',{role:environment.userRoleId,status:'active'}).then(res=>{
+      if(res.success){
+          setClients(res.data)
+      }
+    })
+  }
+
   useEffect(() => {
     if (id) {
       loader(true);
@@ -67,6 +79,7 @@ const AddEdit = () => {
           Object.keys(payload).map((itm) => {
             payload[itm] = value[itm];
           });
+          if(payload.client?._id) payload.client=payload.client?._id
 
           payload.id = id;
           setform({
@@ -76,6 +89,7 @@ const AddEdit = () => {
         loader(false);
       });
     }
+    getClients()
   }, [id]);
 
 
@@ -113,6 +127,19 @@ const AddEdit = () => {
                   label="Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
+                  required
+                />
+              </div>
+
+              <div className=" mb-3">
+                <FormControl
+                  type="select"
+                  label="Client"
+                  theme="search"
+                  value={form.client}
+                  options={clients}
+                  displayValue="fullName"
+                  onChange={(e) => setform({ ...form, client: e })}
                   required
                 />
               </div>

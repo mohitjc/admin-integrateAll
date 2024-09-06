@@ -44,7 +44,7 @@ const Users = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p,role:'staff' };
+    let filter = { ...filters, ...p };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
