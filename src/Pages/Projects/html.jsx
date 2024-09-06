@@ -38,7 +38,7 @@ const Html = ({
 }) => {
   const user = useSelector((state) => state.user);
 
-
+  const [clients, setClients] = useState([]);
   const columns = [
     {
       key: "name",
@@ -128,6 +128,18 @@ const Html = ({
       },
     },
   ];
+
+  const getClients=()=>{
+    ApiClient.get('user/listing',{role:environment.userRoleId,status:'active'}).then(res=>{
+      if(res.success){
+          setClients(res.data)
+      }
+    })
+  }
+
+  useEffect(()=>{
+    getClients()
+  },[])
 
   return (
     <Layout>
@@ -233,8 +245,20 @@ const Html = ({
               }}
               options={statusModel.list}
             />
+
+<SelectDropdown
+              id="statusDropdown"
+              displayValue="fullName"
+              placeholder="All Clients"
+              intialValue={filters.addedBy}
+              theme="search"
+              result={(e) => {
+                filter({addedBy:e.value})
+              }}
+              options={clients}
+            />
           
-            {filters.status? (
+            {filters.status||filters.addedBy? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"
