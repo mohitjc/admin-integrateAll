@@ -161,7 +161,7 @@ const Login = () => {
               {/* <label><input type="checkbox" checked={remember} onChange={(e)=>setRemember(e.target.checked)} className="mr-2" /> Remember Me</label> */}
               <button
                 type="submit"
-                className="!px-4 w-full text-sm font-normal text-white h-11 flex items-center justify-center gap-2 !bg-[#063688] rounded-lg shadow-btn hover:opacity-80 transition-all focus:ring-2 ring-[#EDEBFC] disabled:bg-[#D0CAF6] disabled:cursor-not-allowed"
+                className="!px-4 w-full text-sm font-normal text-white h-11 flex items-center justify-center gap-2 !bg-[#1E5DBC] rounded-lg shadow-btn hover:opacity-80 transition-all focus:ring-2 ring-[#EDEBFC] disabled:bg-[#D0CAF6] disabled:cursor-not-allowed"
               >
                 Mark Attendence
               </button>
@@ -183,7 +183,7 @@ const Login = () => {
               <h1 className="text-[22px] font-semibold text-[#333] ">
                 Login to your account
               </h1>
-              <span className="flex w-10 h-1 bg-[#063688] mt-1"></span>
+              <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
             </div>
             {/* <p className="text-[16px] font-normal text-[#333] mt-4">
               Please enter your valid details
@@ -260,14 +260,14 @@ const Login = () => {
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
                   className="mr-2 h-4 w-4 cursor-pointer"
-                  style={{ accentColor: "#063688" }}
+                  style={{ accentColor: "#1E5DBC" }}
                 />{" "}
                 <span className="text-[14px] font-normal text-[#333]">
                   Remember Me
                 </span>
               </label>
               <Link
-                className="font-semibold  text-[14px] ml-auto text-[#063688]"
+                className="font-semibold  text-[14px] ml-auto text-[#1E5DBC]"
                 to="/forgotpassword"
               >
                 {" "}
@@ -282,7 +282,7 @@ const Login = () => {
                 Sign in
               </button>
             </div>
-            {/* <p className='text-sm mt-3 text-center'>Don't have an account? <Link to="/signup" className='text-[#063688] text-sm'>Sign Up</Link></p> */}
+            {/* <p className='text-sm mt-3 text-center'>Don't have an account? <Link to="/signup" className='text-[#1E5DBC] text-sm'>Sign Up</Link></p> */}
           </form>
         )}
       </AuthLayout>

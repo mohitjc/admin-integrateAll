@@ -164,7 +164,7 @@ const Signup = () => {
             type="text"
             onChange={handleLoginIdChange}
             value={form.loginId}
-            className={`shadow-box border-1 border-gray-300 relative bg-gray-100 mb-3 w-full text-sm placeholder:text-gray-500 rounded-lg h-12 flex items-center gap-2 overflow-hidden px-2 hover:ring-orange-500 focus:border-[#063688]${
+            className={`shadow-box border-1 border-gray-300 relative bg-gray-100 mb-3 w-full text-sm placeholder:text-gray-500 rounded-lg h-12 flex items-center gap-2 overflow-hidden px-2 hover:ring-orange-500 focus:border-[#1E5DBC]${
               loginIdExists ? "" : "border-red-500"
             }`}
             placeholder="Login Id"
@@ -235,7 +235,7 @@ const Signup = () => {
 
           {submitted && !remember ? (
             <>
-              <div className="text-[#063688] text-sm capitalize mt-3">
+              <div className="text-[#1E5DBC] text-sm capitalize mt-3">
                 Please agree our Terms Of Use And Privacy Policy
               </div>
             </>
@@ -246,7 +246,7 @@ const Signup = () => {
           <div className="mt-8">
             <button
               type="submit"
-              className="px-4 w-full text-sm font-normal text-white h-12 flex items-center justify-center gap-2 !bg-[#063688] rounded-lg shadow-btn hover:opacity-80 transition-all focus:ring-2 ring-[#EDEBFC] disabled:bg-[#D0CAF6] disabled:cursor-not-allowed"
+              className="px-4 w-full text-sm font-normal text-white h-12 flex items-center justify-center gap-2 !bg-[#1E5DBC] rounded-lg shadow-btn hover:opacity-80 transition-all focus:ring-2 ring-[#EDEBFC] disabled:bg-[#D0CAF6] disabled:cursor-not-allowed"
             >
               Sign Up
             </button>
@@ -254,7 +254,7 @@ const Signup = () => {
 
           <p className="text-sm mt-3 text-center">
             Already have an account?{" "}
-            <Link to="/login" className="text-[#063688] text-sm">
+            <Link to="/login" className="text-[#1E5DBC] text-sm">
               Sign In
             </Link>
           </p>

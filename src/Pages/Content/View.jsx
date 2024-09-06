@@ -35,7 +35,7 @@ const View = () => {
             <Tooltip placement="top" title="Back">
               <span
                 onClick={() => history(-1)}
-                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#05388fed] text-white hover:text-black"
+                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#1E5DBC] text-white hover:text-black"
               >
                 <i className="fa fa-angle-left text-lg"></i>
               </span>
@@ -52,14 +52,14 @@ const View = () => {
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
                 <div>
-                  <h4 className="p-4 bg-[#0636881a] font-medium">Content Information</h4>
+                  <h4 className="p-4 bg-[#0b5cb81f] font-medium">Content Information</h4>
                 </div>
                <div className="grid grid-cols-12 p-4">
                <div className="col-span-6 flex  flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Title:</label>
                   <p className="text-[14px] text-black font-medium">
                     {" "}
-                    {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
                     {data?.title || "--"}
                   </p>
                 </div>
@@ -67,14 +67,14 @@ const View = () => {
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Keywords:</label>
                    <p className="text-[14px] text-black font-medium"  >
                        {data?.meta_keyword|| "--"}
-                    {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
+                    {/* <GrUserSettings className="text-xl text-[#1E5DBC]" /> */}
                   </p>
                 
                 </div>
                   <div className="col-span-6 flex  flex-col mb-5">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Meta Title:</label>
                    <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
                     {data?.meta_title || "--"}
                   </p>
                 </div>
@@ -86,7 +86,7 @@ const View = () => {
                    <p className="text-[14px] text-black font-medium "  dangerouslySetInnerHTML={{
                       __html: data?.meta_description || "--",
                     }}>
-                    {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
+                    {/* <GrUserSettings className="text-xl text-[#1E5DBC]" /> */}
                   </p>
                  
                 </div>
@@ -96,7 +96,7 @@ const View = () => {
                    <p className="text-[14px] text-black font-medium  "  dangerouslySetInnerHTML={{
                       __html: data?.description || "--",
                     }}>
-                    {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                    {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
                 
                   </p>
                 </div>

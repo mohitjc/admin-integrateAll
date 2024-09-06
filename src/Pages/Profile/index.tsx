@@ -40,7 +40,7 @@ const Profile = () => {
           </h3>
           <Link
             to="/profile/edit"
-            className="px-2 lg:!px-4 text-sm font-normal bg-[#063688]  text-white h-10 flex items-center justify-center gap-2 !bg-primary rounded-lg shadow-btn hover:opacity-80 transition-all focus:ring-2 ring-[#EDEBFC] disabled:bg-[#D0CAF6] disabled:cursor-not-allowed"
+            className="px-2 lg:!px-4 text-sm font-normal bg-[#1E5DBC]  text-white h-10 flex items-center justify-center gap-2 !bg-primary rounded-lg shadow-btn hover:opacity-80 transition-all focus:ring-2 ring-[#EDEBFC] disabled:bg-[#D0CAF6] disabled:cursor-not-allowed"
           >
             <svg
               stroke="currentColor"

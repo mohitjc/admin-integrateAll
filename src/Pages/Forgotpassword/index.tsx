@@ -46,7 +46,7 @@ const Forgotpassword = () => {
             <h1 className="text-[30px] font-semibold text-[#333] ">
               Forgot Password
             </h1>
-            <span className="flex w-10 h-1 bg-[#063688] mt-1"></span>
+            <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
           </div>
           <p className="text-[16px] font-normal text-[#333] mt-4">
             {" "}
@@ -72,7 +72,7 @@ const Forgotpassword = () => {
           <div className="flex items-center justify-center mt-6">
             <button
               type="submit"
-              className="h-11 rounded-full w-52 text-center text-[#fff] bg-[#063688]  font-semibold hover:opacity-80 transition-all"
+              className="h-11 rounded-full w-52 text-center text-[#fff] bg-[#1E5DBC]  font-semibold hover:opacity-80 transition-all"
             >
               Send Recovery Email
             </button>
@@ -82,7 +82,7 @@ const Forgotpassword = () => {
             {" "}
             Just Remember?
             <Link
-              className="text-[#063688] text-[14px] !font-semibold"
+              className="text-[#1E5DBC] text-[14px] !font-semibold"
               to="/login"
             >
               {" "}

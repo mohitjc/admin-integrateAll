@@ -194,7 +194,7 @@ export default function Chat() {
       <Layout>
         <div className="">
         <div className="flex items-center  mb-5">
-        <button onClick={()=>history("/assignment")} className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn  text-[#fff] bg-[#063688] border transition-all  mr-3"><i className="fa fa-angle-left text-lg"></i></button>
+        <button onClick={()=>history("/assignment")} className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn  text-[#fff] bg-[#1E5DBC] border transition-all  mr-3"><i className="fa fa-angle-left text-lg"></i></button>
        <h3 className="text-[20px] font-[600]">Chat</h3>
        </div>
           <div className="bg-gray-100 h-[655px] flex border border-gray-200">

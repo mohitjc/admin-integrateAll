@@ -38,7 +38,7 @@ const ViewBlog = () => {
             <Tooltip placement="top" title="Back">
               <span
                 onClick={() => history(-1)}
-                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn  hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#05388fed] text-white hover:text-black"
+                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn  hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#1E5DBC] text-white hover:text-black"
               >
                 <i className="fa fa-angle-left text-lg"></i>
               </span>
@@ -58,21 +58,21 @@ const ViewBlog = () => {
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Title:</label>
                   <p className="text-[14px] text-black font-medium ">
                     {" "}
-                    {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.name}
                   </p>
                 </div>
                 <div className="col-span-6 flex  flex-col mb-5">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Meta Title:</label>
                    <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.meta_title}
                   </p>
                 </div> 
                   <div className="col-span-12 flex  flex-col mb-5 ">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Description:</label>
                    <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.short_description}
                   </p>
                 </div> 
@@ -80,13 +80,13 @@ const ViewBlog = () => {
                 <div className="col-span-12 flex  flex-col mb-5 ">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Meta Description:</label>
                    <p className="text-[14px] text-black font-medium w-[82%]">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.meta_desc}
                   </p></div>
                   <div className="col-span-6 flex  flex-col mb-5  ">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Keywords:</label>
                    <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.meta_keywords.map((itm)=>itm).join(",")}
                   </p>
                 </div> 

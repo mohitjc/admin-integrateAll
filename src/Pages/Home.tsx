@@ -371,7 +371,7 @@ const Home = () => {
                               <img
                                 src="assets/img/skill/team3.png"
                                 alt=""
-                                className="h-24 w-24 border-4 mx-auto p-1 border-[#063688]object-contain rounded-full"
+                                className="h-24 w-24 border-4 mx-auto p-1 border-[#1E5DBC]object-contain rounded-full"
                               />
                               <div className="names mt-2">
                                 <h6 className="mb-1 text-lg font-bold">
@@ -427,7 +427,7 @@ const Home = () => {
                     <div className="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
                       <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-1xl md:text-2xl lg:text-3xl xl:text-5xl">
                         <span className="block xl:text-lg">Benefits</span>
-                        <span className="block text-[#063688] xl:inline">
+                        <span className="block text-[#1E5DBC] xl:inline">
                           Take Professional Business Networking to New Heights
                         </span>
                       </h1>
@@ -443,7 +443,7 @@ const Home = () => {
                       <div className="relative flex flex-col sm:flex-row sm:space-x-4">
                         <a
                           href="#_"
-                          className="flex items-center w-full px-2 py-3 mb-3 text-lg text-white bg-[#063688] rounded-md sm:mb-0 hover:bg-orange-700 sm:w-auto"
+                          className="flex items-center w-full px-2 py-3 mb-3 text-lg text-white bg-[#1E5DBC] rounded-md sm:mb-0 hover:bg-orange-700 sm:w-auto"
                         >
                           Try It Free
                           <svg
@@ -493,7 +493,7 @@ const Home = () => {
                       printing and typesetting industry ply dummy text of the
                       printing and typesetting industry.
                     </p>
-                    <button className="bg-[#063688] text-white	md:py-3 sm:py-2 py-2  px-12 text-base	 rounded-3xl font-bold	mt-8">
+                    <button className="bg-[#1E5DBC] text-white	md:py-3 sm:py-2 py-2  px-12 text-base	 rounded-3xl font-bold	mt-8">
                       All Projects
                     </button>
                   </div>

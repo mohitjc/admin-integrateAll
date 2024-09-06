@@ -72,11 +72,11 @@ const Html = ({
           <>
             <div className="w-32" onClick={() => statusChange(row)}>
               <span
-                className={`bg-[#063688] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
+                className={`bg-[#1E5DBC] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
                           ${
                             row.status == "deactive"
                               ? " bg-gray-200 text-black"
-                              : "bg-[#063688] text-white"
+                              : "bg-[#1E5DBC] text-white"
                           }`}
               >
                 {row.status == "deactive" ? "inactive" : "active"}
@@ -96,7 +96,7 @@ const Html = ({
               {isAllow(`read${shared.check}`) ? (
                 <Tooltip placement="top" title="View">
                   <a
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => view(itm.id)}
                   >
                     <PiEyeLight />
@@ -108,7 +108,7 @@ const Html = ({
               {isAllow(`edit${shared.check}`) ? (
                 <Tooltip placement="top" title="Edit">
                   <a
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => edit(itm.id)}
                   >
                     <LiaEdit />
@@ -120,7 +120,7 @@ const Html = ({
               {isAllow(`delete${shared.check}`) ? (
                 <Tooltip placement="top" title="Delete">
                   <span
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#06368814] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={() => deleteItem(itm.id)}
                   >
                     <LiaTrashAlt />
@@ -214,7 +214,7 @@ const Html = ({
                 onChange={(e) => {
                   setFilter({ ...filters, search: e.target.value });
                 }}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-[#063688]block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500 pr-10"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-[#1E5DBC]block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500 pr-10"
                 placeholder="Search"
                 // required
               />
@@ -228,7 +228,7 @@ const Html = ({
             </div>
             <button
               type="submit"
-              class="p-2.5 m-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-[#063688] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="p-2.5 m-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               <svg
                 class="w-4 h-4"

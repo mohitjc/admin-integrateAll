@@ -338,7 +338,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                                         "p-2.5 rounded-md block text-sm font-normal text-[#333] cursor-pointer !no-underline transition-all " +
                                                         (location?.pathname ==
                                                           sitm.url &&
-                                                          " !text-[#fff] bg-[#063688] !font-medium")
+                                                          " !text-[#fff] bg-[#1E5DBC] !font-medium")
                                                       }
                                                       to={sitm.url}
                                                     >
@@ -371,15 +371,15 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                             <>
                               <tooltip
                                 placement="top"
-                                color="#063688"
+                                color="#1E5DBC"
                                 title={itm.name}
                               >
                                 <NavLink
                                   to={itm.url}
                                   className={(isActive) =>
-                                    "p-4 rounded-md flex items-center gap-[12px] text-sm font-normal text-[#333] hover:!text-[#3b7ffa] hover:bg-[#e5edfa] !no-underline transition-all " +
+                                    "p-4 rounded-md flex items-center gap-[12px] text-sm font-normal text-[#333] hover:!text-[#1E5DBC] hover:bg-[#e5edfa] !no-underline transition-all " +
                                     (location?.pathname === itm.url &&
-                                      " !text-[#3b7ffa] !bg-[#e5edfa] !font-medium")
+                                      " !text-[#1E5DBC] !bg-[#e5edfa] !font-medium")
                                   }
                                 >
                                   {itm.icon}

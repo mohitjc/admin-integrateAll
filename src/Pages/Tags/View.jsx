@@ -46,7 +46,7 @@ const View = () => {
             <Tooltip placement="top" title="Back">
               <span
                 onClick={() => history(-1)}
-                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#05388fed] text-white hover:text-black"
+                className="!px-4  py-2 cursor-pointer flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3 bg-[#1E5DBC] text-white hover:text-black"
               >
                 <i className="fa fa-angle-left text-lg"></i>
               </span>

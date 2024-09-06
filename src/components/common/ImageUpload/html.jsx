@@ -34,7 +34,7 @@ const Html = ({
           }}
         />
         <div className="flex  items-center justify-center">
-          <FiPlus className="text-2xl text-[#063688] me-2" />
+          <FiPlus className="text-2xl text-[#1E5DBC] me-2" />
           <span>{label || "Please upload images"}</span>
         </div>
       </label>
