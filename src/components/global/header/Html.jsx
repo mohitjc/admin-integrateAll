@@ -59,7 +59,7 @@ const Html = ({
                   <div className="ml-2 text-left">
                     <b className="capitalize">{user.fullName}</b>
                     <p className="grayCls mb-0 text-capitalize">
-                      {user.customerRole?.name}
+                      {user.role?.name}
                     </p>
                   </div>
                 </div>

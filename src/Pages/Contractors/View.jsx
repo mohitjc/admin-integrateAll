@@ -123,95 +123,53 @@ const View = () => {
               </div>
              
             </div>
-           <div className="col-span-12">
-           {/* <div className="shadow-box w-full bg-white rounded-lg mb-6">
-                <div className="scrollbar w-full overflow-auto">
-                  <div class="table_section tablepadding w-full">
-                    <p className="text-xl font-semibold text-[#111827] px-4 pb-3 pt-3">
-                      Permissions
-                    </p>
-                    <table class="w-full">
-                      <thead class="table_head roleTable">
-                        <tr class="border-b border-[#EAECF0]">
-                          <th
-                            scope="col"
-                            class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                          ></th>
-                          <th
-                            scope="col"
-                            class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                          >
-                            <input
-                              type="checkbox"
-                              checked={isAllChecked()}
-                              className="h-4 w-4"
-                            />
-                              <span className="ms-2"> All</span>
-                          </th>
-                          {permission.map((itm) => {
-                            return (
-                              <>
-                                <th
-                                  scope="col"
-                                  class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                                >
-                                  <input
-                                    type="checkbox"
-                                    className="h-4 w-4"
-                                    checked={isAllPCheck(itm.key)}
-                                  />
-                                 <span className="ms-2"> {itm.name}</span>
-                                </th>
-                              </>
-                            );
-                          })}
-                        </tr>
-                      </thead>
-                      <tbody className="roleTable">
-                        {permissions.map((itm) => {
-                          return (
-                            <>
-                              <tr>
-                                <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                  {itm.name}
-                                </td>
-                                <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                  <input
-                                    type="checkbox"
-                                    className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
-                                    name={itm.key}
-                                    checked={isCheckAll(itm.key)}
-                                  />
-                                </td>
-                                {permission.map((pitm) => {
-                                  return (
-                                    <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                      <div Name="checkList">
-                                        <label className="mb-0">
-                                          <input
-                                            type="checkbox"
-                                            className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
-                                            checked={
-                                              data?.permissions[
-                                                `${pitm.key}${itm.key}`
-                                              ]
-                                            }
-                                          />
-                                        </label>
-                                      </div>
-                                    </td>
-                                  );
-                                })}
-                              </tr>
-                            </>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+            <div className="col-span-12">
+              <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
+                <div>
+                  <h4 className="p-4 bg-[#0636881a] font-medium">Address</h4>
                 </div>
-              </div> */}
-           </div>
+               <div className="grid grid-cols-12 p-4">
+               <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Address Line 1:</label>
+                  <p className="text-[14px] text-black font-medium">
+                    {" "}
+                    {/* <LiaUserSolid className="text-xl text-[#063688]" /> */}
+                    {data && data.address}
+                  </p>
+                </div>
+                  <div className="col-span-6 flex flex-col mb-5">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Address Line 2:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlineEmail className="text-xl text-[#063688]" /> */}
+                    {data && data.address2}
+                  </p>
+                </div>
+
+                  <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">State / Province:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                    {data?.state || "--"}
+                  </p>
+                </div>
+                  <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Postal / Zip Code:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <GrUserSettings className="text-xl text-[#063688]" /> */}
+                  </p>
+                  {data?.zipCode|| "--"}
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Country:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlinePhone className="text-xl text-[#063688]" />+ */}
+                    {data?.country || "--"}
+                  </p>
+                </div>
+               </div>
+              </div>
+             
+            </div>
           </div>
         </div>
       </Layout>

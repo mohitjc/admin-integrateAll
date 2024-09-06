@@ -185,7 +185,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
             <div className="ml-2 text-left">
               <b className="capitalize text-[14px]">{user.fullName}</b>
               <p className="grayCls mb-0 text-capitalize text-[12px]">
-                {user.customerRole?.name}Administrator
+                {user.role?.name}
               </p>
             </div>
           </div>
