@@ -65,40 +65,47 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Dashboard",
       icon: <img src="/assets/img/dashboard.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/role.svg" alt=""/>,
       url: "/dashboard",
       key: "readDashboard",
     },
     {
       name: "Roles and Permissions",
       icon: <img src="/assets/img/role.svg" alt=""/>,
+      activeIcon: <img src="assets/img/dashboard-blue.svg" alt=""/>,
       url: "/role",
       key: "readRoles",
     },
     {
       name: "Staff",
       icon: <img src="/assets/img/usero.svg" alt=""/>,
+      activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
       url: "/user",
       key: "readstaff",
     },
     {
       name: "Contractor",
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
+      activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
       url: "/contractor",
       key: "readContractor",
     },
     {
       name: "Materials",
       icon: <img src="/assets/img/material.svg" alt=""/>,
+      activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
       menu: [
         {
           name: "Category",
           icon: <img src="/assets/img/usero.svg" alt=""/>,
+          activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
           url: "/category",
           key: "readMaterial",
         },
         {
           name: "Materials",
           icon: <img src="/assets/img/contractor.svg" alt=""/>,
+          activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
           url: "/material",
           key: "readMaterial",
         },
@@ -304,12 +311,16 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                   <>
                                     <tooltip placement="right" title={itm.name}>
                                       <Disclosure.Button className="w-full p-4 rounded-md flex items-center justify-between gap-[12px] transition-all duration-300">
-                                        <span className="text-sm fow-full  rounded-md flex items-center justify-between gap-[12px] transition-all duration-300nt-normal text-inherit flex items-center gap-[12px] crm">
-                                          {itm.icon}
-                                          <span className="text-inherit leading-none sidebar_text">
-                                            {itm.name}
+                                          <span className="text-sm fow-full  rounded-md flex items-center justify-between gap-[12px] transition-all duration-300nt-normal text-inherit flex items-center gap-[12px] crm">
+                                            {!open ? <>
+                                              {itm?.icon}
+                                            </> : <>
+                                              {itm?.activeIcon}
+                                            </>}
+                                            <span className="text-inherit leading-none sidebar_text">
+                                              {itm.name}
+                                            </span>
                                           </span>
-                                        </span>
                                         <TiArrowSortedDown
                                           className={`${
                                             open ? "" : "-rotate-90 transform"
@@ -382,7 +393,12 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                       " !text-[#1E5DBC] !bg-[#e5edfa] !font-medium")
                                   }
                                 >
-                                  {itm.icon}
+                                  {!(location?.pathname === itm.url)?<>
+                                    {itm.icon}
+                                  </>:<>
+                                  {itm?.activeIcon}
+                                  </>}
+                                  
                                   <span className="text-inherit leading-none sidebar_text">
                                     {itm.name}
                                   </span>
