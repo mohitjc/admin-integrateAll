@@ -65,35 +65,35 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Dashboard",
       icon: <img src="/assets/img/dashboard.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/role.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/dashboard-blue.svg" alt=""/>,
       url: "/dashboard",
       key: "readDashboard",
     },
     {
       name: "Roles and Permissions",
       icon: <img src="/assets/img/role.svg" alt=""/>,
-      activeIcon: <img src="assets/img/dashboard-blue.svg" alt=""/>,
+      activeIcon: <img src="assets/img/role-blue.svg" alt=""/>,
       url: "/role",
       key: "readRoles",
     },
     {
       name: "Staff",
       icon: <img src="/assets/img/usero.svg" alt=""/>,
-      activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
+      activeIcon: <img src="assets/img/usero-blue.svg" alt=""/>,
       url: "/user",
       key: "readstaff",
     },
     {
       name: "Contractor",
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
-      activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
+      activeIcon: <img src="assets/img/contract-blue.svg" alt=""/>,
       url: "/contractor",
       key: "readContractor",
     },
     {
       name: "Materials",
       icon: <img src="/assets/img/material.svg" alt=""/>,
-      activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
+      activeIcon: <img src="assets/img/material-blue.svg" alt=""/>,
       menu: [
         {
           name: "Category",
@@ -114,18 +114,15 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Suppliers",
       icon: <img src="/assets/img/box.svg" alt=""/>,
+      activeIcon: <img src="assets/img/box-blue.svg" alt=""/>,
       url: "/supplier",
       key: "readSupplier",
     },
    
     {
       name: "Client",
-      icon: <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="11" cy="11" r="11" fill="#B9C0C6"/>
-      <path d="M10.9945 11.8016C12.923 11.8016 14.4863 10.0552 14.4863 7.9008C14.4863 5.74645 12.923 4 10.9945 4C9.06603 4 7.50269 5.74645 7.50269 7.9008C7.50269 10.0552 9.06603 11.8016 10.9945 11.8016Z" fill="#5A6B78"/>
-      <path d="M17.8385 15.1181C17.21 13.9478 16.0228 12.9726 14.4864 12.3875C14.0673 12.2575 13.5785 12.2575 13.2293 12.4525C12.5309 12.8426 11.8326 13.0376 10.9945 13.0376C10.1565 13.0376 9.45813 12.8426 8.75976 12.4525C8.41058 12.3225 7.92172 12.2575 7.5027 12.4525C5.9663 13.0376 4.77908 14.0128 4.15055 15.1831C3.6617 16.0282 4.4299 17.0034 5.47745 17.0034H16.5116C17.5592 17.0034 18.3274 16.0282 17.8385 15.1181Z" fill="#5A6B78"/>
-      </svg>
-      ,
+      icon: <img src="/assets/img/client.svg" alt=""/>,
+      activeIcon: <img src="assets/img/user-blue.svg" alt=""/>,
       menu: [
         {
           name: "Client",
