@@ -328,7 +328,7 @@ const AddEdit = () => {
                   type="text"
                   label="Postal / Zip Code"
                   value={form.zipCode}
-                  maxlength="6"
+                  maxlength="8"
                   onChange={(e) => setform({ ...form, zipCode: e })}
                 />
               </div>
