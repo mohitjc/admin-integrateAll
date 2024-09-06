@@ -2225,6 +2225,7 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
 .min-sidebar ~ div > main.main {
   width: calc(100% - 66px);
 }
+
 @media (max-width: 767px) {
   .w-\[calc\(100\%-280px\)\] {
     width: 100% !important;
