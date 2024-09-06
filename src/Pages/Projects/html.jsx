@@ -48,7 +48,15 @@ const Html = ({
         return <span className="capitalize">{row?.name}</span>;
       },
     },
-
+    {
+      key: "addedBy",
+      name: "Client",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.addedByName}</span>;
+      },
+    },
+    
     {
       key: "status",
       name: "Status",

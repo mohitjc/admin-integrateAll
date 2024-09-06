@@ -18,7 +18,7 @@ const AddEdit = () => {
     address2:'',
     state:'',
     zipCode:'',
-    client:'',
+    addedBy:'',
     country:'',
   });
   const history = useNavigate();
@@ -79,7 +79,7 @@ const AddEdit = () => {
           Object.keys(payload).map((itm) => {
             payload[itm] = value[itm];
           });
-          if(payload.client?._id) payload.client=payload.client?._id
+          if(payload.addedBy?._id) payload.addedBy=payload.addedBy?._id
 
           payload.id = id;
           setform({
@@ -136,10 +136,10 @@ const AddEdit = () => {
                   type="select"
                   label="Client"
                   theme="search"
-                  value={form.client}
+                  value={form.addedBy}
                   options={clients}
                   displayValue="fullName"
-                  onChange={(e) => setform({ ...form, client: e })}
+                  onChange={(e) => setform({ ...form, addedBy: e })}
                   required
                 />
               </div>
