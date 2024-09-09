@@ -14,19 +14,19 @@ const AddEdit = () => {
   const { id } = useParams();
 
   const [images, setImages] = useState({ image: "" });
-  const [materials, setMeterials] = useState([{name:''}]);
+  const [materials, setMeterials] = useState([{ name: "" }]);
   const [form, setform] = useState({
     id: "",
     firstName: "",
     lastName: "",
     email: "",
     mobileNo: "",
-    company: '',
-    address: '',
-    address2: '',
-    state: '',
-    zipCode: '',
-    country: '',
+    company: "",
+    address: "",
+    address2: "",
+    state: "",
+    zipCode: "",
+    country: "",
   });
   const [category, setCategory] = useState([]);
   const history = useNavigate();
@@ -49,9 +49,9 @@ const AddEdit = () => {
     let url = shared.addApi;
     let value = {
       ...form,
-      material:materials.map(itm=>{
-        itm.vat_included=itm.vat_included?true:false
-        return itm
+      material: materials.map((itm) => {
+        itm.vat_included = itm.vat_included ? true : false;
+        return itm;
       }),
       role: environment.supplierRoleId,
     };
@@ -73,37 +73,37 @@ const AddEdit = () => {
     });
   };
 
-  const getCategory=()=>{
-    ApiClient.get('category/listing',{status:'active'}).then(res=>{
-      if(res.success){
-        setCategory(res.data)
+  const getCategory = () => {
+    ApiClient.get("category/listing", { status: "active" }).then((res) => {
+      if (res.success) {
+        setCategory(res.data);
       }
-    })
-  }
+    });
+  };
 
-  const getMaterials=()=>{
-    let prm={
-      supplier:id
-    }
-    ApiClient.get('material/listing',prm).then(res=>{
-      if(res.success){
-        let arr=res.data
-        arr=arr.map(itm=>{
+  const getMaterials = () => {
+    let prm = {
+      supplier: id,
+    };
+    ApiClient.get("material/listing", prm).then((res) => {
+      if (res.success) {
+        let arr = res.data;
+        arr = arr.map((itm) => {
           return {
-            name:itm.name,
-            category:itm.category,
-            id:itm.id,
-            price:itm.price,
-            quantity:itm.quantity,
-            unit:itm.unit,
-            vat_included:itm.vat_included,
-            vat:itm.vat,
-          }
-        })
-        setMeterials(arr)
+            name: itm.name,
+            category: itm.category,
+            id: itm.id,
+            price: itm.price,
+            quantity: itm.quantity,
+            unit: itm.unit,
+            vat_included: itm.vat_included,
+            vat: itm.vat,
+          };
+        });
+        setMeterials(arr);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (id) {
@@ -130,79 +130,82 @@ const AddEdit = () => {
         }
         loader(false);
       });
-      getMaterials()
+      getMaterials();
     }
-    getCategory()
+    getCategory();
   }, [id]);
 
+  const updateMaterial = (i, key, value) => {
+    let arr = materials;
+    arr[i][key] = value;
+    setMeterials([...arr]);
+  };
 
-  const updateMaterial=(i,key,value)=>{
-    let arr=materials
-    arr[i][key]=value
-    setMeterials([...arr])
-  }
-
-  const addMaterial=()=>{
-    let arr=materials
+  const addMaterial = () => {
+    let arr = materials;
     arr.push({
-      name:'',
-    })
-    setMeterials([...arr])
-  }
+      name: "",
+    });
+    setMeterials([...arr]);
+  };
 
-  const removeMaterial=(mi)=>{
-    let arr=materials
-   arr=arr.filter((itm,i)=>i!=mi)
-    setMeterials([...arr])
-  }
-  
+  const removeMaterial = (mi) => {
+    let arr = materials;
+    arr = arr.filter((itm, i) => i != mi);
+    setMeterials([...arr]);
+  };
 
   return (
     <>
       <Layout>
         <form onSubmit={handleSubmit} autoComplete="off">
-          <div className="pprofile1">
-            <div className="flex items-center mb-8">
-              <Tooltip placement="top" title="Back">
-                <Link
-                  to={`/${shared.url}`}
-                  className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3"
-                >
-                  <i className="fa fa-angle-left text-lg"></i>
-                </Link>
-              </Tooltip>
-              <div>
-                <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
-                  {form && form.id ? "Edit" : "Add"} {shared.addTitle}
-                </h3>
-                {/* <p class="text-xs lg:text-sm font-normal text-[#75757A]">
-                  Here you can see all about your {shared.addTitle}
-                </p> */}
+          <div className="flex items-center mb-8">
+            <Tooltip placement="top" title="Back">
+              <Link
+                to={`/${shared.url}`}
+                className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
+              >
+                <i className="fa fa-angle-left text-lg"></i>
+              </Link>
+            </Tooltip>
+            <div>
+              <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
+                {form && form.id ? "Edit" : "Add"} {shared.addTitle}
+              </h3>
+              <p class="text-xs lg:text-sm font-normal text-[#75757A]">
+                Here you can see all about your {shared.addTitle}
+              </p>
+            </div>
+          </div>
+          <div className="pprofile1 mb-10 ">
+            <div>
+              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center ">
+                <img src ="/assets/img/usero.svg" className="me-3 bg-[#f1f1f1] p-2 rounded-md"/>
+                Basic Information
+              </h4> 
+            </div>
+            <div className="grid grid-cols-12 gap-4 p-4">
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="First Name"
+                  value={form.firstName}
+                  onChange={(e) => setform({ ...form, firstName: e })}
+                  required
+                />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="">
-              <FormControl
-                type="text"
-                label="First Name"
-                value={form.firstName}
-                onChange={(e) => setform({ ...form, firstName: e })}
-                required
-              />
-            </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="Last Name"
+                  value={form.lastName}
+                  onChange={(e) => setform({ ...form, lastName: e })}
+                  required
+                />
+              </div>
 
-            <div className="">
-              <FormControl
-                type="text"
-                label="Last Name"
-                value={form.lastName}
-                onChange={(e) => setform({ ...form, lastName: e })}
-                required
-              />
-            </div>
-
-              <div className=" mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   name="email"
@@ -218,7 +221,7 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
-              <div className="mobile_number mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="phone"
                   name="mobileNo"
@@ -233,7 +236,7 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
-              <div className=" mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Company"
@@ -242,11 +245,19 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className="col-span-full">
-                <h4>Address</h4>
-              </div>
+            </div>
+          </div>
+        
 
-              <div className="mb-3">
+          <div className="pprofile1 mb-10">
+            <div className=" ">
+            <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center ">
+                <img src ="/assets/img/usero.svg" className="me-3 bg-[#f1f1f1] p-2 rounded-md"/>
+                Address
+              </h4> 
+            </div>
+            <div className="grid grid-cols-12 gap-4 p-4">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Street Address"
@@ -255,7 +266,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className="mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Street Address Line 2"
@@ -263,7 +274,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, address2: e })}
                 />
               </div>
-              <div className="mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="State / Province"
@@ -272,7 +283,7 @@ const AddEdit = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Postal / Zip Code"
@@ -282,7 +293,7 @@ const AddEdit = () => {
                 />
               </div>
 
-              <div className="mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Country"
@@ -290,118 +301,157 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, country: e })}
                 />
               </div>
-
-              {!id?<>
-                <div className="col-span-full">
-              <h5 className="mb-2">Materials</h5>
-                {materials.map((itm, i) => {
-                  return <Fragment key={i}>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 shadow border p-3 mb-3">
-                      <div className=" mb-3">
-                        <FormControl
-                          type="text"
-                          label="Name"
-                          value={itm.name}
-                          onChange={(e) => updateMaterial(i,'name',e)}
-                          required
-                        />
-                      </div>
-
-                      <div className=" mb-3">
-                        <FormControl
-                          type="select"
-                          label="Category"
-                          theme="search"
-                          placeholder="Select Option"
-                          options={category}
-                          value={itm.category}
-                          onChange={(e) => updateMaterial(i,'category',e)}
-                          required
-                        />
-                      </div>
-                      <div className=" mb-3">
-                        <FormControl
-                          type="text"
-                          label="Price"
-                          value={itm.price}
-                          onChange={(e) => updateMaterial(i,'price',e)}
-                          required
-                        />
-                      </div>
-                      <div className=" mb-3">
-                        <FormControl
-                          type="select"
-                          label="VAT Included"
-                          theme="search"
-                          placeholder="Select Option"
-                          options={
-                            [
-                              { id: true, name: 'Yes' },
-                              { id: false, name: 'No' },
-                            ]
-                          }
-                          value={itm.vat_included}
-                          onChange={(e) => updateMaterial(i,'vat_included',e)}
-                          required
-                        />
-                      </div>
-                      {itm.vat_included ? <>
-                        <div className=" mb-3">
-                          <FormControl
-                            type="number"
-                            label="VAT"
-                            value={itm.vat}
-                            onChange={(e) => updateMaterial(i,'vat',e)}
-                            required
-                          />
-                        </div>
-                      </> : <></>}
-
-                      <div className=" mb-3">
-                        <FormControl
-                          type="text"
-                          label="Unit"
-                          value={itm.unit}
-                          onChange={(e) => updateMaterial(i,'unit',e)}
-                          required
-                        />
-                      </div>
-                      <div className=" mb-3">
-                        <FormControl
-                          type="number"
-                          label="Quantity"
-                          value={itm.quantity}
-                          onChange={(e) => updateMaterial(i,'quantity',e)}
-                          required
-                        />
-                      </div>
-                      <div className="text-right col-span-full">
-                     
-                        {materials.length > 1 ? <>
-                          <button type="button" onClick={() => removeMaterial(i)} className="text-white bg-[#ff2626] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Remove</button>
-                        </> : <></>}
-                      </div>
+            </div>
+          </div>
+          <div className="pprofile1 mb-10">
+          <div className=" flex items-center justify-between w-full p-4 border-b">
+            <h4 className="  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center ">
+                <img src ="/assets/img/box.svg" className="me-3 bg-[#f1f1f1] p-2 rounded-md"/>
+                Materials
+              </h4> 
+              <div className="text-right ">
+                      <button
+                        type="button"
+                        onClick={addMaterial}
+                        className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      >
+                        <i className="fa fa-plus me-2 text-[12px]"></i>
+                        Add Material
+                      </button>
                     </div>
-                  </Fragment>
-                })}
-                <div className="text-right mb-4">
-                <button type="button" onClick={addMaterial} className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Material</button>
-                </div>
-              </div>
-              </>:<></>}
-
-              
-
             </div>
+            <div className="grid grid-cols-12  p-4">
+              {!id ? (
+                <>
+                  <div className="col-span-full">
+                    {materials.map((itm, i) => {
+                      return (
+                        <Fragment key={i}>
+                          <div className="grid grid-cols-12 gap-4">
+                            <div className="lg:col-span-6 col-span-12 mb-3">
+                              <FormControl
+                                type="text"
+                                label="Name"
+                                value={itm.name}
+                                onChange={(e) => updateMaterial(i, "name", e)}
+                                required
+                              />
+                            </div>
 
-            <div className="text-right">
-              <button
-                type="submit"
-                className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
-              >
-                Save
-              </button>
+                            <div className="lg:col-span-6 col-span-12 mb-3">
+                              <FormControl
+                                type="select"
+                                label="Category"
+                                theme="search"
+                                placeholder="Select Option"
+                                options={category}
+                                value={itm.category}
+                                onChange={(e) =>
+                                  updateMaterial(i, "category", e)
+                                }
+                                required
+                              />
+                            </div>
+                            <div className="lg:col-span-6 col-span-12 mb-3">
+                              <FormControl
+                                type="text"
+                                label="Price"
+                                value={itm.price}
+                                onChange={(e) => updateMaterial(i, "price", e)}
+                                required
+                              />
+                            </div>
+                            <div className="lg:col-span-6 col-span-12 mb-3">
+                              <FormControl
+                                type="select"
+                                label="VAT Included"
+                                theme="search"
+                                placeholder="Select Option"
+                                options={[
+                                  { id: true, name: "Yes" },
+                                  { id: false, name: "No" },
+                                ]}
+                                value={itm.vat_included}
+                                onChange={(e) =>
+                                  updateMaterial(i, "vat_included", e)
+                                }
+                                required
+                              />
+                            </div>
+                            {itm.vat_included ? (
+                              <>
+                                <div className="lg:col-span-6 col-span-12 mb-3">
+                                  <FormControl
+                                    type="number"
+                                    label="VAT"
+                                    value={itm.vat}
+                                    onChange={(e) =>
+                                      updateMaterial(i, "vat", e)
+                                    }
+                                    required
+                                  />
+                                </div>
+                              </>
+                            ) : (
+                              <></>
+                            )}
+
+                            <div className="lg:col-span-6 col-span-12 mb-3">
+                              <FormControl
+                                type="text"
+                                label="Unit"
+                                value={itm.unit}
+                                onChange={(e) => updateMaterial(i, "unit", e)}
+                                required
+                              />
+                            </div>
+                            <div className="lg:col-span-6 col-span-12 mb-3">
+                              <FormControl
+                                type="number"
+                                label="Quantity"
+                                value={itm.quantity}
+                                onChange={(e) =>
+                                  updateMaterial(i, "quantity", e)
+                                }
+                                required
+                              />
+                            </div>
+                            <div className="text-right col-span-full">
+                              {materials.length > 1 ? (
+                                <>
+                                  <button
+                                    type="button"
+                                    onClick={() => removeMaterial(i)}
+                                    className="text-black  border focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-[#c02e2e] group hover:text-white flex items-center justify-end ml-auto transition ease-in-out "
+                                  >
+                                    <i className="fa fa-trash me-2 text-[12px] text-[#c02e2e] group-hover:text-white"></i>
+                                    Remove
+                                  </button>
+                                </>
+                              ) : (
+                                <></>
+                              )}
+                            </div>
+                          </div>
+                        </Fragment>
+                      );
+                    })}
+                   
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
+          </div>
+
+          <div className="text-right">
+            <button
+              type="submit"
+              className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+            >
+              Save
+            </button>
           </div>
         </form>
       </Layout>

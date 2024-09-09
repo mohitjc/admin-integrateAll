@@ -110,7 +110,7 @@ export default function FormControl({
           <input
             type="text"
             name={name}
-            className="relative  bg-white w-full rounded-lg h-10 flex items-center gap-2 overflow-hidden border border-[#00000036] px-3"
+            className="relative  bg-white w-full rounded-lg h-11 flex items-center gap-2 overflow-hidden border border-[#00000036] px-3"
             required={required}
             placeholder={placeholder}
             value={value || ""}
@@ -126,7 +126,7 @@ export default function FormControl({
             <div className="flex">
               <input
                 type="text"
-                className="relative border border-[#00000036] bg-white w-full rounded-lg h-10 flex items-center gap-2 overflow-hidden px-3"
+                className="relative border border-[#00000036] bg-white w-full rounded-lg h-11 flex items-center gap-2 overflow-hidden px-3"
                 placeholder={placeholder}
                 value={text}
                 disabled={disabled}

@@ -329,7 +329,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                         <TiArrowSortedDown
                                           className={`${
                                             open ? "" : "-rotate-90 transform"
-                                          } h-4 w-4 transition-all duration-500`}
+                                          } h-3 w-3 transition-all duration-500`}
                                         />
                                       </Disclosure.Button>
                                     </tooltip>
@@ -341,29 +341,32 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                       leaveFrom="transform scale-300 opacity-300"
                                       leaveTo="transform scale-95 opacity-0"
                                     >
-                                      <Disclosure.Panel className="pl-[30px] mt-[4px] ">
+                                      <Disclosure.Panel className=" mt-[4px] ">
                                         <ul className="space-y-2">
                                           {itm.menu?.map((sitm) => {
                                             return (
                                               <>
                                                 {isAllow(sitm.key) ? (
-                                                  <li>
+                                                  <li className="px-4">
                                                     {" "}
                                                     <NavLink
                                                       className={(isActive) =>
-                                                        "p-2.5 rounded-md block text-sm font-normal text-[#333] cursor-pointer !no-underline transition-all " +
+                                                        "p-4 rounded-md block text-sm font-normal text-[#333] cursor-pointer !no-underline transition-all " +
                                                         (location?.pathname ==
                                                           sitm.url &&
-                                                          " !text-[#fff] bg-[#1E5DBC] !font-medium")
+                                                          " !text-[#1E5DBC] !bg-[#e5edfa]  !font-medium")
                                                       }
                                                       to={sitm.url}
                                                     >
+                                                     <div className="flex items-center relative ">
+                                                     <span className="w-[7px] h-[7px] bg-[#596b77] rounded-full block absolute -left-[4px]"></span>
                                                       <span
-                                                        className="text-inherit leading-none sidebar_text"
+                                                        className="text-inherit leading-none sidebar_text ps-5"
                                                         title={sitm.name}
                                                       >
                                                         {sitm.name}
                                                       </span>
+                                                     </div>
                                                     </NavLink>
                                                   </li>
                                                 ) : null}

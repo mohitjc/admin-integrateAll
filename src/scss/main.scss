@@ -672,11 +672,6 @@ i.fa.fa-pencil-alt.edit {
   font-weight: 700;
 }
 
-i.fa.fa-trash {
-  color: #c02e2e;
-  font-size: 18px;
-  font-weight: 700;
-}
 
 
 
@@ -1964,12 +1959,12 @@ li.page.disabled {
 
 
 .pprofile1 {
-  padding: 21px 22px;
+
   width: 100%;
   margin-right: auto;
   margin-left: auto;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 5px;
   --tw-shadow: 0px 0px 0px 1px rgba(18, 55, 105, 0.08), 0px 1px 2px 0px rgba(164, 172, 185, 0.24) !important;
   --tw-shadow-colored: 0px 0px 0px 1px var(--tw-shadow-color), 0px 1px 2px 0px var(--tw-shadow-color) !important;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
@@ -2225,7 +2220,18 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
 .min-sidebar ~ div > main.main {
   width: calc(100% - 66px);
 }
-
+td span, th span{
+  white-space: nowrap;
+}
+.css-13cymwt-control {
+  border: 1px solid #00000036 !important;
+  box-shadow: none !important;
+  height: 44px !important;
+}
+.css-t3ipsp-control {
+ 
+  height: 44px !important;
+}
 @media (max-width: 767px) {
   .w-\[calc\(100\%-280px\)\] {
     width: 100% !important;
