@@ -8,19 +8,11 @@ import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
-import {
-  rolePermission,
-  rolePermissions,
-  roleType,
-} from "../../models/type.model";
 import environment from "../../environment";
 
 const AddEdit = () => {
   const { id } = useParams();
   const [images, setImages] = useState({ image: "" });
-  const [form1, setForm1] = useState({ ...roleType });
-  const permissions = rolePermissions;
-  const permission = rolePermission;
   const [form, setform] = useState({
     firstName: "",
     lastName: "",
@@ -32,9 +24,12 @@ const AddEdit = () => {
     state:'',
     zipCode:'',
     country:'',
+    skills:[]
   });
+
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [skills, setSkills] = useState([]);
   const user = useSelector((state) => state.user);
   const inValidEmail = methodModel.emailvalidation(form?.email);
   const formValidation = [
@@ -53,7 +48,6 @@ const AddEdit = () => {
     
      let value = {
         ...form,
-        ...form1,
         id: id,
         role:environment.contractorRoleId
       };
@@ -74,6 +68,16 @@ const AddEdit = () => {
       loader(false);
     });
   };
+
+  const getSkills=()=>{
+    ApiClient.get('skill/listing',{status:'active'}).then(res=>{
+      if(res.success){
+        setSkills(res.data)
+      }
+    })
+  }
+
+
   useEffect(() => {
     if (id) {
       loader(true);
@@ -81,27 +85,13 @@ const AddEdit = () => {
         if (res.success) {
           let value = res.data;
           let payload = form;
-          let payload1 = form1;
-          let permissions = value.permissions?.[0] || [];
-
-          Object.keys(payload1).map((itm) => {
-            if (itm != "permissions") payload1[itm] = value[itm];
-          });
-
-          Object.keys(roleType.permissions).map((itm) => {
-            payload1.permissions[itm] = permissions[itm] || false;
-          });
-
-          payload.id = id;
-          setForm1({
-            ...payload1,
-          });
-
           Object.keys(payload).map((itm) => {
             payload[itm] = value[itm];
           });
 
           if (payload.role?._id) payload.role = payload.role._id;
+          if (payload.skills?.length) payload.skills = payload.skills.map(itm=>itm._id)
+        
           payload.id = id;
           setform({
             ...payload,
@@ -116,85 +106,8 @@ const AddEdit = () => {
         loader(false);
       });
     }
+    getSkills()
   }, [id]);
-
-
-  const setpermission = (key, value) => {
-    setForm1({
-      ...form1,
-      permissions: {
-        ...form1.permissions,
-        [key]: value,
-      },
-    });
-  };
-
-  const HandleAll = (check) => {
-    let value = check ? true : false;
-    let permissions = form1.permissions;
-    Object.keys(permissions).map((itm) => {
-      permissions[itm] = value;
-    });
-    setForm1({ ...form1, permissions: permissions });
-  };
-  const isAllChecked = () => {
-    let value = true;
-    let permissions = form1.permissions;
-    Object.keys(permissions).map((itm) => {
-      if (!permissions[itm]) value = false;
-    });
-    return value;
-  };
-
-  const HandleAllRead = (check, key = "read") => {
-    let value = check ? true : false;
-
-    let keys = {};
-    permissions.map((itm) => {
-      keys = { ...keys, [`${key}${itm.key}`]: value };
-    });
-
-    setForm1({
-      ...form1,
-      permissions: {
-        ...form1.permissions,
-        ...keys,
-      },
-    });
-  };
-  const isAllPCheck = (key = "read") => {
-    let value = true;
-    permissions.map((itm) => {
-      if (!form1.permissions[`${key}${itm.key}`]) value = false;
-    });
-    return value;
-  };
-
-  const handleAllPermission = (e) => {
-    let key = e.name;
-    let checked = e.checked;
-
-    let keys = {};
-    permission.map((itm) => {
-      keys = { ...keys, [`${itm.key}${key}`]: checked };
-    });
-
-    setForm1({
-      ...form1,
-      permissions: {
-        ...form1.permissions,
-        ...keys,
-      },
-    });
-  };
-
-  const isCheckAll = (key) => {
-    let value = true;
-    permission.map((itm) => {
-      if (!form1.permissions[`${itm.key}${key}`]) value = false;
-    });
-    return value;
-  };
  
 
   return (
@@ -241,6 +154,20 @@ const AddEdit = () => {
                 required
               />
             </div>
+
+            <div className=" mb-3">
+                <FormControl
+                  type="multiselect"
+                  label="Skills"
+                  value={form.skills}
+                  displayValue="title"
+                  theme="search"
+                  placeholder="Select Option"
+                  options={skills}
+                  onChange={(e) => setform({ ...form, skills: e })}
+                  required
+                />
+              </div>
               {/* <div className="mobile_number mb-3">
                 <FormControl 
                   type="select"

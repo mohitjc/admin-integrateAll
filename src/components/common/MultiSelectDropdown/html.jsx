@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import Select from "react-select";
 
-const Html = ({ options, selectedValues, handleChange, displayValue, id }) => {
+const Html = ({ options, selectedValues, handleChange, displayValue, id,className='',placeholder='' ,disabled}) => {
   let _options = options?.map((itm) => {
     return { value: itm.id, label: itm[displayValue] };
   });
@@ -28,9 +28,11 @@ const Html = ({ options, selectedValues, handleChange, displayValue, id }) => {
           //     return { value: itm.id, label: itm[displayValue] };
           //   }) || []
           // }
+          isDisabled={disabled}
+          placeholder={placeholder}
           options={_options}
           className="basic-multi-select"
-          classNamePrefix="select"
+          classNamePrefix={className}
           onChange={(e) => handleChange(e)}
         />
       </div>

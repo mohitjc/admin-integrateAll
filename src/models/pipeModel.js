@@ -1,4 +1,4 @@
-function currency(num,c='',cf=',') {
+function currency(num,c='£',cf=',') {
    // let currency=c
    let currency=''
     let value='0'
@@ -8,15 +8,15 @@ function currency(num,c='',cf=',') {
          value=value.split('.')[0]
       }
       if(cf==','){
-         value=value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+         value=value.replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1,`)
       }else if(cf=='.'){
-         value=value.replace('.',',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+         value=value.replace('.',',').replace(/(\d)(?=(\d{3})+(?!\d))/g, `$1.`)
       } else{
-         value=value.replace('.',',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 ')
+         value=value.replace('.',',').replace(/(\d)(?=(\d{3})+(?!\d))/g,`$1 `)
       }
     } 
     
-    return currency?`${value} ${currency}`:`$${value}  `
+    return currency?`${value} ${currency}`:`${c}${value}`
  }
 
  function number(num,nofloat=false) {

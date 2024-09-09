@@ -1,14 +1,14 @@
 const shared = {
-  check: "Category",
-  title: "Categories",
-  addTitle: "Category",
-  url: "category",
-  addApi: "category/add",
-  editApi: "category/update",
-  detailApi: "category/detail",
-  listApi: "category/listing",
-  statusApi: "category/status/change",
-  deleteApi: "category/delete",
+  check: "Skill",
+  title: "Skills",
+  addTitle: "Skill",
+  url: "skill",
+  addApi: "skill/add",
+  editApi: "skill/update",
+  detailApi: "skill/detail",
+  listApi: "skill/listing",
+  statusApi: "skill/status/change",
+  deleteApi: "skill/delete",
 };
 
 export default shared;
