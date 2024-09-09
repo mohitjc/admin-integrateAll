@@ -208,7 +208,7 @@ const Skills = () => {
   };
 
   const isAllow = (key = "") => {
-    let permissions = user?.permissions?.[0];
+    let permissions = user?.role?.permissions?.[0];
     let value = permissions?.[key];
     if(user.role?.name=='Admin') value=true
     // return true;

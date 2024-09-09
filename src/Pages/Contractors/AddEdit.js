@@ -32,9 +32,12 @@ const AddEdit = () => {
     state:'',
     zipCode:'',
     country:'',
+    skills:[]
   });
+
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [skills, setSkills] = useState([]);
   const user = useSelector((state) => state.user);
   const inValidEmail = methodModel.emailvalidation(form?.email);
   const formValidation = [
@@ -241,6 +244,19 @@ const AddEdit = () => {
                 required
               />
             </div>
+
+            <div className=" mb-3">
+                <FormControl
+                  type="select"
+                  label="Category"
+                  value={form.skills}
+                  theme="search"
+                  placeholder="Select Option"
+                  options={skills}
+                  onChange={(e) => setform({ ...form, skills: e })}
+                  required
+                />
+              </div>
               {/* <div className="mobile_number mb-3">
                 <FormControl 
                   type="select"

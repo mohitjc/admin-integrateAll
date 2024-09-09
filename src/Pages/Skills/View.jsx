@@ -64,7 +64,7 @@ const View = () => {
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.name}
+                    {data && data.title}
                   </p>
                 </div>
                </div>

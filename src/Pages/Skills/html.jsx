@@ -48,11 +48,11 @@ const Html = ({
   };
   const columns = [
     {
-      key: "name",
+      key: "title",
       name: "Name",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.name}</span>;
+        return <span className="capitalize">{row?.title}</span>;
       },
     },
 

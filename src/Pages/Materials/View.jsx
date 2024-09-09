@@ -7,6 +7,7 @@ import shared from "./shared";
 import loader from "../../methods/loader";
 import { Tooltip } from "antd";
 import { useSelector } from "react-redux";
+import pipeModel from "../../models/pipeModel";
 
 const View = () => {
   const user = useSelector((state) => state.user);
@@ -82,7 +83,7 @@ const View = () => {
                 <div className="col-span-6 flex flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Price:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
-                    {data && data.price}
+                    {pipeModel.currency(data?.price)}
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">

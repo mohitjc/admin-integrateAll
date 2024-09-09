@@ -13,7 +13,7 @@ import ImageUpload from "../../components/common/ImageUpload";
 const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
-    name: "",
+    title: "",
   });
   const [images, setImages] = useState({ image: "" });
   const history = useNavigate();
@@ -121,8 +121,8 @@ const AddEdit = () => {
                 <FormControl
                   type="text"
                   label="Name"
-                  value={form.name}
-                  onChange={(e) => setform({ ...form, name: e })}
+                  value={form.title}
+                  onChange={(e) => setform({ ...form, title: e })}
                   required
                 />
               </div>

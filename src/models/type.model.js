@@ -23,6 +23,14 @@ export const rolePermissions = [
     name: "Suppliers",
     key: "Supplier",
   },
+  {
+    name: "Projects",
+    key: "Project",
+  },
+  {
+    name: "Skills",
+    key: "Skill",
+  },
   // {
   //   name: "Content",
   //   key: "Content",

@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { LiaEdit, LiaTrashAlt } from "react-icons/lia";
 import environment from "../../environment";
+import pipeModel from "../../models/pipeModel";
 const Html = ({
   sorting,
   filter,
@@ -62,6 +63,22 @@ const Html = ({
       sort: true,
       render: (row) => {
         return <span className="capitalize">{row?.category_detail?.name||'--'}</span>;
+      },
+    },
+    {
+      key: "price",
+      name: "Price",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{pipeModel.currency(row?.price)}</span>;
+      },
+    },
+    {
+      key: "unit",
+      name: "Unit",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.unit}</span>;
       },
     },
     {
