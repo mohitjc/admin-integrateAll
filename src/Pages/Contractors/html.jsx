@@ -52,6 +52,16 @@ const Html = ({
         return <span className="">{row?.email}</span>;
       },
     },
+    {
+      key: "skills",
+      name: "Skills",
+      // sort: true,
+      render: (row) => {
+        return <span className="flex gap-2">{row?.skills_detail.map((itm,i)=>{
+          return <span key={i} className="inline-block bg-[#EBEBEB] py-1 px-2 rounded text-[12px] capitalize">{itm.title}</span>
+        })}</span>;
+      },
+    },
     // {
     //   key: "role",
     //   name: "role",

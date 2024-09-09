@@ -119,6 +119,17 @@ const View = () => {
                     {data?.mobileNo || "--"}
                   </p>
                 </div>
+
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Skills:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
+                    <span className="flex gap-2">{data?.skills?.map((itm,i)=>{
+          return <span key={i} className="inline-block bg-[#EBEBEB] py-1 px-2 rounded text-[12px] capitalize">{itm.title}</span>
+        })}</span>
+                  </p>
+                </div>
+                
                </div>
               </div>
              

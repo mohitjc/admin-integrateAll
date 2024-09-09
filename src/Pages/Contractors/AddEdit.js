@@ -90,6 +90,8 @@ const AddEdit = () => {
           });
 
           if (payload.role?._id) payload.role = payload.role._id;
+          if (payload.skills?.length) payload.skills = payload.skills.map(itm=>itm._id)
+        
           payload.id = id;
           setform({
             ...payload,
