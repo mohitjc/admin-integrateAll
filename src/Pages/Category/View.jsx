@@ -56,8 +56,11 @@ const View = () => {
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
                 <div>
-                  <h4 className="p-4 bg-[#0b5cb81f] font-medium">Basic Information</h4>
-                </div>
+              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                Basic Information
+              </h4>
+            </div>
                <div className="grid grid-cols-12 p-4">
                <div className="col-span-6 flex flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Name:</label>

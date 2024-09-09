@@ -187,7 +187,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         className={`px-[12px] ${isOpen && styles.sm_sidebar}`}
         component="siderbar"
       >
-        <div className="flex items-center gap-4  justify-center w-full  rounded-[5px] border bg-[#f3f5f7] relative  my-1 p-3">
+        <div className="flex items-center gap-4  justify-center w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3">
           <div className="flex items-center">
             <img
               alt="image"
@@ -204,9 +204,9 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           <Menu as="div" className=" px-2">
             <div>
               <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md    py-1 text-sm font-semibold text-gray-900 ">
-                <div className="flex items-center bg-[#eff0f2] border p-3 rounded-[50px]">
+                <div className="flex items-center bg-white border p-3 rounded-[50px]">
                
-                <RxDoubleArrowDown className="text-[#5b6b79] text-[16px]"/>
+                <RxDoubleArrowDown className="text-[#5b6b79] text-[16px] "/>
 
                 </div>
               </Menu.Button>

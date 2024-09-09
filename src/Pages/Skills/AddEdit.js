@@ -32,12 +32,12 @@ const AddEdit = () => {
     if (invalid) return;
     let method = "post";
     let url = shared.addApi;
-    
-     let value = {
-        ...form,
-        ...images,
-        id: id,
-      };
+
+    let value = {
+      ...form,
+      ...images,
+      id: id,
+    };
     if (id) {
       method = "put";
       url = shared.editApi;
@@ -81,7 +81,6 @@ const AddEdit = () => {
     }
   }, [id]);
 
-
   const imageResult = (e, key) => {
     images[key] = e.value;
     setImages(images);
@@ -90,34 +89,37 @@ const AddEdit = () => {
     }
   };
 
-
-
   return (
     <>
       <Layout>
         <form onSubmit={handleSubmit}>
-          <div className="pprofile1">
-            <div className="flex items-center mb-8">
-              <Tooltip placement="top" title="Back">
-                <Link
-                  to={`/${shared.url}`}
-                  className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3"
-                >
-                  <i className="fa fa-angle-left text-lg"></i>
-                </Link>
-              </Tooltip>
-              <div>
-                <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
-                  {form && form.id ? "Edit" : "Add"} {shared.addTitle}
-                </h3>
-                {/* <p class="text-xs lg:text-sm font-normal text-[#75757A]">
-                  Here you can see all about your {shared.addTitle}
-                </p> */}
-              </div>
+          <div className="flex items-center mb-8">
+            <Tooltip placement="top" title="Back">
+              <Link
+                to={`/${shared.url}`}
+                className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
+              >
+                <i className="fa fa-angle-left text-lg"></i>
+              </Link>
+            </Tooltip>
+            <div>
+              <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
+                {form && form.id ? "Edit" : "Add"} {shared.addTitle}
+              </h3>
+              <p class="text-xs lg:text-sm font-normal text-[#75757A]">
+                Here you can see all about your {shared.addTitle}
+              </p>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className=" mb-3">
+          </div>
+          <div className="pprofile1 mb-10">
+            <div>
+              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                Basic Information
+              </h4>
+            </div>
+            <div className="grid grid-cols-12 gap-4 p-4">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Name"
@@ -126,19 +128,21 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className="mb-3">
-              <label className="lablefontcls">Image</label>
-              <br></br>
-              <ImageUpload
-                model="users"
-                result={(e) => imageResult(e, "image")}
-                value={images.image || form.image}
-                multiple={false}
-                label="Choose Images"
-              />
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <label className="mb-2 block">Image</label>
+
+                <ImageUpload
+                  model="users"
+                  result={(e) => imageResult(e, "image")}
+                  value={images.image || form.image}
+                  multiple={false}
+                  label="Choose Images"
+                />
+              </div>
             </div>
-            </div>
-            <div className="text-right">
+            
+          </div>
+          <div className="text-right">
               <button
                 type="submit"
                 className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
@@ -146,7 +150,6 @@ const AddEdit = () => {
                 Save
               </button>
             </div>
-          </div>
         </form>
       </Layout>
     </>

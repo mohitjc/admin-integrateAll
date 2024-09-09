@@ -137,8 +137,7 @@ const AddEditBlogs = () => {
               <Tooltip placement="top" title="Back">
                 <Link
                   to={`/${shared.url}`}
-                  className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#F3F2F5] border transition-all  mr-3"
-                >
+                   className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3" >
                   <i className="fa fa-angle-left text-lg"></i>
                 </Link>
               </Tooltip>

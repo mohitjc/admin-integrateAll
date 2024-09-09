@@ -166,7 +166,7 @@ const Html = ({
 
           {/* {isAllow(`add${shared.check}`) ? (
             <Link
-              className="bg-primary leading-10 mr-3 h-10 flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2"
+              className="bg-primary leading-10 ms-3 h-10 flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2"
               to={`/${shared.url}/add`}
             >
               <FiPlus className="text-xl text-white" /> Add {shared.addTitle}
@@ -278,8 +278,9 @@ const Html = ({
 
         {!loaging ? (
           <>
+           <div className="px-4 pb-4">
             <Table
-              className="mb-3"
+              className=""
               data={data}
               columns={columns}
               page={filters.page}
@@ -295,6 +296,7 @@ const Html = ({
                 if (e.event == "count") count(e.value);
               }}
             />
+            </div>
           </>
         ) : (
           <></>

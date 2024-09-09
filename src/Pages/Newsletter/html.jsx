@@ -130,7 +130,7 @@ const Html = ({
           <>
           <div className="px-4 pb-4">
           <Table
-              className="mb-3"
+              className=""
               data={data}
               columns={columns}
               page={filters.page}

@@ -63,82 +63,108 @@ const View = () => {
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
                 <div>
-                  <h4 className="p-4 bg-[#0b5cb81f] font-medium">Basic Information</h4>
+                  <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                    <img
+                      src="/assets/img/usero-blue.svg"
+                      className="me-3 bg-[#e9f0f8] p-2 rounded-md"
+                    />
+                    Basic Information
+                  </h4>
                 </div>
-               <div className="grid grid-cols-12 p-4">
-               <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Name:</label>
-                  <p className="text-[14px] text-black font-medium">
-                    {" "}
-                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.fullName}
-                  </p>
-                </div>
+                <div className="grid grid-cols-12 p-4">
                   <div className="col-span-6 flex flex-col mb-5">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Email:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.email}
-                  </p>
-                </div>
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
+                      Name:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {" "}
+                      {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                      {data && data.fullName}
+                    </p>
+                  </div>
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      Email:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
+                      {data && data.email}
+                    </p>
+                  </div>
 
                   <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Mobile Number:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
-                    {data?.mobileNo || "--"}
-                  </p>
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      Mobile Number:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
+                      {data?.mobileNo || "--"}
+                    </p>
+                  </div>
                 </div>
-               </div>
               </div>
-             
             </div>
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
-                <div>
-                  <h4 className="p-4 bg-[#0b5cb81f] font-medium">Address</h4>
+              <div>
+                  <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                    <img
+                      src="/assets/img/usero-blue.svg"
+                      className="me-3 bg-[#e9f0f8] p-2 rounded-md"
+                    />
+                   Address
+                  </h4>
                 </div>
-               <div className="grid grid-cols-12 p-4">
-               <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Address Line 1:</label>
-                  <p className="text-[14px] text-black font-medium">
-                    {" "}
-                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.address}
-                  </p>
-                </div>
+                <div className="grid grid-cols-12 p-4">
                   <div className="col-span-6 flex flex-col mb-5">
-                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Address Line 2:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.address2}
-                  </p>
-                </div>
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">
+                      Address Line 1:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {" "}
+                      {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                      {data && data.address}
+                    </p>
+                  </div>
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      Address Line 2:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
+                      {data && data.address2}
+                    </p>
+                  </div>
 
                   <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">State / Province:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
-                    {data?.state || "--"}
-                  </p>
-                </div>
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      State / Province:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
+                      {data?.state || "--"}
+                    </p>
+                  </div>
                   <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Postal / Zip Code:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <GrUserSettings className="text-xl text-[#1E5DBC]" /> */}
-                  </p>
-                  {data?.zipCode|| "--"}
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      Postal / Zip Code:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <GrUserSettings className="text-xl text-[#1E5DBC]" /> */}
+                    </p>
+                    {data?.zipCode || "--"}
+                  </div>
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      Country:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
+                      {data?.country || "--"}
+                    </p>
+                  </div>
                 </div>
-                <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Country:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
-                    {data?.country || "--"}
-                  </p>
-                </div>
-               </div>
               </div>
-             
             </div>
           </div>
         </div>

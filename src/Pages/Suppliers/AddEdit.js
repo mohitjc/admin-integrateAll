@@ -163,8 +163,8 @@ const AddEdit = () => {
             <Tooltip placement="top" title="Back">
               <Link
                 to={`/${shared.url}`}
-                className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
-              >
+                className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3" >
+              
                 <i className="fa fa-angle-left text-lg"></i>
               </Link>
             </Tooltip>
@@ -179,8 +179,8 @@ const AddEdit = () => {
           </div>
           <div className="pprofile1 mb-10 ">
             <div>
-              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center ">
-                <img src ="/assets/img/usero.svg" className="me-3 bg-[#f1f1f1] p-2 rounded-md"/>
+              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
                 Basic Information
               </h4> 
             </div>
@@ -251,8 +251,8 @@ const AddEdit = () => {
 
           <div className="pprofile1 mb-10">
             <div className=" ">
-            <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center ">
-                <img src ="/assets/img/usero.svg" className="me-3 bg-[#f1f1f1] p-2 rounded-md"/>
+            <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                 <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
                 Address
               </h4> 
             </div>
@@ -305,8 +305,8 @@ const AddEdit = () => {
           </div>
           <div className="pprofile1 mb-10">
           <div className=" flex items-center justify-between w-full p-4 border-b">
-            <h4 className="  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center ">
-                <img src ="/assets/img/box.svg" className="me-3 bg-[#f1f1f1] p-2 rounded-md"/>
+              <h4 className="  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                <img src ="/assets/img/box-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
                 Materials
               </h4> 
               <div className="text-right ">
