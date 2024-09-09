@@ -20,12 +20,17 @@ export const rolePermissions = [
     key: "Materials",
   },
   {
+    name: "Categories",
+    key: "Category",
+  },
+  {
     name: "Suppliers",
     key: "Supplier",
   },
   {
     name: "Projects",
     key: "Project",
+    
   },
   {
     name: "Skills",

@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 import Layout from "../../components/global/layout";
 import "./style.scss";
 import { Link } from "react-router-dom";
-import { Button, Tooltip } from "antd";
-import { FiEdit3, FiPlus } from "react-icons/fi";
-import { BsTrash3 } from "react-icons/bs";
+import { Tooltip } from "antd";
+import { FiPlus } from "react-icons/fi";
 import Table from "../../components/Table";
 import SelectDropdown from "../../components/common/SelectDropdown";
 import statusModel from "../../models/status.model";
-import datepipeModel from "../../models/datepipemodel";
 import shared from "./shared";
 import ApiClient from "../../methods/api/apiClient";
 import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { LiaEdit, LiaTrashAlt } from "react-icons/lia";
+import FormControl from "../../components/common/FormControl";
 const Html = ({
   sorting,
   filter,
@@ -30,21 +29,12 @@ const Html = ({
   data,
   changestatus,
   isAllow,
-  total = { total },
+  total,
   sortClass,
-  getRolesData,
-  uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
-  const [roles, setRoles] = useState([]);
+  const [skills, setSkills] = useState([]);
 
-  const getRolesList = () => {
-    ApiClient.get("role/listing").then((res) => {
-      if (res.success) {
-        setRoles(res.data);
-      }
-    });
-  };
   const columns = [
     {
       key: "fullName",
@@ -163,20 +153,16 @@ const Html = ({
     },
   ];
 
-  /*  const getGroups = () => {
-    let f = {
-      page: 1,
-      count: 10,
-    };
-    ApiClient.get("api/group/list", f).then((res) => {
-      if (res.success) {
-        setGroup(res.data);
+  const getSkills=()=>{
+    ApiClient.get('skill/listing',{status:'active'}).then(res=>{
+      if(res.success){
+        setSkills(res.data)
       }
-    });
-  };
- */
+    })
+  }
+
   useEffect(() => {
-    getRolesList();
+    getSkills()
   }, []);
 
   return (
@@ -273,22 +259,21 @@ const Html = ({
           </form>
 
           <div className="flex gap-2 ml-auto">
-            {/* {user?.role?.name == "Admin" && (
-              <SelectDropdown
-                id="statusDropdown"
-                displayValue="name"
-                placeholder="All Roles"
-                intialValue={filters.role}
-                result={(e) => {
-                  getRolesData(e.value);
-                }}
-                options={roles.filter((item) => item.name != "Customer")}
-              />
-            )} */}
+          <FormControl
+                  type="multiselect"
+                  value={filters.skills}
+                  displayValue="title"
+                  theme="search"
+                  placeholder="Select Skills"
+                  options={skills}
+                  onChange={(e) => filter({skills:e})}
+                  required
+                />
             <SelectDropdown
               id="statusDropdown"
               displayValue="name"
               placeholder="All Status"
+              theme="search"
               intialValue={filters.status}
               result={(e) => {
                 changestatus(e.value);
@@ -296,7 +281,7 @@ const Html = ({
               options={statusModel.list}
             />
           
-            {filters.status || filters.groupId || filters.role ? (
+            {filters.skills?.length || filters.status ? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

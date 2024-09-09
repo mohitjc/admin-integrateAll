@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 const Users = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
-  const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
+  const [filters, setFilter] = useState({ page: 1, count: 10, search: "",skills:[] });
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [loaging, setLoader] = useState(true);
@@ -45,8 +45,8 @@ const Users = () => {
   const getData = (p = {}) => {
     setLoader(true);
     let filter = { ...filters, ...p,role:environment.contractorRoleId };
-
-
+    filter.skills=filter.skills.toString()
+    
     ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {
         setData(
@@ -65,11 +65,10 @@ const Users = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      skills: [],
       search: "",
       status: "",
       page: 1,
-      role: "",
     };
     setFilter({ ...filters, ...f });
     getData({ ...f });
