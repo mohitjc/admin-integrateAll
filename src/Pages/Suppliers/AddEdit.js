@@ -49,7 +49,10 @@ const AddEdit = () => {
     let url = shared.addApi;
     let value = {
       ...form,
-      material:materials,
+      material:materials.map(itm=>{
+        itm.vat_included=itm.vat_included?true:false
+        return itm
+      }),
       role: environment.supplierRoleId,
     };
 
@@ -333,8 +336,8 @@ const AddEdit = () => {
                           placeholder="Select Option"
                           options={
                             [
-                              { id: 'yes', name: 'Yes' },
-                              { id: 'no', name: 'No' },
+                              { id: true, name: 'Yes' },
+                              { id: false, name: 'No' },
                             ]
                           }
                           value={itm.vat_included}
@@ -342,7 +345,7 @@ const AddEdit = () => {
                           required
                         />
                       </div>
-                      {itm.vat_included == 'yes' ? <>
+                      {itm.vat_included ? <>
                         <div className=" mb-3">
                           <FormControl
                             type="number"
