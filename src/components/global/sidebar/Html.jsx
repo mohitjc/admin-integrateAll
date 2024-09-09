@@ -84,6 +84,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key: "readstaff",
     },
     {
+      name: "Skills",
+      icon: <img src="/assets/img/box.svg" alt=""/>,
+      activeIcon: <img src="assets/img/box-blue.svg" alt=""/>,
+      url: "/skill",
+      key: "readSupplier",
+    },
+    {
       name: "Contractor",
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
       activeIcon: <img src="assets/img/contract-blue.svg" alt=""/>,
@@ -111,6 +118,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         },
       ],
     },
+  
     {
       name: "Suppliers",
       icon: <img src="/assets/img/box.svg" alt=""/>,
