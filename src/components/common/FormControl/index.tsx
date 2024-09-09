@@ -4,6 +4,7 @@ import SelectDropdown from "../SelectDropdown";
 import "./style.scss";
 import ReactQuill from 'react-quill';
 import PhoneInput from "react-phone-input-2";
+import MultiSelectDropdown from "../MultiSelectDropdown";
 export default function FormControl({
   name,
   id = "",
@@ -89,6 +90,19 @@ export default function FormControl({
             intialValue={value || ""}
             name={name}
             theme={theme}
+            result={(e: any) => {
+              onChange(e.value);
+            }}
+            options={options}
+            disabled={disabled}
+          />
+        ) :type == "multiselect" ? (
+          <MultiSelectDropdown
+            id={`statusDropdown_${id}`}
+            displayValue={displayValue}
+            className={className}
+            placeholder={placeholder}
+            intialValue={value || ""}
             result={(e: any) => {
               onChange(e.value);
             }}

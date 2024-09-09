@@ -4,9 +4,12 @@ import Html from "./html";
 
 const MultiSelectDropdown = ({
   intialValue,
+  placeholder='Select',
   options,
   result,
   displayValue = "name",
+  className='select',
+  disabled=false,
   id,
 }) => {
   const [selectedValues, setSelectedValues] = useState([]);
@@ -53,8 +56,11 @@ const MultiSelectDropdown = ({
   return (
     <>
       <Html
+      className={className}
         id={id}
+        disabled={disabled}
         displayValue={displayValue}
+        placeholder={placeholder}
         options={options}
         selectedValues={selectedValues}
         handleChange={handleChange}
