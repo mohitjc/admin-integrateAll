@@ -50,14 +50,14 @@ const Html = ({
       {type == 'img' ? <>
         {multiple ? (
           <>
-            <div className="imagesRow">
+            <div className="imagesRow flex gap-3">
               {img &&
                 img.map((itm, i) => {
                   return (
                     <div className="imagethumbWrapper">
                       <img
                         src={methodModel.noImg(itm,'img')}
-                        className="thumbnail"
+                        className="thumbnail w-[100px]"
                       />
                       <i
                         className="fa fa-times"

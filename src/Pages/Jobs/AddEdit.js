@@ -232,7 +232,7 @@ const AddEdit = () => {
                   result={(e) => imageResult(e, "images")}
                   value={images.images}
                   multiple={true}
-                  label="Choose Images"
+                  label="Upload Images"
                 />
               </div>
             </div>
