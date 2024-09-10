@@ -88,7 +88,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       icon: <img src="/assets/img/box.svg" alt=""/>,
       activeIcon: <img src="assets/img/box-blue.svg" alt=""/>,
       url: "/skill",
-      key: "readSupplier",
+      key: "readSkill",
     },
     {
       name: "Contractor",
@@ -107,7 +107,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           icon: <img src="/assets/img/usero.svg" alt=""/>,
           activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
           url: "/category",
-          key: "readMaterial",
+          key: "readCategory",
         },
         {
           name: "Materials",
@@ -142,7 +142,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           name: "Project",
           icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
           url: "/project",
-          key: "readCustomers",
+          key: "readProject",
         },
       ],
     },
@@ -275,7 +275,6 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                   <Menu.Item className="">
                     {({ active }) => (
                       <span
-                        id="logoutBtn"
                         onClick={() => logout()}
                         className={classNames(
                           active
@@ -352,8 +351,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                                     <NavLink
                                                       className={(isActive) =>
                                                         "p-4 rounded-md block text-sm font-normal text-[#333] cursor-pointer !no-underline transition-all " +
-                                                        (location?.pathname ==
-                                                          sitm.url &&
+                                                        (location?.pathname.includes(sitm.url) &&
                                                           " !text-[#1E5DBC] !bg-[#e5edfa]  !font-medium")
                                                       }
                                                       to={sitm.url}
@@ -397,11 +395,11 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                   to={itm.url}
                                   className={(isActive) =>
                                     "p-4 rounded-md flex items-center gap-[12px] text-sm font-normal text-[#333] hover:!text-[#1E5DBC] hover:bg-[#e5edfa] !no-underline transition-all " +
-                                    (location?.pathname === itm.url &&
+                                    (location?.pathname.includes(itm.url)&&
                                       " !text-[#1E5DBC] !bg-[#e5edfa] !font-medium")
                                   }
                                 >
-                                  {!(location?.pathname === itm.url)?<>
+                                  {!(location?.pathname.includes(itm.url))?<>
                                     {itm.icon}
                                   </>:<>
                                   {itm?.activeIcon}

@@ -195,7 +195,7 @@ const AddEdit = () => {
                  <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
-                  label="Price"
+                  label="Price (£)"
                   value={form.price}
                   onChange={(e) => setform({ ...form, price: e })}
                   required

@@ -9,7 +9,7 @@ import axios from "axios";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-const Users = () => {
+const Jobs = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
   const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
@@ -44,20 +44,18 @@ const Users = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p };
+    let filter = { ...filters, ...p};
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {
-        let data=res.data.map((itm) => {
-          itm.id = itm._id;
-          return itm;
-        })
-
-        data=data.filter(itm=>(itm.id==environment.staffRoleId
-          // ||itm.id==environment.contractorRoleId
-        ))
-        setData(data);
+        setData(
+          res.data
+            .map((itm) => {
+              itm.id = itm._id;
+              return itm;
+            })
+        );
 
         setTotal(res.total);
       }
@@ -67,7 +65,9 @@ const Users = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      contractor: "",
+      client:"",
+      property:"",
       search: "",
       status: "",
       page: 1,
@@ -252,4 +252,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Jobs;

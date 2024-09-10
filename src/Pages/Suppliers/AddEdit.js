@@ -164,7 +164,7 @@ const AddEdit = () => {
               <Link
                 to={`/${shared.url}`}
                 className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3" >
-              
+
                 <i className="fa fa-angle-left text-lg"></i>
               </Link>
             </Tooltip>
@@ -180,9 +180,9 @@ const AddEdit = () => {
           <div className="pprofile1 mb-10 ">
             <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
                 Basic Information
-              </h4> 
+              </h4>
             </div>
             <div className="grid grid-cols-12 gap-4 p-4">
               <div className="lg:col-span-6 col-span-12 mb-3">
@@ -247,14 +247,14 @@ const AddEdit = () => {
               </div>
             </div>
           </div>
-        
+
 
           <div className="pprofile1 mb-10">
             <div className=" ">
-            <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                 <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
                 Address
-              </h4> 
+              </h4>
             </div>
             <div className="grid grid-cols-12 gap-4 p-4">
               <div className="lg:col-span-6 col-span-12 mb-3">
@@ -303,26 +303,30 @@ const AddEdit = () => {
               </div>
             </div>
           </div>
-          <div className="pprofile1 mb-10">
-          <div className=" flex items-center justify-between w-full p-4 border-b">
-              <h4 className="  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                <img src ="/assets/img/box-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
-                Materials
-              </h4> 
-              <div className="text-right ">
-                      <button
-                        type="button"
-                        onClick={addMaterial}
-                        className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                      >
-                        <i className="fa fa-plus me-2 text-[12px]"></i>
-                        Add Material
-                      </button>
-                    </div>
-            </div>
-            <div className="grid grid-cols-12  p-4">
-              {!id ? (
-                <>
+
+
+
+          {!id ? (
+            <>
+
+              <div className="pprofile1 mb-10">
+                <div className=" flex items-center justify-between w-full p-4 border-b">
+                  <h4 className="  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                    <img src="/assets/img/box-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
+                    Materials
+                  </h4>
+                  <div className="text-right ">
+                    <button
+                      type="button"
+                      onClick={addMaterial}
+                      className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    >
+                      <i className="fa fa-plus me-2 text-[12px]"></i>
+                      Add Material
+                    </button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-12  p-4">
                   <div className="col-span-full">
                     {materials.map((itm, i) => {
                       return (
@@ -436,14 +440,17 @@ const AddEdit = () => {
                         </Fragment>
                       );
                     })}
-                   
+
                   </div>
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-          </div>
+
+
+                </div>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+
 
           <div className="text-right">
             <button

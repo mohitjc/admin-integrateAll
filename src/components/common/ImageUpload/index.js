@@ -21,8 +21,8 @@ const ImageUpload = ({
   const uploadImage = async (e) => {
     let url = "upload/Image";
     let files = e.target.files;
-    if (files?.length > 1) {
-      url = "upload/Image";
+    if (multiple) {
+      url = "upload/multiple-images";
     }
 
     let images = [];

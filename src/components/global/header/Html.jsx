@@ -34,6 +34,8 @@ const Html = ({
       } shadow-btn py-1.5 bg-[#f8f9fa] border-b  fixed transition-[width] duration-300 ml-auto right-0 z-10 flex items-center !px-5
       `}
     >
+      <div id="logoutBtn"
+                      onClick={() => Logout()}></div>
       <button
         onClick={toggle}
         className="h-9 w-9 shrink-0 shadow-btn hover:shadow-none p-1 rounded-lg border border-gray-100 !text-primary"
@@ -131,7 +133,6 @@ const Html = ({
                 <Menu.Item className="">
                   {({ active }) => (
                     <span
-                      id="logoutBtn"
                       onClick={() => Logout()}
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
