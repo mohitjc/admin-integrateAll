@@ -51,18 +51,12 @@ const Html = ({
             </div>
 
             <div className="col-span-12 md:col-span-6">
-              <label className="text-sm mb-2 block">
-                Mobile No<span className="star">*</span>
-              </label>
-              <PhoneInput
-                country={"us"}
+              <FormControl
+                type="phone"
+                label="Mobile No"
                 value={form.mobileNo}
-                enableSearch={true}
-                limitMaxLength
-                required
                 onChange={(e) => setForm({ ...form, mobileNo: e })}
-                countryCodeEditable={true}
-                minlegth="10"
+                required
               />
               {submitted && getError("mobileNo").invalid ? (
                 <div className="invalid-feedback d-block">Min Length is 10</div>
