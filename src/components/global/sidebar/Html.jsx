@@ -184,24 +184,24 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
   return (
     <>
       <div
-        className={`px-[12px] ${isOpen && styles.sm_sidebar}`}
+        className={`px-[12px] sidebar-padding ${isOpen && styles.sm_sidebar}`}
         component="siderbar"
       >
-        <div className="flex items-center gap-4  justify-center w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3">
-          <div className="flex items-center">
+        <div className="flex items-center gap-4  justify-center w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3 profile-hidden">
+          <div className="flex items-center ">
             <img
               alt="image"
               src={methodModel.userImg(user.image)}
               className="h-12 w-12 rounded-full object-cover"
             />
-            <div className="ml-2 text-left">
+            <div className="ml-2 text-left ">
               <b className="capitalize text-[14px]">{user.fullName}</b>
               <p className="grayCls mb-0 text-capitalize text-[12px]">
                 {user.role?.name}
               </p>
             </div>
           </div>
-          <Menu as="div" className=" px-2">
+          <Menu as="div" className=" px-2 delete-drop">
             <div>
               <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md    py-1 text-sm font-semibold text-gray-900 ">
                 <div className="flex items-center bg-white border p-3 rounded-[50px]">
@@ -314,8 +314,8 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                                 {({ open }) => (
                                   <>
                                     <tooltip placement="right" title={itm.name}>
-                                      <Disclosure.Button className="w-full p-4 rounded-md flex items-center justify-between gap-[12px] transition-all duration-300">
-                                          <span className="text-sm fow-full  rounded-md flex items-center justify-between gap-[12px] transition-all duration-300nt-normal text-inherit flex items-center gap-[12px] crm">
+                                      <Disclosure.Button className="w-full p-4 rounded-md flex items-center justify-between gap-[12px] transition-all duration-300 sidebar-drop">
+                                          <span className="text-sm fow-full  rounded-md flex items-center justify-between gap-[12px] transition-all duration-300nt-normal text-inherit flex items-center gap-[12px] crm ">
                                             {!open ? <>
                                               {itm?.icon}
                                             </> : <>

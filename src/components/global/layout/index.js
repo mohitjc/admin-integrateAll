@@ -47,12 +47,12 @@ const Layout=memo(function Layout ({ children }) {
   };
 
   const logowhite = () => {
-    let value = "/assets/img/logo.png";
+    let value = "/assets/img/logo.svg";
     return value;
   };
 
   const logos = () => {
-    let value = "/assets/img/logo-small1.png";
+    let value = "/assets/img/logo-small.png";
     return value;
   };
 
@@ -75,16 +75,16 @@ const Layout=memo(function Layout ({ children }) {
 
         <div className={`main-wrapper flex ${isOpen ? "active-sidebar" : ""}`}>
           <div className="main-sidebar scrollbar transition-[width] duration-300 ">
-            <div className="sidebar-brand text-center p-[9px]">
+            <div className="sidebar-brand text-center p-[9px] mb-4">
               <Link to="/">
                 <div className="editLogo">
                   <img
                     src={logowhite()}
-                    width="120"
+                    width=""
                     height="35"
                     className=" show-logo"
                   />
-                  <img src={logos()} className="hide-logo" />
+                  <img src={logos()} className="hide-logo" height="35"/>
                 </div>
               </Link>
             </div>
