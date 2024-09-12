@@ -71,7 +71,7 @@ const AddEdit = () => {
   };
 
   const getSkills = () => {
-    ApiClient.get("skill/listing", { status: "active" }).then((res) => {
+    ApiClient.get("skill/listing", { status: "active" ,sortBy:'title asc'}).then((res) => {
       if (res.success) {
         setSkills(res.data);
       }
