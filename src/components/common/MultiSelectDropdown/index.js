@@ -8,8 +8,9 @@ const MultiSelectDropdown = ({
   options,
   result,
   displayValue = "name",
-  className='select',
+  className='select capitalize',
   disabled=false,
+  required=false,
   id,
 }) => {
   const [selectedValues, setSelectedValues] = useState([]);
@@ -58,6 +59,7 @@ const MultiSelectDropdown = ({
       <Html
       className={className}
         id={id}
+        required={required}
         disabled={disabled}
         displayValue={displayValue}
         placeholder={placeholder}

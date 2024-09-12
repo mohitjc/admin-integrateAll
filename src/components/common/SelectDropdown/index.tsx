@@ -6,7 +6,7 @@ const SelectDropdown = ({
   options,
   isSingle,
   valueType = "string",
-  className = "",
+  className = "capitalize",
   inputValue = "",
   onInputChange = (e: any) => {},
   result,

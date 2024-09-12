@@ -14,6 +14,7 @@ import { MdOutlineEmail, MdOutlinePhone } from "react-icons/md";
 import methodModel from "../../methods/methods";
 import { GrUserSettings } from "react-icons/gr";
 import { rolePermission, rolePermissions } from "../../models/type.model";
+import pipeModel from "../../models/pipeModel";
 
 const View = () => {
   const user = useSelector((state) => state.user);
@@ -132,7 +133,13 @@ const View = () => {
         })}</span>
                   </p>
                 </div>
-                
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Hourly Rate:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
+                    {pipeModel.currency(data?.hourlyRate)}
+                  </p>
+                </div>
                </div>
               </div>
              

@@ -239,7 +239,8 @@ const AddEdit = () => {
                   options={contractor}
                 />
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              {form.client?<>
+                <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
                   label={<>Project {propertyLoader?<span className="text-green-500">Loading...</span>:<></>}</>}
@@ -251,6 +252,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
+              </>:<></>}
               <div className="lg:col-span-full mb-3">
                 <FormControl
                   type="textarea"

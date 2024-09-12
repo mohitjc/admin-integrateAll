@@ -18,6 +18,7 @@ const AddEdit = () => {
     lastName: "",
     email: "",
     mobileNo: "",
+    hourlyRate:"",
     role: environment.contractorRoleId,
     address: "",
     address2: "",
@@ -204,6 +205,15 @@ const AddEdit = () => {
                     Please enter valid email
                   </div>
                 )}
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="number"
+                  label="Hourly Rate (£)"
+                  value={form.hourlyRate}
+                  onChange={(e) => setform({ ...form, hourlyRate: e })}
+                  required
+                />
               </div>
             </div>
           </div>
