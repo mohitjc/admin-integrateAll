@@ -23,8 +23,11 @@ const AddEdit = () => {
   });
   const [images, setImages] = useState({ images: "" });
   const [clients, setClients] = useState([]);
+  const [clientDetail, setClientDetail] = useState();
+  const [clientDetailLoader, setClientDetailLoader] = useState(false);
   const [contractor, setContractor] = useState([]);
   const [property, setProperty] = useState([]);
+  const [propertyLoader, setPropertyLoader] = useState(false);
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
@@ -82,7 +85,11 @@ const AddEdit = () => {
   }
 
   const getProperties=()=>{
-    ApiClient.get('property/listing',{status:'active'}).then(res=>{
+    let addedBy=form.client
+    if(user.role._id==environment.userRoleId) addedBy=user._id
+    setPropertyLoader(true)
+    ApiClient.get('property/listing',{status:'active',addedBy:addedBy}).then(res=>{
+      setPropertyLoader(false)
       if(res.success){
         setProperty(res.data)
       }
@@ -122,7 +129,6 @@ const AddEdit = () => {
     }
     getClients()
     getContractor()
-    getProperties()
   }, [id]);
 
   const imageResult = (e, key) => {
@@ -132,6 +138,23 @@ const AddEdit = () => {
       setSubmitted(false);
     }
   };
+
+  const getClientDetail=(id)=>{
+    setClientDetailLoader(true)
+    ApiClient.get('user/profile',{id}).then(res=>{
+      setClientDetailLoader(false)
+      if(res.success){
+        setClientDetail(res.data)
+      }
+    })
+  }
+
+  useEffect(()=>{
+    getProperties()
+    if(form.client){
+      getClientDetail(form.client)
+    }
+  },[form.client])
 
   return (
     <>
@@ -191,6 +214,19 @@ const AddEdit = () => {
                   options={clients}
                   required
                 />
+
+                {form.client ? <>
+                {clientDetailLoader?<>
+                  <div className="mt-2 text-green-500">Fetching Detail ...</div>
+                </>:<>
+                <div className="bg-green-300 p-[10px] rounded text-[12px] mt-2">
+                    Client Name : {clientDetail?.fullName} <br />
+                    Company : {clientDetail?.company}
+                  </div>
+                </>}
+                  
+                </> : <></>}
+
               </div>
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
@@ -206,7 +242,7 @@ const AddEdit = () => {
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
-                  label="Project"
+                  label={<>Project {propertyLoader?<span className="text-green-500">Loading...</span>:<></>}</>}
                   displayValue="name"
                   value={form.property}
                   theme="search"
