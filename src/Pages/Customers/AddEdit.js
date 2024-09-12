@@ -26,6 +26,7 @@ const AddEdit = () => {
     state: "",
     zipCode: "",
     country: "",
+    company:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -192,6 +193,15 @@ const AddEdit = () => {
                     Mobile is required
                   </div>
                 )}
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="Company"
+                  value={form.company}
+                  onChange={(e) => setform({ ...form, company: e })}
+                  required
+                />
               </div>
               {/* <div className="mb-3">
                 <FormControl

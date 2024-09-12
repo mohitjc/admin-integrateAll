@@ -89,6 +89,7 @@ const Html = ({
                   type="select"
                   displayValue="fullName"
                   value={row.contractor}
+                  placeholder="Assign Contractor"
                   theme="search"
                   onChange={(e) => assignContractor(e,row)}
                   options={contractor}

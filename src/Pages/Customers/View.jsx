@@ -101,6 +101,15 @@ const View = () => {
                       {data?.mobileNo || "--"}
                     </p>
                   </div>
+                  <div className="col-span-6 flex flex-col mb-5">
+                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">
+                      Company:
+                    </label>
+                    <p className="text-[14px] text-black font-medium">
+                      {/* <MdOutlinePhone className="text-xl text-[#1E5DBC]" />+ */}
+                      {data?.company || "--"}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
