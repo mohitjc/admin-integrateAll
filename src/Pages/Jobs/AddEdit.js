@@ -21,7 +21,7 @@ const AddEdit = () => {
     contractor:'',
     estimate:''
   });
-  const [images, setImages] = useState({ images: "" });
+  const [images, setImages] = useState({ images: [] });
   const [clients, setClients] = useState([]);
   const [clientDetail, setClientDetail] = useState();
   const [clientDetailLoader, setClientDetailLoader] = useState(false);
@@ -220,8 +220,9 @@ const AddEdit = () => {
                   <div className="mt-2 text-green-500">Fetching Detail ...</div>
                 </>:<>
                 <div className="bg-green-300 p-[10px] rounded text-[12px] mt-2">
-                    Client Name : {clientDetail?.fullName} <br />
-                    Company : {clientDetail?.company}
+                    Client Name :<span className="capitalize">{clientDetail?.fullName}</span><br />
+                    Email : {clientDetail?.email} <br/>
+                    Company :<span className="capitalize"> {clientDetail?.company}</span>
                   </div>
                 </>}
                   

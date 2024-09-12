@@ -85,7 +85,9 @@ const Html = ({
       name: "Contractor",
       sort: true,
       render: (row) => {
-        return <FormControl
+        return <>
+        {row.status=='pending'?<>
+          <FormControl
                   type="select"
                   displayValue="fullName"
                   value={row.contractor}
@@ -94,7 +96,11 @@ const Html = ({
                   onChange={(e) => assignContractor(e,row)}
                   options={contractor}
                   required
-                />;
+                />
+        </>:<>
+        {row?.contractorName}
+        </>}
+        </> 
       },
     },
     {
@@ -134,7 +140,7 @@ const Html = ({
         return (
           <>
             <div className="flex items-center justify-start gap-1.5">
-              {isAllow(`read${shared.check}`) ? (
+              {isAllow(`read${shared.check}`)? (
                 <Tooltip placement="top" title="View">
                   <a
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -146,7 +152,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {isAllow(`edit${shared.check}`) ? (
+              {isAllow(`edit${shared.check}`) &&itm.status=='pending' ? (
                 <Tooltip placement="top" title="Edit">
                   <a
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -158,7 +164,7 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {isAllow(`delete${shared.check}`) ? (
+              {isAllow(`delete${shared.check}`)  &&itm.status=='pending'? (
                 <Tooltip placement="top" title="Delete">
                   <span
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
