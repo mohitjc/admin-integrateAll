@@ -2110,47 +2110,35 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
   background: rgba(207, 176, 126, 0.3215686275);
   padding: 4px 6px;
   border-radius: 4px;
-  color: rgb(0 0 0 / 85%);
-  width: 167px;
+  color: rgba(0, 0, 0, 0.85);
+  width: 90px;
   display: block;
   text-align: center;
+  text-transform: capitalize;
 }
-.accepted {
-  background: #0035851f;
-  padding: 4px 6px;
-  border-radius: 4px;
-  color: #003585 !important;
-   width: 167px;
-  display: block;
-  text-align: center;
-}
-.counteroffered {
+
+.in-progress{
   background: rgb(134 238 239 / 31%);
   padding: 4px 6px;
   border-radius: 4px;
   color: #525252 !important;
-  width: 167px;
+  width: 90px;
   display: block;
   text-align: center;
+  text-transform: capitalize;
 }
+
 .completed {
-  background: #082a5c57;
+  background: #76b3f7;
   padding: 4px 6px;
   border-radius: 4px;
   color: #ffffff !important;
-  width: 167px;
+  width: 90px;
   display: block;
   text-align: center;
+  text-transform: capitalize;
 }
-.contractcreated {
-  background: #00000017;
-  padding: 4px 6px;
-  border-radius: 4px;
-  color: #4b4b4b;
-  width: 167px;
-  display: block;
-  text-align: center;
-}
+
 .upload-big label {
   padding: 25px 0 !important;
 }

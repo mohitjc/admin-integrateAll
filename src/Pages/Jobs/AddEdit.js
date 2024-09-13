@@ -192,7 +192,7 @@ const AddEdit = () => {
             <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
                 <img
-                  src="/assets/img/usero-blue.svg"
+                  src="/assets/img/jobs-blue.svg"
                   className="me-3 bg-[#e9f0f8] p-2 rounded-md"
                 />
                 Basic Information
@@ -257,23 +257,23 @@ const AddEdit = () => {
                           <div className="col-span-12">
                           <div className="bg-[#f6faff] grid grid-cols-12">
                             
-                              <div className="lg:col-span-6 col-span-12  p-2">
-                                <label className="mb-1 block">
+                              <div className="lg:col-span-6 col-span-12  p-2 ">
+                                <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 block">
                                   Client Name
                                 </label>
-                                <span className="capitalize block text-[13px]">
+                                <span className="capitalize block text-[14px]">
                                   {clientDetail?.fullName}
                                 </span>
                               </div>
                               <div className="lg:col-span-6 col-span-12   p-2">
-                                <label className="mb-1 block">Email</label>
-                                <span className="capitalize block text-[13px]">
+                                <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 block">Email</label>
+                                <span className="capitalize block text-[14px]">
                                   {clientDetail?.email}{" "}
                                 </span>
                               </div>
                               <div className="lg:col-span-6 col-span-12 p-2">
-                                <label className="mb-1 block">Company </label>
-                                <span className="capitalize block text-[13px]">
+                                <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 block">Company </label>
+                                <span className="capitalize block text-[14px]">
                                   {" "}
                                   {clientDetail?.company||'--'}
                                 </span>
@@ -287,17 +287,6 @@ const AddEdit = () => {
                 ) : (
                   <></>
                 )}
-              </div>
-              <div className={`${(form.client||(user.role._id==environment.userRoleId))?'col-span-6':'col-span-12'} mb-3`}>
-                <FormControl
-                  type="select"
-                  label="Contractor"
-                  displayValue="fullName"
-                  value={form.contractor}
-                  theme="search"
-                  onChange={(e) => setform({ ...form, contractor: e })}
-                  options={contractor}
-                />
               </div>
               {form.client ? (
                 <>
@@ -326,6 +315,18 @@ const AddEdit = () => {
               ) : (
                 <></>
               )}
+              <div className={`${(form.client||(user.role._id==environment.userRoleId))?'col-span-6':'col-span-12'} mb-3`}>
+                <FormControl
+                  type="select"
+                  label="Contractor"
+                  displayValue="fullName"
+                  value={form.contractor}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, contractor: e })}
+                  options={contractor}
+                />
+              </div>
+              
               <div className="lg:col-span-full mb-3">
                 <FormControl
                   type="textarea"

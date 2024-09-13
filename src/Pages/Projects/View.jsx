@@ -52,8 +52,8 @@ const View = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12">
+          <div className="grid grid-cols-12 gap-6 ">
+            <div className="col-span-12 mb-5">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
                 <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">

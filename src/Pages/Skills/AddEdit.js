@@ -114,7 +114,7 @@ const AddEdit = () => {
           <div className="pprofile1 mb-10">
             <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                  <img src ="/assets/img/job-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
                 Basic Information
               </h4>
             </div>
