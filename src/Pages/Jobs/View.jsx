@@ -125,7 +125,7 @@ const View = () => {
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Images:</label>
                   <p className="text-[14px] text-black font-medium capitalize flex flex-wrap gap-3">
                     {data?.images?.map(itm=>{
-                     return <img src={methodModel.noImg(itm)} className="w-[150px] h-[150px] object-contain" />
+                     return <img src={methodModel.noImg(itm)} className="w-[100px] h-[100px] object-contain bg-[#f7f7f7] p-3" />
                     })}
                   </p>
                 </div>
