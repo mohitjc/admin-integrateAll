@@ -5,6 +5,7 @@ import "./style.scss";
 import ReactQuill from 'react-quill';
 import PhoneInput from "react-phone-input-2";
 import MultiSelectDropdown from "../MultiSelectDropdown";
+import datepipeModel from "../../../models/datepipemodel";
 export default function FormControl({
   name,
   id = "",
@@ -241,7 +242,7 @@ export default function FormControl({
             className="relative  bg-white w-full rounded-lg h-11  overflow-hidden px-2 border border-[#00000036]"
             required={required}
             placeholder={placeholder}
-            value={value || ""}
+            value={(type=='datetime-local'?datepipeModel.datetodatepicker(value):value)||''}
             maxLength={maxlength}
             minLength={minlength}
             min={min}

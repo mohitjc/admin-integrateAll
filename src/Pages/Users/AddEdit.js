@@ -22,7 +22,6 @@ import environment from "../../environment";
 const AddEdit = () => {
   const { id } = useParams();
   const [images, setImages] = useState({ image: "" });
-  const [roleOptions, setRoleOptions] = useState([]); 
   const [form1, setForm1] = useState({ ...roleType });
   const permissions = rolePermissions;
   const permission = rolePermission;
@@ -30,7 +29,7 @@ const AddEdit = () => {
     firstName: "",
     lastName: "",
     email: "",
-    mobileNo: "",
+    mobileNo: "44",
     role: environment.staffRoleId,
     loginPannel: "",
   });

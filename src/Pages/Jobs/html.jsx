@@ -14,6 +14,7 @@ import environment from "../../environment";
 import FormControl from "../../components/common/FormControl";
 import loader from "../../methods/loader";
 import pipeModel from "../../models/pipeModel";
+import datepipeModel from "../../models/datepipemodel";
 const Html = ({
   sorting,
   filter,
@@ -69,6 +70,14 @@ const Html = ({
       sort: true,
       render: (row) => {
         return <span className="capitalize">{pipeModel.currency(row?.estimate)}</span>;
+      },
+    },
+    {
+      key: "preferedTime",
+      name: "Preferred Time",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{datepipeModel.datetime(datepipeModel.datetodatepicker(row?.preferedTime))}</span>;
       },
     },
     {

@@ -18,6 +18,7 @@ const AddEdit = () => {
     description:'',
     client:'',
     property:'',
+    preferedTime:'',
     contractor:'',
     estimate:''
   });
@@ -192,6 +193,15 @@ const AddEdit = () => {
                   label="Title"
                   value={form.title}
                   onChange={(e) => setform({ ...form, title: e })}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="datetime-local"
+                  label="Preferred Time"
+                  value={form.preferedTime}
+                  onChange={(e) => setform({ ...form, preferedTime: e })}
                   required
                 />
               </div>
