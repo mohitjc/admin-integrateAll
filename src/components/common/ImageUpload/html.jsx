@@ -57,7 +57,7 @@ const Html = ({
                     <div className="imagethumbWrapper">
                       <img
                         src={methodModel.noImg(itm,'img')}
-                        className="thumbnail w-[100px]"
+                        className="bg-[#f8fbff] border border-[#0000000a] p-2 w-[100px] h-[100px] object-contain"
                       />
                       <i
                         className="fa fa-times"

@@ -107,7 +107,7 @@ const Html = ({
                   required
                 />
         </>:<>
-        {row?.contractorName}
+        <span className="capitalize">{row?.contractorName}</span>
         </>}
         </> 
       },

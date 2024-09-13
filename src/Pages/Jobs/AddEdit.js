@@ -15,12 +15,12 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     title: "",
-    description:'',
-    client:'',
-    property:'',
-    preferedTime:'',
-    contractor:'',
-    estimate:''
+    description: "",
+    client: "",
+    property: "",
+    preferedTime: "",
+    contractor: "",
+    estimate: "",
   });
   const [images, setImages] = useState({ images: [] });
   const [clients, setClients] = useState([]);
@@ -50,7 +50,7 @@ const AddEdit = () => {
       ...form,
       ...images,
       id: id,
-      contractor:form.contractor||null
+      contractor: form.contractor || null,
     };
     if (id) {
       method = "put";
@@ -68,34 +68,42 @@ const AddEdit = () => {
     });
   };
 
-
-  const getClients=()=>{
-    ApiClient.get('user/listing',{status:'active',role:environment.userRoleId}).then(res=>{
-      if(res.success){
-        setClients(res.data)
+  const getClients = () => {
+    ApiClient.get("user/listing", {
+      status: "active",
+      role: environment.userRoleId,
+    }).then((res) => {
+      if (res.success) {
+        setClients(res.data);
       }
-    })
-  }
+    });
+  };
 
-  const getContractor=()=>{
-    ApiClient.get('user/listing',{status:'active',role:environment.contractorRoleId}).then(res=>{
-      if(res.success){
-        setContractor(res.data)
+  const getContractor = () => {
+    ApiClient.get("user/listing", {
+      status: "active",
+      role: environment.contractorRoleId,
+    }).then((res) => {
+      if (res.success) {
+        setContractor(res.data);
       }
-    })
-  }
+    });
+  };
 
-  const getProperties=()=>{
-    let addedBy=form.client
-    if(user.role._id==environment.userRoleId) addedBy=user._id
-    setPropertyLoader(true)
-    ApiClient.get('property/listing',{status:'active',addedBy:addedBy}).then(res=>{
-      setPropertyLoader(false)
-      if(res.success){
-        setProperty(res.data)
+  const getProperties = () => {
+    let addedBy = form.client;
+    if (user.role._id == environment.userRoleId) addedBy = user._id;
+    setPropertyLoader(true);
+    ApiClient.get("property/listing", {
+      status: "active",
+      addedBy: addedBy,
+    }).then((res) => {
+      setPropertyLoader(false);
+      if (res.success) {
+        setProperty(res.data);
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (id) {
@@ -111,9 +119,10 @@ const AddEdit = () => {
 
           payload.id = id;
 
-          if(payload.client?.id)payload.client=payload.client?.id
-          if(payload.contractor?.id)payload.contractor=payload.contractor?.id
-          if(payload.property?.id)payload.property=payload.property?.id
+          if (payload.client?.id) payload.client = payload.client?.id;
+          if (payload.contractor?.id)
+            payload.contractor = payload.contractor?.id;
+          if (payload.property?.id) payload.property = payload.property?.id;
 
           setform({
             ...payload,
@@ -128,8 +137,8 @@ const AddEdit = () => {
         loader(false);
       });
     }
-    getClients()
-    getContractor()
+    getClients();
+    getContractor();
   }, [id]);
 
   const imageResult = (e, key) => {
@@ -140,22 +149,22 @@ const AddEdit = () => {
     }
   };
 
-  const getClientDetail=(id)=>{
-    setClientDetailLoader(true)
-    ApiClient.get('user/profile',{id}).then(res=>{
-      setClientDetailLoader(false)
-      if(res.success){
-        setClientDetail(res.data)
+  const getClientDetail = (id) => {
+    setClientDetailLoader(true);
+    ApiClient.get("user/profile", { id }).then((res) => {
+      setClientDetailLoader(false);
+      if (res.success) {
+        setClientDetail(res.data);
       }
-    })
-  }
+    });
+  };
 
-  useEffect(()=>{
-    getProperties()
-    if(form.client){
-      getClientDetail(form.client)
+  useEffect(() => {
+    getProperties();
+    if (form.client) {
+      getClientDetail(form.client);
     }
-  },[form.client])
+  }, [form.client]);
 
   return (
     <>
@@ -182,7 +191,10 @@ const AddEdit = () => {
           <div className="pprofile1 mb-10">
             <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                <img
+                  src="/assets/img/usero-blue.svg"
+                  className="me-3 bg-[#e9f0f8] p-2 rounded-md"
+                />
                 Basic Information
               </h4>
             </div>
@@ -205,7 +217,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              <div className="lg:col-span-6 col-span-12 ">
                 <FormControl
                   type="number"
                   label="Budget Estimate (£)"
@@ -213,7 +225,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, estimate: e })}
                 />
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              <div className="lg:col-span-6 col-span-12 ">
                 <FormControl
                   type="select"
                   label="Client"
@@ -224,22 +236,59 @@ const AddEdit = () => {
                   options={clients}
                   required
                 />
-
-                {form.client ? <>
-                {clientDetailLoader?<>
-                  <div className="mt-2 text-green-500">Fetching Detail ...</div>
-                </>:<>
-                <div className="bg-green-300 p-[10px] rounded text-[12px] mt-2">
-                    Client Name :<span className="capitalize">{clientDetail?.fullName}</span><br />
-                    Email : {clientDetail?.email} <br/>
-                    Company :<span className="capitalize"> {clientDetail?.company}</span>
-                  </div>
-                </>}
-                  
-                </> : <></>}
-
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              <div className=" col-span-12 mb-3">
+                {form.client ? (
+                  <>
+                    {clientDetailLoader ? (
+                      <>
+                        <div className="mt-2 text-green-500 text-center">
+                          Fetching Detail ...
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="  rounded text-[12px] border grid grid-cols-12">
+                          <div className="col-span-12">
+                            <h3 className="font-[600] text-[15px] bg-[#1E5DBC] p-[10px] text-white rounded-tl rounded-tr">
+                              Client Detail
+                            </h3>
+                          </div>
+                          <div className="col-span-12">
+                          <div className="bg-[#f6faff] grid grid-cols-12">
+                            
+                              <div className="lg:col-span-6 col-span-12  p-2">
+                                <label className="mb-1 block">
+                                  Client Name
+                                </label>
+                                <span className="capitalize block text-[13px]">
+                                  {clientDetail?.fullName}
+                                </span>
+                              </div>
+                              <div className="lg:col-span-6 col-span-12   p-2">
+                                <label className="mb-1 block">Email</label>
+                                <span className="capitalize block text-[13px]">
+                                  {clientDetail?.email}{" "}
+                                </span>
+                              </div>
+                              <div className="lg:col-span-6 col-span-12 p-2">
+                                <label className="mb-1 block">Company </label>
+                                <span className="capitalize block text-[13px]">
+                                  {" "}
+                                  {clientDetail?.company}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="col-span-12 mb-3">
                 <FormControl
                   type="select"
                   label="Contractor"
@@ -250,20 +299,33 @@ const AddEdit = () => {
                   options={contractor}
                 />
               </div>
-              {form.client?<>
-                <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="select"
-                  label={<>Project {propertyLoader?<span className="text-green-500">Loading...</span>:<></>}</>}
-                  displayValue="name"
-                  value={form.property}
-                  theme="search"
-                  onChange={(e) => setform({ ...form, property: e })}
-                  options={property}
-                  required
-                />
-              </div>
-              </>:<></>}
+              {form.client ? (
+                <>
+                  <div className="lg:col-span-6 col-span-12 mb-3">
+                    <FormControl
+                      type="select"
+                      label={
+                        <>
+                          Project{" "}
+                          {propertyLoader ? (
+                            <span className="text-green-500">Loading...</span>
+                          ) : (
+                            <></>
+                          )}
+                        </>
+                      }
+                      displayValue="name"
+                      value={form.property}
+                      theme="search"
+                      onChange={(e) => setform({ ...form, property: e })}
+                      options={property}
+                      required
+                    />
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
               <div className="lg:col-span-full mb-3">
                 <FormControl
                   type="textarea"
@@ -273,7 +335,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              <div className="col-span-12 mb-3">
                 <label className="mb-2 block">Images</label>
 
                 <ImageUpload
@@ -285,16 +347,15 @@ const AddEdit = () => {
                 />
               </div>
             </div>
-            
           </div>
           <div className="text-right">
-              <button
-                type="submit"
-                className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
-              >
-                Save
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+            >
+              Save
+            </button>
+          </div>
         </form>
       </Layout>
     </>
