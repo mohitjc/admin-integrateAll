@@ -15,6 +15,7 @@ import FormControl from "../../components/common/FormControl";
 import loader from "../../methods/loader";
 import pipeModel from "../../models/pipeModel";
 import datepipeModel from "../../models/datepipemodel";
+import Modal from "../../components/common/Modal";
 const Html = ({
   sorting,
   filter,
@@ -31,7 +32,7 @@ const Html = ({
   data,
   changestatus,
   isAllow,
-  total = { total },
+  total,
   sortClass,
   getRolesData,
   uploadFile,
@@ -40,16 +41,30 @@ const Html = ({
   const [clients, setClients] = useState([]);
   const [contractor, setContractor] = useState([]);
   const [property, setProperty] = useState([]);
+  const [isModal, setIsModal] = useState(false);
+  const [form, setForm] = useState({
+    id:'',
+    contractor:''
+  });
 
-  const assignContractor=(e,row)=>{
-    let payload={
+  const assign=(row)=>{
+    setForm({
       id:row.id,
-      contractor:e
+      contractor:row.contractor
+    })
+    setIsModal(true)
+  }
+
+  const assignContractor=()=>{
+    let payload={
+      id:form.id,
+      contractor:form.contractor
     }
     loader(true)
     ApiClient.put('job/assign/contractor',payload).then(res=>{
       loader(false)
       if(res.success){
+        setIsModal(false)
         filter()
       }
     })
@@ -95,20 +110,7 @@ const Html = ({
       sort: true,
       render: (row) => {
         return <>
-        {row.status=='pending'?<>
-          <FormControl
-                  type="select"
-                  displayValue="fullName"
-                  value={row.contractor}
-                  placeholder="Assign Contractor"
-                  theme="search"
-                  onChange={(e) => assignContractor(e,row)}
-                  options={contractor}
-                  required
-                />
-        </>:<>
-        <span className="capitalize">{row?.contractorName}</span>
-        </>}
+        <span className="capitalize">{row?.contractorName||'Assign Contractor'}</span>
         </> 
       },
     },
@@ -150,28 +152,41 @@ const Html = ({
             <div className="flex items-center justify-start gap-1.5">
               {isAllow(`read${shared.check}`)? (
                 <Tooltip placement="top" title="View">
-                  <a
+                  <span
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => view(itm.id)}
                   >
                     <PiEyeLight />
-                  </a>
+                  </span>
                 </Tooltip>
               ) : (
                 <></>
               )}
               {isAllow(`edit${shared.check}`) &&itm.status=='pending' ? (
                 <Tooltip placement="top" title="Edit">
-                  <a
+                  <span
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => edit(itm.id)}
                   >
                     <LiaEdit />
+                  </span>
+                </Tooltip>
+              ) : (
+                <></>
+              )}
+ {isAllow(`edit${shared.check}`) &&itm.status=='pending' ? (
+                <Tooltip placement="top" title="Assign Contractor">
+                  <a
+                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    onClick={(e) => assign(itm)}
+                  >
+                    <span class="material-symbols-outlined">assignment_ind</span>
                   </a>
                 </Tooltip>
               ) : (
                 <></>
               )}
+
               {isAllow(`delete${shared.check}`)  &&itm.status=='pending'? (
                 <Tooltip placement="top" title="Delete">
                   <span
@@ -221,8 +236,13 @@ const Html = ({
     getProperties();
   }, []);
 
+  const onSubmit=()=>{
+    assignContractor()
+  }
+
   return (
-    <Layout>
+    <>
+      <Layout>
       <div className="flex flex-wrap justify-between items-center gap-y-4">
         <div>
           <h3 className="text-2xl font-semibold text-[#111827]">
@@ -396,6 +416,41 @@ const Html = ({
         )}
       </div>
     </Layout>
+    
+       {isModal ? <>
+        <Modal
+          title="Assign Contractor"
+          body={<>
+            <form className="grid gap-2 grid-cols-2" onSubmit={e=>{e.preventDefault();onSubmit()}}>
+            <div>
+            <FormControl
+                  type="select"
+                  displayValue="fullName"
+                  value={form.contractor}
+                  placeholder="Assign Contractor"
+                  theme="search"
+                  onChange={(e) =>setForm({
+                    ...form,
+                    contractor:e
+                  })}
+                  options={contractor}
+                  required
+                />
+            </div>
+
+            <div className="text-right col-span-full">
+                <button className="bg-primary leading-10 ms-3 h-10 inline-flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2">Assign</button>
+            </div>
+
+            </form>
+          </>}
+
+          result={e => {
+            setIsModal(false)
+          }}
+        />
+      </> : <></>}</>
+  
   );
 };
 
