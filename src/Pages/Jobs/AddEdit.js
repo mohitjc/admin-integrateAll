@@ -275,7 +275,7 @@ const AddEdit = () => {
                                 <label className="mb-1 block">Company </label>
                                 <span className="capitalize block text-[13px]">
                                   {" "}
-                                  {clientDetail?.company}
+                                  {clientDetail?.company||'--'}
                                 </span>
                               </div>
                             </div>
@@ -288,7 +288,7 @@ const AddEdit = () => {
                   <></>
                 )}
               </div>
-              <div className="col-span-12 mb-3">
+              <div className={`${(form.client||(user.role._id==environment.userRoleId))?'col-span-6':'col-span-12'} mb-3`}>
                 <FormControl
                   type="select"
                   label="Contractor"
