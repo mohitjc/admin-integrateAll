@@ -194,12 +194,12 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         className={`px-[12px] sidebar-padding ${isOpen && styles.sm_sidebar}`}
         component="siderbar"
       >
-        <div className="flex items-center gap-4  justify-center w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3 profile-hidden">
+        <div className="flex items-center  justify-between w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3 profile-hidden">
           <div className="flex items-center ">
             <img
               alt="image"
               src={methodModel.userImg(user.image)}
-              className="h-12 w-12 rounded-full object-cover"
+              className="h-10 w-10 rounded-full object-cover"
             />
             <div className="ml-2 text-left ">
               <b className="capitalize text-[14px]">{user.fullName}</b>
@@ -208,7 +208,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
               </p>
             </div>
           </div>
-          <Menu as="div" className=" px-2 delete-drop">
+          <Menu as="div" className=" ps-2 delete-drop">
             <div>
               <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md    py-1 text-sm font-semibold text-gray-900 ">
                 <div className="flex items-center bg-white border p-3 rounded-[50px]">
