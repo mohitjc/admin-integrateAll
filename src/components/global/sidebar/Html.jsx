@@ -72,47 +72,47 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Roles and Permissions",
       icon: <img src="/assets/img/role.svg" alt=""/>,
-      activeIcon: <img src="assets/img/role-blue.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/role-blue.svg" alt=""/>,
       url: "/role",
       key: "readRoles",
     },
     {
       name: "Staff",
       icon: <img src="/assets/img/usero.svg" alt=""/>,
-      activeIcon: <img src="assets/img/usero-blue.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/usero-blue.svg" alt=""/>,
       url: "/user",
       key: "readstaff",
     },
     {
       name: "Skills",
-      icon: <img src="/assets/img/box.svg" alt=""/>,
-      activeIcon: <img src="assets/img/box-blue.svg" alt=""/>,
+      icon: <img src="/assets/img/job.svg" alt="" className="w-[22px]"/>,
+      activeIcon: <img src="/assets/img/job-blue.svg" alt="" className="w-[22px]"/>,
       url: "/skill",
       key: "readSkill",
     },
     {
       name: "Contractor",
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
-      activeIcon: <img src="assets/img/contract-blue.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/contract-blue.svg" alt=""/>,
       url: "/contractor",
       key: "readContractor",
     },
     {
       name: "Materials",
       icon: <img src="/assets/img/material.svg" alt=""/>,
-      activeIcon: <img src="assets/img/material-blue.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
       menu: [
         {
           name: "Category",
           icon: <img src="/assets/img/usero.svg" alt=""/>,
-          activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
+          activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
           url: "/category",
           key: "readCategory",
         },
         {
           name: "Materials",
           icon: <img src="/assets/img/contractor.svg" alt=""/>,
-          activeIcon: <img src="assets/img/dashboard.svg" alt=""/>,
+          activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
           url: "/material",
           key: "readMaterial",
         },
@@ -122,7 +122,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Suppliers",
       icon: <img src="/assets/img/box.svg" alt=""/>,
-      activeIcon: <img src="assets/img/box-blue.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/box-blue.svg" alt=""/>,
       url: "/supplier",
       key: "readSupplier",
     },
@@ -130,7 +130,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     {
       name: "Client",
       icon: <img src="/assets/img/client.svg" alt=""/>,
-      activeIcon: <img src="assets/img/user-blue.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/user-blue.svg" alt=""/>,
       menu: [
         {
           name: "Client",
@@ -148,8 +148,8 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     },
     {
       name: "Jobs",
-      icon: <img src="/assets/img/box.svg" alt=""/>,
-      activeIcon: <img src="assets/img/box-blue.svg" alt=""/>,
+      icon: <img src="/assets/img/jobs.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/jobs-blue.svg" alt=""/>,
       url: "/job",
       key: "readJob",
     },
