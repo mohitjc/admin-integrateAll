@@ -2237,6 +2237,27 @@ td span, th span{
   position: absolute;
   right: 0;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cad8e9; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #cad8e9; 
+}
 @media (max-width: 767px) {
   .w-\[calc\(100\%-280px\)\] {
     width: 100% !important;
