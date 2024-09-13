@@ -172,10 +172,10 @@ const Login = () => {
             className="xl:w-4/12 lg:w-5/12 md:w-6/12 w-11/12 bg-white border border-[#00000017] p-[24px] rounded-[30px] shadow-c"
             onSubmit={hendleSubmit}
           >
-            <Link to="/" className=" xl:w-[150px] z-[99] mb-10 block mx-auto text-center">
+            <Link to="/" className=" z-[99] mb-10 block mx-auto text-center">
                   <img
-                    src="/assets/img/logo.png"
-                    className="md:w-[160px] lg:w-[140px]   mx-auto"
+                    src="/assets/img/logo.svg"
+                    className="   mx-auto"
                     alt="logo"
                   />
                 </Link>
