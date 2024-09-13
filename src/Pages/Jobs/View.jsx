@@ -104,6 +104,14 @@ const View = () => {
                     {data && data.status}
                   </p>
                 </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Materials:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                  <span className="flex gap-2">{data?.material?.map((itm, i) => {
+                          return <span key={i} className="inline-block bg-[#EBEBEB] py-1 px-2 rounded text-[12px] capitalize">{itm.name}</span>
+                        })}</span>
+                  </p>
+                </div>
                 <div className="col-span-full flex flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Description:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
