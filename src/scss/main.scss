@@ -1707,7 +1707,7 @@ input:focus-visible {
 
 .active-sidebar img.hide-logo {
   display: block !important;
-  width: 50px;
+  width: 30px;
 }
 
 .active-sidebar img.show-logo {
@@ -1816,8 +1816,12 @@ img.hide-logo {
 .active-sidebar .pl-\[30px\] {
   padding-left: 0px;
 }
-
-
+.active-sidebar .profile-hidden b, .active-sidebar .profile-hidden p{
+  display: none;
+}
+.active-sidebar .delete-drop{
+  display: none;
+}
 // .active-sidebar .leading-none.sidebar_text {
 //   display: none;
 // }
@@ -2069,8 +2073,8 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
   margin-top: 15px;
 }
 .sidebar_sm_sidebar__KuhlO {
-  width: 60px;
-  min-width: 60px;
+  width: 60px !important;
+  min-width: 60px !important;
 }
 @keyframes slowShake {
   0%, 100% { transform: translateX(0); }
@@ -2231,6 +2235,19 @@ td span, th span{
 .css-t3ipsp-control {
  
   height: 44px !important;
+}
+.active-sidebar .sidebar-padding {
+  padding: 0px !important;
+}
+.active-sidebar .profile-hidden{
+  padding: 4px !important;
+}
+.active-sidebar .space-y-2 li span:first-child{
+  display: block;
+}
+.active-sidebar .sidebar-drop svg {
+  position: absolute;
+  right: 0;
 }
 @media (max-width: 767px) {
   .w-\[calc\(100\%-280px\)\] {
