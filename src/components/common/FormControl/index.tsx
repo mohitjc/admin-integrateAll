@@ -94,6 +94,7 @@ export default function FormControl({
               onChange(e.value);
             }}
             options={options}
+            required={required}
             disabled={disabled}
           />
         ) :type == "multiselect" ? (
@@ -106,6 +107,7 @@ export default function FormControl({
             result={(e: any) => {
               onChange(e.value);
             }}
+            required={required}
             options={options}
             disabled={disabled}
           />

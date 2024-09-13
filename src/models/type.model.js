@@ -36,6 +36,10 @@ export const rolePermissions = [
     name: "Skills",
     key: "Skill",
   },
+  {
+    name: "Jobs",
+    key: "Job",
+  },
   // {
   //   name: "Content",
   //   key: "Content",

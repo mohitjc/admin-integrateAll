@@ -18,6 +18,7 @@ const AddEdit = () => {
     lastName: "",
     email: "",
     mobileNo: "",
+    hourlyRate:"",
     role: environment.contractorRoleId,
     address: "",
     address2: "",
@@ -70,7 +71,7 @@ const AddEdit = () => {
   };
 
   const getSkills = () => {
-    ApiClient.get("skill/listing", { status: "active" }).then((res) => {
+    ApiClient.get("skill/listing", { status: "active" ,sortBy:'title asc'}).then((res) => {
       if (res.success) {
         setSkills(res.data);
       }
@@ -204,6 +205,15 @@ const AddEdit = () => {
                     Please enter valid email
                   </div>
                 )}
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="number"
+                  label="Hourly Rate (£)"
+                  value={form.hourlyRate}
+                  onChange={(e) => setform({ ...form, hourlyRate: e })}
+                  required
+                />
               </div>
             </div>
           </div>

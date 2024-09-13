@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import Select from "react-select";
 
-const Html = ({ options, selectedValues, handleChange, displayValue, id,className='',placeholder='' ,disabled}) => {
+const Html = ({ options, selectedValues, handleChange, displayValue, id,className,placeholder='' ,disabled,required}) => {
   let _options = options?.map((itm) => {
     return { value: itm.id, label: itm[displayValue] };
   });
@@ -18,7 +18,7 @@ const Html = ({ options, selectedValues, handleChange, displayValue, id,classNam
 
   return (
     <>
-      <div className="selectDropdown">
+      <div className={`selectDropdown ${className||'capitalize'}`}>
         <Select
           defaultValue={displayValue}
           isMulti
@@ -28,11 +28,11 @@ const Html = ({ options, selectedValues, handleChange, displayValue, id,classNam
           //     return { value: itm.id, label: itm[displayValue] };
           //   }) || []
           // }
+          required={required}
           isDisabled={disabled}
           placeholder={placeholder}
           options={_options}
           className="basic-multi-select"
-          classNamePrefix={className}
           onChange={(e) => handleChange(e)}
         />
       </div>
