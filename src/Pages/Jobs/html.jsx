@@ -43,8 +43,14 @@ const Html = ({
   const [clients, setClients] = useState([]);
   const [contractor, setContractor] = useState([]);
   const [property, setProperty] = useState([]);
+  
   const [isModal, setIsModal] = useState(false);
+  const [isInvoiceModal, setInvoiceModal] = useState(false);
   const [form, setForm] = useState({
+    id: "",
+    contractor: "",
+  });
+  const [invoiceForm, setInvoiceForm] = useState({
     id: "",
     contractor: "",
   });
@@ -215,6 +221,19 @@ const Html = ({
               ) : (
                 <></>
               )}
+
+{isAllow(`edit${shared.check}`) && (itm.status == 'completed') ? (
+                <Tooltip placement="top" title="Generate Invoice">
+                  <a
+                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+                    onClick={(e) => generateInvoice(itm)}
+                  >
+                   <span class="material-symbols-outlined">description</span>
+                  </a>
+                </Tooltip>
+              ) : (
+                <></>
+              )}
             </div>
           </>
         );
@@ -261,6 +280,57 @@ const Html = ({
   const onSubmit = () => {
     assignContractor();
   };
+
+  const materialTotal=()=>{
+    let arr=invoiceForm.material||[]
+    arr=arr.map(itm=>Number(itm.price||0))
+    if(!arr?.length) return 0
+     return arr?.reduce((total, num)=>total + num)
+  }
+
+  const serviceFee=(time=0)=>{
+    let hourlyRate=user.hourlyRate||0
+    time=Number(time||0)/60
+
+    hourlyRate=hourlyRate*time
+    // console.log("hourlyRate",hourlyRate)
+    // console.log("time",time)
+    return hourlyRate
+  }
+
+  const getTime=(form)=>{
+    let hr=Number(form.hours||0)
+    let minutes=Number(form.minutes||0)
+    hr=hr*60
+    return hr+minutes
+  }
+
+  const updateMaterial=(index,key,v)=>{
+    let arr=invoiceForm.material||[]
+    arr[index][key]=v
+    setInvoiceForm({
+      ...invoiceForm,
+      material:arr,
+    })
+  }
+
+  const generateInvoice=(row)=>{
+    console.log("row",row)
+    setInvoiceModal(true)
+    setInvoiceForm({
+      id:row.id,
+      material:row.material,
+      hours:row.hours,
+      minutes:row.minutes,
+    })
+    
+
+  }
+
+  const generateInvoiceSubmit=()=>{
+    console.log("invoiceForm",invoiceForm)
+  }
+  
 
   return (
     <>
@@ -441,6 +511,93 @@ const Html = ({
           )}
         </div>
       </Layout>
+
+      {isInvoiceModal ? <>
+        <Modal
+          title="Generate Invoice"
+          body={<>
+            <form className="grid gap-2 grid-cols-2" onSubmit={e=>{e.preventDefault();generateInvoiceSubmit()}}>
+            <div>
+            <FormControl
+                  type="number"
+                  label="Hours"
+                  value={invoiceForm.hours}
+                />
+            </div>
+            <div>
+            <FormControl
+                  type="number"
+                  label="Minutes"
+                  value={invoiceForm.minutes}
+                />
+            </div>
+
+            <div className="col-span-full">
+
+                <div className="mt-2">
+                  <h5 className="mb-2">Materials</h5>
+                  {invoiceForm.material?.map((itm, i) => {
+                    return <div className="p-2 border grid grid-cols-2 gap-2 mb-3">
+                      <div>
+                        <FormControl
+                          type="text"
+                          label="Name"
+                          value={itm.name}
+                          // onChange={(e) => updateMaterial(i,'name',e)}
+                          disabled
+                          required
+                        />
+                      </div>
+                      <div>
+                        <FormControl
+                          type="text"
+                          label="Price (£)"
+                          value={itm.price}
+                          onChange={(e) => updateMaterial(i, 'price', e)}
+                          required
+                        />
+                      </div>
+                    </div>
+                  })}
+                </div>
+
+                <div className="p-2 bg-gray-300 rounded mb-3">
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label>Materials Price</label>
+                    </div>
+                    <div>
+                      <span>{pipeModel.currency(materialTotal())}</span>
+                    </div>
+                    <div>
+                      <label>Service Fee</label>
+                    </div>
+                    <div>
+                      <span>{pipeModel.currency(serviceFee(getTime(invoiceForm)))}</span>
+                    </div>
+                    <div>
+                      <label>Total</label>
+                    </div>
+                    <div>
+                      <span>{pipeModel.currency(serviceFee(getTime(invoiceForm))+materialTotal())}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <button className="bg-primary leading-10 ms-3 h-10 inline-flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2">Generate Invoice</button>
+                </div>
+
+            </div>
+
+            </form>
+          </>}
+
+          result={e => {
+            setInvoiceModal(false)
+          }}
+        />
+      </> : <></>}
 
       {isModal ? (
         <>
