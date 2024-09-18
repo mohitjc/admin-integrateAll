@@ -16,7 +16,7 @@ const AddEditBlogs = () => {
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
     name: "",
-    short_description: "",
+    description: "",
     keywords: [],
     meta_keywords:[],
     meta_desc: "",
@@ -30,7 +30,7 @@ const AddEditBlogs = () => {
     { key: "name", required: true },
     { key: "meta_desc", required: true },
     { key: "meta_title", required: true },
-    { key: "short_description", required: true },
+    { key: "description", required: true },
   ];
 
   const handleSubmit = (e) => {
@@ -115,7 +115,7 @@ const AddEditBlogs = () => {
             name: res?.data?.name,
             meta_desc: res?.data?.meta_desc,
             meta_title: res?.data?.meta_title,
-            short_description: res?.data?.short_description,
+            description: res?.data?.description,
           });
           let img = images;
           Object.keys(img).map((itm) => {
@@ -193,10 +193,9 @@ const AddEditBlogs = () => {
                 <FormControl
                   required
                   type="textarea"
-                  name="short_description"
                   label="Description"
-                  value={form.short_description}
-                  onChange={(e) => setform({ ...form, short_description: e })}
+                  value={form.description}
+                  onChange={(e) => setform({ ...form, description: e })}
                 />
               </div>
               <div className=" mb-3">

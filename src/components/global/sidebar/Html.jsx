@@ -91,6 +91,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key: "readSkill",
     },
     {
+      name: "Blogs",
+      icon: <img src="/assets/img/job.svg" alt="" className="w-[22px]"/>,
+      activeIcon: <img src="/assets/img/job-blue.svg" alt="" className="w-[22px]"/>,
+      url: "/blogs",
+      key: "readBlog",
+    },
+    {
       name: "Contractor",
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
       activeIcon: <img src="/assets/img/contract-blue.svg" alt=""/>,
