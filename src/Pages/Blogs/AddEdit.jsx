@@ -8,14 +8,13 @@ import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
-import environment from "../../environment";
 import ImageUpload from "../../components/common/ImageUpload";
 
 const AddEditBlogs = () => {
   const { id } = useParams();
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
-    name: "",
+    title: "",
     description: "",
     keywords: [],
     meta_keywords:[],
@@ -27,10 +26,10 @@ const AddEditBlogs = () => {
   const user = useSelector((state) => state.user);
 
   const formValidation = [
-    { key: "name", required: true },
-    { key: "meta_desc", required: true },
-    { key: "meta_title", required: true },
-    { key: "description", required: true },
+    // { key: "title", required: true },
+    // { key: "meta_desc", required: true },
+    // { key: "meta_title", required: true },
+    // { key: "description", required: true },
   ];
 
   const handleSubmit = (e) => {
@@ -108,14 +107,15 @@ const AddEditBlogs = () => {
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
           let value = res.data;
+          let payload = form;
+          payload.id = id;
+          Object.keys(payload).map((itm) => {
+            payload[itm] = value[itm];
+          });
+
+          payload.id = id;
           setform({
-            ...form,
-            keywords: res?.data?.keywords,
-            meta_keywords:res?.data?.meta_keywords,
-            name: res?.data?.name,
-            meta_desc: res?.data?.meta_desc,
-            meta_title: res?.data?.meta_title,
-            description: res?.data?.description,
+            ...payload,
           });
           let img = images;
           Object.keys(img).map((itm) => {
@@ -154,8 +154,8 @@ const AddEditBlogs = () => {
                   name="name"
                   type="text"
                   label="Title"
-                  value={form.name}
-                  onChange={(e) => setform({ ...form, name: e })}
+                  value={form.title}
+                  onChange={(e) => setform({ ...form, title: e })}
                   required
                 />
               </div>
@@ -179,20 +179,12 @@ const AddEditBlogs = () => {
                   onChange={(e) => setform({ ...form, meta_keywords: e })}
                   
                 />
-              <ul className="flex items-center mt-2">
-                {form.meta_keywords.map((keyword, index) => (
-                  <li key={index} className="bg-[#e0e7f1] text-[#2b2b2b] py-[4px] px-[10px] text-xs rounded-[4px] me-1">
-                    {keyword}
-                    <button onClick={() => removeKeyword(keyword)} className="ms-1 text-xs">✖</button>
-                  </li>
-                ))}
-              </ul>
             </div>
             <div className="col-span-full mb-3">
               <div className=" mb-3">
                 <FormControl
                   required
-                  type="textarea"
+                  type="editor"
                   label="Description"
                   value={form.description}
                   onChange={(e) => setform({ ...form, description: e })}
