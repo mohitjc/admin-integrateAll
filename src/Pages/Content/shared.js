@@ -1,14 +1,14 @@
 const shared = {
   check: "Content",
-  title: "Content",
-  addTitle: "Content",
+  title: "Static Pages",
+  addTitle: "Static Page",
   url: "content",
-  addApi: "content-management/add",
-  editApi: "content-management/update",
-  detailApi: "content-management/detail",
+  addApi: "content/add",
+  editApi: "content/update",
+  detailApi: "content/detail",
   listApi: "content-management/listing",
-  statusApi: "content-management/update",
-  deleteApi: "content-management/delete",
+  statusApi: "content/update",
+  deleteApi: "content/delete",
 };
 
 export default shared;
