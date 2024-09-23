@@ -1679,9 +1679,12 @@ input:focus-visible {
 
 .react-tel-input .form-control {
   width: 100%;
+  border-radius: 8px;
 }
 
-
+.react-tel-input .flag-dropdown {
+  border-radius: 8px 0 0 8px !important;
+}
 .navbar-tailwind {
   position: relative;
   display: -ms-flexbox;
@@ -2006,16 +2009,15 @@ td.\!text-typo.\!border-l-0.\!px-3\.5.text-sm.font-normal.\!py-4.\!border.text-c
 }
 
 .css-t3ipsp-control {
-
+  border-radius: 0.5rem !important;
   box-shadow: 0 0 0 1px #1E5DBC !important;
  
 }
 
 .css-13cymwt-control{
-  gap: .5rem;
+ 
   width: 100%;
-  padding-left: .5rem;
-  padding-right: .5rem;
+
   position: relative;
   overflow: hidden;
   height: 2.5rem;
