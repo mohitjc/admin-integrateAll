@@ -184,7 +184,7 @@ const Blogs = () => {
   const isAllow = (key = "") => {
     let permissions = user?.permissions?.[0];
     let value = permissions?.[key];
-    if(user.role=='admin') value=true
+    if(user.role?.name=='Admin') value=true
     // return true;
     return value;
   };

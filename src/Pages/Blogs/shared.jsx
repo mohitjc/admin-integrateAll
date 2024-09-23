@@ -1,5 +1,5 @@
 const shared = {
-    check: "Customers",
+    check: "Blog",
     title: "Blogs",
     addTitle: "Blog",
     url: "blogs",

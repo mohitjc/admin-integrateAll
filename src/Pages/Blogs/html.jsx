@@ -37,21 +37,13 @@ const Html = ({
   const user = useSelector((state) => state.user);
   const columns = [
     {
-      key: "name",
+      key: "title",
       name: "Title",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.name}</span>;
+        return <span className="capitalize">{row?.title}</span>;
       },
     },
-    {
-      key: "short_description",
-      name: "Description",
-      sort: true,
-      render: (row) => {
-        return <p className="ellipses">{row?.short_description}</p>;
-      },
-    }, 
     {
       key: "status",
       name: "Status",

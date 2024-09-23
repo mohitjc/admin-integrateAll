@@ -209,7 +209,6 @@ export default function FormControl({
             disabled={disabled}
             autoComplete="off"
             onChange={(e) => {
-              console.log("e", e.target);
               onChange(e.target.value);
             }}
             onKeyDown={onkeyDown}
@@ -249,7 +248,6 @@ export default function FormControl({
             disabled={disabled}
             autoComplete="off"
             onChange={(e) => {
-              console.log("e", e.target);
               onChange(e.target.value);
             }}
             onKeyDown={onkeyDown}

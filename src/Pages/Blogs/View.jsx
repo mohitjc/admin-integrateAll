@@ -59,7 +59,7 @@ const ViewBlog = () => {
                   <p className="text-[14px] text-black font-medium ">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.name}
+                    {data && data.title}
                   </p>
                 </div>
                 <div className="col-span-6 flex  flex-col mb-5">
@@ -71,10 +71,7 @@ const ViewBlog = () => {
                 </div> 
                   <div className="col-span-12 flex  flex-col mb-5 ">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Description:</label>
-                   <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.short_description}
-                  </p>
+                   <p className="text-[14px] text-black font-medium" dangerouslySetInnerHTML={{__html:data?.description}}></p>
                 </div> 
                 
                 <div className="col-span-12 flex  flex-col mb-5 ">
@@ -87,7 +84,7 @@ const ViewBlog = () => {
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Keywords:</label>
                    <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.meta_keywords.map((itm)=>itm).join(",")}
+                    {data && data.meta_keywords?.map((itm)=>itm).join(",")}
                   </p>
                 </div> 
                     <div className="col-span-full">

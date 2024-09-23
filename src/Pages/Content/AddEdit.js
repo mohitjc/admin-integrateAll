@@ -96,8 +96,7 @@ const AddEdit = () => {
     <>
       <Layout>
         <form onSubmit={handleSubmit}>
-          <div className="pprofile1">
-            <div className="flex items-center mb-8">
+        <div className="flex items-center mb-8">
               <Tooltip placement="top" title="Back">
                 <Link
                   to={`/${shared.url}`}
@@ -115,7 +114,9 @@ const AddEdit = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="pprofile1">
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
 
                    
             <div className=" mb-3">
