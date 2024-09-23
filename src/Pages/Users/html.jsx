@@ -313,7 +313,7 @@ const Html = ({
 
         {!loaging ? (
           <>
-          <div className="px-4 pb-4">
+          <div className="">
             <Table
               className=""
               data={data}

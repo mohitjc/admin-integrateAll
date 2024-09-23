@@ -168,122 +168,124 @@ const Login = () => {
             </div>
           </form>
         ) : (
-          <form
-            className="xl:w-4/12 lg:w-5/12 md:w-6/12 w-11/12 bg-white border border-[#00000017] p-[24px] rounded-[30px] shadow-c"
-            onSubmit={hendleSubmit}
-          >
-            <Link to="/" className=" z-[99] mb-10 block mx-auto text-center">
-                  <img
-                    src="/assets/img/logo.svg"
-                    className="   mx-auto"
-                    alt="logo"
-                  />
-                </Link>
-            <div className="">
-              <h1 className="text-[22px] font-semibold text-[#333] ">
-                Login to your account
-              </h1>
-              <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
-            </div>
-            {/* <p className="text-[16px] font-normal text-[#333] mt-4">
-              Please enter your valid details
-            </p> */}
-            {step == 1 ? (
-              <div className="mt-5">
-                <div className="relative">
-                  <label className="mb-2 block">Enter Email Address</label>
-                  <div className="absolute  z-[99] p-3 px-4 bg-[#00358512] text-[#0035859c] rounded-tl-[7px] rounded-bl-[7px]">
-                    <i className="fa fa-envelope " aria-hidden="true"></i>
+        <>
+        
+            <form
+              className=" bg-white border border-[#00000017] p-[24px] w-full rounded-[30px] shadow-c"
+              onSubmit={hendleSubmit}
+            >
+              <Link  to="/" className=" z-[99] mb-10 block mx-auto text-center">
+                    <img
+                      src="/assets/img/logo.svg"
+                      className="   mx-auto"
+                      alt="logo"
+                    />
+                  </Link>
+              <div className="">
+                <h1 className="text-[22px] font-semibold text-[#333] ">
+                  Login to your account
+                </h1>
+                <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
+              </div>
+              {/* <p className="text-[16px] font-normal text-[#333] mt-4">
+                Please enter your valid details
+              </p> */}
+              {step == 1 ? (
+                <div className="mt-5">
+                  <div className="relative">
+                    <label className="mb-2 block">Enter Email Address</label>
+                    <div className="absolute  z-[99] p-3 px-4 bg-[#00358512] text-[#0035859c] rounded-tl-[7px] rounded-bl-[7px]">
+                      <i className="fa fa-envelope " aria-hidden="true"></i>
+                    </div>
+  
+                    <input
+                      type="text"
+                      className="mb-5 relative  bg-white w-full  rounded-lg h-12 flex items-center gap-2 overflow-hidden  mb-0 bginput w-full pl-[55px]"
+                      placeholder="Email"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      // disabled={methodModel.getPrams('attended')?true:false}
+                      required
+                    />
                   </div>
-
+                  <label className="mb-2 block">Enter Password</label>
+                  <div className="relative mb-6">
+                 
+                    <div className="absolute  z-[99] p-3 px-4 bg-[#00358512] text-[#0035859c] rounded-tl-[7px] rounded-bl-[7px]">
+                      <i className="fa fa-lock " aria-hidden="true"></i>
+                    </div>
+                    <input
+                      type={eyes.password ? "text" : "password"}
+                      className="mb-5 relative  bg-white w-full  rounded-lg h-12 flex items-center gap-2 overflow-hidden  mb-0 bginput w-full pl-[55px]"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="Password"
+                      required
+                    />
+                    {eyes.password ? (
+                      <FiEye
+                        className="top-4 right-3 absolute text-[#333] cursor-pointer"
+                        onClick={() =>
+                          setEyes({ ...eyes, password: !eyes.password })
+                        }
+                      />
+                    ) : (
+                      <FiEyeOff
+                        className="top-4 right-3 absolute text-[#333] cursor-pointer"
+                        onClick={() =>
+                          setEyes({ ...eyes, password: !eyes.password })
+                        }
+                      />
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <p className="mb-2">OTP sent on email</p>
                   <input
                     type="text"
-                    className="mb-5 relative  bg-white w-full  rounded-lg h-12 flex items-center gap-2 overflow-hidden  mb-0 bginput w-full pl-[55px]"
-                    placeholder="Email"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    // disabled={methodModel.getPrams('attended')?true:false}
+                    maxLength={6}
+                    minLength={6}
+                    className="mb-4 w-full text-sm text-[#333]  h-10 flex items-center gap-2 overflow-hidden bg-transparent border-b border-white/37"
+                    placeholder="Enter OTP"
+                    value={otp}
+                    onChange={(e) => setOTP(e.target.value)}
                     required
                   />
-                </div>
-                <label className="mb-2 block">Enter Password</label>
-                <div className="relative mb-6">
-               
-                  <div className="absolute  z-[99] p-3 px-4 bg-[#00358512] text-[#0035859c] rounded-tl-[7px] rounded-bl-[7px]">
-                    <i className="fa fa-lock " aria-hidden="true"></i>
-                  </div>
+                </>
+              )}
+  
+              <div className="flex">
+                <label className="flex items-center pointer">
                   <input
-                    type={eyes.password ? "text" : "password"}
-                    className="mb-5 relative  bg-white w-full  rounded-lg h-12 flex items-center gap-2 overflow-hidden  mb-0 bginput w-full pl-[55px]"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    required
-                  />
-                  {eyes.password ? (
-                    <FiEye
-                      className="top-4 right-3 absolute text-[#333] cursor-pointer"
-                      onClick={() =>
-                        setEyes({ ...eyes, password: !eyes.password })
-                      }
-                    />
-                  ) : (
-                    <FiEyeOff
-                      className="top-4 right-3 absolute text-[#333] cursor-pointer"
-                      onClick={() =>
-                        setEyes({ ...eyes, password: !eyes.password })
-                      }
-                    />
-                  )}
-                </div>
+                    type="checkbox"
+                    checked={remember}
+                    onChange={(e) => setRemember(e.target.checked)}
+                    className="mr-2 h-4 w-4 cursor-pointer"
+                    style={{ accentColor: "#1E5DBC" }}
+                  />{" "}
+                  <span className="text-[14px] font-normal text-[#333]">
+                    Remember Me
+                  </span>
+                </label>
+                <Link
+                  className="font-semibold  text-[14px] ml-auto text-[#1E5DBC]"
+                  to="/forgotpassword"
+                >
+                  {" "}
+                  Forgot Password?
+                </Link>
               </div>
-            ) : (
-              <>
-                <p className="mb-2">OTP sent on email</p>
-                <input
-                  type="text"
-                  maxLength={6}
-                  minLength={6}
-                  className="mb-4 w-full text-sm text-[#333]  h-10 flex items-center gap-2 overflow-hidden bg-transparent border-b border-white/37"
-                  placeholder="Enter OTP"
-                  value={otp}
-                  onChange={(e) => setOTP(e.target.value)}
-                  required
-                />
-              </>
-            )}
-
-            <div className="flex">
-              <label className="flex items-center pointer">
-                <input
-                  type="checkbox"
-                  checked={remember}
-                  onChange={(e) => setRemember(e.target.checked)}
-                  className="mr-2 h-4 w-4 cursor-pointer"
-                  style={{ accentColor: "#1E5DBC" }}
-                />{" "}
-                <span className="text-[14px] font-normal text-[#333]">
-                  Remember Me
-                </span>
-              </label>
-              <Link
-                className="font-semibold  text-[14px] ml-auto text-[#1E5DBC]"
-                to="/forgotpassword"
-              >
-                {" "}
-                Forgot Password?
-              </Link>
-            </div>
-            <div className="mt-8 flex items-center justify-center">
-              <button
-                type="submit"
-                className="h-11 rounded-full w-52 font-semibold text-center text-white   hover:opacity-80 transition-all "
-              >
-                Sign in
-              </button>
-            </div>
-            {/* <p className='text-sm mt-3 text-center'>Don't have an account? <Link to="/signup" className='text-[#1E5DBC] text-sm'>Sign Up</Link></p> */}
-          </form>
+              <div className="mt-8 flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="h-11 rounded-full w-52 font-semibold text-center text-white   hover:opacity-80 transition-all "
+                >
+                  Sign in
+                </button>
+              </div>
+              {/* <p className='text-sm mt-3 text-center'>Don't have an account? <Link to="/signup" className='text-[#1E5DBC] text-sm'>Sign Up</Link></p> */}
+            </form></>
         )}
       </AuthLayout>
     </>
