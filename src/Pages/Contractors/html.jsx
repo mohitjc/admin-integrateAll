@@ -268,7 +268,7 @@ const Html = ({
             </button>
           </form>
 
-          <div className="flex gap-2 ml-auto">
+          <div className="flex gap-2 lg:ml-auto">
           <FormControl
                   type="multiselect"
                   value={filters.skills}

@@ -38,12 +38,12 @@ const AddEdit = () => {
     if (invalid) return;
     let method = "post";
     let url = shared.addApi;
-    
-     let value = {
-        ...form,
-        ...form1,
-        id: id,
-      };
+
+    let value = {
+      ...form,
+      ...form1,
+      id: id,
+    };
     if (id) {
       method = "put";
       url = shared.editApi;
@@ -97,7 +97,6 @@ const AddEdit = () => {
       });
     }
   }, [id]);
-
 
   const setpermission = (key, value) => {
     setForm1({
@@ -175,18 +174,17 @@ const AddEdit = () => {
     });
     return value;
   };
- 
 
   return (
     <>
       <Layout>
         <form onSubmit={handleSubmit}>
-          <div className="pprofile1">
-            <div className="flex items-center mb-8">
+        <div className="flex items-center mb-8">
               <Tooltip placement="top" title="Back">
                 <Link
                   to={`/${shared.url}`}
-                   className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3" >
+                  className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
+                >
                   <i className="fa fa-angle-left text-lg"></i>
                 </Link>
               </Tooltip>
@@ -194,15 +192,27 @@ const AddEdit = () => {
                 <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
                   {form && form.id ? "Edit" : "Add"} {shared.addTitle}
                 </h3>
-                {/* <p class="text-xs lg:text-sm font-normal text-[#75757A]">
+                <p class="text-xs lg:text-sm font-normal text-[#75757A]">
                   Here you can see all about your {shared.addTitle}
-                </p> */}
+                </p>
               </div>
             </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <div className=" mb-3">
-                <FormControl
+          <div className="grid grid-cols-12">
+            <div class="col-span-12">
+              <div class="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
+                <div>
+                  <h4 class="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                    <img
+                      src="/assets/img/usero-blue.svg"
+                      class="me-3 bg-[#e9f0f8] p-2 rounded-md"
+                    />
+                    Basic Information
+                  </h4>
+                </div>
+                <div class="grid grid-cols-12 p-4">
+                  <div class="lg:col-span-6 col-span-12 flex flex-col mb-5">
+                    
+                    <FormControl
                   type="text"
                   label="Name"
                   value={form.name}
@@ -210,109 +220,116 @@ const AddEdit = () => {
                   required
                   disabled
                 />
-              </div>
-            </div>
-            <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
-                <div className="scrollbar w-full overflow-auto">
-                  <div class="table_section tablepadding">
-                    <p className="text-xl font-semibold text-[#111827] px-4 py-3">
-                      Permissions
-                    </p>
-                    <table class="w-full">
-                      <thead class="table_head roleTable">
-                        <tr class="border-b border-[#EAECF0]">
-                          <th
-                            scope="col"
-                            class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                          ></th>
-                          <th
-                            scope="col"
-                            class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                          >
-                            <input
-                              type="checkbox"
-                              onChange={(e) => HandleAll(e.target.checked)}
-                              checked={isAllChecked()}
-                              className="h-4 w-4 me-1"
-                            />
-                            All
-                          </th>
-                          {permission.map((itm) => {
-                            return (
-                              <>
-                                <th
-                                  scope="col"
-                                  class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
-                                >
-                                  <input
-                                    type="checkbox"
-                                    className="h-4 w-4 me-1"
-                                    onChange={(e) =>
-                                      HandleAllRead(e.target.checked, itm.key)
-                                    }
-                                    checked={isAllPCheck(itm.key)}
-                                  />
-                                  {itm.name}
-                                </th>
-                              </>
-                            );
-                          })}
-                        </tr>
-                      </thead>
-                      <tbody className="roleTable">
-                        {permissions.map((itm) => {
-                          return (
-                            <>
-                              <tr>
-                                <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                  {itm.name}
-                                </td>
-                                <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                  <input
-                                    type="checkbox"
-                                    className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
-                                    name={itm.key}
-                                    onChange={(e) =>
-                                      handleAllPermission(e.target)
-                                    }
-                                    checked={isCheckAll(itm.key)}
-                                  />
-                                </td>
-                                {permission.map((pitm) => {
-                                  return (
-                                    <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
-                                      <div Name="checkList">
-                                        <label className="mb-0">
-                                          <input
-                                            type="checkbox"
-                                            className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
-                                            checked={
-                                              form1.permissions[
-                                                `${pitm.key}${itm.key}`
-                                              ]
-                                            }
-                                            onChange={(e) =>
-                                              setpermission(
-                                                `${pitm.key}${itm.key}`,
-                                                e.target.checked
-                                              )
-                                            }
-                                          />
-                                        </label>
-                                      </div>
-                                    </td>
-                                  );
-                                })}
-                              </tr>
-                            </>
-                          );
-                        })}
-                      </tbody>
-                    </table>
                   </div>
                 </div>
               </div>
-            <div className="text-right">
+            </div>
+
+          
+
+            <div class="col-span-12">
+            <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
+              <div className="scrollbar w-full overflow-auto">
+                <div class="table_section tablepadding">
+                  <p className="text-xl font-semibold text-[#111827] px-4 py-3">
+                    Permissions
+                  </p>
+                  <table class="w-full">
+                    <thead class="table_head roleTable">
+                      <tr class="border-b border-[#EAECF0]">
+                        <th
+                          scope="col"
+                          class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
+                        ></th>
+                        <th
+                          scope="col"
+                          class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
+                        >
+                          <input
+                            type="checkbox"
+                            onChange={(e) => HandleAll(e.target.checked)}
+                            checked={isAllChecked()}
+                            className="h-4 w-4 me-1"
+                          />
+                          All
+                        </th>
+                        {permission.map((itm) => {
+                          return (
+                            <>
+                              <th
+                                scope="col"
+                                class="cursor-pointer text-[#82838B] !border-l-0 font-normal text-sm !border border-[#EAECF0] px-4 text-left bg-[#F7FAFF] !py-3 ' onClick={e => sorting('name')}"
+                              >
+                                <input
+                                  type="checkbox"
+                                  className="h-4 w-4 me-1"
+                                  onChange={(e) =>
+                                    HandleAllRead(e.target.checked, itm.key)
+                                  }
+                                  checked={isAllPCheck(itm.key)}
+                                />
+                                {itm.name}
+                              </th>
+                            </>
+                          );
+                        })}
+                      </tr>
+                    </thead>
+                    <tbody className="roleTable">
+                      {permissions.map((itm) => {
+                        return (
+                          <>
+                            <tr>
+                              <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
+                                {itm.name}
+                              </td>
+                              <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
+                                <input
+                                  type="checkbox"
+                                  className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
+                                  name={itm.key}
+                                  onChange={(e) =>
+                                    handleAllPermission(e.target)
+                                  }
+                                  checked={isCheckAll(itm.key)}
+                                />
+                              </td>
+                              {permission.map((pitm) => {
+                                return (
+                                  <td className="!text-typo !border-l-0 cursor-pointer !px-4 text-sm font-normal !py-4 !border text-left border-[#EAECF0]">
+                                    <div Name="checkList">
+                                      <label className="mb-0">
+                                        <input
+                                          type="checkbox"
+                                          className="h-4 w-4 green_check cursor-pointer shrink-0 rounded-[4px] !border !border-[#3C3E49A3] !text-white"
+                                          checked={
+                                            form1.permissions[
+                                              `${pitm.key}${itm.key}`
+                                            ]
+                                          }
+                                          onChange={(e) =>
+                                            setpermission(
+                                              `${pitm.key}${itm.key}`,
+                                              e.target.checked
+                                            )
+                                          }
+                                        />
+                                      </label>
+                                    </div>
+                                  </td>
+                                );
+                              })}
+                            </tr>
+                          </>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-span-12 ml-auto">
               <button
                 type="submit"
                 className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"

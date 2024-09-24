@@ -79,7 +79,7 @@ const Resetpassword = () => {
     <>
       <AuthLayout>
         <form
-          className="w-11/12 xl:w-4/12 lg:w-5/12 	mx-auto bg-[#fff] border border-[#00000024] p-[24px] rounded-[30px]"
+          className=" bg-white border border-[#00000017] p-[24px] w-full rounded-[30px] shadow-c"
           onSubmit={hendleSubmit}
         >
           <div className=" mb-4">

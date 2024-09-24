@@ -1679,9 +1679,12 @@ input:focus-visible {
 
 .react-tel-input .form-control {
   width: 100%;
+  border-radius: 8px;
 }
 
-
+.react-tel-input .flag-dropdown {
+  border-radius: 8px 0 0 8px !important;
+}
 .navbar-tailwind {
   position: relative;
   display: -ms-flexbox;
@@ -2006,16 +2009,15 @@ td.\!text-typo.\!border-l-0.\!px-3\.5.text-sm.font-normal.\!py-4.\!border.text-c
 }
 
 .css-t3ipsp-control {
-
+  border-radius: 0.5rem !important;
   box-shadow: 0 0 0 1px #1E5DBC !important;
  
 }
 
 .css-13cymwt-control{
-  gap: .5rem;
+ 
   width: 100%;
-  padding-left: .5rem;
-  padding-right: .5rem;
+
   position: relative;
   overflow: hidden;
   height: 2.5rem;
@@ -2190,9 +2192,10 @@ box-shadow: -6px 4px 13.2px 0px rgba(0, 0, 0, 0.11);
 // }
 
 .bg-img {
-  background-image: url("../../public/assets/img/bg-m.png");
+  background-image: url("../../public/assets/img/login.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: bottom;
 }
 .shadow-c{
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
