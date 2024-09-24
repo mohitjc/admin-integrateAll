@@ -65,7 +65,7 @@ const Invoice = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      client: "",
       search: "",
       status: "",
       page: 1,

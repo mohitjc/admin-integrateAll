@@ -10,10 +10,11 @@ import shared from "./shared";
 import { useSelector } from "react-redux";
 import environment from "../../environment";
 import { IoLocationSharp } from "react-icons/io5";
+import ImageUpload from "../../components/common/ImageUpload";
 
 const AddEdit = () => {
   const { id } = useParams();
-  const [images, setImages] = useState({ image: "" });
+  const [images, setImages] = useState({ certificate: "" });
   const [form, setform] = useState({
     firstName: "",
     lastName: "",
@@ -50,6 +51,7 @@ const AddEdit = () => {
 
     let value = {
       ...form,
+      ...images,
       id: id,
       role: environment.contractorRoleId,
     };
@@ -110,6 +112,11 @@ const AddEdit = () => {
     }
     getSkills();
   }, [id]);
+
+  const imageResult = (e, key) => {
+    images[key] = e.value;
+    setImages(images);
+  };
 
   return (
     <>
@@ -216,6 +223,22 @@ const AddEdit = () => {
                   required
                 />
               </div>
+
+              <div className="lg:col-span-6 col-span-12 mb-3">
+              <label>Certificate</label>
+              <div>
+              <ImageUpload
+                model="users"
+                accept="image/*"
+                result={(e) => imageResult(e, "certificate")}
+                value={images.certificate}
+                label="Upload Certificate"
+                multiple={false}
+              />
+              </div>
+            
+              </div>
+             
             </div>
           </div>
           <div className="pprofile1 mb-10 ">

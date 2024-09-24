@@ -37,6 +37,7 @@ const Html = ({
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
+  const [clients,setClient]=useState([])
   const resend=()=>{
 
   }
@@ -142,7 +143,17 @@ const Html = ({
     },
   ];
 
+  const getClients = () => {
+    ApiClient.get('user/listing', { role: environment.userRoleId }).then(res => {
+      if (res.success) {
+        setClient(res.data)
+      }
+    })
+  }
 
+  useEffect(() => {
+    getClients()
+  }, [])
 
   return (
     <Layout>
@@ -238,7 +249,7 @@ const Html = ({
           </form>
 
           <div className="flex gap-2 ml-auto">
-            <SelectDropdown
+          <SelectDropdown
               id="statusDropdown"
               displayValue="name"
               placeholder="All Status"
@@ -246,10 +257,22 @@ const Html = ({
               result={(e) => {
                 changestatus(e.value);
               }}
+              theme="search"
               options={shared.status}
             />
+
+<SelectDropdown
+              displayValue="fullName"
+              placeholder="All Clients"
+              intialValue={filters.client}
+              result={(e) => {
+               filter({client:e.value})
+              }}
+              theme="search"
+              options={clients}
+            />
           
-            {filters.status? (
+            {filters.status||filters.client? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

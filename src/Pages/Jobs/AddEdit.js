@@ -15,6 +15,8 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     title: "",
+    urgency:'',
+    special_instructions:'',
     description: "",
     client: "",
     property: "",
@@ -217,6 +219,23 @@ const AddEdit = () => {
                   required
                 />
               </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Urgency"
+                  value={form.urgency}
+                  options={
+                    [
+                      {id:'high',name:'High'},
+                      {id:'medium',name:'Medium'},
+                      {id:'low',name:'Low'},
+                    ]
+                  }
+                  theme="search"
+                  onChange={(e) => setform({ ...form, urgency: e })}
+                  required
+                />
+              </div>
               <div className="lg:col-span-6 col-span-12 ">
                 <FormControl
                   type="number"
@@ -334,6 +353,14 @@ const AddEdit = () => {
                   value={form.description}
                   onChange={(e) => setform({ ...form, description: e })}
                   required
+                />
+              </div>
+              <div className="lg:col-span-full mb-3">
+                <FormControl
+                  type="textarea"
+                  label="special instructions"
+                  value={form.special_instructions}
+                  onChange={(e) => setform({ ...form, special_instructions: e })}
                 />
               </div>
               <div className="col-span-12 mb-3">
