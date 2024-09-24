@@ -51,7 +51,7 @@ const Setting = () => {
     }
     else {
       const id = user?.groupId?._id;
-      let payload = {
+      let payload = { 
         groupId: id,
         groupMemberLimit: form?.memberGroup,
         historyMonths: form?.connectMeetHistory

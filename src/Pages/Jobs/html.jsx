@@ -289,7 +289,7 @@ const Html = ({
   }
 
   const serviceFee=(time=0)=>{
-    let hourlyRate=user.hourlyRate||0
+    let hourlyRate=invoiceForm.hourlyRate||0
     time=Number(time||0)/60
 
     hourlyRate=hourlyRate*time
@@ -315,22 +315,35 @@ const Html = ({
   }
 
   const generateInvoice=(row)=>{
-    console.log("row",row)
     setInvoiceModal(true)
     setInvoiceForm({
       id:row.id,
       material:row.material,
       hours:row.hours,
       minutes:row.minutes,
+      hourlyRate:row.hourlyRate
     })
-    
 
   }
 
   const generateInvoiceSubmit=()=>{
-    console.log("invoiceForm",invoiceForm)
+    let payload={
+      jobId:invoiceForm.id,
+      material:invoiceForm.material,
+      total:totalFee,
+      servicefee:servicefee,
+    }
+    ApiClient.post('invoice/create',payload).then(res=>{
+      if(res.success){
+        filter();
+        setInvoiceModal(false)
+      }
+    })
   }
   
+
+  const totalFee=serviceFee(getTime(invoiceForm))+materialTotal();
+  const servicefee=serviceFee(getTime(invoiceForm));
 
   return (
     <>
@@ -573,13 +586,13 @@ const Html = ({
                       <label>Service Fee</label>
                     </div>
                     <div>
-                      <span>{pipeModel.currency(serviceFee(getTime(invoiceForm)))}</span>
+                      <span>{pipeModel.currency(servicefee)}</span>
                     </div>
                     <div>
                       <label>Total</label>
                     </div>
                     <div>
-                      <span>{pipeModel.currency(serviceFee(getTime(invoiceForm))+materialTotal())}</span>
+                      <span>{pipeModel.currency(totalFee)}</span>
                     </div>
                   </div>
                 </div>

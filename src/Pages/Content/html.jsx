@@ -40,27 +40,35 @@ const Html = ({
       },
     },
     {
-      key: "status",
-      name: "Status",
+      key: "slug",
+      name: "Slug",
+      sort: true,
       render: (row) => {
-        return (
-          <>
-            <div className="w-32" onClick={() => statusChange(row)}>
-              <span
-                className={`bg-[#1E5DBC] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
-                          ${
-                            row.status == "deactive"
-                              ? " bg-gray-200 text-black"
-                              : "bg-[#1E5DBC] text-white"
-                          }`}
-              >
-                {row.status == "deactive" ? "inactive" : "active"}
-              </span>
-            </div>
-          </>
-        );
+        return <span className="">{row?.slug}</span>;
       },
     },
+    // {
+    //   key: "status",
+    //   name: "Status",
+    //   render: (row) => {
+    //     return (
+    //       <>
+    //         <div className="w-32" onClick={() => statusChange(row)}>
+    //           <span
+    //             className={`bg-[#1E5DBC] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
+    //                       ${
+    //                         row.status == "deactive"
+    //                           ? " bg-gray-200 text-black"
+    //                           : "bg-[#1E5DBC] text-white"
+    //                       }`}
+    //           >
+    //             {row.status == "deactive" ? "inactive" : "active"}
+    //           </span>
+    //         </div>
+    //       </>
+    //     );
+    //   },
+    // },
     {
       key: "action",
       name: "Action",
@@ -215,7 +223,7 @@ const Html = ({
           </form>
 
           <div className="flex gap-2 ml-auto">
-            <SelectDropdown
+            {/* <SelectDropdown
               id="statusDropdown"
               displayValue="name"
               placeholder="All Status"
@@ -224,7 +232,7 @@ const Html = ({
                 changestatus(e.value);
               }}
               options={statusModel.list}
-            />
+            /> */}
             {/* <SelectDropdown
                             id="statusDropdown"
                             displayValue="name"
