@@ -83,7 +83,7 @@ const Html = ({
           <>
             <div className="w-32">
               <span
-                className={`bg-[#1E5DBC] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
+                className={` 
                           ${row.status}`}
               >
                 {row.status}

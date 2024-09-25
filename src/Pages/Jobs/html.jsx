@@ -17,6 +17,8 @@ import pipeModel from "../../models/pipeModel";
 import datepipeModel from "../../models/datepipemodel";
 import Modal from "../../components/common/Modal";
 import { AiOutlineUser } from "react-icons/ai";
+import { FaRegFile } from "react-icons/fa";
+import { CiFileOn } from "react-icons/ci";
 
 const Html = ({
   sorting,
@@ -43,7 +45,7 @@ const Html = ({
   const [clients, setClients] = useState([]);
   const [contractor, setContractor] = useState([]);
   const [property, setProperty] = useState([]);
-  
+
   const [isModal, setIsModal] = useState(false);
   const [isInvoiceModal, setInvoiceModal] = useState(false);
   const [form, setForm] = useState({
@@ -222,13 +224,14 @@ const Html = ({
                 <></>
               )}
 
-{isAllow(`edit${shared.check}`) && (itm.status == 'completed') ? (
+              {isAllow(`edit${shared.check}`) && itm.status == "completed" ? (
                 <Tooltip placement="top" title="Generate Invoice">
                   <a
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
                     onClick={(e) => generateInvoice(itm)}
                   >
-                   <span class="material-symbols-outlined">description</span>
+                  
+                   <CiFileOn />
                   </a>
                 </Tooltip>
               ) : (
@@ -281,69 +284,67 @@ const Html = ({
     assignContractor();
   };
 
-  const materialTotal=()=>{
-    let arr=invoiceForm.material||[]
-    arr=arr.map(itm=>Number(itm.price||0))
-    if(!arr?.length) return 0
-     return arr?.reduce((total, num)=>total + num)
-  }
+  const materialTotal = () => {
+    let arr = invoiceForm.material || [];
+    arr = arr.map((itm) => Number(itm.price || 0));
+    if (!arr?.length) return 0;
+    return arr?.reduce((total, num) => total + num);
+  };
 
-  const serviceFee=(time=0)=>{
-    let hourlyRate=invoiceForm.hourlyRate||0
-    time=Number(time||0)/60
+  const serviceFee = (time = 0) => {
+    let hourlyRate = invoiceForm.hourlyRate || 0;
+    time = Number(time || 0) / 60;
 
-    hourlyRate=hourlyRate*time
+    hourlyRate = hourlyRate * time;
     // console.log("hourlyRate",hourlyRate)
     // console.log("time",time)
-    return hourlyRate
-  }
+    return hourlyRate;
+  };
 
-  const getTime=(form)=>{
-    let hr=Number(form.hours||0)
-    let minutes=Number(form.minutes||0)
-    hr=hr*60
-    return hr+minutes
-  }
+  const getTime = (form) => {
+    let hr = Number(form.hours || 0);
+    let minutes = Number(form.minutes || 0);
+    hr = hr * 60;
+    return hr + minutes;
+  };
 
-  const updateMaterial=(index,key,v)=>{
-    let arr=invoiceForm.material||[]
-    arr[index][key]=v
+  const updateMaterial = (index, key, v) => {
+    let arr = invoiceForm.material || [];
+    arr[index][key] = v;
     setInvoiceForm({
       ...invoiceForm,
-      material:arr,
-    })
-  }
+      material: arr,
+    });
+  };
 
-  const generateInvoice=(row)=>{
-    setInvoiceModal(true)
+  const generateInvoice = (row) => {
+    setInvoiceModal(true);
     setInvoiceForm({
-      id:row.id,
-      material:row.material,
-      hours:row.hours,
-      minutes:row.minutes,
-      hourlyRate:row.hourlyRate
-    })
+      id: row.id,
+      material: row.material,
+      hours: row.hours,
+      minutes: row.minutes,
+      hourlyRate: row.hourlyRate,
+    });
+  };
 
-  }
-
-  const generateInvoiceSubmit=()=>{
-    let payload={
-      jobId:invoiceForm.id,
-      material:invoiceForm.material,
-      total:totalFee,
-      servicefee:servicefee,
-    }
-    ApiClient.post('invoice/create',payload).then(res=>{
-      if(res.success){
+  const generateInvoiceSubmit = () => {
+    let payload = {
+      jobId: invoiceForm.id,
+      material: invoiceForm.material,
+      total: totalFee,
+      servicefee: servicefee,
+    };
+    ApiClient.post("invoice/create", payload).then((res) => {
+      if (res.success) {
         filter();
-        setInvoiceModal(false)
+        setInvoiceModal(false);
       }
-    })
-  }
-  
+    });
+  };
 
-  const totalFee=serviceFee(getTime(invoiceForm))+materialTotal();
-  const servicefee=serviceFee(getTime(invoiceForm));
+  const totalFee = serviceFee(getTime(invoiceForm)) + materialTotal();
+  const servicefee = serviceFee(getTime(invoiceForm));
 
   return (
     <>
@@ -525,92 +526,156 @@ const Html = ({
         </div>
       </Layout>
 
-      {isInvoiceModal ? <>
-        <Modal
-          title="Generate Invoice"
-          body={<>
-            <form className="grid gap-2 grid-cols-2" onSubmit={e=>{e.preventDefault();generateInvoiceSubmit()}}>
-            <div>
-            <FormControl
-                  type="number"
-                  label="Hours"
-                  value={invoiceForm.hours}
-                />
-            </div>
-            <div>
-            <FormControl
-                  type="number"
-                  label="Minutes"
-                  value={invoiceForm.minutes}
-                />
-            </div>
+      {isInvoiceModal ? (
+        <>
+          <Modal
+            title="Generate Invoice"
+            body={
+              <>
+                <form
+                  className="grid gap-2 grid-cols-1"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    generateInvoiceSubmit();
+                  }}
+                >
+                  <div className="col-span-full">
+                    <h2 className="mb-3 font-[600]">Service Information</h2>
+                    <table className="w-full border">
+                      <thead>
+                        <tr>
+                          <th className="bg-[#e9f0f9] text-[14px] font-medium p-2 w-1/2">
+                            Hours
+                          </th>
+                          <th className="bg-[#e9f0f9] text-[14px] font-medium p-2 w-1/2 border">
+                            Minutes
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td className=" text-center p-2 w-1/2">
+                            {invoiceForm.hours}
+                          </td>
+                          <td className="border text-center p-2 w-1/2">
+                            {invoiceForm.minutes}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-            <div className="col-span-full">
+                  <div className="col-span-full  ">
+                    <h2 className="mb-3 font-[600]">Material Information</h2>
 
-                <div className="mt-2">
-                  <h5 className="mb-2">Materials</h5>
-                  {invoiceForm.material?.map((itm, i) => {
-                    return <div className="p-2 border grid grid-cols-2 gap-2 mb-3">
-                      <div>
-                        <FormControl
-                          type="text"
-                          label="Name"
-                          value={itm.name}
-                          // onChange={(e) => updateMaterial(i,'name',e)}
-                          disabled
-                          required
-                        />
+                    <table className="w-full border mb-4 ">
+                      <thead>
+                        <tr>
+                          <th className="bg-[#e9f0f9] text-[14px] font-medium p-2 w-1/2">
+                            Name
+                          </th>
+                          <th className="bg-[#e9f0f9] text-[14px] font-medium p-2 w-1/2 border">
+                            Price (£)
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {invoiceForm.material?.map((itm, i) => {
+                          return (
+                            <tr>
+                              <td className=" text-center p-2 w-1/2">
+                                {itm.name}
+                              </td>
+                              <td className="border text-center p-2 w-1/2">
+                                <FormControl
+                                  type="text"
+                                  value={itm.price}
+                                  onChange={(e) =>
+                                    updateMaterial(i, "price", e)
+                                  }
+                                  required
+                                />
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+
+                    <div className="col-span-full">
+                      <h2 className="mb-3 font-[600]">Total Price</h2>
+                      <table className="w-full border">
+                        
+                        <tbody>
+                          <tr>
+                          <th className=" text-[14px] font-medium p-2 w-1/3 border">
+                              Materials Price
+                            </th>
+                            <td className=" text-center p-2 w-1/3">
+                              <span>{pipeModel.currency(materialTotal())}</span>
+                            </td>
+                          
+                          </tr>
+                          <tr>
+                          <th className=" text-[14px] font-medium p-2 w-1/3 ">
+                              Service Price
+                            </th>
+                            <td className="border text-center p-2 w-1/3">
+                              <span>{pipeModel.currency(servicefee)}</span>
+                            </td>
+                            
+                          </tr>
+                          <tr>
+                          <th className="bg-[#1E5DBC] text-[14px] font-medium p-2 border text-white">
+                              Total
+                            </th>
+                            <td className="bg-[#1E5DBC] text-white  border text-center p-2">
+                              <span>{pipeModel.currency(totalFee)}</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    {/* <div className="p-2 bg-gray-300 rounded mb-3">
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <label>Materials Price</label>
+                        </div>
+                        <div>
+                          <span>{pipeModel.currency(materialTotal())}</span>
+                        </div>
+                        <div>
+                          <label>Service Fee</label>
+                        </div>
+                        <div>
+                          <span>{pipeModel.currency(servicefee)}</span>
+                        </div>
+                        <div>
+                          <label>Total</label>
+                        </div>
+                        <div>
+                          <span>{pipeModel.currency(totalFee)}</span>
+                        </div>
                       </div>
-                      <div>
-                        <FormControl
-                          type="text"
-                          label="Price (£)"
-                          value={itm.price}
-                          onChange={(e) => updateMaterial(i, 'price', e)}
-                          required
-                        />
-                      </div>
-                    </div>
-                  })}
-                </div>
+                    </div> */}
 
-                <div className="p-2 bg-gray-300 rounded mb-3">
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label>Materials Price</label>
-                    </div>
-                    <div>
-                      <span>{pipeModel.currency(materialTotal())}</span>
-                    </div>
-                    <div>
-                      <label>Service Fee</label>
-                    </div>
-                    <div>
-                      <span>{pipeModel.currency(servicefee)}</span>
-                    </div>
-                    <div>
-                      <label>Total</label>
-                    </div>
-                    <div>
-                      <span>{pipeModel.currency(totalFee)}</span>
+                    <div className="text-right mt-5">
+                      <button className="bg-primary leading-10 ms-3 h-10 inline-flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2">
+                        Generate Invoice
+                      </button>
                     </div>
                   </div>
-                </div>
-
-                <div className="text-right">
-                  <button className="bg-primary leading-10 ms-3 h-10 inline-flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2">Generate Invoice</button>
-                </div>
-
-            </div>
-
-            </form>
-          </>}
-
-          result={e => {
-            setInvoiceModal(false)
-          }}
-        />
-      </> : <></>}
+                </form>
+              </>
+            }
+            result={(e) => {
+              setInvoiceModal(false);
+            }}
+          />
+        </>
+      ) : (
+        <></>
+      )}
 
       {isModal ? (
         <>
@@ -618,45 +683,43 @@ const Html = ({
             title=" Contractor"
             body={
               <>
-               <div className="border">
-                <div className="bg-[#f2f3f4] p-3 border-b">
-                  <h3 className="font-[600]">Assign Contractor</h3>
+                <div className="border">
+                  <div className="bg-[#f2f3f4] p-3 border-b">
+                    <h3 className="font-[600]">Assign Contractor</h3>
+                  </div>
+                  <form
+                    className="grid gap-2 grid-cols-12 p-5"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      onSubmit();
+                    }}
+                  >
+                    <div className="col-span-9 ">
+                      <div>
+                        <FormControl
+                          type="select"
+                          displayValue="fullName"
+                          value={form.contractor}
+                          placeholder="Assign Contractor"
+                          theme="search"
+                          onChange={(e) =>
+                            setForm({
+                              ...form,
+                              contractor: e,
+                            })
+                          }
+                          options={contractor}
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="col-span-3">
+                      <button className="bg-primary leading-10  h-[44px] inline-flex items-center justify-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2 w-full">
+                        Assign
+                      </button>
+                    </div>
+                  </form>
                 </div>
-               <form
-                  className="grid gap-2 grid-cols-12 p-5"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    onSubmit();
-                  }}
-                >
-                 
-                  <div className="col-span-9 ">
-                    <div>
-                      <FormControl
-                        type="select"
-                        displayValue="fullName"
-                        value={form.contractor}
-                        placeholder="Assign Contractor"
-                        theme="search"
-                        onChange={(e) =>
-                          setForm({
-                            ...form,
-                            contractor: e,
-                          })
-                        }
-                        options={contractor}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-span-3">
-                    <button className="bg-primary leading-10 ms-3 h-10 inline-flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2">
-                      Assign
-                    </button>
-                  </div>
-                </form>
-                    </div>
-                
               </>
             }
             result={(e) => {

@@ -94,7 +94,7 @@ const Html = ({
                   <Menu.Items
                     className={`${
                       dynamicStyle ? "" : "max-h-60"
-                    }  focus:!outline-[#1E5DBC] focus:!outline text-sm absolute z-40 w-full ${
+                    }  focus:!outline-[#1E5DBC] focus:!outline text-sm absolute z-40 w-full min-w-[260px] ${
                       className ? className : " min-w-[260px]"
                     }  right-0 shadow-lg !py-2 !mt-1.5 overflow-auto bg-white  rounded-lg scrollbar capitalize`}
                   >

@@ -211,7 +211,10 @@ const Table = ({
               <tbody>
               <tr>
                 <td colspan="7">
-                <div className="p-4 text-center">{nodata}</div>
+                <div className="p-4 text-center">
+                  <img src ="assets/img/no-data.png" alt="" className="w-[150px] mx-auto "/>
+                  {nodata}
+                  </div>
                 </td>
               </tr>
               </tbody>
