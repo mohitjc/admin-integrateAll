@@ -19,6 +19,7 @@ import Modal from "../../components/common/Modal";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaRegFile } from "react-icons/fa";
 import { CiFileOn } from "react-icons/ci";
+import methodModel from "../../methods/methods";
 
 const Html = ({
   sorting,
@@ -587,14 +588,13 @@ const Html = ({
                                 {itm.name}
                               </td>
                               <td className="border text-center p-2 w-1/2">
-                                <FormControl
-                                  type="text"
-                                  value={itm.price}
-                                  onChange={(e) =>
-                                    updateMaterial(i, "price", e)
-                                  }
-                                  required
-                                />
+                              <input type="text"
+                              
+                              value={itm.price}
+                              onChange={e=>{
+                                updateMaterial(i, "price", methodModel.isNumber(e))
+                              }}
+                              />
                               </td>
                             </tr>
                           );
