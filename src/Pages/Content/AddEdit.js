@@ -21,7 +21,7 @@ const AddEdit = () => {
     title: "",
     slug:'',
     description: "",
-    meta_keyword: '',
+    meta_keyword: [],
     meta_title: "",
     meta_description: "",
   });
@@ -162,7 +162,7 @@ const AddEdit = () => {
 
               <div className="col-span-full mb-3">
                 <FormControl
-                  type="text"
+                  type="badge"
                   name="keywords"
                   label="Keywords"
                   value={form.meta_keyword}

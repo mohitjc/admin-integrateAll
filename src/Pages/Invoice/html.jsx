@@ -37,33 +37,56 @@ const Html = ({
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
+  const [clients,setClient]=useState([])
+  const resend=()=>{
+
+  }
 
   const columns = [
     {
-      key: "title",
-      name: "Name",
+      key: "invoiceNumber",
+      name: "Invoice Number",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.title}</span>;
+        return <span className="capitalize">{row?.invoiceNumber}</span>;
       },
     },
-
+    {
+      key: "client",
+      name: "Client",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.client_detail?.fullName}</span>;
+      },
+    },
+    {
+      key: "job",
+      name: "Job",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.job_detail?.title}</span>;
+      },
+    },
+    {
+      key: "createdAt",
+      name: "Created At",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{datepipeModel.date(row?.createdAt)}</span>;
+      },
+    },
     {
       key: "status",
       name: "Status",
       render: (row) => {
         return (
           <>
-            <div className="w-32" onClick={() => statusChange(row)}>
+            <div className="w-32">
               <span
                 className={`bg-[#1E5DBC] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
-                          ${
-                            row.status == "deactive"
-                              ? " bg-gray-200 text-black"
-                              : "bg-[#1E5DBC] text-white"
-                          }`}
+                          ${row.status}`}
               >
-                {row.status == "deactive" ? "inactive" : "active"}
+                {row.status}
               </span>
             </div>
           </>
@@ -89,19 +112,19 @@ const Html = ({
               ) : (
                 <></>
               )}
-              {isAllow(`edit${shared.check}`) ? (
-                <Tooltip placement="top" title="Edit">
+              {isAllow(`edit${shared.check}`) &&itm.status=='pending'? (
+                <Tooltip placement="top" title="Resend Invoice">
                   <a
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                    onClick={(e) => edit(itm.id)}
+                    onClick={(e) => resend(itm)}
                   >
-                    <LiaEdit />
+                    <span class="material-symbols-outlined">send</span>
                   </a>
                 </Tooltip>
               ) : (
                 <></>
               )}
-              {isAllow(`delete${shared.check}`) ? (
+              {/* {isAllow(`delete${shared.check}`) ? (
                 <Tooltip placement="top" title="Delete">
                   <span
                     className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
@@ -112,13 +135,25 @@ const Html = ({
                 </Tooltip>
               ) : (
                 <></>
-              )}
+              )} */}
             </div>
           </>
         );
       },
     },
   ];
+
+  const getClients = () => {
+    ApiClient.get('user/listing', { role: environment.userRoleId }).then(res => {
+      if (res.success) {
+        setClient(res.data)
+      }
+    })
+  }
+
+  useEffect(() => {
+    getClients()
+  }, [])
 
   return (
     <Layout>
@@ -140,7 +175,7 @@ const Html = ({
                         <PiFileCsv className="text-typo text-xl" />  Export CSV
                     </button> */}
 
-          {isAllow(`add${shared.check}`) ? (
+          {/* {isAllow(`add${shared.check}`) ? (
             <Link
               className="bg-primary leading-10 ms-3 h-10 flex items-center shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg gap-2"
               to={`/${shared.url}/add`}
@@ -149,7 +184,7 @@ const Html = ({
             </Link>
           ) : (
             <></>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -214,7 +249,7 @@ const Html = ({
           </form>
 
           <div className="flex gap-2 ml-auto">
-            <SelectDropdown
+          <SelectDropdown
               id="statusDropdown"
               displayValue="name"
               placeholder="All Status"
@@ -222,10 +257,22 @@ const Html = ({
               result={(e) => {
                 changestatus(e.value);
               }}
-              options={statusModel.list}
+              theme="search"
+              options={shared.status}
+            />
+
+<SelectDropdown
+              displayValue="fullName"
+              placeholder="All Clients"
+              intialValue={filters.client}
+              result={(e) => {
+               filter({client:e.value})
+              }}
+              theme="search"
+              options={clients}
             />
           
-            {filters.status? (
+            {filters.status||filters.client? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

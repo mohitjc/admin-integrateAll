@@ -167,6 +167,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/job",
       key: "readJob",
     },
+    {
+      name: "Invoices",
+      icon: <img src="/assets/img/job.svg" alt="" className="w-[22px]"/>,
+      activeIcon: <img src="/assets/img/job-blue.svg" alt="" className="w-[22px]"/>,
+      url: "/invoice",
+      key: "readInvoice",
+    },
     // {
     //   name: "Contract",
     //   icon: <RiContractLine className="text-inherit shrink-0 text-lg" />,

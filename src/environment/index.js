@@ -9,6 +9,4 @@ const environment = {
   map_api_key: process.env.REACT_APP_MAP_API_KEY,
 };
 
-console.log("process.env",process.env)
-
 export default environment;
