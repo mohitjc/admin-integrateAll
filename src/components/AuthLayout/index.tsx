@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import { GoLock } from "react-icons/go";
-
 const AuthLayout = ({ children }: any) => {
   return (
     <>
