@@ -63,7 +63,7 @@ const Resetpassword = () => {
       verificationCode: form.code,
       id: form.id,
     };
-    ApiClient.put("user/reset/password", payload).then((res) => {
+    ApiClient.put("user/reset/user-password", payload).then((res) => {
       if (res.success) {
         setTimeout(() => {
           toast.success(res.message);

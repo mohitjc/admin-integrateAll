@@ -3,10 +3,10 @@ const shared = {
   title: "Roles",
   addTitle: "Role",
   url: "role",
-  addApi: "role/add",
+  addApi: "user/addRoles",
   editApi: "role/update",
   detailApi: "role/detail",
-  listApi: "role/listing",
+  listApi: "user/rolesListing",
   statusApi: "role/update",
   deleteApi: "role/delete",
 };

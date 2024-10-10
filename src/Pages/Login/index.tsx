@@ -114,9 +114,11 @@ const Login = () => {
           localStorage.removeItem("remember");
         }
         if (res.data.two_factor_email_sent || step == 1) {
+          let rdata=res.data
+          rdata._id=rdata.id
           setStep(2);
-          setRes(res.data);
-          setLogin(res.data);
+          setRes(rdata);
+          setLogin(rdata);
         } else {
           // setLogin(res.data)
         }

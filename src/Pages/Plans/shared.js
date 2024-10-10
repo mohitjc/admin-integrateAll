@@ -18,12 +18,12 @@ const shared = {
   addTitle: "Plan",
   url: "plan",
   types:types,
-  addApi: "category/add",
-  editApi: "category/update",
-  detailApi: "category/detail",
-  listApi: "category/listing",
-  statusApi: "category/status/change",
-  deleteApi: "category/delete",
+  addApi: "plan/add",
+  editApi: "plan/update",
+  detailApi: "plan/detail",
+  listApi: "plan/listing",
+  statusApi: "plan/status/change",
+  deleteApi: "plan/delete",
 };
 
 export default shared;

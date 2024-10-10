@@ -155,7 +155,7 @@ const Dashboard = () => {
                 />
               </div>
               <dt className="text-base leading-7 text-black/40 mb-1">
-              Total Clients
+              Total Users
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
               {data?.totalUsersCount}
@@ -170,7 +170,7 @@ const Dashboard = () => {
                 />
               </div>
               <dt className="text-base leading-7 text-black/40 mb-1">
-              Total Contractors
+              Total Categories
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
               {data?.totalContractsCount}
@@ -186,7 +186,7 @@ const Dashboard = () => {
                 />
               </div>
               <dt className="text-base leading-7 text-black/40 mb-1">
-              Total Suppliers
+              Total Plans
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
               {data?.totalAssignmentsCount}
@@ -225,7 +225,7 @@ const Dashboard = () => {
             <div className="col-span-12 md:col-span-12">
               <div className="chatr_ones border border-gray-200 p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <h5 className="font-semibold text-xl">Suppliers</h5>
+                  <h5 className="font-semibold text-xl">Staff</h5>
                   <div className="">
                   <SelectDropdown
                   // id="statusDropdown"
@@ -247,7 +247,7 @@ const Dashboard = () => {
                 /> */}
                  <LineChart
                   legends={[
-                    {label:'Total Suppliers',key:'count'},
+                    {label:'Total Staff',key:'count'},
                     // {label:'Total Amount',key:'totalAmount'},
                   ]}
                   data={dates}
@@ -257,7 +257,7 @@ const Dashboard = () => {
             <div className="col-span-12 md:col-span-12">
               <div className="chatr_ones border border-gray-200 p-6 rounded-lg">
                 <div className="flex items-center justify-between">
-                  <h5 className="font-semibold text-xl">Clients</h5>
+                  <h5 className="font-semibold text-xl">Users</h5>
                   <div className="">
                   <SelectDropdown
                   // id="statusDropdown"
@@ -273,7 +273,7 @@ const Dashboard = () => {
 
                 <LineChart
                   legends={[
-                    {label:'Total Clients',key:'totalOrders'},
+                    {label:'Total Users',key:'totalOrders'},
                     // {label:'Total Sale',key:'totalSale'},
                     // {label:'Avg Order Value',key:'avgOrderValue'},
                   ]}

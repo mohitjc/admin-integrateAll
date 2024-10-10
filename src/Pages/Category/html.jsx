@@ -31,21 +31,12 @@ const Html = ({
   data,
   changestatus,
   isAllow,
-  total = { total },
+  total,
   sortClass,
   getRolesData,
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
-  const [roles, setRoles] = useState([]);
-
-  const getRolesList = () => {
-    ApiClient.get("role/listing").then((res) => {
-      if (res.success) {
-        setRoles(res.data);
-      }
-    });
-  };
   const columns = [
     {
       key: "name",
@@ -55,7 +46,14 @@ const Html = ({
         return <span className="capitalize">{row?.name}</span>;
       },
     },
-
+    {
+      key: "type",
+      name: "Type",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.type}</span>;
+      },
+    },
     {
       key: "status",
       name: "Status",
@@ -127,22 +125,6 @@ const Html = ({
       },
     },
   ];
-
-  /*  const getGroups = () => {
-    let f = {
-      page: 1,
-      count: 10,
-    };
-    ApiClient.get("api/group/list", f).then((res) => {
-      if (res.success) {
-        setGroup(res.data);
-      }
-    });
-  };
- */
-  useEffect(() => {
-    getRolesList();
-  }, []);
 
   return (
     <Layout>

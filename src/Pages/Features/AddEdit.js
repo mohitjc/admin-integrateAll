@@ -43,6 +43,10 @@ const AddEdit = () => {
       method = "put";
       url = shared.editApi;
     } else {
+
+      value.features=[{
+        name:form.name
+      }]      
       delete value.id;
     }
     loader(true);

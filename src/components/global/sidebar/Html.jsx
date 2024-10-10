@@ -69,13 +69,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/dashboard",
       key: "readDashboard",
     },
-    {
-      name: "Roles and Permissions",
-      icon: <img src="/assets/img/role.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/role-blue.svg" alt=""/>,
-      url: "/role",
-      key: "readRoles",
-    },
+    // {
+    //   name: "Roles and Permissions",
+    //   icon: <img src="/assets/img/role.svg" alt=""/>,
+    //   activeIcon: <img src="/assets/img/role-blue.svg" alt=""/>,
+    //   url: "/role",
+    //   key: "readRoles",
+    // },
     {
       name: "Staff",
       icon: <img src="/assets/img/usero.svg" alt=""/>,

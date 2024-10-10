@@ -50,7 +50,7 @@ const Users = () => {
     ApiClient.get(shared.listApi, filter).then((res) => {
       if (res.success) {
         let data=res.data.map((itm) => {
-          itm.id = itm._id;
+          // itm.id = itm._id;
           return itm;
         })
 
@@ -59,7 +59,7 @@ const Users = () => {
         ))
         setData(data);
 
-        setTotal(res.total);
+        setTotal(data.length);
       }
       setLoader(false);
     });

@@ -13,7 +13,7 @@ const Profile = () => {
   const [questions, setQuestions]: any = useState([]);
   const gallaryData = () => {
     loader(true);
-    ApiClient.get(`user/profile`, { id: user._id }).then((res) => {
+    ApiClient.get(`user/detail`, { id: user._id }).then((res) => {
       if (res.success) {
         setData(res.data);
       }

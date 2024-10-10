@@ -44,7 +44,7 @@ const Plans = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p,role:'staff' };
+    let filter = { ...filters, ...p };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
@@ -210,7 +210,7 @@ const Plans = () => {
   const isAllow = (key = "") => {
     let permissions = user?.role?.permissions?.[0];
     let value = permissions?.[key];
-    if(user.role?.name=='Admin') value=true
+    if(user.role=='admin') value=true
     // return true;
     return value;
   };

@@ -218,7 +218,72 @@ const AddEdit = () => {
               </div>
             </div>
          
-            {/* <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
+           
+                <div className="pprofile1 mb-10">
+         
+         <div>
+             <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+             <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+               Basic Information
+             </h4>
+           </div>
+           <div className="grid grid-cols-12 gap-4 p-4">
+             <div className="lg:col-span-6 col-span-12 mb-3">
+             <FormControl
+               type="text"
+               label="First Name"
+               value={form.firstName}
+               onChange={(e) => setform({ ...form, firstName: e })}
+               required
+             />
+           </div>
+
+           <div className="lg:col-span-6 col-span-12 mb-3">
+             <FormControl
+               type="text"
+               label="Last Name"
+               value={form.lastName}
+               onChange={(e) => setform({ ...form, lastName: e })}
+               required
+             />
+           </div>
+           <div className="lg:col-span-6 col-span-12 mb-3">
+               <FormControl
+                 type="phone"
+                 name="mobileNo"
+                 label="Mobile No"
+                 value={form.mobileNo}
+                 onChange={(e) => setform({ ...form, mobileNo: e })}
+                 required
+               />
+               {submitted && !form.mobileNo && (
+                 <div className="invalid-feedback d-block">
+                   Mobile is required
+                 </div>
+               )}
+             </div>
+             <div className="lg:col-span-6 col-span-12 mb-3">
+               <FormControl
+                 type="text"
+                 name="email"
+                 label="Email"
+                 value={form.email}
+                 onChange={(e) => setform({ ...form, email: e })}
+                 required
+                 disabled={id ? true : false}
+               />
+               {form.email && submitted && !inValidEmail && (
+                 <div className="invalid-feedback d-block">
+                   Please enter valid email
+                 </div>
+               )}
+             </div>
+             </div>
+
+
+           </div>
+
+           <div className="shadow-box w-full bg-white rounded-lg mb-6 mt-4">
                 <div className="scrollbar w-full overflow-auto">
                   <div class="table_section tablepadding">
                     <p className="text-xl font-semibold text-[#111827] px-4 py-3">
@@ -317,70 +382,7 @@ const AddEdit = () => {
                     </table>
                   </div>
                 </div>
-              </div> */}
-                <div className="pprofile1 mb-10">
-         
-         <div>
-             <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-             <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
-               Basic Information
-             </h4>
-           </div>
-           <div className="grid grid-cols-12 gap-4 p-4">
-             <div className="lg:col-span-6 col-span-12 mb-3">
-             <FormControl
-               type="text"
-               label="First Name"
-               value={form.firstName}
-               onChange={(e) => setform({ ...form, firstName: e })}
-               required
-             />
-           </div>
-
-           <div className="lg:col-span-6 col-span-12 mb-3">
-             <FormControl
-               type="text"
-               label="Last Name"
-               value={form.lastName}
-               onChange={(e) => setform({ ...form, lastName: e })}
-               required
-             />
-           </div>
-           <div className="lg:col-span-6 col-span-12 mb-3">
-               <FormControl
-                 type="phone"
-                 name="mobileNo"
-                 label="Mobile No"
-                 value={form.mobileNo}
-                 onChange={(e) => setform({ ...form, mobileNo: e })}
-                 required
-               />
-               {submitted && !form.mobileNo && (
-                 <div className="invalid-feedback d-block">
-                   Mobile is required
-                 </div>
-               )}
-             </div>
-             <div className="lg:col-span-6 col-span-12 mb-3">
-               <FormControl
-                 type="text"
-                 name="email"
-                 label="Email"
-                 value={form.email}
-                 onChange={(e) => setform({ ...form, email: e })}
-                 required
-                 disabled={id ? true : false}
-               />
-               {form.email && submitted && !inValidEmail && (
-                 <div className="invalid-feedback d-block">
-                   Please enter valid email
-                 </div>
-               )}
-             </div>
-             </div>
-
-
-           </div>
+              </div>
             <div className="text-right">
             
           

@@ -220,7 +220,7 @@ const AddEdit = () => {
             
           </div>
 
-          <div className="pprofile1 mb-10">
+          {/* <div className="pprofile1 mb-10">
                 <div>
                   <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
                   <IoLocationSharp className="me-3 bg-[#e9f0f8] text-[40px] p-2 rounded-md text-[#1E5DBC]" />
@@ -273,7 +273,7 @@ const AddEdit = () => {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="text-right">
               <button

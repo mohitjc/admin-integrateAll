@@ -4,9 +4,9 @@ const shared = {
   addTitle: "User",
   url: "customers",
   addApi: "user/add",
-  editApi: "user/profile",
-  detailApi: "user/profile",
-  listApi: "user/listing",
+  editApi: "user/updateDetails",
+  detailApi: "user/detail",
+  listApi: "user/getListing",
   statusApi: "user/status/change",
   deleteApi: "user/delete",
 };

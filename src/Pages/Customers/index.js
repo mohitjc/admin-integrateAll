@@ -49,7 +49,7 @@ const Users = () => {
       if (res.success) {
         setData(
           res.data.map((itm) => {
-            itm.id = itm._id;
+            // itm.id = itm._id;
             return itm;
           })
         );
@@ -214,7 +214,7 @@ const Users = () => {
   const isAllow = (key = "") => {
     let permissions = user?.role?.permissions?.[0];
     let value = permissions?.[key];
-    if(user.role?.name=='Admin') value=true
+    if(user.role=='admin') value=true
     // return true;
     return value;
   };
