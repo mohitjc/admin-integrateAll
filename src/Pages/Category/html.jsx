@@ -47,11 +47,11 @@ const Html = ({
       },
     },
     {
-      key: "type",
+      key: "categoryType",
       name: "Type",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.type}</span>;
+        return <span className="capitalize">{row?.categoryType}</span>;
       },
     },
     {

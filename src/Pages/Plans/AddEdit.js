@@ -105,16 +105,30 @@ const AddEdit = () => {
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
           let value = res.data;
+          let pricing=res.data.pricing
           let payload = form;
           payload.id = id;
           Object.keys(payload).map((itm) => {
             payload[itm] = value[itm];
           });
 
+          let monthlyAmount=pricing.find(itm=>itm?.interval_count==1)?.unit_amount||0
+          let threeMonthAmount=pricing.find(itm=>itm?.interval_count==3)?.unit_amount||0
+          let sixMonthAmount=pricing.find(itm=>itm?.interval_count==6)?.unit_amount||0
+          let yearlyAmount=pricing.find(itm=>itm?.interval_count==12)?.unit_amount||0
+
           payload.id = id;
           setform({
             ...payload,
+            monthlyAmount,
+            threeMonthAmount,
+            sixMonthAmount,
+            yearlyAmount
           });
+
+          console.log("value",value)
+
+          setSFeatures(value.feature.map(itm=>String(itm)))
 
           let img = images;
           Object.keys(img).map((itm) => {

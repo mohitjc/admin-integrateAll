@@ -14,7 +14,7 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
-    type:''
+    categoryType:''
   });
   const [images, setImages] = useState({ image: "" });
   const history = useNavigate();
@@ -133,10 +133,10 @@ const AddEdit = () => {
                 <FormControl
                   type="select"
                   label="Type"
-                  value={form.type}
+                  value={form.categoryType}
                   options={shared.types}
                   theme="search"
-                  onChange={(e) => setform({ ...form, type: e })}
+                  onChange={(e) => setform({ ...form, categoryType: e })}
                   required
                 />
               </div>

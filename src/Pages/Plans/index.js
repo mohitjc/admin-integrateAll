@@ -52,7 +52,7 @@ const Plans = () => {
         setData(
           res.data
             .map((itm) => {
-              itm.id = itm._id;
+              // itm.id = itm._id;
               return itm;
             })
         );
