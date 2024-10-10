@@ -54,34 +54,32 @@ const AddEdit = () => {
         "interval": "month",
         "interval_count": 1,
         "currency": "usd",
-        "unit_amount": form.monthlyAmount
+        "unit_amount": Number(form.monthlyAmount)
       },
       {
         "interval": "month",
         "interval_count": 3,
         "currency": "usd",
-        "unit_amount": form.threeMonthAmount
+        "unit_amount": Number(form.threeMonthAmount)
       },
       {
         "interval": "month",
         "interval_count": 6,
         "currency": "usd",
-        "unit_amount": form.sixMonthAmount
+        "unit_amount": Number(form.sixMonthAmount)
       },
       {
         "interval": "month",
         "interval_count": 12,
         "currency": "usd",
-        "unit_amount": form.yearlyAmount
+        "unit_amount": Number(form.yearlyAmount)
       }
     ]
     value.monthlyPrice={
-      usd:form.monthlyAmount
+      usd:Number(form.monthlyAmount)
     }
 
     console.log("value",value)
-
-    return
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {
@@ -94,7 +92,7 @@ const AddEdit = () => {
 
 
   const getFeatures=()=>{
-    ApiClient.get('category/listing',{status:'active'}).then(res=>{
+    ApiClient.get('feature/get-feature-list',{status:'active'}).then(res=>{
       if(res.success){
         setFeatures(res.data)
       }
@@ -138,17 +136,17 @@ const AddEdit = () => {
     }
   };
 
-  const selectF=(e)=>{
-    let checked=e.target.checked
-    let value=e.target.value
-let arr=sfeatures
-if(checked){
-  arr.push(value)
-}else{
-  arr=arr.filter(itm=>itm!=value)
-}
-
-setSFeatures([...arr])
+  const selectF = (e) => {
+    let checked = e.target.checked
+    let value = e.target.value
+    let arr = sfeatures
+    if (checked) {
+      arr.push(value)
+    } else {
+      arr = arr.filter(itm => itm != value)
+    }
+console.log("arr",arr)
+    setSFeatures([...arr])
   }
 
   return (
@@ -213,37 +211,37 @@ setSFeatures([...arr])
                 />
               </div> */}
               <div className="col-span-full">
-                <div className="grid grid-cols-12 gap-4">
-                  <div className="lg:col-span-6 col-span-12 mb-3">
+                <div className="grid grid-cols-4 gap-3">
+                  <div className="">
                     <FormControl
-                      type="text"
+                      type="number"
                       label="Monthly Price"
                       value={form.monthlyAmount}
                       onChange={(e) => setform({ ...form, monthlyAmount: e })}
                       required
                     />
                   </div>
-                  <div className="lg:col-span-6 col-span-12 mb-3">
+                  <div className="">
                     <FormControl
-                      type="text"
+                      type="number"
                       label="3 Months Price"
                       value={form.threeMonthAmount}
                       onChange={(e) => setform({ ...form, threeMonthAmount: e })}
                       
                     />
                   </div>
-                  <div className="lg:col-span-6 col-span-12 mb-3">
+                  <div className="">
                     <FormControl
-                      type="text"
+                      type="number"
                       label="6 Months Price"
                       value={form.sixMonthAmount}
                       onChange={(e) => setform({ ...form, sixMonthAmount: e })}
                       
                     />
                   </div>
-                  <div className="lg:col-span-6 col-span-12 mb-3">
+                  <div className="">
                     <FormControl
-                      type="text"
+                      type="number"
                       label="Yearly Price"
                       value={form.yearlyAmount}
                       onChange={(e) => setform({ ...form, yearlyAmount: e })}
@@ -257,7 +255,7 @@ setSFeatures([...arr])
                 <div>
                   {features.map(itm=>{
                     return  <label class="flex items-center mb-4" key={itm.id}>
-                    <input onChange={e=>selectF(e)} checked={sfeatures.includes(itm.id)} value={itm.id} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                    <input onChange={e=>selectF(e)} checked={sfeatures.includes(String(itm.id))} value={itm.id} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                     <span class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{itm.name}</span>
                   </label>
                   })}
