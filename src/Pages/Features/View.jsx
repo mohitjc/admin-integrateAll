@@ -55,35 +55,19 @@ const View = () => {
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 ">
-              <div>
+                <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                  <img src ="/assets/img/job-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
                 Basic Information
               </h4>
             </div>
                <div className="grid grid-cols-12 p-4">
                <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Invoice Number:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Name:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
-                    {data?.invoiceNumber}
-                  </p>
-                </div>
-                <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Client:</label>
-                  <p className="text-[14px] text-black font-medium capitalize">
-                    {data?.client?.fullName}
-                  </p>
-                </div>
-                <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Job:</label>
-                  <p className="text-[14px] text-black font-medium capitalize">
-                    {data?.jobId?.title}
-                  </p>
-                </div>
-                <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Project:</label>
-                  <p className="text-[14px] text-black font-medium capitalize">
-                    {data?.property?.name}
+                    {" "}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                    {data && data.name}
                   </p>
                 </div>
                </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/global/layout";
+import "./style.scss";
 import { Link } from "react-router-dom";
-import { Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import { FiEdit3, FiPlus } from "react-icons/fi";
 import { BsTrash3 } from "react-icons/bs";
 import Table from "../../components/Table";
@@ -13,7 +14,7 @@ import ApiClient from "../../methods/api/apiClient";
 import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { LiaEdit, LiaTrashAlt } from "react-icons/lia";
-import { LuImport } from "react-icons/lu";
+import environment from "../../environment";
 const Html = ({
   sorting,
   filter,
@@ -32,47 +33,29 @@ const Html = ({
   isAllow,
   total = { total },
   sortClass,
+  getRolesData,
   uploadFile,
 }) => {
   const user = useSelector((state) => state.user);
+  const [roles, setRoles] = useState([]);
+
+  const getRolesList = () => {
+    ApiClient.get("role/listing").then((res) => {
+      if (res.success) {
+        setRoles(res.data);
+      }
+    });
+  };
   const columns = [
     {
-      key: "fullName",
-      name: "Full Name",
+      key: "name",
+      name: "Name",
       sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.fullName}</span>;
+        return <span className="capitalize">{row?.name}</span>;
       },
     },
-    {
-      key: "email",
-      name: "Email",
-      sort: true,
-      render: (row) => {
-        return <span className="">{row?.email}</span>;
-      },
-    },
-    // {
-    //   key: "mobileNo",
-    //   name: "Mobile No",
-    //   render: (row) => {
-    //     return (
-    //       <>
-    //         <p className="capitalize">
-    //           {row?.mobileNo ? "+" : ""}
-    //           {row?.mobileNo}
-    //         </p>
-    //       </>
-    //     );
-    //   },
-    // },
-    /* {
-      key: "timezone",
-      name: "Timezone",
-      render: (row) => {
-        return <>{row?.timezone}</>;
-      },
-    }, */
+
     {
       key: "status",
       name: "Status",
@@ -157,9 +140,9 @@ const Html = ({
     });
   };
  */
-  //   useEffect(() => {
-  //       getGroups()
-  //   }, [])
+  useEffect(() => {
+    getRolesList();
+  }, []);
 
   return (
     <Layout>
@@ -265,16 +248,8 @@ const Html = ({
               }}
               options={statusModel.list}
             />
-            {/* <SelectDropdown
-                            id="statusDropdown"
-                            displayValue="name"
-                            placeholder='All Groups'
-                            intialValue={filters.groupId}
-                            theme="search"
-                            result={e => filter({ groupId: e.value })}
-                            options={groups}
-                        /> */}
-            {filters.status || filters.groupId ? (
+          
+            {filters.status? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"
@@ -291,8 +266,10 @@ const Html = ({
 
         {!loaging ? (
           <>
-           <div className="px-4 pb-4">
-          <Table
+          <div className="px-4 pb-4">
+
+          
+            <Table
               className=""
               data={data}
               columns={columns}
@@ -309,7 +286,7 @@ const Html = ({
                 if (e.event == "count") count(e.value);
               }}
             />
-          </div>
+            </div>
           </>
         ) : (
           <></>

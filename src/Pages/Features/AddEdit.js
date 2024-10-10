@@ -13,7 +13,8 @@ import ImageUpload from "../../components/common/ImageUpload";
 const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
-    title: "",
+    name: "",
+    // type:''
   });
   const [images, setImages] = useState({ image: "" });
   const history = useNavigate();
@@ -111,10 +112,10 @@ const AddEdit = () => {
               </p>
             </div>
           </div>
-          <div className="pprofile1 mb-10">
+          <div className="pprofile1 mb-10 ">
             <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                  <img src ="/assets/img/job-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
                 Basic Information
               </h4>
             </div>
@@ -123,13 +124,24 @@ const AddEdit = () => {
                 <FormControl
                   type="text"
                   label="Name"
-                  value={form.title}
-                  onChange={(e) => setform({ ...form, title: e })}
+                  value={form.name}
+                  onChange={(e) => setform({ ...form, name: e })}
                   required
                 />
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
-                <label className="mb-2 block">Image</label>
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Type"
+                  value={form.type}
+                  options={shared.types}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, type: e })}
+                  required
+                />
+              </div> */}
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+                <label className="block mb-2">Image</label>
 
                 <ImageUpload
                   model="users"
@@ -138,9 +150,8 @@ const AddEdit = () => {
                   multiple={false}
                   label="Choose Images"
                 />
-              </div>
+              </div> */}
             </div>
-            
           </div>
           <div className="text-right">
               <button

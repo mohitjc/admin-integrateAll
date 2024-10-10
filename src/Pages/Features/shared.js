@@ -13,10 +13,10 @@ const types=[
   },
 ]
 const shared = {
-  check: "Category",
-  title: "Categories",
-  addTitle: "Category",
-  url: "category",
+  check: "Feature",
+  title: "Features",
+  addTitle: "Feature",
+  url: "feature",
   types:types,
   addApi: "category/add",
   editApi: "category/update",

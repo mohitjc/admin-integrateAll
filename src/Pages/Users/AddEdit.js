@@ -11,7 +11,6 @@ import timezoneModel from "../../models/timezone.model";
 import shared from "./shared";
 import datepipeModel from "../../models/datepipemodel";
 import { useSelector } from "react-redux";
-import PhoneInput from "react-phone-input-2";
 import {
   rolePermission,
   rolePermissions,
@@ -29,7 +28,7 @@ const AddEdit = () => {
     firstName: "",
     lastName: "",
     email: "",
-    mobileNo: "44",
+    mobileNo: "",
     role: environment.staffRoleId,
     loginPannel: "",
   });

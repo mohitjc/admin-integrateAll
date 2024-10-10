@@ -20,7 +20,7 @@ const AddEdit = () => {
     firstName: "",
     lastName: "",
     email: "",
-    mobileNo: "44",
+    mobileNo: "",
     dob: "",
     address: "",
     address2: "",
@@ -195,7 +195,7 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Company"
@@ -203,7 +203,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, company: e })}
                   required
                 />
-              </div>
+              </div> */}
               {/* <div className="mb-3">
                 <FormControl
                   type="date"

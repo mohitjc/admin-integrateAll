@@ -9,7 +9,7 @@ import axios from "axios";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-const Invoice = () => {
+const Plans = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
   const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
@@ -44,7 +44,7 @@ const Invoice = () => {
 
   const getData = (p = {}) => {
     setLoader(true);
-    let filter = { ...filters, ...p};
+    let filter = { ...filters, ...p,role:'staff' };
 
 
     ApiClient.get(shared.listApi, filter).then((res) => {
@@ -65,7 +65,7 @@ const Invoice = () => {
 
   const clear = () => {
     let f = {
-      client: "",
+      groupId: "",
       search: "",
       status: "",
       page: 1,
@@ -250,4 +250,4 @@ const Invoice = () => {
   );
 };
 
-export default Invoice;
+export default Plans;

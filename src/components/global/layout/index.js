@@ -47,12 +47,12 @@ const Layout=memo(function Layout ({ children }) {
   };
 
   const logowhite = () => {
-    let value = "/assets/img/logo.svg";
+    let value = "/assets/img/logo.png";
     return value;
   };
 
   const logos = () => {
-    let value = "/assets/img/logo-small.png";
+    let value = "/assets/img/logo.png";
     return value;
   };
 

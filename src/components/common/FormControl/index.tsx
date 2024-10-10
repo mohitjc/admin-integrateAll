@@ -115,9 +115,9 @@ export default function FormControl({
         ) : type == "phone" ? (
           <>
             <PhoneInput
-              country="uk"
+              country="us"
               value={value}
-              placeholder="+44 0000000000"
+              // placeholder="+44 0000000000"
               enableSearch={true}
               onChange={(e) => onChange(e)}
               countryCodeEditable={true}

@@ -8,46 +8,21 @@ export const rolePermissions = [
     key: "staff",
   },
   {
-    name: "Client",
+    name: "Users",
     key: "Customers",
-  },
-  {
-    name: "Contractors",
-    key: "Contractor",
-  },
-  {
-    name: "Material",
-    key: "Materials",
   },
   {
     name: "Categories",
     key: "Category",
   },
   {
-    name: "Suppliers",
-    key: "Supplier",
+    name: "Plans",
+    key: "Plan",
   },
   {
-    name: "Projects",
-    key: "Project",
-    
+    name: "Plan Features",
+    key: "Feature",
   },
-  {
-    name: "Skills",
-    key: "Skill",
-  },
-  {
-    name: "Jobs",
-    key: "Job",
-  },
-  // {
-  //   name: "Content",
-  //   key: "Content",
-  // },
-  // {
-  //   name: "Assignment",
-  //   key: "Assignment",
-  // },
 ];
 
 export const rolePermission = [

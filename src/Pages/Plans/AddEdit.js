@@ -14,8 +14,10 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
-    type:''
+    // type:''
   });
+  const [features, setFeatures] = useState([]);
+  const [sfeatures, setSFeatures] = useState([]);
   const [images, setImages] = useState({ image: "" });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -37,6 +39,7 @@ const AddEdit = () => {
     let value = {
       ...form,
       ...images,
+      feature:sfeatures,
       id: id,
     };
     if (id) {
@@ -45,6 +48,40 @@ const AddEdit = () => {
     } else {
       delete value.id;
     }
+
+    value.pricing=[
+      {
+        "interval": "month",
+        "interval_count": 1,
+        "currency": "usd",
+        "unit_amount": form.monthlyAmount
+      },
+      {
+        "interval": "month",
+        "interval_count": 3,
+        "currency": "usd",
+        "unit_amount": form.threeMonthAmount
+      },
+      {
+        "interval": "month",
+        "interval_count": 6,
+        "currency": "usd",
+        "unit_amount": form.sixMonthAmount
+      },
+      {
+        "interval": "month",
+        "interval_count": 12,
+        "currency": "usd",
+        "unit_amount": form.yearlyAmount
+      }
+    ]
+    value.monthlyPrice={
+      usd:form.monthlyAmount
+    }
+
+    console.log("value",value)
+
+    return
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {
@@ -54,6 +91,16 @@ const AddEdit = () => {
       loader(false);
     });
   };
+
+
+  const getFeatures=()=>{
+    ApiClient.get('category/listing',{status:'active'}).then(res=>{
+      if(res.success){
+        setFeatures(res.data)
+      }
+    })
+  }
+
   useEffect(() => {
     if (id) {
       loader(true);
@@ -80,6 +127,7 @@ const AddEdit = () => {
         loader(false);
       });
     }
+    getFeatures()
   }, [id]);
 
   const imageResult = (e, key) => {
@@ -89,6 +137,19 @@ const AddEdit = () => {
       setSubmitted(false);
     }
   };
+
+  const selectF=(e)=>{
+    let checked=e.target.checked
+    let value=e.target.value
+let arr=sfeatures
+if(checked){
+  arr.push(value)
+}else{
+  arr=arr.filter(itm=>itm!=value)
+}
+
+setSFeatures([...arr])
+  }
 
   return (
     <>
@@ -115,7 +176,7 @@ const AddEdit = () => {
           <div className="pprofile1 mb-10 ">
             <div>
               <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
                 Basic Information
               </h4>
             </div>
@@ -129,7 +190,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
                   label="Type"
@@ -139,8 +200,8 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, type: e })}
                   required
                 />
-              </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
+              </div> */}
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
                 <label className="block mb-2">Image</label>
 
                 <ImageUpload
@@ -150,17 +211,68 @@ const AddEdit = () => {
                   multiple={false}
                   label="Choose Images"
                 />
+              </div> */}
+              <div className="col-span-full">
+                <div className="grid grid-cols-12 gap-4">
+                  <div className="lg:col-span-6 col-span-12 mb-3">
+                    <FormControl
+                      type="text"
+                      label="Monthly Price"
+                      value={form.monthlyAmount}
+                      onChange={(e) => setform({ ...form, monthlyAmount: e })}
+                      required
+                    />
+                  </div>
+                  <div className="lg:col-span-6 col-span-12 mb-3">
+                    <FormControl
+                      type="text"
+                      label="3 Months Price"
+                      value={form.threeMonthAmount}
+                      onChange={(e) => setform({ ...form, threeMonthAmount: e })}
+                      
+                    />
+                  </div>
+                  <div className="lg:col-span-6 col-span-12 mb-3">
+                    <FormControl
+                      type="text"
+                      label="6 Months Price"
+                      value={form.sixMonthAmount}
+                      onChange={(e) => setform({ ...form, sixMonthAmount: e })}
+                      
+                    />
+                  </div>
+                  <div className="lg:col-span-6 col-span-12 mb-3">
+                    <FormControl
+                      type="text"
+                      label="Yearly Price"
+                      value={form.yearlyAmount}
+                      onChange={(e) => setform({ ...form, yearlyAmount: e })}
+                      
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-full">
+                <h5>Features</h5>
+                <div>
+                  {features.map(itm=>{
+                    return  <label class="flex items-center mb-4" key={itm.id}>
+                    <input onChange={e=>selectF(e)} checked={sfeatures.includes(itm.id)} value={itm.id} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                    <span class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{itm.name}</span>
+                  </label>
+                  })}
+                </div>
               </div>
             </div>
           </div>
           <div className="text-right">
-              <button
-                type="submit"
-                className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
-              >
-                Save
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
+            >
+              Save
+            </button>
+          </div>
         </form>
       </Layout>
     </>

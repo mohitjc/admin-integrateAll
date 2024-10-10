@@ -176,7 +176,7 @@ const Login = () => {
             >
               <Link  to="/" className=" z-[99] mb-10 block mx-auto text-center">
                     <img
-                      src="/assets/img/logo.svg"
+                      src="/assets/img/logo.png"
                       className="   mx-auto"
                       alt="logo"
                     />

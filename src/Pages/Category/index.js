@@ -65,7 +65,7 @@ const Users = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      type: "",
       search: "",
       status: "",
       page: 1,
