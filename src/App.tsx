@@ -68,6 +68,10 @@ function App() {
     { url: "/category/edit/:id", path: "Category/AddEdit" },
     { url: "/category/add", path: "Category/AddEdit" },
     { url: "/category/detail/:id", path: "Category/View" },
+    { url: "/categorytype", path: "CategoryType" },   //categpry type routes
+    { url: "/categorytype/edit/:id", path: "CategoryType/AddEdit" },
+    { url: "/categorytype/add", path: "CategoryType/AddEdit" },
+    { url: "/categorytype/detail/:id", path: "CategoryType/View" },
     { url: "/", element: <Navigate to="/login" /> },
     { url: "/chat", path: "Chat" },
     { url: "/content", path: "Content" },
