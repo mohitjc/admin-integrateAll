@@ -22,7 +22,6 @@ const View = () => {
       loader(false);
       if (res.success) {
         let data=res.data
-        data.permissions=data.permissions?.[0]
         setData(data);
       }
     });
