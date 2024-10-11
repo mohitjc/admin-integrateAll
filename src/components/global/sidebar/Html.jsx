@@ -116,31 +116,31 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         },
       ],
     },
-    // {
-    //   name: "Geo",
-    //   icon: <img src="/assets/img/client.svg" alt=""/>,
-    //   activeIcon: <img src="/assets/img/user-blue.svg" alt=""/>,
-    //   menu: [
-    //     {
-    //       name: "City",
-    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-    //       url: "/city",
-    //       key: "readCustomers",
-    //     },
-    //     {
-    //       name: "State",
-    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-    //       url: "/state",
-    //       key: "readProject",
-    //     },
-    //     {
-    //       name: "County",
-    //       icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-    //       url: "/county",
-    //       key: "readProject",
-    //     },
-    //   ],
-    // },
+    {
+      name: "Geo",
+      icon: <img src="/assets/img/client.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/user-blue.svg" alt=""/>,
+      menu: [
+        {
+          name: "City",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/city",
+          key: "readCustomers",
+        },
+        {
+          name: "State",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/state",
+          key: "readProject",
+        },
+        {
+          name: "County",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/county",
+          key: "readProject",
+        },
+      ],
+    },
     // {
     //   name: "Product",
     //   icon: <img src="/assets/img/job.svg" alt="" />,
