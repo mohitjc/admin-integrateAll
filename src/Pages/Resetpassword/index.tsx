@@ -8,6 +8,7 @@ import AuthLayout from "../../components/AuthLayout";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 
 const Resetpassword = () => {
@@ -82,12 +83,20 @@ const Resetpassword = () => {
           className=" bg-white border border-[#00000017] p-[24px] w-full rounded-[30px] shadow-c"
           onSubmit={hendleSubmit}
         >
+           <Link  to="/" className=" z-[99] mb-10 block mx-auto text-center">
+                    <img
+                      src="/assets/img/logo.png"
+                      className="   mx-auto"
+                      alt="logo"
+                    />
+                  </Link>
+                  
           <div className=" mb-4">
-            <h3 className="text-[30px] font-semibold text-[#333] ">
+            <h3 className="text-[22px] font-[600] ">
               New Password
             </h3>
             <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
-            <p className="text-[16px] font-normal text-[#333] mt-4 mb-4">
+            <p className="text-[14px] font-normal text-[grey] mt-2 mb-4">
               Please create a new password that you don’t use on any other site.
             </p>
           </div>
@@ -179,7 +188,7 @@ const Resetpassword = () => {
           <div className=" mt-6">
             <button
               type="submit"
-              className="w-full text-white bg-[#1E5DBC]   focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-4"
+              className="w-full text-white bg-[#1E5DBC]   focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-full text-sm px-5 py-2.5 text-center  mb-4"
             >
               Save
             </button>

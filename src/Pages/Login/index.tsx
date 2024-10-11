@@ -184,7 +184,7 @@ const Login = () => {
                     />
                   </Link>
               <div className="">
-                <h1 className="text-[22px] font-semibold text-[#333] ">
+                <h1 className="text-[22px] font-[600]">
                   Login to your account
                 </h1>
                 <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>

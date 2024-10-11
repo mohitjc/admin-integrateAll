@@ -6,7 +6,10 @@ form.p-5.rounded.shadow {
     height: 100%;
 }
 
-
+img.mx-auto {
+    width: 150px;
+    object-fit: cover;
+}
 
 
 .loginimg {
