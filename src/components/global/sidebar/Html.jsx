@@ -91,7 +91,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/category",
     },
     {
-      name: "Content",
+      name: "Static Pages",
       activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
       activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,

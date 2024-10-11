@@ -16,9 +16,11 @@ const AddEditFaq = () => {
   const [form, setform] = useState({
     question: "",
     answer: "", 
+    category:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
+  const [categories, setCategories] = useState([]);
   const user = useSelector((state) => state.user);
  
 
@@ -59,7 +61,13 @@ const AddEditFaq = () => {
     });
   };
 
-
+const getCategories=()=>{
+  ApiClient.get('category/listing',{status:'active',categoryType:'FAQ'}).then(res=>{
+    if(res.success){
+      setCategories(res.data)
+    }
+  })
+}
 
   useEffect(() => {
     if (id) {
@@ -71,6 +79,7 @@ const AddEditFaq = () => {
         loader(false);
       });
     }
+    getCategories()
   }, [id]);
 
 
@@ -78,8 +87,7 @@ const AddEditFaq = () => {
     <>
       <Layout>
         <form onSubmit={handleSubmit}>
-          <div className="pprofile1">
-            <div className="flex items-center mb-8">
+        <div className="flex items-center mb-8">
               <Tooltip placement="top" title="Back">
                 <Link
                   to={`/${shared.url}`}
@@ -94,6 +102,7 @@ const AddEditFaq = () => {
             
               </div>
             </div>
+          <div className="pprofile1 p-[15px]">
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className=" mb-3">
@@ -105,6 +114,17 @@ const AddEditFaq = () => {
                   required
                 />
               </div>
+              <div className=" mb-3">
+                <FormControl
+                  type="select"
+                  label="Category"
+                  value={form.category}
+                  theme="search"
+                  options={categories}
+                  onChange={(e) => setform({ ...form, category: e })}
+                  required
+                />
+              </div> 
               <div className=" mb-3">
                 <FormControl
                   type="text"
