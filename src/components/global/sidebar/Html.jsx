@@ -91,6 +91,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       url: "/category",
     },
     {
+      name: "Content",
+      activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
+      icon: <img src="/assets/img/contractor.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
+      url: "/content",
+    },
+    {
       name: "Users",
       icon: <img src="/assets/img/job.svg" alt="" />,
       activeIcon: <img src="/assets/img/job-blue.svg" alt=""/>,

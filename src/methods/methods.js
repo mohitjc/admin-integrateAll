@@ -25,17 +25,17 @@ const generatekeysArr = (arr, key = "typeofresult") => {
   };
 };
 
-const userImg = (img,modal='img') => {
+const userImg = (img,modal='users') => {
   let value = "/assets/img/person.jpg";
   // if (img) value = environment.api + 'img/' + img
-  if (img) value = `${environment.api}/img/${img}`;
+  if (img) value = `${environment.api}img/${modal}/${img}`;
   return value;
 };
 
-const noImg = (img, modal = "img") => {
+const noImg = (img, modal = "users") => {
   let value = "/assets/img/placeholder.png";
   // if (img) value = environment.api + 'img/' + img
-  if (img) value = `${environment.api}img/${img}`;
+  if (img) value = `${environment.api}img/${modal}/${img}`;
   return value;
 };
 
