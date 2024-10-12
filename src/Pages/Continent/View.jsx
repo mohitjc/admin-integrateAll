@@ -62,21 +62,13 @@ const View = () => {
             </div>
                <div className="grid grid-cols-12 p-4">
                <div className="col-span-6 flex flex-col mb-5">
-               <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Continent Name:</label>
-                  <p className="text-[14px] text-black font-medium capitalize">
-                    {" "}
-                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.continentData && data.continentData?.name}
-                  </p>
-                </div>
-                <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Country Name:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Continent Name:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.name}
                   </p>
-                  </div>
+                </div>
                </div>
               </div>
              

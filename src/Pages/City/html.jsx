@@ -35,6 +35,8 @@ const Html = ({
   sortClass,
   getRolesData,
   uploadFile,
+  handleFilter,
+  stateOptions
 }) => {
   const user = useSelector((state) => state.user);
   const columns = [
@@ -49,12 +51,27 @@ const Html = ({
     {
       key: "country",
       name: "Country Name",
-      // sort: true,
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.countryData?.name}</span>;
+      },
+    },
+    {
+      key: "state",
+      name: "State Name",
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.regionData?.name}</span>;
+      },
+    },
+    {
+      key: "name",
+      name: "City Name",
+      sort: true,
       render: (row) => {
         return <span className="capitalize">{row?.name}</span>;
       },
     },
-
 
     {
       key: "status",
@@ -233,7 +250,14 @@ const Html = ({
               }}
               options={statusModel.list}
             />
-          
+           <SelectDropdown
+              displayValue="name"
+              placeholder="State"
+              intialValue={filters.region}
+              result={(e) => { handleFilter(e.value, 'region') }}
+              theme="search"
+              options={stateOptions}
+            />
             {filters.status? (
               <>
                 <button

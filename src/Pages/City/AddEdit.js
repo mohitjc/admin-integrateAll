@@ -15,13 +15,14 @@ const AddEdit = () => {
   const [form, setform] = useState({
     name: "",
     continent:"",
-    currency:"",
-    flag:""
+    country:"",
+    region:""
+    // type:''
   });
   const [images, setImages] = useState({ image: "" });
   const [continentOptions, setContinentOptions] = useState([])
-  console.log(continentOptions)
-
+  const [countryOptions, setCountryOptions] = useState([])
+  const [stateOptions, setStateOptions] = useState([])
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
@@ -29,20 +30,6 @@ const AddEdit = () => {
     // { key: "mobileNo", required: true },
     // { key: "email", required: true, message: "Email is required", email: true },
   ];
-
-  const getData = (p = {}) => {
-    ApiClient.get("address/continents/list").then((res) => {
-      if (res.success) {
-        const data = res?.data?.map((data)=>{
-          return{
-            "id":data?.id || data?._id,
-            "name" : data?.name
-          }
-        })
-        setContinentOptions(data);
-      }
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,7 +50,7 @@ const AddEdit = () => {
       url = shared.editApi;
     } else {
 
-      // value.name=[{
+      // value.features=[{
       //   name:form.name
       // }]      
       delete value.id;
@@ -77,30 +64,50 @@ const AddEdit = () => {
       loader(false);
     });
   };
-  useEffect(() => {
+  // useEffect(() => {
+  //   if (id) {
+  //     loader(true);
+  //     ApiClient.get(shared.detailApi, { id }).then((res) => {
+  //       if (res.success) {
+  //         let value = res.data;
+  //         let payload = form;
+  //         payload.id = id;
+  //         Object.keys(payload).map((itm) => {
+  //           payload[itm] = value[itm];
+  //         });
+
+  //         payload.id = id;
+  //         setform({
+  //           ...payload,
+  //         });
+
+  //         let img = images;
+  //         Object.keys(img).map((itm) => {
+  //           img[itm] = value[itm];
+  //         });
+  //         setImages({ ...img });
+  //       }
+  //       loader(false);
+  //     });
+  //   }
+  // }, [id]);
+
+    useEffect(() => {
     if (id) {
-      loader(true);
       ApiClient.get(shared.detailApi, { id }).then((res) => {
-        if (res.success) {
-          let value = res.data;
-          let payload = form;
-          payload.id = id;
-          Object.keys(payload).map((itm) => {
-            payload[itm] = value[itm];
-          });
-
-          payload.id = id;
+        console.log(res,"response")
+        if (res.success && Array.isArray(res.data)) {
+          const { name, continent, country, region } = res.data[0]; 
           setform({
-            ...payload,
+            name,
+            continent: continent,
+            country: country,
+            region:region,
+            id:id
           });
-
-          let img = images;
-          Object.keys(img).map((itm) => {
-            img[itm] = value[itm];
-          });
-          setImages({ ...img });
+          handleCountryData(continent);
+          handleStateData(country);
         }
-        loader(false);
       });
     }
   }, [id]);
@@ -113,9 +120,60 @@ const AddEdit = () => {
     }
   };
 
-  useEffect(()=>{
-    getData()
-  },[])
+  const getData = (p = {}) => {
+    ApiClient.get("address/continents/list").then((res) => {
+      if (res.success) {
+        const data = res?.data?.map((data)=>{
+          return{
+            "id":data?.id || data?._id,
+            "name" : data?.name
+          }
+        })
+        setContinentOptions(data);
+      }
+    });
+  };
+
+  const handleCountryData = (selectedContinent) => {
+    if (selectedContinent) {
+      ApiClient.get("address/country/list",{continent:selectedContinent}).then((res) => {
+        if (res.success) {
+          const data = res?.data?.map((data)=>{
+            return{
+              "id":data?.id || data?._id,
+              "name" : data?.name
+            }
+          })
+          setCountryOptions(data);
+        }
+      });
+    } else {
+      setCountryOptions([])
+    }
+      }
+
+      const handleStateData = (selectedCountry) => {
+        if (selectedCountry){
+          ApiClient.get("address/region/list",{country:selectedCountry}).then((res) => {
+            if (res.success) {
+              const data = res?.data?.map((data)=>{
+                return{
+                  "id":data?.id || data?._id,
+                  "name" : data?.name
+                }
+              })
+              setStateOptions(data);
+            }
+          });
+        } else {
+          setStateOptions([])
+        }
+          }
+    
+      useEffect(() => {
+        getData()
+      },[])
+
   return (
     <>
       <Layout>
@@ -153,20 +211,52 @@ const AddEdit = () => {
                   value={form.continent}
                   options={continentOptions}
                   theme="search"
-                  onChange={(e) => setform({ ...form, continent: e })}
+                  onChange={(e) => {setform({ ...form, continent: e }); handleCountryData(e)}}
+                  required
+                />
+              </div>
+            <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Select Country"
+                  value={form.country}
+                  options={countryOptions}
+                  theme="search"
+                  onChange={(e) => {setform({ ...form, country: e }); handleStateData(e)}}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Select State"
+                  value={form.region}
+                  options={stateOptions}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, region: e })}
                   required
                 />
               </div>
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
-                  label="Country Name"
+                  label="City Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
                   required
                 />
               </div>
-       
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Type"
+                  value={form.type}
+                  options={shared.types}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, type: e })}
+                  required
+                />
+              </div> */}
               {/* <div className="lg:col-span-6 col-span-12 mb-3">
                 <label className="block mb-2">Image</label>
 

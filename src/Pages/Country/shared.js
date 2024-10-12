@@ -13,17 +13,17 @@ const types=[
   },
 ]
 const shared = {
-  check: "Feature",
+  check: "Country",
   title: "Countries",
   addTitle: "Country",
   url: "country",
   types:types,
-  addApi: "feature/add-features",
-  editApi: "feature/update-feature",
-  detailApi: "feature/get-feature-detail",
-  listApi: "feature/get-feature-list",
-  statusApi: "feature/update-feature",
-  deleteApi: "feature/delete-feature",
+  addApi: "address/country/add",
+  editApi: "address/country/update",
+  detailApi: "address/country/detail",
+  listApi: "address/country/list",
+  statusApi: "address/country/statusUpdate",
+  deleteApi: "address/country/delete",
 };
 
 export default shared;
