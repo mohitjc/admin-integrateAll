@@ -56,7 +56,7 @@ const Html = ({
                   return (
                     <div className="imagethumbWrapper">
                       <img
-                        src={methodModel.noImg(itm,'img')}
+                        src={methodModel.noImg(itm,model)}
                         className="bg-[#f8fbff] border border-[#0000000a] p-2 w-[100px] h-[100px] object-contain"
                       />
                       <i
@@ -73,7 +73,7 @@ const Html = ({
           <>
             {img ? (
               <div className="imagethumbWrapper">
-                <img src={methodModel.noImg(img,'img')} className="thumbnail  w-[100px] h-[100px] object-cover " />
+                <img src={methodModel.noImg(img,model)} className="thumbnail  w-[100px] h-[100px] object-cover " />
                 <i
                   className="fa fa-times"
                   title="Remove"

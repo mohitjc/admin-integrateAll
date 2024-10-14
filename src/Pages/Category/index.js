@@ -65,7 +65,7 @@ const Users = () => {
 
   const clear = () => {
     let f = {
-      type: "",
+      categoryType: "",
       search: "",
       status: "",
       page: 1,

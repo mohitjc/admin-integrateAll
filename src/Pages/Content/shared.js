@@ -3,12 +3,12 @@ const shared = {
   title: "Static Pages",
   addTitle: "Static Page",
   url: "content",
-  addApi: "cms/add",
-  editApi: "cms/update",
-  detailApi: "cms/detail",
-  listApi: "cms/listing",
-  statusApi: "cms/update",
-  deleteApi: "cms/delete",
+  addApi: "content/add",
+  editApi: "content/update",
+  detailApi: "content/detail",
+  listApi: "content/listing",
+  statusApi: "content/statusChange",
+  deleteApi: "content/delete",
 };
 
 export default shared;

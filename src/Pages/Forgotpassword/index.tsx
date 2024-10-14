@@ -42,13 +42,20 @@ const Forgotpassword = () => {
           className=" bg-white border border-[#00000017] p-[24px] w-full rounded-[30px] shadow-c"
           onSubmit={hendleSubmit}
         >
+             <Link  to="/" className=" z-[99] mb-10 block mx-auto text-center">
+                    <img
+                      src="/assets/img/logo.png"
+                      className="   mx-auto"
+                      alt="logo"
+                    />
+                  </Link>
           <div className="">
-            <h1 className="text-[30px] font-semibold text-[#333] ">
+            <h1 className="text-[22px] font-[600]">
               Forgot Password
             </h1>
             <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
           </div>
-          <p className="text-[16px] font-normal text-[#333] mt-4">
+          <p className="text-[14px] font-normal text-[grey] mt-2 mb-4">
             {" "}
             No worries! Just enter your email and we’ll send you a reset
             password link.

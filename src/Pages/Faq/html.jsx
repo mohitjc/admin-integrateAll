@@ -123,6 +123,18 @@ const Html = ({
       },
     },
   ]; 
+  const [categories, setCategories] = useState([]);
+  const getCategories=()=>{
+    ApiClient.get('category/listing',{status:'active',categoryType:'FAQ'}).then(res=>{
+      if(res.success){
+        setCategories(res.data)
+      }
+    })
+  }
+
+  useEffect(()=>{
+    getCategories()
+  },[])
 
   return (
     <Layout>
@@ -227,8 +239,19 @@ const Html = ({
                 changestatus(e.value);
               }}
               options={statusModel.list}
+              theme="search"
             /> 
-            {filters.status || filters.groupId ? (
+             <SelectDropdown
+              displayValue="name"
+              placeholder="All Category"
+              intialValue={filters.category}
+              result={(e) => {
+                filter({category:e.value})
+              }}
+              options={categories}
+              theme="search"
+            /> 
+            {filters.status || filters.category ? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

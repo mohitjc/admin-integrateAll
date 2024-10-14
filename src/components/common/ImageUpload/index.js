@@ -31,7 +31,7 @@ const ImageUpload = ({
     if (img) images = img;
 
     setLoader(true);
-    ApiClient.multiImageUpload(url, files, {}, key).then((res) => {
+    ApiClient.multiImageUpload(url, files, {model:model}, key).then((res) => {
       console.log("res", res);
       e.target.value='';
       if (res.success) {

@@ -61,7 +61,7 @@ const Faqs = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      category: "",
       search: "",
       status: "",
       page: 1,
