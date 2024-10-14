@@ -58,7 +58,7 @@ const Profile = () => {
           </Link>
         </div>
 
-        <div className="inner_part sm:mt-3 md:mt-8 p-6 shadow-box overflow-hidden rounded-lg bg-white   ">
+        <div className="inner_part sm:mt-3 md:mt-3 p-6 shadow-box overflow-hidden rounded-lg bg-white   ">
           <div className="grid items-center grid-cols-12 gap-4 mb-5">
             <div className="col-span-12 md:col-span-12 lg:col-span-12">
               <div className="flex items-center gap-4 shrink-0">
@@ -68,7 +68,7 @@ const Profile = () => {
                     className="h-36 w-36 rounded-full object-cover mx-auto"
                   />
                 </div>
-                <div className="grid grid-cols-12 gap-y-4 ml-4 w-full lg:border-l border-dashed border-gray-400 pl-5">
+                <div className="grid grid-cols-12 gap-4 ml-4 w-full lg:border-l border-dashed border-gray-400 pl-5">
                   <div className="col-span-12 md:col-span-6">
                     <label className="text-gray-600">Name</label>
                     <p className="text-[14px] text-gray-700  text-[#7e7d7d]  bg-[#1e5dbc1c] p-[5px_7px] rounded">
