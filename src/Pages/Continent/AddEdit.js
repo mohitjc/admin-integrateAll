@@ -14,14 +14,9 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
-    continent:"",
-    currency:"",
-    flag:""
+    // type:''
   });
   const [images, setImages] = useState({ image: "" });
-  const [continentOptions, setContinentOptions] = useState([])
-  console.log(continentOptions)
-
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
@@ -29,20 +24,6 @@ const AddEdit = () => {
     // { key: "mobileNo", required: true },
     // { key: "email", required: true, message: "Email is required", email: true },
   ];
-
-  const getData = (p = {}) => {
-    ApiClient.get("address/continents/list").then((res) => {
-      if (res.success) {
-        const data = res?.data?.map((data)=>{
-          return{
-            "id":data?.id || data?._id,
-            "name" : data?.name
-          }
-        })
-        setContinentOptions(data);
-      }
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,16 +37,16 @@ const AddEdit = () => {
     let value = {
       ...form,
       // ...images,
-      // id: id,
+      id: id,
     };
     if (id) {
       method = "put";
       url = shared.editApi;
     } else {
 
-      // value.name=[{
-      //   name:form.name
-      // }]      
+      value.name=
+      form.name
+           
       delete value.id;
     }
     loader(true);
@@ -113,9 +94,6 @@ const AddEdit = () => {
     }
   };
 
-  useEffect(()=>{
-    getData()
-  },[])
   return (
     <>
       <Layout>
@@ -146,27 +124,26 @@ const AddEdit = () => {
               </h4>
             </div>
             <div className="grid grid-cols-12 gap-4 p-4">
-            <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="select"
-                  label="Select Continent"
-                  value={form.continent}
-                  options={continentOptions}
-                  theme="search"
-                  onChange={(e) => setform({ ...form, continent: e })}
-                  required
-                />
-              </div>
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
-                  label="Country Name"
+                  label="Continent Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
                   required
                 />
               </div>
-       
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Type"
+                  value={form.type}
+                  options={shared.types}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, type: e })}
+                  required
+                />
+              </div> */}
               {/* <div className="lg:col-span-6 col-span-12 mb-3">
                 <label className="block mb-2">Image</label>
 

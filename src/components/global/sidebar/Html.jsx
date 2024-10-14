@@ -143,8 +143,14 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         {
           name: "County",
           icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/county",
+          url: "/country",
           key: "readProject",
+        },
+        {
+          name: "Continent",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/continent",
+          key: "readContinent",
         },
       ],
     },

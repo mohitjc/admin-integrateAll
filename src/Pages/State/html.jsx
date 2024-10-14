@@ -26,6 +26,7 @@ const Html = ({
   deleteItem,
   clear,
   filters,
+  stateOptions,
   setFilter,
   loaging,
   data,
@@ -35,6 +36,7 @@ const Html = ({
   sortClass,
   getRolesData,
   uploadFile,
+  handleFilter
 }) => {
   const user = useSelector((state) => state.user);
   const columns = [
@@ -49,12 +51,19 @@ const Html = ({
     {
       key: "country",
       name: "Country Name",
-      // sort: true,
+      sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.countryData?.name}</span>;
+      },
+    },
+    {
+      key: "name",
+      name: "State Name",
+      sort: true,
       render: (row) => {
         return <span className="capitalize">{row?.name}</span>;
       },
     },
-
 
     {
       key: "status",
@@ -82,6 +91,7 @@ const Html = ({
       key: "action",
       name: "Action",
       render: (itm) => {
+        console.log(itm,"itmmm")
         return (
           <>
             <div className="flex items-center justify-start gap-1.5">
@@ -233,7 +243,15 @@ const Html = ({
               }}
               options={statusModel.list}
             />
-          
+            {console.log(filters,"filters")}
+            <SelectDropdown
+              displayValue="name"
+              placeholder="Country"
+              intialValue={filters.country}
+              result={(e) => { handleFilter(e.value, 'country') }}
+              theme="search"
+              options={stateOptions}
+            />
             {filters.status? (
               <>
                 <button

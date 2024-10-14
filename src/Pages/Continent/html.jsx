@@ -39,22 +39,13 @@ const Html = ({
   const user = useSelector((state) => state.user);
   const columns = [
     {
-      key: "continent",
+      key: "name",
       name: "Continent Name",
       sort: true,
-      render: (row) => {
-        return <span className="capitalize">{row?.continentData?.name}</span>;
-      },
-    },
-    {
-      key: "country",
-      name: "Country Name",
-      // sort: true,
       render: (row) => {
         return <span className="capitalize">{row?.name}</span>;
       },
     },
-
 
     {
       key: "status",
