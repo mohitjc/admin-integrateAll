@@ -73,7 +73,7 @@ const ChangePassword = (p) => {
             <form onSubmit={handleSubmit}>
               <div className="items-center ">
                 <div className="">
-                  <div className="flex flex-col lg:flex-row  lg:items-center items-start gap-4 mb-6">
+                  <div className=" gap-4 mb-6">
                     <label className="text-typo text-base font-medium w-96">
                       Current Password<span className="start">*</span>
                     </label>
@@ -119,7 +119,7 @@ const ChangePassword = (p) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row lg:items-center items-start gap-4 mb-6 ">
+                  <div className="gap-4 mb-6 ">
                     <label className="text-typo text-base font-medium w-96">
                       New Password<span className="start">*</span>
                     </label>
@@ -160,7 +160,7 @@ const ChangePassword = (p) => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col lg:flex-row  lg:items-center items-start gap-4 mb-6">
+                  <div className=" gap-4 mb-6">
                     <label className="text-typo text-base font-medium w-96">
                       Confirm Password<span className="start">*</span>
                     </label>

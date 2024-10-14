@@ -82,7 +82,7 @@ const Layout=memo(function Layout ({ children }) {
                     src={logowhite()}
                     width=""
                     height="35"
-                    className=" show-logo"
+                    className=" show-logo w-[100px]"
                   />
                   <img src={logos()} className="hide-logo" height="35"/>
                 </div>
