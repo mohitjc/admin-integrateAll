@@ -164,7 +164,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         className={`px-[12px] sidebar-padding ${isOpen && styles.sm_sidebar}`}
         component="siderbar"
       >
-        <div className="flex items-center  justify-between w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3 profile-hidden">
+        {/* <div className="flex items-center  justify-between w-full  rounded-[5px] border bg-[#e9f0f9] relative  my-1 p-3 profile-hidden">
           <div className="flex items-center ">
             <img
               alt="image"
@@ -215,19 +215,6 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
                       </Link>
                     )}
                   </Menu.Item>
-                  {/* <Menu.Item>
-                  {({ active }) => (
-                    <Link
-                      to="/dashboard"
-                      className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block px-4 py-2 text-sm flex align-center flex items-center gap-2"
-                      )}
-                    >
-                      <RxDashboard /> Dashboard
-                    </Link>
-                  )}
-                </Menu.Item> */}
                   <Menu.Item>
                     {({ active }) => (
                       <Link
@@ -268,7 +255,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
               </Menu.Items>
             </Transition>
           </Menu>
-        </div>
+        </div> */}
         <ul className="space-y-2 ">
           {menus.map((itm) => {
             return (
