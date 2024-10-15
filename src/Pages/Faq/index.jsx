@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 const Faqs = () => {
   const user = useSelector((state) => state.user);
+  console.log(user,"userssss")
   const searchState = { data: "" };
   const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
   const [data, setData] = useState([]);
@@ -49,7 +50,7 @@ const Faqs = () => {
       if (res.success) {
         setData(
           res.data.map((itm) => {
-            itm.id = itm._id;
+            // itm.id = itm._id;
             return itm;
           })
         );

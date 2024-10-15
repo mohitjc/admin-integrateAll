@@ -94,6 +94,10 @@ function App() {
     { url: "/faqs/edit/:id", path: "Faq/AddEdit" },
     { url: "/faqs/add", path: "Faq/AddEdit" },
     { url: "/faqs/detail/:id", path: "Faq/View" },
+    { url: "/sitedetails", path: "SiteDetails" },
+    { url: "/sitedetails/edit/:id", path: "SiteDetails/AddEdit" },
+    { url: "/sitedetails/add", path: "SiteDetails/AddEdit" },
+    { url: "/sitedetails/detail/:id", path: "SiteDetails/View" },
     { url: "/newsletter", path: "Newsletter" },
   ];
 

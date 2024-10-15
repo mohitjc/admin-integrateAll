@@ -105,6 +105,7 @@ const Login = () => {
 
     loader(true);
     ApiClient.post(url, data).then(async (res) => {
+      console.log(res,"responseeee")
       if (res.success == true) {
         // socketModel.emit("user-online", { user_id: user._id });
 
@@ -176,7 +177,7 @@ const Login = () => {
               className=" bg-white border border-[#00000017] p-[24px] w-full rounded-[30px] shadow-c"
               onSubmit={hendleSubmit}
             >
-              <Link  to="/" className=" z-[99] mb-10 block mx-auto text-center">
+              <Link  to="/login" className=" z-[99] mb-10 block mx-auto text-center">
                     <img
                       src="/assets/img/logo.png"
                       className="   mx-auto"
@@ -185,7 +186,7 @@ const Login = () => {
                   </Link>
               <div className="">
                 <h1 className="text-[22px] font-[600]">
-                  Login to your account
+                  Signin to your account
                 </h1>
                 <span className="flex w-10 h-1 bg-[#1E5DBC] mt-1"></span>
               </div>

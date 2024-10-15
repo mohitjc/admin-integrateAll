@@ -1,13 +1,13 @@
 const shared = {
-    check: "Blog",
+    check: "Blogs",
     title: "Blogs",
     addTitle: "Blog",
     url: "blogs",
     addApi: "blog/add",
-    editApi: "blog/update",
+    editApi: "blog/edit",
     detailApi: "blog/detail",
     listApi: "blog/listing",
-    statusApi: "blog/status/change",
+    statusApi: "blog/statusChange",
     deleteApi: "blog/delete",
   };
   

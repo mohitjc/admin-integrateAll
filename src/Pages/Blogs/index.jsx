@@ -49,7 +49,7 @@ const Blogs = () => {
       if (res.success) {
         setData(
           res.data.map((itm) => {
-            itm.id = itm._id;
+            // itm.id = itm._id;
             return itm;
           })
         );
@@ -180,11 +180,11 @@ const Blogs = () => {
       loader(false);
     });
   };
-
+console.log(user,"userssssssss")
   const isAllow = (key = "") => {
     let permissions = user?.permissions?.[0];
     let value = permissions?.[key];
-    if(user.role?.name=='Admin') value=true
+    if(user.role=='admin') value=true
     // return true;
     return value;
   };
