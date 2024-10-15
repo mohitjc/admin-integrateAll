@@ -153,8 +153,8 @@ const Html = ({
         </div>
       </div>
 
-      <div className="shadow-box w-full bg-white rounded-lg mt-6">
-        <div className="flex p-4 items-center flex-wrap">
+      <div className="shadow-box w-full p-4 bg-white rounded-lg mt-6">
+        <div className="flex mb-3 p-4 items-center flex-wrap">
           <form
             class="flex items-center max-w-sm"
             onSubmit={(e) => {
