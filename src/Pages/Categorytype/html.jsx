@@ -95,8 +95,8 @@ const Html = ({
           </Link>
         </div>
       </div>
-      <div className="shadow-box w-full bg-white rounded-lg mt-6">
-        <div className="flex p-4 items-center flex-wrap gap-2">
+      <div className="shadow-box p-4 w-full bg-white rounded-lg mt-6">
+        <div className="flex mb-3 p-4 items-center flex-wrap gap-2">
           <form className="flex items-center max-w-sm gap-2" onSubmit={(e) => { e.preventDefault(); filter(); }}>
             <label htmlFor="simple-search" className="sr-only">Search</label>
             <div className="relative w-full">
