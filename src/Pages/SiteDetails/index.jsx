@@ -173,7 +173,7 @@ const SiteDetails = () => {
                 required
               />
             </div>
-            <div className="col-span-full mb-3">
+            <div className="lg:col-span-3 col-span-12 mb-3">
               <label className="lablefontcls">Choose Logo</label>
               <ImageUpload
                 model="users"
@@ -183,7 +183,7 @@ const SiteDetails = () => {
                 label="Choose Logo"
               />
             </div>
-            <div className="col-span-full mb-3">
+            <div className="lg:col-span-3 col-span-12 mb-3">
               <label className="lablefontcls">Choose Fabicon</label>
               <ImageUpload
                 model="users"
@@ -193,10 +193,22 @@ const SiteDetails = () => {
                 label="Choose Fabicon"
               />
             </div>
-            <div className="col-span-full mb-3">
-              <h4 className="mb-2">Social Media</h4>
+            <div className="lg:col-span-12 col-span-12 mb-3">
+           
               {form.socialMediaEntries.map((entry, index) => (
-                <div key={index} className="lg:col-span-6 col-span-12 mb-3">
+                <div  key={index}  className="grid grid-cols-12 gap-4 p-4">
+                <div className="lg:col-span-6 col-span-12 mb-3">
+                  <div className="flex">
+                  <label className="mb-2">Social Media</label>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveSocialMedia(index)}
+                    className="ml-2 text-red-500"
+                  >
+                    Remove
+                  </button>
+                  </div>
+               
                   <Select
                     options={socialOptions}
                     onChange={(selectedOption) => handleInputChange(index, 'platform', selectedOption.value)}
@@ -204,6 +216,8 @@ const SiteDetails = () => {
                     className="mr-2"
                     value={socialOptions.find(option => option.value === entry.platform)}
                   />
+                  </div>
+                  <div className="lg:col-span-6 col-span-12 mb-3">
                   <FormControl
                     name={`socialLink${index}`}
                     type="text"
@@ -212,6 +226,8 @@ const SiteDetails = () => {
                     onChange={(e) => handleInputChange(index, 'link', e)}
                     required
                   />
+                  </div>
+                  <div className="lg:col-span-6 col-span-12 mb-3">
                   <ImageUpload
                     model="users"
                     result={(e) => handleIconChange(index, e.value)}
@@ -220,20 +236,17 @@ const SiteDetails = () => {
                     label="Choose Icon"
                     className="ml-2"
                   />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveSocialMedia(index)}
-                    className="ml-2 text-red-500"
-                  >
-                    Remove
-                  </button>
+                  </div>
+
+               
+              
                 </div>
               ))}
               <button type="button" onClick={handleAddSocialMedia} className="mt-2">
                 Add Another Social Media
               </button>
             </div>
-            <div className="col-span-full mb-3">
+            <div className="lg:col-span-6 col-span-12 mb-3">
               <h4 className="mb-2">Scripts</h4>
               {form.scripts.map((scriptEntry, index) => (
                 <div key={index} className="lg:col-span-6 col-span-12 mb-3">
