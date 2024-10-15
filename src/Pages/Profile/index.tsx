@@ -62,7 +62,7 @@ const Profile = () => {
           <div className="grid items-center grid-cols-12 gap-4 mb-5">
             <div className="col-span-12 md:col-span-12 lg:col-span-12">
               <div className="flex items-center gap-4 shrink-0">
-                <div className="">
+                <div className="w-[20%]">
                   <img
                     src={methodModel.userImg(data && data.image)}
                     className="h-36 w-36 rounded-full object-cover mx-auto"
