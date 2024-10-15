@@ -16,9 +16,9 @@ const SiteDetails = () => {
   const [images, setImages] = useState({ logo: "", fabIcon: "" });
   const [siteId, setSiteId] = useState()
   const [form, setForm] = useState({
-    title: "",
-    scripts: [],
-    socialMediaEntries: [{ platform: "", link: "", icon: "" }],
+    name: "",
+    script: [{script:""}],
+    socialMedia: [{ name: "", link: "", icon: "" }],
   });
   const history = useNavigate();
   const user = useSelector((state) => state.user);
@@ -29,24 +29,49 @@ const SiteDetails = () => {
     { value: "Instagram", label: "Instagram" },
   ];
 
+  // useEffect(() => {
+  //   if (user.id) {
+  //     loader(true);
+  //     ApiClient.allApi(shared.detailApi, { id: user.id }).then((res) => {
+  //       if (res.success) {
+  //         const { name, logo, fabIcon, script = [], socialMedia , id} = res.data;
+  //         setForm({
+  //           name: name,
+  //           script: script ? script?.map(script => ({ script:script.dfdffsdfdfd })) : [],
+  //           socialMedia: socialMedia ? socialMedia.map(media =>({
+              
+  //             name: media.website,
+  //             link: media.link,
+  //             icon: media.icon,
+  //           })) : [],
+  //         });
+  //         setImages({ logo, fabIcon });
+  //         setSiteId(id)
+  //       }
+  //       loader(false);
+  //     });
+  //   }
+  // }, []);
   useEffect(() => {
     if (user.id) {
       loader(true);
       ApiClient.allApi(shared.detailApi, { id: user.id }).then((res) => {
-        console.log(res, "fnasdghkadsgds")
         if (res.success) {
-          const { name, logo, fabIcon, scripts, socialMedia , id} = res.data;
+          const { name, logo, fabIcon, script = [], socialMedia, id } = res.data; 
+          const scriptArray = Object.keys(script).map((key) => ({ script: script[key] }));
+
           setForm({
-            title: name,
-            scripts: scripts ? scripts.map(script => ({ script })) : [],
-            socialMediaEntries: socialMedia ? socialMedia.map(media => ({
-              platform: media.website,
+            name: name,
+            // script: Array.isArray(script) ? script.map(script => ({ script: script.script })) : [],
+            script:scriptArray,
+            socialMedia: socialMedia ? socialMedia.map(media => ({
+              name: media.name,
               link: media.link,
               icon: media.icon,
             })) : [],
           });
           setImages({ logo, fabIcon });
-          setSiteId(id)
+          setSiteId(id);
         }
         loader(false);
       });
@@ -56,9 +81,9 @@ const SiteDetails = () => {
   const handleAddSocialMedia = () => {
     setForm((prevForm) => ({
       ...prevForm,
-      socialMediaEntries: [
-        ...prevForm.socialMediaEntries,
-        { platform: "", link: "", icon: "" },
+      socialMedia: [
+        ...prevForm.socialMedia,
+        { name: "", link: "", icon: "" },
       ],
     }));
   };
@@ -66,44 +91,45 @@ const SiteDetails = () => {
   const handleRemoveSocialMedia = (index) => {
     setForm((prevForm) => ({
       ...prevForm,
-      socialMediaEntries: prevForm.socialMediaEntries.filter((_, i) => i !== index),
+      socialMedia: prevForm.socialMedia.filter((_, i) => i !== index),
     }));
   };
 
   const handleInputChange = (index, field, value) => {
-    const updatedEntries = form.socialMediaEntries.map((entry, i) =>
+    const updatedEntries = form.socialMedia.map((entry, i) =>
       i === index ? { ...entry, [field]: value } : entry
     );
-    setForm({ ...form, socialMediaEntries: updatedEntries });
+    setForm({ ...form, socialMedia: updatedEntries });
   };
 
   const handleIconChange = (index, iconUrl) => {
-    const updatedEntries = form.socialMediaEntries.map((entry, i) =>
+    const updatedEntries = form.socialMedia.map((entry, i) =>
       i === index ? { ...entry, icon: iconUrl } : entry
     );
-    setForm({ ...form, socialMediaEntries: updatedEntries });
+    setForm({ ...form, socialMedia: updatedEntries });
   };
 
   const handleAddScript = () => {
     setForm((prevForm) => ({
       ...prevForm,
-      scripts: [...(prevForm.scripts || []), { script: "" }],
+      script: [...prevForm.script, { script: "" }],
     }));
   };
 
   const handleRemoveScript = (index) => {
     setForm((prevForm) => ({
       ...prevForm,
-      scripts: (prevForm.scripts || []).filter((_, i) => i !== index),
+      script: prevForm.script.filter((_, i) => i !== index),
     }));
   };
 
   const handleScriptChange = (index, value) => {
-    const updatedScripts = (form.scripts || []).map((script, i) =>
-      i === index ? { script: value } : script
+    const updatedScripts = (form.script|| []).map((script, i) =>
+      i === index ? { script: value } : script 
     );
-    setForm({ ...form, scripts: updatedScripts });
+    setForm({ ...form, script: updatedScripts });
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -114,27 +140,24 @@ const SiteDetails = () => {
     const value = {
       ...form,
       ...images,
-      socialMedia: form.socialMediaEntries.map((entry) => ({
-        website: entry.platform,
-        link: entry.link,
-        icon: entry.icon,
-      })),
-      scripts: form.scripts.map((entry) => entry.script),
-    };
-
-    const method = siteId ? "put" : "post";
+      script: form.script.reduce((acc, entry, index) => {
+        acc[`script${index + 1}`] = entry.script;
+        return acc;
+    }),
+    ...(siteId ? { id: siteId } : {}),
+  }
+    const method = siteId  ? "put" : "post";
     const url = siteId ? `site/editSiteDetail?id=${siteId}` : shared.addApi;
 
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {
         history(`/${shared.url}`);
-      } else {
-        // Handle error scenario if needed
       }
       loader(false);
     });
   };
+
 
   return (
     <Layout>
@@ -168,8 +191,8 @@ const SiteDetails = () => {
                 name="name"
                 type="text"
                 label="Title"
-                value={form.title}
-                onChange={(e) => setForm({ ...form, title: e })}
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e })}
                 required
               />
             </div>
@@ -195,7 +218,7 @@ const SiteDetails = () => {
             </div>
             <div className="lg:col-span-12 col-span-12 mb-3">
            
-              {form.socialMediaEntries.map((entry, index) => (
+            {form.socialMedia.map((entry, index) => (
                 <div  key={index}  className="grid grid-cols-12 gap-4 p-4">
                 <div className="lg:col-span-6 col-span-12 mb-3">
                   <div className="flex">
@@ -208,13 +231,12 @@ const SiteDetails = () => {
                     Remove
                   </button>
                   </div>
-               
                   <Select
                     options={socialOptions}
-                    onChange={(selectedOption) => handleInputChange(index, 'platform', selectedOption.value)}
+                    onChange={(selectedOption) => handleInputChange(index, 'name', selectedOption.value)}
                     placeholder="Select Social Media"
                     className="mr-2"
-                    value={socialOptions.find(option => option.value === entry.platform)}
+                    value={socialOptions.find(option => option.value === entry.name)}
                   />
                   </div>
                   <div className="lg:col-span-6 col-span-12 mb-3">
@@ -236,10 +258,7 @@ const SiteDetails = () => {
                     label="Choose Icon"
                     className="ml-2"
                   />
-                  </div>
-
-               
-              
+                 </div>
                 </div>
               ))}
               <button type="button" onClick={handleAddSocialMedia} className="mt-2">
@@ -247,26 +266,26 @@ const SiteDetails = () => {
               </button>
             </div>
             <div className="lg:col-span-6 col-span-12 mb-3">
-              <h4 className="mb-2">Scripts</h4>
-              {form.scripts.map((scriptEntry, index) => (
-                <div key={index} className="lg:col-span-6 col-span-12 mb-3">
-                  <FormControl
-                    name={`script${index}`}
-                    type="textarea"
-                    label={`Script ${index + 1}`}
-                    value={scriptEntry.script}
-                    onChange={(e) => handleScriptChange(index, e)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveScript(index)}
-                    className="ml-2 text-red-500"
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
+              <h4 className="mb-2">script</h4>
+              {form.script?.map((scriptEntry, index) => (
+  <div key={index} className="lg:col-span-6 col-span-12 mb-3">
+ <FormControl
+      name={`script${index + 1}`}
+      type="textarea"
+      label={`Script ${index + 1}`}
+      value={scriptEntry.script}
+      onChange={(e) => handleScriptChange(index, e)}
+      required
+    />
+    <button
+      type="button"
+      onClick={() => handleRemoveScript(index)}
+      className="ml-2 text-red-500"
+    >
+      Remove
+    </button>
+  </div>
+))}
               <button type="button" onClick={handleAddScript} className="mt-2">
                 Add Another Script
               </button>
