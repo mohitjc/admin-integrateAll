@@ -28,6 +28,7 @@ const ViewBlog = () => {
 
   useEffect(() => {
     getDetail();
+ 
   }, []);
 
   return (
@@ -66,7 +67,14 @@ const ViewBlog = () => {
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Meta Title:</label>
                    <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.meta_title}
+                    {data && data.metaTitle}
+                  </p>
+                </div> 
+                <div className="col-span-6 flex  flex-col mb-5">
+                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Category:</label>
+                   <p className="text-[14px] text-black font-medium">
+                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
+                    {data && data.categoryData && data.categoryData?.name}
                   </p>
                 </div> 
                   <div className="col-span-12 flex  flex-col mb-5 ">
@@ -78,20 +86,49 @@ const ViewBlog = () => {
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Meta Description:</label>
                    <p className="text-[14px] text-black font-medium w-[82%]">
                     {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.meta_desc}
+                    {data && data.metaDescription}
                   </p></div>
-                  <div className="col-span-6 flex  flex-col mb-5  ">
+                  {/* <div className="col-span-6 flex  flex-col mb-5  ">
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Keywords:</label>
                    <p className="text-[14px] text-black font-medium">
-                    {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.meta_keywords?.map((itm)=>itm).join(",")}
                   </p>
-                </div> 
+                </div>  */}
                     <div className="col-span-full">
                       <label className="text-[14px] text-[#0000009c] tracking-wider mb-1">Images</label>
                       <div className="flex gap-2 flex-wrap items-center">
-                              <img src={methodModel.noImg(data?.image)} width="140" />
+
+                              <img src={methodModel.noImg(data?.banner)} width="140" />
                       </div>
+
+             
+                    </div>
+                    <div className="col-span-full">
+                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1">Images</label>
+                      {data?.images && data.images.length > 0 && (
+                        data.images.map((images, index) => (
+                          <div className="flex gap-2 flex-wrap items-center">
+                          <Tooltip
+                            key={index}
+                            position="top"
+                            title="Click to open"
+                          >
+                            <img
+                              src={methodModel.noImg(images || "")}
+                              className="bg-white thumbnail !w-[100px] h-[100px] mb-2 rounded-lg shadow-lg border-[2px] border-white p-2 object-contain cursor-pointer me-2"
+                              onClick={() => {
+                                window.open(
+                                  methodModel.noImg(images),
+                                  "_blank"
+                                );
+                              }}
+                            />
+                          </Tooltip>
+                            </div>
+                        ))
+                      ) }
+               
+             
                     </div>
                </div>
               </div>

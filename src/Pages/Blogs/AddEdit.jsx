@@ -10,16 +10,18 @@ import shared from "./shared";
 import { useSelector } from "react-redux";
 import ImageUpload from "../../components/common/ImageUpload";
 
-const AddEditBlogs = () => {
+const AddEdit = () => {
   const { id } = useParams();
-  const [images, setImages] = useState({ image: "" });
+  const [images, setImages] = useState({images:"", banner:""});
+  const [categories, setCategories] = useState([]);
   const [form, setform] = useState({
     title: "",
     description: "",
-    keywords: [],
-    meta_keywords:[],
-    meta_desc: "",
-    meta_title: "",
+    // keywords: [],
+    // meta_keywords:[],
+    metaDescription: "",
+    metaTitle: "",
+    categoryId:"",
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -101,6 +103,15 @@ const AddEditBlogs = () => {
     });
   };
 
+
+  const getCategories=()=>{
+    ApiClient.get('category/listing',{status:'active',categoryType:'FAQ'}).then(res=>{
+      if(res.success){
+        setCategories(res.data)
+      }
+    })
+  }
+
   useEffect(() => {
     if (id) {
       loader(true);
@@ -126,7 +137,9 @@ const AddEditBlogs = () => {
         loader(false);
       });
     }
+    getCategories()
   }, [id]);
+
 
   return (
     <>
@@ -167,12 +180,12 @@ const AddEditBlogs = () => {
                   name="metaname"
                   type="text"
                   label="Meta Title"
-                  value={form.meta_title}
-                  onChange={(e) => setform({ ...form, meta_title: e })}
+                  value={form.metaTitle}
+                  onChange={(e) => setform({ ...form, metaTitle: e })}
                   required
                 />
               </div>
-              <div className="col-span-full mb-3">
+              {/* <div className="col-span-full mb-3">
               <FormControl
                   name="metaname"
                   type="badge"
@@ -181,7 +194,18 @@ const AddEditBlogs = () => {
                   onChange={(e) => setform({ ...form, meta_keywords: e })}
                   
                 />
-            </div>
+            </div> */}
+             <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Category"
+                  value={form.categoryId}
+                  theme="search"
+                  options={categories}
+                  onChange={(e) => setform({ ...form, categoryId: e })}
+                  required
+                />
+              </div> 
             <div className="col-span-full mb-3">
               <div className=" mb-3">
                 <FormControl
@@ -198,28 +222,34 @@ const AddEditBlogs = () => {
                   type="textarea"
                   name="meta_desc"
                   label="Meta Description"
-                  value={form.meta_desc}
-                  onChange={(e) => setform({ ...form, meta_desc: e })}
+                  value={form.metaDescription}
+                  onChange={(e) => setform({ ...form, metaDescription: e })}
                 />
               </div>
             </div>
             <div className=" col-span-full mb-3">
-              <label className="lablefontcls">Image</label>
+              <label className="lablefontcls">Banner</label>
               <br></br>
               <ImageUpload
                 model="users"
-                result={(e) => imageResult(e, "image")}
-                value={images.image || form.image}
+                result={(e) => imageResult(e, "banner")}
+                value={images.banner || form.banner}
                 multiple={false}
                 label="Choose Images"
               />
             </div>
+            <div className=" col-span-full mb-3">
+              <label className="lablefontcls">Images</label>
+              <br></br>
+              <ImageUpload
+                model="users"
+                result={(e) => imageResult(e, "images")}
+                value={images.images || form.images}
+                multiple={true}
+                label="Choose Images"
+              />
             </div>
-          
-
-           
-
-          
+            </div>
           </div>
           <div className="text-right">
               <button
@@ -235,4 +265,4 @@ const AddEditBlogs = () => {
   );
 };
 
-export default AddEditBlogs;
+export default AddEdit;

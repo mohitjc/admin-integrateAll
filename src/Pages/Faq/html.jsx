@@ -78,6 +78,7 @@ const Html = ({
       key: "action",
       name: "Action",
       render: (itm) => {
+        console.log(itm)
         return (
           <>
             <div className="flex items-center justify-start gap-1.5">
@@ -126,6 +127,7 @@ const Html = ({
   const [categories, setCategories] = useState([]);
   const getCategories=()=>{
     ApiClient.get('category/listing',{status:'active',categoryType:'FAQ'}).then(res=>{
+      console.log(res,"responsess")
       if(res.success){
         setCategories(res.data)
       }
@@ -244,14 +246,14 @@ const Html = ({
              <SelectDropdown
               displayValue="name"
               placeholder="All Category"
-              intialValue={filters.category}
+              intialValue={filters.categoryId}
               result={(e) => {
-                filter({category:e.value})
+                filter({categoryId:e.value})
               }}
               options={categories}
               theme="search"
             /> 
-            {filters.status || filters.category ? (
+            {filters.status || filters.categoryId ? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

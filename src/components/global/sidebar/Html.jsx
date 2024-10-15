@@ -154,14 +154,27 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         },
       ],
     },
-    // {
-    //   name: "Product",
-    //   icon: <img src="/assets/img/job.svg" alt="" />,
-    //   activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
-    //   url: "/product",
-    //   key: "readProduct",
-    // },
-   
+    {
+      name: "FAQ",
+      icon: <img src="/assets/img/job.svg" alt="" />,
+      activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
+      url: "/faqs",
+      key: "readFaq",
+    },
+    {
+      name: "Blogs",
+      icon: <img src="/assets/img/job.svg" alt="" />,
+      activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
+      url: "/blogs",
+      key: "readBlog",
+    },
+    {
+      name: "Site Details",
+      icon: <img src="/assets/img/job.svg" alt="" />,
+      activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
+      url: "/sitedetails",
+      key: "readSiteDetails",
+    },
   ];
 
   return (

@@ -16,7 +16,7 @@ const AddEditFaq = () => {
   const [form, setform] = useState({
     question: "",
     answer: "", 
-    category:""
+    categoryId:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -54,6 +54,7 @@ const AddEditFaq = () => {
 
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
+      console.log(res,"categoryresponse")
       if (res.success) {
         history(`/${shared.url}`);
       }
@@ -73,8 +74,9 @@ const getCategories=()=>{
     if (id) {
       loader(true);
       ApiClient.get(shared.detailApi, { id }).then((res) => {
+        console.log(res,"reponseeeee")
         if (res.success) {    
-          setform({...form,question : res?.data?.question , answer : res?.data?.answer})
+          setform({...form,question : res?.data?.question , answer : res?.data?.answer , categoryId:res?.data?.categoryId})
         }
         loader(false);
       });
@@ -118,16 +120,16 @@ const getCategories=()=>{
                 <FormControl
                   type="select"
                   label="Category"
-                  value={form.category}
+                  value={form.categoryId}
                   theme="search"
                   options={categories}
-                  onChange={(e) => setform({ ...form, category: e })}
+                  onChange={(e) => setform({ ...form, categoryId: e })}
                   required
                 />
               </div> 
               <div className=" mb-3">
                 <FormControl
-                  type="text"
+                  type="textarea"
                   name="answer"
                   label="Answer"
                   value={form.answer}
