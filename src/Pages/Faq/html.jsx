@@ -76,7 +76,7 @@ const Html = ({
     },
     {
       key: "action",
-      name: "Action",
+      name: "Actions",
       render: (itm) => {
         console.log(itm)
         return (

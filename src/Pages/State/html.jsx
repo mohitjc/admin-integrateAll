@@ -89,9 +89,8 @@ const Html = ({
     },
     {
       key: "action",
-      name: "Action",
+      name: "Actions",
       render: (itm) => {
-        console.log(itm,"itmmm")
         return (
           <>
             <div className="flex items-center justify-start gap-1.5">

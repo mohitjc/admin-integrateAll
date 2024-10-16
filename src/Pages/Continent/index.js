@@ -148,7 +148,7 @@ const Continent = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Inactivate"
-      } this user?`,
+      } this Continent?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1E5DBC",

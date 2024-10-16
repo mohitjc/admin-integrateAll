@@ -141,14 +141,14 @@ const AddEdit = () => {
                 />
               </div>
               <div className="lg:col-span-6 col-span-12 mb-3">
-                <label className="block mb-2">Image</label>
+                <label className="block mb-2">Icon</label>
 
                 <ImageUpload
                   model="users"
                   result={(e) => imageResult(e, "image")}
                   value={images.image || form.image}
                   multiple={false}
-                  label="Choose Images"
+                  label="Choose Icon"
                 />
               </div>
             </div>

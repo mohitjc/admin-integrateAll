@@ -229,7 +229,7 @@ console.log("arr",arr)
                   <div className="">
                     <FormControl
                       type="number"
-                      label="Monthly Price"
+                      label="Monthly (AUD)"
                       value={form.monthlyAmount}
                       onChange={(e) => setform({ ...form, monthlyAmount: e })}
                       required
@@ -238,7 +238,7 @@ console.log("arr",arr)
                   <div className="">
                     <FormControl
                       type="number"
-                      label="3 Months Price"
+                      label="3 Months (AUD)"
                       value={form.threeMonthAmount}
                       onChange={(e) => setform({ ...form, threeMonthAmount: e })}
                       
@@ -247,7 +247,7 @@ console.log("arr",arr)
                   <div className="">
                     <FormControl
                       type="number"
-                      label="6 Months Price"
+                      label="6 Months (AUD)"
                       value={form.sixMonthAmount}
                       onChange={(e) => setform({ ...form, sixMonthAmount: e })}
                       
@@ -256,7 +256,7 @@ console.log("arr",arr)
                   <div className="">
                     <FormControl
                       type="number"
-                      label="Yearly Price"
+                      label="Yearly (AUD)"
                       value={form.yearlyAmount}
                       onChange={(e) => setform({ ...form, yearlyAmount: e })}
                       

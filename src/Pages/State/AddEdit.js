@@ -132,7 +132,7 @@ const AddEdit = () => {
 
   const handleCountryData = (selectedContinent) => {
     if (selectedContinent){
-      ApiClient.get("address/country/list").then((res) => {
+      ApiClient.get("address/country/list",{continent:selectedContinent}).then((res) => {
         if (res.success) {
           const data = res?.data?.map((data)=>{
             return{

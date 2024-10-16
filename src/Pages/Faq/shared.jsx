@@ -1,7 +1,7 @@
 const shared = {
-    check: "Customers",
-    title: "Faq's",
-    addTitle: "Faq",
+    check: "faq",
+    title: "FAQ's",
+    addTitle: "FAQ",
     url: "faqs",
     addApi: "faq/add",
     editApi: "faq/edit",

@@ -12,6 +12,7 @@ const View = () => {
   const user = useSelector((state) => state.user);
 
   const [data, setData] = useState();
+  const [price, setPrice] = useState()
 
   const history = useNavigate();
   const { id } = useParams();
@@ -26,6 +27,7 @@ const View = () => {
         setData(data);
       }
     });
+
   };
 
   useEffect(() => {
@@ -70,6 +72,38 @@ const View = () => {
                     {data && data.name}
                   </p>
                 </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Three Month USD:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {" "}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                   USD: {data && data.monthlyPrice?.usd ? data && data.threeMonthAmount : "--" }
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Six Month USD:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {" "}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                   USD: {data && data.monthlyPrice?.usd ? data && data.sixMonthAmount : "--" }
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Yearly Price USD:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                   USD: {data && data.monthlyPrice?.usd ? data && data.yearlyAmount : "--" }
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Monthly Price USd:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {" "}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                    USD: {data && data.monthlyPrice?.usd ? data && data.monthlyAmount: "--" }
+                  </p>
+                </div>
+                
                </div>
               </div>
              

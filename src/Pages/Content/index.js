@@ -138,7 +138,7 @@ const Content = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Deactivate"
-      } this`,
+      } this Content`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1E5DBC",

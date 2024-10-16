@@ -1,7 +1,7 @@
 const shared = {
   check: "Content",
-  title: "Static Pages",
-  addTitle: "Static Page",
+  title: "Content Management",
+  addTitle: "Content",
   url: "content",
   addApi: "content/add",
   editApi: "content/update",

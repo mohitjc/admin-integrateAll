@@ -16,14 +16,16 @@ import ImageUpload from "../../components/common/ImageUpload";
 
 const AddEdit = () => {
   const { slug } = useParams();
+  const [images, setImages] = useState({ image: "" })
   const [form, setform] = useState({
     id: "",
     title: "",
     slug:'',
     description: "",
-    meta_keyword: [],
-    meta_title: "",
-    meta_description: "",
+    metaKeyword: "",
+    metaTitle: "",
+    metaDescription: "",
+    seoInformation:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -49,6 +51,7 @@ const AddEdit = () => {
     let url = shared.addApi;
     let value = {
       ...form,
+      ...images,
     };
 
     const slug=value.title.toLowerCase().replaceAll(' ','-')
@@ -70,6 +73,14 @@ const AddEdit = () => {
     });
   };
 
+  const imageResult = (e, key) => {
+    images[key] = e.value;
+    setImages(images);
+    if (submitted == true) {
+      setSubmitted(false);
+    }
+  };
+
   useEffect(() => {
     if (slug) {
       loader(true);
@@ -78,15 +89,18 @@ const AddEdit = () => {
           let value = res.data;
           let payload = form;
 
-          Object.keys(payload).map((itm) => {
+          Object.keys(payload)?.map((itm) => {
             payload[itm] = value[itm];
           });
 
           payload.id = value.id;
           setform({
             ...payload,
+            ...images
           });
+          setImages({ image: value.image || "" });
         }
+
         loader(false);
       });
     }
@@ -128,18 +142,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, title: e })}
                 />
               </div>
-
-
-              <div className=" mb-3">
-                <FormControl
-                  type="text"
-                  name="meta_title"
-                  label="Meta Title"
-                  value={form.meta_title}
-                  onChange={(e) => setform({ ...form, meta_title: e })}
-                />
-              </div>
-
+            
               <div className="col-span-full mb-3">
                 <FormControl
                   type="editor"
@@ -149,31 +152,51 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, description: e })}
                 />
               </div>
-
+              <div className=" col-span-full mb-3">
+              <label className="lablefontcls">Image</label>
+              <br></br>
+              <ImageUpload
+                model="users"
+                result={(e) => imageResult(e, "image")}
+                value={images.image}
+                multiple={false}
+                label="Choose Images"
+              />
+            </div>
+              <div className=" mb-3">
+                <FormControl
+                  type="text"
+                  name="meta_title"
+                  label="Meta Title"
+                  value={form.metaTitle}
+                  onChange={(e) => setform({ ...form, metaTitle: e })}
+                />
+              </div>
               <div className="col-span-full mb-3">
                 <FormControl
                   type="textarea"
                   name="meta_description"
                   label="Meta Description"
-                  value={form.meta_description}
-                  onChange={(e) => setform({ ...form, meta_description: e })}
+                  value={form.metaDescription}
+                  onChange={(e) => setform({ ...form, metaDescription: e })}
                 />
               </div>
 
               <div className="col-span-full mb-3">
                 <FormControl
-                  type="badge"
+                  type="text"
                   name="keywords"
                   label="Keywords"
-                  value={form.meta_keyword}
+                  value={form.metaKeyword}
                   onChange={(e) =>
                     setform({
                       ...form,
-                      meta_keyword:e,
+                      metaKeyword:e,
                     })
                   }
                 />
               </div>
+           
             </div>
 
             <div className="text-right">

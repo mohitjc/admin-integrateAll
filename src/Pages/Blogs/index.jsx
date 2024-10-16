@@ -122,7 +122,7 @@ const Blogs = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Deactivate"
-      } this blog?`,
+      } this Blog?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1E5DBC",

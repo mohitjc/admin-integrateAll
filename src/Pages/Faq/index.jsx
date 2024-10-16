@@ -123,7 +123,7 @@ const Faqs = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Deactivate"
-      } this Faq?`,
+      } this FAQ?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1E5DBC",

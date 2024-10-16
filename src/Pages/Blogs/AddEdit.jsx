@@ -174,28 +174,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
-
               <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  name="metaname"
-                  type="text"
-                  label="Meta Title"
-                  value={form.metaTitle}
-                  onChange={(e) => setform({ ...form, metaTitle: e })}
-                  required
-                />
-              </div>
-              {/* <div className="col-span-full mb-3">
-              <FormControl
-                  name="metaname"
-                  type="badge"
-                  label="Keywords"
-                  value={form.meta_keywords}
-                  onChange={(e) => setform({ ...form, meta_keywords: e })}
-                  
-                />
-            </div> */}
-             <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
                   label="Category"
@@ -206,8 +185,12 @@ const AddEdit = () => {
                   required
                 />
               </div> 
+             
+             
+              
+             
             <div className="col-span-full mb-3">
-              <div className=" mb-3">
+            <div className=" mb-3">
                 <FormControl
                   required
                   type="editor"
@@ -216,18 +199,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, description: e })}
                 />
               </div>
-              <div className=" mb-3">
-                <FormControl
-                  required
-                  type="textarea"
-                  name="meta_desc"
-                  label="Meta Description"
-                  value={form.metaDescription}
-                  onChange={(e) => setform({ ...form, metaDescription: e })}
-                />
-              </div>
-            </div>
-            <div className=" col-span-full mb-3">
+              <div className=" col-span-full mb-3">
               <label className="lablefontcls">Banner</label>
               <br></br>
               <ImageUpload
@@ -249,6 +221,28 @@ const AddEdit = () => {
                 label="Choose Images"
               />
             </div>
+            <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  name="metaname"
+                  type="text"
+                  label="Meta Title"
+                  value={form.metaTitle}
+                  onChange={(e) => setform({ ...form, metaTitle: e })}
+                  required
+                />
+              </div>
+              <div className=" mb-3">
+                <FormControl
+                  required
+                  type="textarea"
+                  name="meta_desc"
+                  label="Meta Description"
+                  value={form.metaDescription}
+                  onChange={(e) => setform({ ...form, metaDescription: e })}
+                />
+              </div>
+            </div>
+            
             </div>
           </div>
           <div className="text-right">

@@ -148,7 +148,7 @@ const Users = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Inactivate"
-      } this user?`,
+      } this Staff?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1E5DBC",
@@ -208,7 +208,7 @@ const Users = () => {
   };
 
   const isAllow = (key = "") => {
-    let permissions = user?.role?.permissions?.[0];
+    let permissions = user?.permissions;
     let value = permissions?.[key];
     if(user.role=='admin') value=true
     // return true;

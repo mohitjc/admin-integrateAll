@@ -148,7 +148,7 @@ const Features = () => {
       title: "Are you sure?",
       text: `Do you want to ${
         status == "active" ? "Activate" : "Inactivate"
-      } this user?`,
+      } this Feature?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#1E5DBC",

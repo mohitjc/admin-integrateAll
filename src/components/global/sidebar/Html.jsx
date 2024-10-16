@@ -89,9 +89,10 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
       activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
       url: "/category",
+      key:"readCategory"
     },
     {
-      name: "Static Pages",
+      name: "Content Management",
       activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
       icon: <img src="/assets/img/contractor.svg" alt=""/>,
       activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
@@ -129,16 +130,10 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       activeIcon: <img src="/assets/img/user-blue.svg" alt=""/>,
       menu: [
         {
-          name: "City",
+          name: "Continent",
           icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/city",
-          key: "readCustomers",
-        },
-        {
-          name: "State",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/state",
-          key: "readProject",
+          url: "/continent",
+          key: "readContinent",
         },
         {
           name: "County",
@@ -147,11 +142,20 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           key: "readProject",
         },
         {
-          name: "Continent",
+          name: "State",
           icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
-          url: "/continent",
-          key: "readContinent",
+          url: "/state",
+          key: "readProject",
         },
+        {
+          name: "City",
+          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          url: "/city",
+          key: "readCustomers",
+        },
+  
+     
+       
       ],
     },
     {

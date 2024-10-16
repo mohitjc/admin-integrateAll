@@ -81,7 +81,7 @@ const AddEdit = () => {
           let value = res.data;
           let payload = form;
           let payload1 = form1;
-          let permissions = value.permissions?.[0] || [];
+          let permissions = value.permissions || [];
 
           Object.keys(payload1).map((itm) => {
             if (itm != "permissions") payload1[itm] = value[itm];

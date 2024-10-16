@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import shared from "./shared";
 import loader from "../../methods/loader";
 import { Tooltip } from "antd";
+import methodModel from "../../methods/methods";
 
 const View = () => {
   const [data, setData] = useState();
@@ -64,9 +65,9 @@ const View = () => {
                   </p>
                 </div>
                 <div className="col-span-6 flex  flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Keywords:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Keyword:</label>
                    <p className="text-[14px] text-black font-medium"  >
-                       {data?.meta_keyword|| "--"}
+                       {data?.metaKeyword|| "--"}
                     {/* <GrUserSettings className="text-xl text-[#1E5DBC]" /> */}
                   </p>
                 
@@ -75,7 +76,7 @@ const View = () => {
                    <label className="text-[14px] text-[#0000009c] tracking-wider mb-1  ">Meta Title:</label>
                    <p className="text-[14px] text-black font-medium">
                     {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                    {data?.meta_title || "--"}
+                    {data?.metaTitle || "--"}
                   </p>
                 </div>
 
@@ -84,7 +85,7 @@ const View = () => {
                 <div className="col-span-12  flex   flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1   ">Meta Description:</label>
                    <p className="text-[14px] text-black font-medium "  dangerouslySetInnerHTML={{
-                      __html: data?.meta_description || "--",
+                      __html: data?.metaDescription || "--",
                     }}>
                     {/* <GrUserSettings className="text-xl text-[#1E5DBC]" /> */}
                   </p>
@@ -100,6 +101,15 @@ const View = () => {
                 
                   </p>
                 </div>
+                <div className="col-span-full">
+                      <label className="text-[14px] text-[#0000009c] tracking-wider mb-1">Images</label>
+                      <div className="flex gap-2 flex-wrap items-center">
+
+                              <img src={methodModel.noImg(data?.image)} width="140" />
+                      </div>
+
+             
+                    </div>
                </div>
               </div>
              
