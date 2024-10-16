@@ -165,14 +165,14 @@ const SiteDetails = () => {
     <Layout>
       <form onSubmit={handleSubmit}>
         <div className="flex items-center mb-8">
-          <Tooltip placement="top" title="Back">
+          {/* <Tooltip placement="top" title="Back">
             <Link
               to={`/${shared.url}`}
               className="!px-4 py-2 flex items-center justify-center rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
             >
               <i className="fa fa-angle-left text-lg"></i>
             </Link>
-          </Tooltip>
+          </Tooltip> */}
           <div>
             <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
               {id ? "Edit" : "Add"} {shared.addTitle}
@@ -274,13 +274,16 @@ const SiteDetails = () => {
                 Add Another Script <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
 
               </button></div>
-              <div className="flex justify-between">
-              <label className="mb-2">script</label>
-              <MdDelete className="text-[red]" onClick={() => handleRemoveScript(index)}/>
-              </div>
+             
             
               {form.script?.map((scriptEntry, index) => (
+                
   <div key={index} className="lg:col-span-6 col-span-12 mb-3">
+     <div className="flex justify-between">
+              <label className="mb-2">script</label>
+<MdDelete className="text-[red]" onClick={() => handleRemoveScript(index)}/>
+              
+              </div>
  <FormControl
       name={`script${index + 1}`}
       type="textarea"
@@ -289,7 +292,6 @@ const SiteDetails = () => {
       onChange={(e) => handleScriptChange(index, e)}
       required
     />
-
   </div>
 ))}
               
