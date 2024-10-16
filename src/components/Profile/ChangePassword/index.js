@@ -62,14 +62,16 @@ const ChangePassword = (p) => {
   return (
     <>
       <div className="wrapper_section">
-        <div className="main-title mb-4 lg:mb-8">
-          <h3 className="text-lg lg:text-2xl font-semibold text-[#111827] mb-6">
+      
+
+        <div className=" w-[450px]
+        mx-auto">
+     
+          <h3 className="text-lg lg:text-2xl text-center font-semibold text-[#111827] mb-3">
             Change Password
           </h3>
-        </div>
-
-        <div className=" grid grid-cols-12">
-          <div className="col-span-12  xl:col-span-7 input_form p-6 shadow-box overflow-hidden rounded-lg bg-white">
+        
+          <div className="col-span-12  xl:col-span-7 input_form p-6 shadow-[1px_1px_6px_4px_#8080803d] overflow-hidden rounded-lg bg-white">
             <form onSubmit={handleSubmit}>
               <div className="items-center ">
                 <div className="">
