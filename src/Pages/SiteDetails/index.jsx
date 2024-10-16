@@ -10,6 +10,8 @@ import shared from "./shared";
 import { useSelector } from "react-redux";
 import ImageUpload from "../../components/common/ImageUpload";
 import Select from 'react-select';
+import { MdDelete } from "react-icons/md";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const SiteDetails = () => {
   const { id } = useParams();
@@ -185,7 +187,7 @@ const SiteDetails = () => {
             <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
             Site Information
           </h4>
-          <div className="grid grid-cols-12 gap-4 p-4">
+          <div className="grid grid-cols-12 items-center gap-4 p-4">
             <div className="lg:col-span-6 col-span-12 mb-3">
               <FormControl
                 name="name"
@@ -219,23 +221,27 @@ const SiteDetails = () => {
             <div className="lg:col-span-12 col-span-12 mb-3">
            
             {form.socialMedia.map((entry, index) => (
-                <div  key={index}  className="grid grid-cols-12 gap-4 p-4">
+                <div  key={index}  className="grid grid-cols-12 gap-4 ">
+                  <div className="lg:col-span-12 col-span-12 mb-3">
+                  <button type="button" onClick={handleAddSocialMedia} className="mt-2 flex items-center">
+                Add Another Social Media <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
+
+              </button>
+                  </div>
+               
                 <div className="lg:col-span-6 col-span-12 mb-3">
-                  <div className="flex">
+                
+                  <div className="flex justify-between	">
                   <label className="mb-2">Social Media</label>
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveSocialMedia(index)}
-                    className="ml-2 text-red-500"
-                  >
-                    Remove
-                  </button>
+                 
+                  <MdDelete className="text-[red]"   onClick={() => handleRemoveSocialMedia(index)}/>
+
                   </div>
                   <Select
                     options={socialOptions}
                     onChange={(selectedOption) => handleInputChange(index, 'name', selectedOption.value)}
                     placeholder="Select Social Media"
-                    className="mr-2"
+                    className="mr-2 w-[100%]"
                     value={socialOptions.find(option => option.value === entry.name)}
                   />
                   </div>
@@ -261,34 +267,32 @@ const SiteDetails = () => {
                  </div>
                 </div>
               ))}
-              <button type="button" onClick={handleAddSocialMedia} className="mt-2">
-                Add Another Social Media
-              </button>
+              
             </div>
             <div className="lg:col-span-6 col-span-12 mb-3">
-              <h4 className="mb-2">script</h4>
+              <div ><button type="button" onClick={handleAddScript} className="mb-3 flex items-center">
+                Add Another Script <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
+
+              </button></div>
+              <div className="flex justify-between">
+              <label className="mb-2">script</label>
+              <MdDelete className="text-[red]" onClick={() => handleRemoveScript(index)}/>
+              </div>
+            
               {form.script?.map((scriptEntry, index) => (
   <div key={index} className="lg:col-span-6 col-span-12 mb-3">
  <FormControl
       name={`script${index + 1}`}
       type="textarea"
-      label={`Script ${index + 1}`}
+      // label={`Script ${index + 1}`}
       value={scriptEntry.script}
       onChange={(e) => handleScriptChange(index, e)}
       required
     />
-    <button
-      type="button"
-      onClick={() => handleRemoveScript(index)}
-      className="ml-2 text-red-500"
-    >
-      Remove
-    </button>
+
   </div>
 ))}
-              <button type="button" onClick={handleAddScript} className="mt-2">
-                Add Another Script
-              </button>
+              
             </div>
           </div>
         </div>
