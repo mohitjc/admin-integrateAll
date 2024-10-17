@@ -221,9 +221,9 @@ const SiteDetails = () => {
             <div className="lg:col-span-12 col-span-12 mb-3">
            
             {form.socialMedia.map((entry, index) => (
-                <div  key={index}  className="grid grid-cols-12 gap-4 ">
+                <div  key={index}  className="grid grid-cols-12 gap-4 bg-white shadow-lg p-5 border rounded-lg mb-3">
                   <div className="lg:col-span-12 col-span-12 mb-3">
-                  <button type="button" onClick={handleAddSocialMedia} className="mt-2 flex items-center">
+                  <button type="button" onClick={handleAddSocialMedia} className="flex items-center">
                 Add Another Social Media <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
 
               </button>
@@ -233,9 +233,7 @@ const SiteDetails = () => {
                 
                   <div className="flex justify-between	">
                   <label className="mb-2">Social Media</label>
-              {index >=1 && (
-                  <MdDelete className="text-[red]"   onClick={() => handleRemoveSocialMedia(index)}/>
-                )}
+            
                   </div>
                   <Select
                     options={socialOptions}
@@ -265,20 +263,25 @@ const SiteDetails = () => {
                     className="ml-2"
                   />
                  </div>
+                 <div className="col-span-12 flex justify-end">
+                 {index >=1 && (
+                  <MdDelete className="text-[red] shadow-lg w-[30px] h-[30px] rounded-full p-2 cursor-pointer"   onClick={() => handleRemoveSocialMedia(index)}/>
+                )}
+                  </div>
                 </div>
               ))}
               
             </div>
-            <div className="lg:col-span-6 col-span-12 mb-3">
+            <div className="col-span-12 mb-3">
               <div ><button type="button" onClick={handleAddScript} className="mb-3 flex items-center">
                 Add Another Script <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
 
               </button></div>
              
-            
+             <div className="grid grid-cols-12 gap-5">
               {form.script?.map((scriptEntry, index) => (
                 
-  <div key={index} className="lg:col-span-6 col-span-12 mb-3">
+  <div key={index} className="lg:col-span-6 col-span-12 shadow-lg p-5 border rounded-lg">
      <div className="flex justify-between">
               <label className="mb-2">script</label>
 
@@ -296,7 +299,7 @@ const SiteDetails = () => {
     />
   </div>
 ))}
-              
+         </div>     
             </div>
           </div>
         </div>

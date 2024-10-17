@@ -20,6 +20,16 @@ import { logout } from "../../../Pages/actions/user";
 import methodModel from "../../../methods/methods";
 import { IoArrowDownCircleSharp } from "react-icons/io5";
 import { RxDoubleArrowDown } from "react-icons/rx";
+import { MdSpaceDashboard } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { MdCategory } from "react-icons/md";
+import { MdListAlt } from "react-icons/md";
+import { IoGitMergeOutline } from "react-icons/io5";
+import { FaUsers } from "react-icons/fa";
+import { FaQuestion } from "react-icons/fa";
+import { FaBloggerB } from "react-icons/fa6";
+import { TbListDetails } from "react-icons/tb";
+import { MdOutlineManageAccounts } from "react-icons/md";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -64,8 +74,8 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     },
     {
       name: "Dashboard",
-      icon: <img src="/assets/img/dashboard.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/dashboard-blue.svg" alt=""/>,
+      icon: <MdSpaceDashboard className="text-[20px]" />,
+      activeIcon: <MdSpaceDashboard className="text-[20px]" />,
       url: "/dashboard",
       key: "readDashboard",
     },
@@ -78,40 +88,39 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     // },
     {
       name: "Staff",
-      icon: <img src="/assets/img/usero.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/usero-blue.svg" alt=""/>,
+      icon: <FaUser className="text-[20px]" />,
+      activeIcon: <FaUser className="text-[20px]" />,
       url: "/user",
       key: "readstaff",
     },
     {
       name: "Categories",
-      activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
-      icon: <img src="/assets/img/contractor.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
+      icon: <MdCategory className="text-[20px]" />,
+      activeIcon: <MdCategory className="text-[20px]" />,
       url: "/category",
       key:"readCategory"
     },
     {
       name: "Users",
-      icon: <img src="/assets/img/job.svg" alt="" />,
-      activeIcon: <img src="/assets/img/job-blue.svg" alt=""/>,
+      icon: <FaUsers className="text-[20px]"/>,
+      activeIcon: <FaUsers className="text-[20px]"/>,
       url: "/customers",
       key: "readCustomers",
     },
      {
       name: "Subscription Plan",
-      icon: <img src="/assets/img/client.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/user-blue.svg" alt=""/>,
+      icon: <MdListAlt className="text-[20px]" />,
+      activeIcon: <MdListAlt className="text-[20px]" />,
       menu: [
         {
           name: "Features",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          icon: <FiUsers className="text-[20px]" />,
           url: "/feature",
           key: "readFeature",
         },
         {
           name: "Plans",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          icon: <FiUsers className="text-[20px]" />,
           url: "/plan",
           key: "readPlan",
         },
@@ -119,30 +128,30 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     },
     {
       name: "Geo",
-      icon: <img src="/assets/img/client.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/user-blue.svg" alt=""/>,
+      icon: <IoGitMergeOutline className="text-[20px]" />,
+      activeIcon: <IoGitMergeOutline className="text-[20px]" />,
       menu: [
         {
           name: "Continent",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          icon: <FiUsers className="text-[20px]" />,
           url: "/continent",
           key: "readContinent",
         },
         {
           name: "County",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          icon: <FiUsers className="text-[20px]" />,
           url: "/country",
           key: "readProject",
         },
         {
           name: "State",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          icon: <FiUsers className="text-[20px]" />,
           url: "/state",
           key: "readProject",
         },
         {
           name: "City",
-          icon: <FiUsers className="text-inherit shrink-0 text-lg" />,
+          icon: <FiUsers className="text-[20px]" />,
           url: "/city",
           key: "readCustomers",
         },
@@ -150,30 +159,29 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
     },
     {
       name: "FAQ",
-      icon: <img src="/assets/img/job.svg" alt="" />,
-      activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
+      icon: <FaQuestion className="text-[20px]" />,
+      activeIcon: <FaQuestion className="text-[20px]" />,
       url: "/faqs",
       key: "readFaq",
     },
     {
       name: "Blogs",
-      icon: <img src="/assets/img/job.svg" alt="" />,
-      activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
+      icon:<FaBloggerB className="text-[20px]" />,
+      activeIcon: <FaBloggerB className="text-[20px]" />,
       url: "/blogs",
       key: "readBlog",
     },
     {
       name: "Site Details",
-      icon: <img src="/assets/img/job.svg" alt="" />,
-      activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
+      icon: <TbListDetails className="text-[20px]" />,
+      activeIcon: <TbListDetails className="text-[20px]" />,
       url: "/sitedetails",
       key: "readSiteDetails",
     },
     {
       name: "Content Management",
-      activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
-      icon: <img src="/assets/img/contractor.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
+      icon: <MdOutlineManageAccounts className="text-[20px]" />,
+      activeIcon: <MdOutlineManageAccounts className="text-[20px]" />,
       url: "/content",
     },
   ];
