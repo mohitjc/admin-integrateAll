@@ -221,12 +221,14 @@ const SiteDetails = () => {
             <div className="lg:col-span-12 col-span-12 mb-3">
            
             {form.socialMedia.map((entry, index) => (
-                <div  key={index}  className="grid grid-cols-12 gap-4 bg-white shadow-lg p-5 border rounded-lg mb-3">
-                  <div className="lg:col-span-12 col-span-12 mb-3">
-                  <button type="button" onClick={handleAddSocialMedia} className="flex items-center">
+                <div  key={index}  className="grid grid-cols-12 gap-4 bg-white shadow-lg p-5 border rounded-lg mb-3 ">
+                  <div className="lg:col-span-12 col-span-12 mb-3 border-b pb-3 flex justify-between gap-5 ">
+                  <button type="button" onClick={handleAddSocialMedia} className="flex items-center text-[#1E5DBC] font-[600]">
                 Add Another Social Media <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
-
               </button>
+                 {index >=1 && (
+                  <MdDelete className="text-[red] shadow-lg w-[30px] h-[30px] border rounded-full p-2 cursor-pointer"   onClick={() => handleRemoveSocialMedia(index)}/>
+                )}
                   </div>
                
                 <div className="lg:col-span-6 col-span-12 mb-3">
@@ -263,17 +265,13 @@ const SiteDetails = () => {
                     className="ml-2"
                   />
                  </div>
-                 <div className="col-span-12 flex justify-end">
-                 {index >=1 && (
-                  <MdDelete className="text-[red] shadow-lg w-[30px] h-[30px] rounded-full p-2 cursor-pointer"   onClick={() => handleRemoveSocialMedia(index)}/>
-                )}
-                  </div>
+                
                 </div>
               ))}
               
             </div>
             <div className="col-span-12 mb-3">
-              <div ><button type="button" onClick={handleAddScript} className="mb-3 flex items-center">
+              <div ><button type="button" onClick={handleAddScript} className="mb-3 flex items-center text-[#1E5DBC] font-[600]">
                 Add Another Script <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
 
               </button></div>
