@@ -92,13 +92,6 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key:"readCategory"
     },
     {
-      name: "Content Management",
-      activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
-      icon: <img src="/assets/img/contractor.svg" alt=""/>,
-      activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
-      url: "/content",
-    },
-    {
       name: "Users",
       icon: <img src="/assets/img/job.svg" alt="" />,
       activeIcon: <img src="/assets/img/job-blue.svg" alt=""/>,
@@ -153,9 +146,6 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           url: "/city",
           key: "readCustomers",
         },
-  
-     
-       
       ],
     },
     {
@@ -178,6 +168,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       activeIcon: <img src="/assets/img/job-blue.svg" alt="" />,
       url: "/sitedetails",
       key: "readSiteDetails",
+    },
+    {
+      name: "Content Management",
+      activeIcon: <img src="/assets/img/material-blue.svg" alt=""/>,
+      icon: <img src="/assets/img/contractor.svg" alt=""/>,
+      activeIcon: <img src="/assets/img/dashboard.svg" alt=""/>,
+      url: "/content",
     },
   ];
 
