@@ -2,7 +2,7 @@
 const shared = {
     check: "Site",
     title: "Site Details",
-    addTitle: "Site Detail",
+    addTitle: "Site Details",
     url: "sitedetails",
     addApi: "site/add",
     editApi: "site/editSiteDetail",

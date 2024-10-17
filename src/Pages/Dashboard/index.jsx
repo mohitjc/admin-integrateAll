@@ -161,7 +161,7 @@ const Dashboard = () => {
               {data?.totalUsersCount}
               </dd>
             </div>
-            <div className="  border cursor-pointer text-center border-gray-200  px-6 py-2 rounded-lg relative bg-[#0035850a] " onClick={(e)=>history("/contract")}>
+            <div className="  border cursor-pointer text-center border-gray-200  px-6 py-2 rounded-lg relative bg-[#0035850a] " onClick={(e)=>history("/category")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d4.svg"
@@ -177,7 +177,7 @@ const Dashboard = () => {
               </dd>
             </div>
 
-            <div className="  border cursor-pointer text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a]  " onClick={(e)=>history("/assignment")}>
+            <div className="  border cursor-pointer text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a]  " onClick={(e)=>history("/plan")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d2.svg"
