@@ -129,6 +129,10 @@ const AddEdit = () => {
             </div>
 
           <div className="pprofile1">
+          <h4 className="p-4 border-b font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC]">
+            <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
+            Basic Information
+          </h4>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
             <div className=" mb-3">
                 <FormControl
@@ -159,6 +163,13 @@ const AddEdit = () => {
                 label="Choose Images"
               />
             </div>
+            </div>
+
+            <h4 className="p-4 border-b border-t font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC]">
+            <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
+            SEO Information
+          </h4>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
               <div className=" mb-3">
                 <FormControl
                   type="text"
@@ -192,7 +203,7 @@ const AddEdit = () => {
                   }
                 />
               </div>
-            </div>
+              </div>
             <div className="text-right">
               <button
                 type="submit"

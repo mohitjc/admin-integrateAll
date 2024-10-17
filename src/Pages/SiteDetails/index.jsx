@@ -233,9 +233,9 @@ const SiteDetails = () => {
                 
                   <div className="flex justify-between	">
                   <label className="mb-2">Social Media</label>
-                 
+              {index >=1 && (
                   <MdDelete className="text-[red]"   onClick={() => handleRemoveSocialMedia(index)}/>
-
+                )}
                   </div>
                   <Select
                     options={socialOptions}
@@ -281,7 +281,9 @@ const SiteDetails = () => {
   <div key={index} className="lg:col-span-6 col-span-12 mb-3">
      <div className="flex justify-between">
               <label className="mb-2">script</label>
+
 <MdDelete className="text-[red]" onClick={() => handleRemoveScript(index)}/>
+              
               
               </div>
  <FormControl

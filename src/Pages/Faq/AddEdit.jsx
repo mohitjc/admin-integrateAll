@@ -104,9 +104,11 @@ const getCategories=()=>{
             
               </div>
             </div>
-          <div className="pprofile1 p-[15px]">
-
+            <div className="pprofile1">
+          <h4 class="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] "><img src="/assets/img/usero-blue.svg" class="me-3 bg-[#e9f0f8] p-2 rounded-md" />Basic Information</h4>
+          <div className="p-[15px]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
               <div className=" mb-3">
                 <FormControl
                   type="text"
@@ -146,6 +148,7 @@ const getCategories=()=>{
                 Save
               </button>
             </div>
+          </div>
           </div>
         </form>
       </Layout>

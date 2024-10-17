@@ -77,7 +77,7 @@ const View = () => {
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                   USD: {data && data.monthlyPrice?.usd ? data && data.threeMonthAmount : "--" }
+                    {data && data.monthlyPrice?.usd ? data && data.threeMonthAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
@@ -85,14 +85,14 @@ const View = () => {
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                   USD: {data && data.monthlyPrice?.usd ? data && data.sixMonthAmount : "--" }
+                    {data && data.monthlyPrice?.usd ? data && data.sixMonthAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Yearly Price USD:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                   USD: {data && data.monthlyPrice?.usd ? data && data.yearlyAmount : "--" }
+                    {data && data.monthlyPrice?.usd ? data && data.yearlyAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
@@ -100,7 +100,7 @@ const View = () => {
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    USD: {data && data.monthlyPrice?.usd ? data && data.monthlyAmount: "--" }
+                    {data && data.monthlyPrice?.usd ? data && data.monthlyAmount: "--" }
                   </p>
                 </div>
                 
