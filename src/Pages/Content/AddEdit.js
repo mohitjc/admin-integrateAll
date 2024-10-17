@@ -129,10 +129,7 @@ const AddEdit = () => {
             </div>
 
           <div className="pprofile1">
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
-
-                   
             <div className=" mb-3">
                 <FormControl
                   type="text"
@@ -142,7 +139,6 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, title: e })}
                 />
               </div>
-            
               <div className="col-span-full mb-3">
                 <FormControl
                   type="editor"
@@ -196,9 +192,7 @@ const AddEdit = () => {
                   }
                 />
               </div>
-           
             </div>
-
             <div className="text-right">
               <button
                 type="submit"
