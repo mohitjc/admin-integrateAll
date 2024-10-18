@@ -9,6 +9,7 @@ import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import environment from "../../environment";
+import Select from 'react-select';
 
 const AddEdit = () => {
   const { id } = useParams();
@@ -20,14 +21,14 @@ const [companyType, setCompanyType] = useState([])
     lastName: "",
     email: "",
     mobileNo: "",
-    // dob: "",
-    // address: "",
-    // address2: "",
-    // state: "",
-    // zipCode: "",
-    // country: "",
     company:"",
-    companyType:""
+    companyType:"",
+    companyMobileNo:"",
+    CompanyEmail:"",
+    companyAddress:"",
+    websiteURL:"",
+    contactName:"",
+    currency:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -112,6 +113,7 @@ const [companyType, setCompanyType] = useState([])
 
     getData()
   }, [id]);
+
 
   return (
     <>
@@ -211,26 +213,6 @@ const [companyType, setCompanyType] = useState([])
                   </div>
                 )}
               </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="text"
-                  label="Company"
-                  value={form.company}
-                  onChange={(e) => setform({ ...form, company: e })}
-                  required
-                />
-              </div>
-              <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="select"
-                  label="Type"
-                  value={form.companyType}
-                  options={companyType}
-                  theme="search"
-                  onChange={(e) => setform({ ...form, companyType: e })}
-                  required
-                />
-              </div>
               {/* <div className="mb-3">
                 <FormControl
                   type="date"
@@ -243,8 +225,132 @@ const [companyType, setCompanyType] = useState([])
 
              
             </div>
-
-            
+            <div>
+              <h4 className="p-4 border-b border-t  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                Company Profile
+              </h4>
+            </div>
+            <div className="grid grid-cols-12 gap-4 p-4">
+            <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="Company Name"
+                  value={form.company}
+                  onChange={(e) => setform({ ...form, company: e })}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Business Type"
+                  value={form.companyType}
+                  options={companyType}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, companyType: e })}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="phone"
+                  name="mobileNo"
+                  label="Company Mobile No"
+                  value={form.companyMobileNo}
+                  onChange={(e) => setform({ ...form, companyMobileNo: e })}
+                  required
+                />
+                {submitted && !form.mobileNo && (
+                  <div className="invalid-feedback d-block">
+                    Mobile is required
+                  </div>
+                )}
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  name="email"
+                  label="Company Email"
+                  value={form.CompanyEmail}
+                  onChange={(e) => setform({ ...form, CompanyEmail: e })}
+                  required
+                  // disabled={id ? true : false}
+                />
+                {form.email && submitted && !inValidEmail && (
+                  <div className="invalid-feedback d-block">
+                    Please enter valid email
+                  </div>
+                )}
+              </div>
+              
+              </div>
+              <div>
+              <h4 className="p-4 border-b border-t  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
+                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
+                Company Information
+              </h4>
+            </div>
+            <div className="grid grid-cols-12 gap-4 p-4">
+            <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="Company Address"
+                  value={form.companyAddress}
+                  onChange={(e) => setform({ ...form, companyAddress: e })}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="Contact Name"
+                  value={form.contactName}
+                  onChange={(e) => setform({ ...form, contactName: e })}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Currency"
+                  value={form.currency}
+                  options={shared.currencyOptions}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, currency: e })}
+                  required
+                />
+                  {/* <MultiSelectDropdown
+                    id="statusDropdown"
+                    // placeholder="Select Amenities"
+                    intialValue={form?.currency}
+                    className="mt-1 capitalize"
+                    result={(e) => setform({ ...form, currency: e })}
+                    options={shared.currencyOptions}
+                    required={true}
+                  /> */}
+              </div>
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Product"
+                  value={form.companyType}
+                  options={shared.currencyOptions}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, companyType: e })}
+                  required
+                />
+              </div> */}
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="text"
+                  label="Website URL"
+                  value={form.websiteURL}
+                  onChange={(e) => setform({ ...form, websiteURL: e })}
+                  required
+                />
+              </div>
+              </div>
           </div>
 
           {/* <div className="pprofile1 mb-10">

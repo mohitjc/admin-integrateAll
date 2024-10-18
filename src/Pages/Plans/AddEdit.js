@@ -12,13 +12,13 @@ import Select from 'react-select'
 
 const AddEdit = () => {
   const { id } = useParams();
-  const [recommendedValue, setRecommendedValue] = useState()
   const [form, setform] = useState({
     name: "",
     recomended:"",
     trialPeriod:""
     // type:''
   });
+
   const [features, setFeatures] = useState([]);
   const [sfeatures, setSFeatures] = useState([]);
   const [images, setImages] = useState({ image: "" });
@@ -209,16 +209,8 @@ const AddEdit = () => {
                   required
                 />
               </div>
+            
               {/* <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="select"
-                  label="Recommended"
-                  value={form.recommended}
-                  onChange={(e) => setform({ ...form, recommended: e?.target?.value })}
-                  options={recommendedArray}
-                  required
-                /> */}
-                  <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
                   label="Recommended"
@@ -228,7 +220,7 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, recomended: e })}
                   required
                 />
-              </div>
+              </div> */}
               {/* </div> */}
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
@@ -241,28 +233,6 @@ const AddEdit = () => {
                   required
                       />
                     </div>
-              {/* <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="select"
-                  label="Type"
-                  value={form.type}
-                  options={shared.types}
-                  theme="search"
-                  onChange={(e) => setform({ ...form, type: e })}
-                  required
-                />
-              </div> */}
-              {/* <div className="lg:col-span-6 col-span-12 mb-3">
-                <label className="block mb-2">Image</label>
-
-                <ImageUpload
-                  model="users"
-                  result={(e) => imageResult(e, "image")}
-                  value={images.image || form.image}
-                  multiple={false}
-                  label="Choose Images"
-                />
-              </div> */}
               <div className="col-span-full">
                 <div className="grid grid-cols-4 gap-3">
                   <div className="">
@@ -271,7 +241,7 @@ const AddEdit = () => {
                       label="Monthly (AUD)"
                       value={form.monthlyAmount}
                       onChange={(e) => setform({ ...form, monthlyAmount: e })}
-                      required
+                      // required
                     />
                   </div>
                   <div className="">
@@ -303,6 +273,86 @@ const AddEdit = () => {
                   </div>
                 </div>
               </div>
+              {/* <div className="col-span-full">
+                <div className="grid grid-cols-4 gap-3">
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="Monthly (USD)"
+                      value={form.monthlyAmountUSD}
+                      onChange={(e) => setform({ ...form, monthlyAmountUSD: e })}
+                      // required
+                    />
+                  </div>
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="3 Months (USD)"
+                      value={form.threeMonthAmountUSD}
+                      onChange={(e) => setform({ ...form, threeMonthAmountUSD: e })}
+                      
+                    />
+                  </div>
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="6 Months (USD)"
+                      value={form.sixMonthAmountUSD}
+                      onChange={(e) => setform({ ...form, sixMonthAmountUSD: e })}
+                      
+                    />
+                  </div>
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="Yearly (USD)"
+                      value={form.yearlyAmountUSD}
+                      onChange={(e) => setform({ ...form, yearlyAmountUSD: e })}
+                      
+                    />
+                  </div>
+                </div>
+              </div> */}
+              {/* <div className="col-span-full">
+                <div className="grid grid-cols-4 gap-3">
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="Monthly (NZD)"
+                      value={form.monthlyAmountNZD}
+                      onChange={(e) => setform({ ...form, monthlyAmountNZD: e })}
+                      // required
+                    />
+                  </div>
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="3 Months (NZD)"
+                      value={form.threeMonthAmountNZD}
+                      onChange={(e) => setform({ ...form, threeMonthAmountNZD: e })}
+                      
+                    />
+                  </div>
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="6 Months (NZD)"
+                      value={form.sixMonthAmountNZD}
+                      onChange={(e) => setform({ ...form, sixMonthAmountNZD: e })}
+                      
+                    />
+                  </div>
+                  <div className="">
+                    <FormControl
+                      type="number"
+                      label="Yearly (NZD)"
+                      value={form.yearlyAmountNZD}
+                      onChange={(e) => setform({ ...form, yearlyAmountNZD: e })}
+                      
+                    />
+                  </div>
+                </div>
+              </div>   */}
               <div className="col-span-full ">
                 <h5 className="mb-3">Feature Text</h5>
                 <div>

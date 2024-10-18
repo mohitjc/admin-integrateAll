@@ -73,34 +73,34 @@ const View = () => {
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Three Month USD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Three Month AUD:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.monthlyPrice?.usd ? data && data.threeMonthAmount : "--" }
+                    {data && data.threeMonthAmount ? data && data.threeMonthAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Six Month USD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Six Month AUD:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.monthlyPrice?.usd ? data && data.sixMonthAmount : "--" }
+                    {data && data.sixMonthAmount ? data && data.sixMonthAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Yearly Price USD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Yearly Price AUD:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.monthlyPrice?.usd ? data && data.yearlyAmount : "--" }
+                    {data && data.yearlyAmount ? data && data.yearlyAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Monthly Price USd:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Monthly Price AUD:</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.monthlyPrice?.usd ? data && data.monthlyAmount: "--" }
+                    {data && data.monthlyAmount ? data && data.monthlyAmount: "--" }
                   </p>
                 </div>
                 

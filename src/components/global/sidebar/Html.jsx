@@ -101,11 +101,11 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key:"readCategory"
     },
     {
-      name: "Users",
+      name: "Customers",
       icon: <FaUsers className="text-[20px]"/>,
       activeIcon: <FaUsers className="text-[20px]"/>,
       url: "/customers",
-      key: "readCustomers",
+      key: "readCustomers", 
     },
      {
       name: "Subscription Plan",
