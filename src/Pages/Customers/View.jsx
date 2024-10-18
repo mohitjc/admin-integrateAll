@@ -149,7 +149,7 @@ const View = () => {
                     </label>
                     <p className="text-[14px] text-black font-medium">
                       {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                      +{data && data.companyMobileNo}
+                      +{data?.companyMobileNo || "--"}
                     </p>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ const View = () => {
                     </label>
                     <p className="text-[14px] text-black font-medium">
                       {/* <MdOutlineEmail className="text-xl text-[#1E5DBC]" /> */}
-                      {data && data.contactName}
+                      {data && data.contactName ? data?.contactName : "--"}
                     </p>
                   </div>
 

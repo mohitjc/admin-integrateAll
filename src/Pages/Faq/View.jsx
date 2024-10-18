@@ -55,12 +55,19 @@ const ViewFaq = () => {
             <div className="col-span-12">
               <div className="  shadow-box overflow-hidden rounded-lg bg-white  gap-4 shrink-0 "> 
                <div className="grid grid-cols-12 p-4">
-               <div className="col-span-12 flex flex-col mb-5">
+               <div className="col-span-6 flex flex-col mb-5">
                   <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 w-[160px]">Question:</label>
                   <p className="text-[14px] text-black font-medium">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.question}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 w-[160px]">Category:</label>
+                  <p className="text-[14px] text-black font-medium">
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                    {data && data.categoryData && data.categoryData?.name}
                   </p>
                 </div>
                   <div className="col-span-12 flex flex-col mb-5">
