@@ -11,6 +11,10 @@ const types=[
     id:'FAQ',
     name:'FAQ'
   },
+  {
+    id:'Business',
+    name:'Business'
+  }
 ]
 const shared = {
   check: "Category",

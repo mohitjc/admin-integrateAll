@@ -9,11 +9,10 @@ import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import environment from "../../environment";
-import { IoLocationSharp } from "react-icons/io5";
 
 const AddEdit = () => {
   const { id } = useParams();
-
+const [companyType, setCompanyType] = useState([])
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
     id: "",
@@ -21,13 +20,14 @@ const AddEdit = () => {
     lastName: "",
     email: "",
     mobileNo: "",
-    dob: "",
-    address: "",
-    address2: "",
-    state: "",
-    zipCode: "",
-    country: "",
-    company:""
+    // dob: "",
+    // address: "",
+    // address2: "",
+    // state: "",
+    // zipCode: "",
+    // country: "",
+    company:"",
+    companyType:""
   });
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -38,7 +38,19 @@ const AddEdit = () => {
     { key: "mobileNo", required: true },
     { key: "email", required: true, message: "Email is required", email: true },
   ];
-
+  const getData = (p = {}) => {
+    ApiClient.get("category/listing", {status:'active', categoryType:"Business"}).then((res) => {
+      if (res.success) {
+        const data = res?.data?.map((data)=>{
+          return{
+            "id":data?.id || data?._id,
+            "name" : data?.name
+          }
+        })
+        setCompanyType(data);
+      }
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
@@ -69,6 +81,8 @@ const AddEdit = () => {
     });
   };
 
+
+
   useEffect(() => {
     if (id) {
       loader(true);
@@ -95,6 +109,8 @@ const AddEdit = () => {
         loader(false);
       });
     }
+
+    getData()
   }, [id]);
 
   return (
@@ -195,7 +211,7 @@ const AddEdit = () => {
                   </div>
                 )}
               </div>
-              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+              <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Company"
@@ -203,7 +219,18 @@ const AddEdit = () => {
                   onChange={(e) => setform({ ...form, company: e })}
                   required
                 />
-              </div> */}
+              </div>
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Type"
+                  value={form.companyType}
+                  options={companyType}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, companyType: e })}
+                  required
+                />
+              </div>
               {/* <div className="mb-3">
                 <FormControl
                   type="date"

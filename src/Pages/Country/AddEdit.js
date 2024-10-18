@@ -20,7 +20,6 @@ const AddEdit = () => {
   });
   const [images, setImages] = useState({ image: "" });
   const [continentOptions, setContinentOptions] = useState([])
-  console.log(continentOptions)
 
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);

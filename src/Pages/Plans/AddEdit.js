@@ -6,14 +6,17 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/global/layout";
 import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
-import shared from "./shared";
+import shared, { days, recommended, trialPeriodData } from "./shared";
 import { useSelector } from "react-redux";
-import ImageUpload from "../../components/common/ImageUpload";
+import Select from 'react-select'
 
 const AddEdit = () => {
   const { id } = useParams();
+  const [recommendedValue, setRecommendedValue] = useState()
   const [form, setform] = useState({
     name: "",
+    recomended:"",
+    trialPeriod:""
     // type:''
   });
   const [features, setFeatures] = useState([]);
@@ -53,25 +56,25 @@ const AddEdit = () => {
       {
         "interval": "month",
         "interval_count": 1,
-        "currency": "usd",
+        "currency": "aud",
         "unit_amount": Number(form.monthlyAmount)
       },
       {
         "interval": "month",
         "interval_count": 3,
-        "currency": "usd",
+        "currency": "aud",
         "unit_amount": Number(form.threeMonthAmount)
       },
       {
         "interval": "month",
         "interval_count": 6,
-        "currency": "usd",
+        "currency": "aud",
         "unit_amount": Number(form.sixMonthAmount)
       },
       {
         "interval": "month",
         "interval_count": 12,
-        "currency": "usd",
+        "currency": "aud",
         "unit_amount": Number(form.yearlyAmount)
       }
     ]
@@ -79,7 +82,6 @@ const AddEdit = () => {
       usd:Number(form.monthlyAmount)
     }
 
-    console.log("value",value)
     loader(true);
     ApiClient.allApi(url, value, method).then((res) => {
       if (res.success) {
@@ -140,6 +142,8 @@ const AddEdit = () => {
       });
     }
     getFeatures()
+
+
   }, [id]);
 
   const imageResult = (e, key) => {
@@ -159,10 +163,13 @@ const AddEdit = () => {
     } else {
       arr = arr.filter(itm => itm != value)
     }
-console.log("arr",arr)
     setSFeatures([...arr])
   }
 
+  const recommendedArray = [
+    {name:"Yes", id:"Yes"}, {name:"No",id:"No"}
+  ]
+  const trialPeriodOptions = shared.options.map(option => ({ value: option.value, label: option.label }));
   return (
     <>
       <Layout>
@@ -202,6 +209,38 @@ console.log("arr",arr)
                   required
                 />
               </div>
+              {/* <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Recommended"
+                  value={form.recommended}
+                  onChange={(e) => setform({ ...form, recommended: e?.target?.value })}
+                  options={recommendedArray}
+                  required
+                /> */}
+                  <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Recommended"
+                  value={form.recomended}
+                  options={recommendedArray}
+                  theme="search"
+                  onChange={(e) => setform({ ...form, recomended: e })}
+                  required
+                />
+              </div>
+              {/* </div> */}
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="select"
+                  label="Trial Period"
+                  theme="search"
+                  value={form.trialPeriod}
+                  onChange={(e) => setform({ ...form, trialPeriod: e})}
+                  options={shared.options}
+                  required
+                      />
+                    </div>
               {/* <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
@@ -264,8 +303,8 @@ console.log("arr",arr)
                   </div>
                 </div>
               </div>
-              <div className="col-span-full">
-                <h5>Features</h5>
+              <div className="col-span-full ">
+                <h5 className="mb-3">Feature Text</h5>
                 <div>
                   {features.map(itm=>{
                     return  <label class="flex items-center mb-4" key={itm.id}>

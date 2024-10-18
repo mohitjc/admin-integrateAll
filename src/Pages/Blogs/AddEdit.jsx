@@ -141,7 +141,7 @@ const AddEdit = () => {
 
 
   const getCategories=()=>{
-    ApiClient.get('category/listing',{status:'active',categoryType:'FAQ'}).then(res=>{
+    ApiClient.get('category/listing',{status:'active',categoryType:'Blog'}).then(res=>{
       if(res.success){
         setCategories(res.data)
       }

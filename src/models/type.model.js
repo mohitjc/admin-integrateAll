@@ -23,6 +23,26 @@ export const rolePermissions = [
     name: "Plan Features",
     key: "Feature",
   },
+  {
+    name: "Geo",
+    key: "Geo",
+  },
+  {
+    name: "Blogs",
+    key: "Blogs",
+  },
+  {
+    name: "Site Details",
+    key: "Site",
+  },
+  {
+    name: "Content Mangement",
+    key: "Content",
+  },
+  {
+    name: "FAQ",
+    key: "Faq",
+  },
 ];
 
 export const rolePermission = [

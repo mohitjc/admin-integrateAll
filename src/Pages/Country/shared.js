@@ -13,7 +13,7 @@ const types=[
   },
 ]
 const shared = {
-  check: "Country",
+  check: "Geo",
   title: "Countries",
   addTitle: "Country",
   url: "country",

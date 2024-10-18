@@ -130,30 +130,31 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       name: "Geo",
       icon: <IoGitMergeOutline className="text-[20px]" />,
       activeIcon: <IoGitMergeOutline className="text-[20px]" />,
+      key:"readGeo",
       menu: [
         {
           name: "Continent",
           icon: <FiUsers className="text-[20px]" />,
           url: "/continent",
-          key: "readContinent",
+          key: "readGeo",
         },
         {
           name: "County",
           icon: <FiUsers className="text-[20px]" />,
           url: "/country",
-          key: "readProject",
+          key: "readGeo",
         },
         {
           name: "State",
           icon: <FiUsers className="text-[20px]" />,
           url: "/state",
-          key: "readProject",
+          key: "readGeo",
         },
         {
           name: "City",
           icon: <FiUsers className="text-[20px]" />,
           url: "/city",
-          key: "readCustomers",
+          key: "readGeo",
         },
       ],
     },
@@ -169,20 +170,21 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       icon:<FaBloggerB className="text-[20px]" />,
       activeIcon: <FaBloggerB className="text-[20px]" />,
       url: "/blogs",
-      key: "readBlog",
+      key: "readBlogs",
     },
     {
       name: "Site Details",
       icon: <TbListDetails className="text-[20px]" />,
       activeIcon: <TbListDetails className="text-[20px]" />,
       url: "/sitedetails",
-      key: "readSiteDetails",
+      key: "readSite",
     },
     {
       name: "Content Management",
       icon: <MdOutlineManageAccounts className="text-[20px]" />,
       activeIcon: <MdOutlineManageAccounts className="text-[20px]" />,
       url: "/content",
+      key:'readContent'
     },
   ];
 
