@@ -221,6 +221,7 @@ const AddEdit = () => {
                   required
                 />
               </div> 
+            
             <div className="col-span-full mb-3">
             <div className=" mb-3">
                 <FormControl
@@ -258,7 +259,14 @@ const AddEdit = () => {
               />
               {errors.images && <span className="text-red-500">{errors.images}</span>}
             </div>
+            </div>
+            </div>
+            <div>
             <h4 class="p-4 border-b border-t mb-4 font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] "><img src="/assets/img/usero-blue.svg" class="me-3 bg-[#e9f0f8] p-2 rounded-md" />SEO Information</h4>
+
+            </div>
+            <div className="grid grid-cols-12 gap-4 p-4">
+            
             <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   name="metaname"
@@ -269,7 +277,7 @@ const AddEdit = () => {
                   required
                 />
               </div>
-              <div className=" mb-3">
+              <div className=" lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   required
                   type="textarea"
@@ -281,7 +289,7 @@ const AddEdit = () => {
               </div>
             </div>
             
-            </div>
+           
           </div>
           <div className="text-right">
               <button

@@ -234,42 +234,82 @@ const AddEdit = () => {
                       />
                     </div>
               <div className="col-span-full">
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-12 gap-3">
+                  {/* <div className="">
+                 
+                  </div>
                   <div className="">
-                    <FormControl
+                    
+                  </div>
+                  <div className="">
+                
+                  </div>
+                  <div className="">
+              
+                  </div> */}
+                  <div className="lg:col-span-12 col-span-12 mb-3">
+
+
+                  <div class="relative overflow-x-auto">
+    <table class="w-full border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-10 border py-3 text-center">
+                   Duration
+                </th>
+                <th scope="col" class="px-10 border py-3 text-center">
+                    AUD
+                </th>
+             
+            </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <th class="px-10 py-4 border text-center">1 Month</th>
+          <td class="px-4 py-4 border text-center">   <FormControl
                       type="number"
-                      label="Monthly (AUD)"
                       value={form.monthlyAmount}
                       onChange={(e) => setform({ ...form, monthlyAmount: e })}
                       // required
-                    />
-                  </div>
-                  <div className="">
-                    <FormControl
+                    /></td>
+         </tr>
+         <tr>
+          <th  class="px-10 py-4 border text-center">
+            3 Month
+          </th>
+          <td  class="px-4 border py-4 text-center">
+          <FormControl
                       type="number"
-                      label="3 Months (AUD)"
                       value={form.threeMonthAmount}
                       onChange={(e) => setform({ ...form, threeMonthAmount: e })}
                       
                     />
-                  </div>
-                  <div className="">
-                    <FormControl
+          </td>
+         </tr>
+         <tr>
+          <th  class="px-10 py-4 border text-center">6 Month</th>
+<td  class="px-4 py-4 border text-center">    <FormControl
                       type="number"
-                      label="6 Months (AUD)"
+                    
                       value={form.sixMonthAmount}
                       onChange={(e) => setform({ ...form, sixMonthAmount: e })}
                       
-                    />
-                  </div>
-                  <div className="">
-                    <FormControl
+                    /></td>
+         </tr>
+         <tr>
+          <th  class="px-10 py-4 border text-center">12 Month</th>
+          <td  class="px-4 py-4 border text-center">    
+              <FormControl
                       type="number"
-                      label="Yearly (AUD)"
                       value={form.yearlyAmount}
                       onChange={(e) => setform({ ...form, yearlyAmount: e })}
                       
-                    />
+                    /></td>
+         </tr>
+        </tbody>
+    </table>
+</div>
+
                   </div>
                 </div>
               </div>
@@ -354,10 +394,10 @@ const AddEdit = () => {
                 </div>
               </div>   */}
               <div className="col-span-full ">
-                <h5 className="mb-3">Feature Text</h5>
-                <div>
+                <label className="text-sm mb-2 block">Feature Text</label>
+                <div className="flex justify-between  items-center rounded p-4">
                   {features.map(itm=>{
-                    return  <label class="flex items-center mb-4" key={itm.id}>
+                    return  <label class="flex items-center " key={itm.id}>
                     <input onChange={e=>selectF(e)} checked={sfeatures.includes(String(itm.id))} value={itm.id} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
                     <span class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{itm.name}</span>
                   </label>
