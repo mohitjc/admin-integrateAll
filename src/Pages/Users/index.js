@@ -9,7 +9,7 @@ import axios from "axios";
 import shared from "./shared";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-const Users = () => {
+const Staff = () => {
   const user = useSelector((state) => state.user);
   const searchState = { data: "" };
   const [filters, setFilter] = useState({ page: 1, count: 10, search: "" });
@@ -250,4 +250,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Staff;

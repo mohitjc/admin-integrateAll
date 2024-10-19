@@ -90,7 +90,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       name: "Staff",
       icon: <FaUser className="text-[20px]" />,
       activeIcon: <FaUser className="text-[20px]" />,
-      url: "/user",
+      url: "/staff",
       key: "readstaff",
     },
     {
