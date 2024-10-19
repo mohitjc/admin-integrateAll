@@ -8,6 +8,7 @@ import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
 import shared from "./shared";
 import { useSelector } from "react-redux";
+import { MdDelete } from "react-icons/md";
 
 const AddEditFaq = () => {
   const { id } = useParams();
@@ -140,25 +141,25 @@ const AddEditFaq = () => {
                       required
                     />
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-3  shadow-lg p-5 border rounded-lg">
+                    <div className="flex items-cente justify-between">
+                    <label>Answer <span className="star">*</span></label>
+                    {index >=1 && (
+                      <MdDelete className="text-[red]"  onClick={() => handleRemoveFaq(index)}/>
+                 
+                  )}
+                    </div>
+                  
                     <FormControl
                       type="textarea"
                       name="answer"
-                      label="Answer"
+                      label=""
                       value={faq.answer}
                       onChange={(e) => handleChange(index, 'answer', e)}
                       required
                     />
                   </div>
-                  {index >=1 && (
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveFaq(index)}
-                    className="text-red-500 hover:underline"
-                  >
-                    Remove
-                  </button>
-                  )}
+               
                 </div>
               ))}
               <div className="text-right">
