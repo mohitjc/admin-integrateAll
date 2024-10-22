@@ -13,7 +13,7 @@ import Select from 'react-select';
 
 const AddEdit = () => {
   const { id } = useParams();
-const [companyType, setCompanyType] = useState([])
+  const [companyType, setCompanyType] = useState([])
   const [images, setImages] = useState({ image: "" });
   const [form, setform] = useState({
     id: "",
@@ -34,10 +34,13 @@ const [companyType, setCompanyType] = useState([])
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
   const inValidEmail = methodModel.emailvalidation(form?.email);
+  const inValidEmailCompany = methodModel.emailvalidation(form?.CompanyEmail);
 
   const formValidation = [
     { key: "mobileNo", required: true },
     { key: "email", required: true, message: "Email is required", email: true },
+    {key:'CompanyEmail', required: true, message: "Company Email is required", email: true },
+    { key: "companyMobileNo", required: true },
   ];
   const getData = (p = {}) => {
     ApiClient.get("category/listing", {status:'active', categoryType:"Business"}).then((res) => {
@@ -56,7 +59,7 @@ const [companyType, setCompanyType] = useState([])
     e.preventDefault();
     setSubmitted(true);
     let invalid = methodModel.getFormError(formValidation, form);
-
+    
     if (invalid) return;
     let method = "post";
     let url = shared.addApi;
@@ -190,10 +193,10 @@ const [companyType, setCompanyType] = useState([])
                   value={form.email}
                   onChange={(e) => setform({ ...form, email: e })}
                   required
-                  disabled={id ? true : false}
+                  // disabled={id ? true : false}
                 />
                 {form.email && submitted && !inValidEmail && (
-                  <div className="invalid-feedback d-block">
+                  <div className="invalid-feedback d-block" style={{ color: 'red' }}>
                     Please enter valid email
                   </div>
                 )}
@@ -208,7 +211,7 @@ const [companyType, setCompanyType] = useState([])
                   required
                 />
                 {submitted && !form.mobileNo && (
-                  <div className="invalid-feedback d-block">
+                  <div className="invalid-feedback d-block" style={{ color: 'red' }}>
                     Mobile is required
                   </div>
                 )}
@@ -255,31 +258,31 @@ const [companyType, setCompanyType] = useState([])
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="phone"
-                  name="mobileNo"
+                  name="companyMobileNo"
                   label="Company Mobile No"
                   value={form.companyMobileNo}
                   onChange={(e) => setform({ ...form, companyMobileNo: e })}
                   required
                 />
-                {submitted && !form.mobileNo && (
-                  <div className="invalid-feedback d-block">
-                    Mobile is required
+                {submitted && !form.companyMobileNo && (
+                  <div className="invalid-feedback d-block" style={{ color: 'red' }}>
+                    Company Mobile is required
                   </div>
                 )}
               </div>
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
-                  name="email"
+                  name="CompanyEmail"
                   label="Company Email"
                   value={form.CompanyEmail}
                   onChange={(e) => setform({ ...form, CompanyEmail: e })}
                   required
                   // disabled={id ? true : false}
                 />
-                {form.email && submitted && !inValidEmail && (
-                  <div className="invalid-feedback d-block">
-                    Please enter valid email
+                {submitted && form.CompanyEmail && !inValidEmailCompany && (
+                  <div className="invalid-feedback d-block" style={{ color: 'red' }}>
+                   Please enter valid  Company Email
                   </div>
                 )}
               </div>
@@ -412,7 +415,7 @@ const [companyType, setCompanyType] = useState([])
               <button
                 type="submit"
                 className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
-              >
+             >
                 Save
               </button>
             </div>

@@ -57,7 +57,7 @@ const SiteDetails = () => {
   useEffect(() => {
     if (user.id) {
       loader(true);
-      ApiClient.allApi(shared.detailApi, { id: user.id }).then((res) => {
+      ApiClient.allApi(shared.detailApi).then((res) => {
         if (res.success) {
           const { name, logo, fabIcon, script = [], socialMedia, id } = res.data; 
           const scriptArray = Object.keys(script).map((key) => ({ script: script[key] }));

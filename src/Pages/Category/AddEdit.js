@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ApiClient from "../../methods/api/apiClient";
 import loader from "../../methods/loader";
-import methodModel from "../../methods/methods";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/global/layout";
 import { Tooltip } from "antd";
@@ -12,120 +11,119 @@ import ImageUpload from "../../components/common/ImageUpload";
 
 const AddEdit = () => {
   const { id } = useParams();
-  const [form, setform] = useState({
-    name: "",
-    categoryType:''
-  });
-  const [images, setImages] = useState({ image: "" });
+  const [formFields, setFormFields] = useState({ categories: [{ name: "", categoryType: "" }] });
+  const [images, setImages] = useState([{}]); 
+  const [lastCategoryType, setLastCategoryType] = useState(""); // Step 1: New state for last category type
   const history = useNavigate();
   const [submitted, setSubmitted] = useState(false);
   const user = useSelector((state) => state.user);
-  const formValidation = [
-    // { key: "mobileNo", required: true },
-    // { key: "email", required: true, message: "Email is required", email: true },
-  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    let invalid = methodModel.getFormError(formValidation, form);
-
+    let invalid = formFields.categories.some((field) => !field.name || !field.categoryType);
+  
     if (invalid) return;
-    let method = "post";
-    let url = shared.addApi;
-
-    let value = {
-      ...form,
-      ...images,
-      id: id,
+  
+    const payload = id ? 
+    {
+      ...formFields.categories[0],
+      image: images[0]?.image || "",
+      id:id 
+    } :
+    {
+      categories: formFields.categories.map((field, index) => ({
+        ...field,
+        image: images[index]?.image || "",
+      })),
     };
-    if (id) {
-      method = "put";
-      url = shared.editApi;
-    } else {
-      delete value.id;
-    }
+    let method = id ? "put" : "post";
+    let url = id ? shared.editApi : shared.addApi;
+  
     loader(true);
-    ApiClient.allApi(url, value, method).then((res) => {
+    ApiClient.allApi(url, payload, method).then((res) => {
       if (res.success) {
-        // ToastsStore.success(res.message)
         history(`/${shared.url}`);
       }
       loader(false);
     });
   };
+  
   useEffect(() => {
     if (id) {
       loader(true);
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
-          let value = res.data;
-          let payload = form;
-          payload.id = id;
-          Object.keys(payload).map((itm) => {
-            payload[itm] = value[itm];
-          });
-
-          payload.id = id;
-          setform({
-            ...payload,
-          });
-
-          let img = images;
-          Object.keys(img).map((itm) => {
-            img[itm] = value[itm];
-          });
-          setImages({ ...img });
+          const value = res.data;
+          setFormFields({ categories: [{ name: value.name, categoryType: value.categoryType }] });
+          setImages([{ image: value.image }]);
+          setLastCategoryType(value.categoryType); // Set the last category type from fetched data
         }
         loader(false);
       });
     }
   }, [id]);
 
-  const imageResult = (e, key) => {
-    images[key] = e.value;
-    setImages(images);
-    if (submitted == true) {
+  const imageResult = (e, index) => {
+    const updatedImages = [...images]; 
+    updatedImages[index] = { image: e.value };
+    setImages(updatedImages);
+    
+    if (submitted) {
       setSubmitted(false);
     }
   };
 
+  const addField = () => {
+    setFormFields((prev) => ({
+      categories: [...prev.categories, { name: "", categoryType: lastCategoryType }] // Step 3: Use lastCategoryType
+    }));
+  };
+
+  const removeField = (index) => {
+    setFormFields((prev) => ({
+      categories: prev.categories.filter((_, i) => i !== index)
+    }));
+  };
+
   return (
-    <>
-      <Layout>
-        <form onSubmit={handleSubmit}>
-          <div className="flex items-center mb-8">
-            <Tooltip placement="top" title="Back">
-              <Link
-                to={`/${shared.url}`}
-                className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
-              >
-                <i className="fa fa-angle-left text-lg"></i>
-              </Link>
-            </Tooltip>
-            <div>
-              <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
-                {form && form.id ? "Edit" : "Add"} {shared.addTitle}
-              </h3>
-              <p class="text-xs lg:text-sm font-normal text-[#75757A]">
-                Here you can see all about your {shared.addTitle}
-              </p>
-            </div>
+    <Layout>
+      <form onSubmit={handleSubmit}>
+        <div className="flex items-center mb-8">
+          <Tooltip placement="top" title="Back">
+            <Link
+              to={`/${shared.url}`}
+              className="!px-4 py-2 flex items-center justify-center rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
+            >
+              <i className="fa fa-angle-left text-lg"></i>
+            </Link>
+          </Tooltip>
+          <div>
+            <h3 className="text-lg lg:text-2xl font-semibold text-[#111827]">
+              {id ? "Edit" : "Add"} {shared.addTitle}
+            </h3>
+            <p className="text-xs lg:text-sm font-normal text-[#75757A]">
+              Here you can see all about your {shared.addTitle}
+            </p>
           </div>
-          <div className="pprofile1 mb-10 ">
-            <div>
-              <h4 className="p-4 border-b  font-medium rounded-[5px] rounded-bl-[0] rounded-br-[0] flex items-center text-[#1E5DBC] ">
-                  <img src ="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md"/>
-                Basic Information
-              </h4>
-            </div>
-            <div className="grid grid-cols-12 gap-4 p-4">
+        </div>
+        <div className="pprofile1 mb-10 ">
+          <h4 className="p-4 border-b font-medium rounded-[5px] flex items-center text-[#1E5DBC] ">
+            <img src="/assets/img/usero-blue.svg" className="me-3 bg-[#e9f0f8] p-2 rounded-md" />
+            Basic Information
+          </h4>
+          {formFields.categories.map((field, index) => (
+            <div className="grid grid-cols-12 gap-4 p-4" key={index}>
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
                   label="Name"
-                  value={form.name}
-                  onChange={(e) => setform({ ...form, name: e })}
+                  value={field.name}
+                  onChange={(e) => {
+                    const updatedFields = [...formFields.categories];
+                    updatedFields[index].name = e;
+                    setFormFields({ categories: updatedFields });
+                  }}
                   required
                 />
               </div>
@@ -133,38 +131,55 @@ const AddEdit = () => {
                 <FormControl
                   type="select"
                   label="Type"
-                  value={form.categoryType}
+                  value={field.categoryType}
                   options={shared.types}
                   theme="search"
-                  onChange={(e) => setform({ ...form, categoryType: e })}
+                  onChange={(e) => {
+                    const updatedFields = [...formFields.categories];
+                    updatedFields[index].categoryType = e;
+                    setFormFields({ categories: updatedFields });
+                    setLastCategoryType(e); // Update lastCategoryType when changed
+                  }}
                   required
                 />
               </div>
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <label className="block mb-2">Icon</label>
-
                 <ImageUpload
                   model="users"
-                  result={(e) => imageResult(e, "image")}
-                  value={images.image || form.image}
+                  result={(e) => imageResult(e, index)} 
+                  value={images[index]?.image || ""}
                   multiple={false}
                   label="Choose Icon"
                 />
               </div>
+              {index >= 1 && (
+                <div className="lg:col-span-6 col-span-12 mb-3">
+                  <button type="button" onClick={() => removeField(index)} className="text-red-500">
+                    Remove
+                  </button>
+                </div>
+              )}
             </div>
+          ))}
+          <div className="text-right mb-4">
+            <button type="button" onClick={addField} className="text-white bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2">
+              Add Another Field
+            </button>
           </div>
-          <div className="text-right">
-              <button
-                type="submit"
-                className="text-white bg-[#1E5DBC] bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center  mb-2"
-              >
-                Save
-              </button>
-            </div>
-        </form>
-      </Layout>
-    </>
+        </div>
+        <div className="text-right">
+          <button
+            type="submit"
+            className="text-white bg-[#1E5DBC] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </Layout>
   );
 };
 
 export default AddEdit;
+
