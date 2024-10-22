@@ -131,7 +131,7 @@ const Dashboard = () => {
 
         <div className="shadow-box w-full bg-white rounded-lg mt-6 p-6">
         <div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="  border cursor-pointer text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a] " onClick={(e)=>history("/user")}>
+            <div className="  border cursor-pointer text-center border-gray-200 px-6 py-2 rounded-lg relative bg-[#0035850a] " onClick={(e)=>history("/staff")}>
               <div className="bg-[#fff] w-[80px] h-[80px] rounded-[50px] p-4 mx-auto flex mb-6 mt-5 custom-shadow">
                 <img
                   src="../assets/img/d1.svg"
@@ -155,7 +155,7 @@ const Dashboard = () => {
                 />
               </div>
               <dt className="text-base leading-7 text-black/40 mb-1">
-              Total Users
+              Total Customers
               </dt>
               <dd className="text-3xl font-bold leading-9  text-black mb-3 ">
               {data?.totalUsersCount}

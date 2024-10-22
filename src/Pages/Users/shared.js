@@ -7,7 +7,7 @@ const shared = {
   editApi: "user/updateDetails",
   detailApi: "user/detail",
   listApi: "user/getListing",
-  statusApi: "user/status/change",
+  statusApi: "user/activateDeactivateProfile",
   deleteApi: "user/delete-profile",
 };
 

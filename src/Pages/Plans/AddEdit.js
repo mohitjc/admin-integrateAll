@@ -230,7 +230,7 @@ const AddEdit = () => {
                   value={form.trialPeriod}
                   onChange={(e) => setform({ ...form, trialPeriod: e})}
                   options={shared.options}
-                  required
+                  // required
                       />
                     </div>
               <div className="col-span-full">
