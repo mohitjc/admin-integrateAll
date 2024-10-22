@@ -91,26 +91,30 @@ const AddEdit = () => {
   //     });
   //   }
   // }, [id]);
+console.log(form,"jfkasdjflasd")
+useEffect(() => {
+  if (id) {
+    loader(true);
+    ApiClient.get(shared.detailApi, { id }).then((res) => {
+      loader(false);
+      if (res.success && res.data) {
+        const { name, continentData, countryData, regionData } = res.data;
+        setform({
+          name: name,
+          continent: continentData?.id,
+          country: countryData?.id,
+          region: regionData?.id,
+          id: id
+        });
 
-    useEffect(() => {
-    if (id) {
-      ApiClient.get(shared.detailApi, { id }).then((res) => {
-        console.log(res,"response")
-        if (res.success && Array.isArray(res.data)) {
-          const { name, continent, country, region } = res.data[0]; 
-          setform({
-            name,
-            continent: continent,
-            country: country,
-            region:region,
-            id:id
-          });
-          handleCountryData(continent);
-          handleStateData(country);
-        }
-      });
-    }
-  }, [id]);
+        // Call the country and state data handlers with the correct IDs
+        handleCountryData(continentData?.id); // Pass the continent ID
+        handleStateData(countryData?.id); // Pass the country ID
+      }
+    });
+  }
+}, [id]);
+
 
   const imageResult = (e, key) => {
     images[key] = e.value;
@@ -182,7 +186,7 @@ const AddEdit = () => {
             <Tooltip placement="top" title="Back">
               <Link
                 to={`/${shared.url}`}
-                className="!px-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
+                className="!formpx-4  py-2 flex items-center justify-center  rounded-lg shadow-btn hover:bg-[#1E5DBC] hover:text-white border transition-all bg-white mr-3"
               >
                 <i className="fa fa-angle-left text-lg"></i>
               </Link>

@@ -169,7 +169,8 @@ const City = () => {
   };
 
   const edit = (id) => {
-    history(`/${shared.url}/edit/${id}`);
+    let url = `/${shared.url}/edit/${id}`
+    history(url);
   };
 
   const view = (id) => {

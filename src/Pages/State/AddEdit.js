@@ -116,7 +116,7 @@ const AddEdit = () => {
             country: country,
             id:id
           });
-          handleCountryData(country)
+          handleCountryData(continent)
         }
       });
     }

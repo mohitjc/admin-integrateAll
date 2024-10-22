@@ -19,11 +19,12 @@ const View = () => {
   const getDetail = () => {
     loader(true);
     ApiClient.get(shared.detailApi, { id: id }).then((res) => {
+      console.log(res,"faaakds")
       loader(false);
       if (res.success) {
         let data=res.data
-        data.map((item) => setData(item))
-        // setData(data);
+        // data.map((item) => setData(item))
+        setData(data);
       }
     });
   };

@@ -23,7 +23,7 @@ const View = () => {
       loader(false);
       if (res.success) {
         let data=res.data
-        data.permissions=data.permissions?.[0]
+        // data.permissions=data.permissions?.[0]
         setData(data);
       }
     });
@@ -73,7 +73,7 @@ const View = () => {
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Three Month AUD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Three Month (AUD):</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
@@ -81,7 +81,7 @@ const View = () => {
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Six Month AUD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Six Month (AUD):</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
@@ -89,14 +89,14 @@ const View = () => {
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Yearly Price AUD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Yearly Price (AUD):</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
                     {data && data.yearlyAmount ? data && data.yearlyAmount : "--" }
                   </p>
                 </div>
                 <div className="col-span-6 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Monthly Price AUD:</label>
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Monthly Price (AUD):</label>
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
