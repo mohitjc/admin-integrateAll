@@ -189,10 +189,7 @@ const AddEdit = () => {
   ]
   const trialPeriodOptions = shared.options.map(option => ({ value: option.value, label: option.label }));
 
-  const planType = [
-    { id: 'stripe', name: 'Stripe' },
-    { id: 'frontend', name: 'Frontend' },
-  ]
+  const planType = shared.planType
 
   return (
     <>

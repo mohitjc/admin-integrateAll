@@ -126,38 +126,38 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
         },
       ],
     },
-    {
-      name: "Geo",
-      icon: <IoGitMergeOutline className="text-[20px]" />,
-      activeIcon: <IoGitMergeOutline className="text-[20px]" />,
-      key:"readGeo",
-      menu: [
-        {
-          name: "Continent",
-          icon: <FiUsers className="text-[20px]" />,
-          url: "/continent",
-          key: "readGeo",
-        },
-        {
-          name: "Country",
-          icon: <FiUsers className="text-[20px]" />,
-          url: "/country",
-          key: "readGeo",
-        },
-        {
-          name: "State",
-          icon: <FiUsers className="text-[20px]" />,
-          url: "/state",
-          key: "readGeo",
-        },
-        {
-          name: "City",
-          icon: <FiUsers className="text-[20px]" />,
-          url: "/city",
-          key: "readGeo",
-        },
-      ],
-    },
+    // {
+    //   name: "Geo",
+    //   icon: <IoGitMergeOutline className="text-[20px]" />,
+    //   activeIcon: <IoGitMergeOutline className="text-[20px]" />,
+    //   key:"readGeo",
+    //   menu: [
+    //     {
+    //       name: "Continent",
+    //       icon: <FiUsers className="text-[20px]" />,
+    //       url: "/continent",
+    //       key: "readGeo",
+    //     },
+    //     {
+    //       name: "Country",
+    //       icon: <FiUsers className="text-[20px]" />,
+    //       url: "/country",
+    //       key: "readGeo",
+    //     },
+    //     {
+    //       name: "State",
+    //       icon: <FiUsers className="text-[20px]" />,
+    //       url: "/state",
+    //       key: "readGeo",
+    //     },
+    //     {
+    //       name: "City",
+    //       icon: <FiUsers className="text-[20px]" />,
+    //       url: "/city",
+    //       key: "readGeo",
+    //     },
+    //   ],
+    // },
     {
       name: "FAQ",
       icon: <FaQuestion className="text-[20px]" />,
