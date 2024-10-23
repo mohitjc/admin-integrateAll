@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DateRange } from 'react-date-range';
+import { DateRangePicker as DateRange } from 'react-date-range';
 import datepipeModel from "../../../models/datepipemodel";
 import { useSelector } from 'react-redux';
 import 'react-date-range/dist/styles.css'; // main style file
@@ -10,7 +10,10 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 const DateRangePicker = ({ value, onChange, dynamicStyle = false,
-    className = null, disabled = false, title = '', placeholder = '', isCompare = false, showcustom = true }) => {
+    className = null, disabled = false, title = '', placeholder = '', isCompare = false, 
+    showcustom = true,
+    showRange = true,
+}) => {
     const user = useSelector((state) => state.user)
     const [toggle, setToggle] = useState(false)
     const [range, setRange] = useState('')
@@ -24,8 +27,15 @@ const DateRangePicker = ({ value, onChange, dynamicStyle = false,
     ]
 
     const blockDateChange = (e) => {
-        onChange({ ...value, ...e, compare: '' })
-        if (datepipeModel.datetostring(e.startDate) != datepipeModel.datetostring(e.endDate)) {
+        let v={
+            ...value, ...e, compare: '' 
+        }
+
+        v.startDate=datepipeModel.datetostring(v.startDate)
+        v.endDate=datepipeModel.datetostring(v.endDate)
+        
+        onChange({ ...v })
+        if (v.startDate != v.endDate) {
             setToggle(false)
         }
     }
@@ -184,7 +194,7 @@ const DateRangePicker = ({ value, onChange, dynamicStyle = false,
         <Menu as="div" className="relative list_box_active_state " title={title}>
             <div>
 
-                <Menu.Button title={title} disabled={disabled} onClick={toggleChange} className="inline-flex  bg-primary justify-center border gap-x-1.5 rounded-md  px-3 py-2.5 text-sm font-normal text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                <Menu.Button title={title} disabled={disabled} onClick={toggleChange} className="flex w-full bg-primary justify-center border gap-x-1.5 rounded-md  px-3 py-2.5 text-sm font-normal text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                     {!value?.startDate || !value?.endDate ? <>{placeholder || 'Start Date - End Date'}</> : <>{datepipeModel.date(value?.startDate, user?.companyDateFormat)} -  {datepipeModel.date(value?.endDate, user?.companyDateFormat)}</>}
                     <ChevronDownIcon className="-mr-1 h-5 w-5 text-white-400" aria-hidden="true" />
 
@@ -206,16 +216,20 @@ const DateRangePicker = ({ value, onChange, dynamicStyle = false,
                     <div className="fffff">
                         <div className="" >
                             {/* <p className="text-center px-2">{!value?.startDate || !value?.endDate ? <>{placeholder || 'Start Date - End Date'}</> : <>{datepipeModel.date(value?.startDate, user?.companyDateFormat)} -  {datepipeModel.date(value?.endDate, user?.companyDateFormat)}</>}</p> */}
+                           
+                           {showRange?<>
                             <div className=" flex-wrap row-gap-2 column-gap-2 whitespace-nowrap flex p-2 mb-0">
                                 {rangeList.map(itm => {
                                     return showcustom == false && itm.name == "Custom" ? null : <button className={`btn ${range == itm.id ? 'bg-primary text-white' : 'bg-transparent hover:border-gray-400 border-1 border-gray-400'}`} type="button" onClick={e => rangeClick(itm.id)}>{itm.name}</button>
                                 })}
-
                             </div>
+                           </>:<></>}
+                           
 
                             {range || showcustom == false ? <></> : <>
                                 <div className="w-full customcalender">
                                     <DateRange
+                                        showSelectionPreview={false}
                                         editableDateInputs={true}
                                         onChange={e => blockDateChange(e.selection)}
                                         moveRangeOnFirstSelection={false}

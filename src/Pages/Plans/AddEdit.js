@@ -8,6 +8,8 @@ import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
 import shared, { days, recommended, trialPeriodData } from "./shared";
 import { useSelector } from "react-redux";
+import DateRangePicker from "../../components/common/DateRangePicker";
+import datepipeModel from "../../models/datepipemodel";
 
 const AddEdit = () => {
   const { id } = useParams();
@@ -17,6 +19,8 @@ const AddEdit = () => {
     type: '',
     trialPeriod: "",
     discountOption:'no',
+    start_date:'',
+    end_date:''
     // type:''
   });
 
@@ -240,6 +244,20 @@ const AddEdit = () => {
                   options={planType}
                   required
                 />
+              </div>
+
+              <div className="lg:col-span-6 col-span-12 mb-3">
+               <DateRangePicker
+               value={{startDate:form.start_date,endDate:form.end_date}}
+               onChange={e=>{
+                setform({
+                  ...form,
+                  start_date:e.startDate,
+                  end_date:e.endDate,
+                })
+               }}
+               showRange={false}
+               />
               </div>
 
               <div className="lg:col-span-6 col-span-12 mb-3">

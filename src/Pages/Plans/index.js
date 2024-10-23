@@ -65,11 +65,10 @@ const Plans = () => {
 
   const clear = () => {
     let f = {
-      groupId: "",
+      type: "",
       search: "",
       status: "",
       page: 1,
-      role: "",
     };
     setFilter({ ...filters, ...f });
     getData({ ...f });

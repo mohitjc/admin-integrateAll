@@ -46,7 +46,22 @@ const Html = ({
         return <span className="capitalize">{row?.name}</span>;
       },
     },
-
+    {
+      key: "type",
+      name: "Type",
+      // sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.type}</span>;
+      },
+    },
+    {
+      key: "discountOption",
+      name: "Discount",
+      // sort: true,
+      render: (row) => {
+        return <span className="capitalize">{row?.discountOption}</span>;
+      },
+    },
     {
       key: "status",
       name: "Status",
@@ -223,8 +238,19 @@ const Html = ({
               }}
               options={statusModel.list}
             />
+
+        <SelectDropdown
+              id="statusDropdown"
+              displayValue="name"
+              placeholder="All Type"
+              intialValue={filters.type}
+              result={(e) => {
+                filter({type:e.value})
+              }}
+              options={shared.planType}
+            />
           
-            {filters.status? (
+            {filters.status||filters.type? (
               <>
                 <button
                   className="bg-primary leading-10 h-10 inline-block shadow-btn px-6 hover:opacity-80 text-sm text-white rounded-lg"

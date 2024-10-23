@@ -47,6 +47,11 @@ const types=[
     { name: 30, id: 30 }
   ]
 
+  const planType = [
+    { id: 'stripe', name: 'Stripe' },
+    { id: 'frontend', name: 'Frontend' },
+  ]
+
 const shared = {
   check: "Plan",
   title: "Plans",
@@ -59,7 +64,8 @@ const shared = {
   listApi: "plan/listing",
   statusApi: "plan/status/change",
   deleteApi: "plan/delete",
-  options:options
+  options:options,
+  planType:planType
 };
 
 export default shared;

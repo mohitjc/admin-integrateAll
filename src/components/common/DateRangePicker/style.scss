@@ -12,8 +12,12 @@
   z-index: 999;
 }
 
-.rdrDateDisplayWrapper {
+.rdrDefinedRangesWrapper {
   display: none;
+}
+
+.rdrDateRangePickerWrapper{
+  display:block !important;
 }
 
 .cld_btn button {
