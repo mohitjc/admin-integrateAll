@@ -138,14 +138,17 @@ const SiteDetails = () => {
     let invalid = methodModel.getFormError([], form);
 
     if (invalid) return;
-
+    const scriptsArray = form.script.map((entry, index) => ({
+      [`script${index + 1}`]: entry.script,
+    }));
     const value = {
       ...form,
       ...images,
-      script: form.script.reduce((acc, entry, index) => {
-        acc[`script${index + 1}`] = entry.script;
-        return acc;
-    }),
+    //   script: form.script.reduce((acc, entry, index) => {
+    //     acc[`script${index + 1}`] = entry.script;
+    //     return acc;
+    // }),
+    script: scriptsArray, 
     ...(siteId ? { id: siteId } : {}),
   }
     const method = siteId  ? "put" : "post";

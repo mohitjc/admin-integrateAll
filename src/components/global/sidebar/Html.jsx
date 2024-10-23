@@ -139,7 +139,7 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
           key: "readGeo",
         },
         {
-          name: "County",
+          name: "Country",
           icon: <FiUsers className="text-[20px]" />,
           url: "/country",
           key: "readGeo",
