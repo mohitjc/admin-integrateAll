@@ -59,7 +59,6 @@ const SiteDetails = () => {
       loader(true);
       ApiClient.allApi(shared.detailApi).then((res) => {
         if (res.success) {
-          console.log(res, "fasdjfkahfkjadhkfa");
           const {
             name,
             logo,
