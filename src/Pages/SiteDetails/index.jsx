@@ -138,8 +138,8 @@ const SiteDetails = () => {
     let invalid = methodModel.getFormError([], form);
 
     if (invalid) return;
-    const scriptsArray = form.script.map((entry, index) => ({
-      [`script${index + 1}`]: entry.script,
+    const scriptsArray = form.script.map((entry) => ({
+      [`script`]: entry.script,
     }));
     const value = {
       ...form,
@@ -281,7 +281,7 @@ const SiteDetails = () => {
              
              <div className="grid grid-cols-12 gap-5">
               {form.script?.map((scriptEntry, index) => (
-                
+                console.log(scriptEntry,"fasdfdasfdasf"),
   <div key={index} className="lg:col-span-6 col-span-12 shadow-lg p-5 border rounded-lg">
      <div className="flex justify-between">
               <label className="mb-2">script</label>
@@ -294,7 +294,7 @@ const SiteDetails = () => {
       name={`script${index + 1}`}
       type="textarea"
       // label={`Script ${index + 1}`}
-      value={scriptEntry.script}
+      value={scriptEntry.script.script}
       onChange={(e) => handleScriptChange(index, e)}
       required
     />
