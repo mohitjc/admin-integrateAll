@@ -8,14 +8,15 @@ import { Tooltip } from "antd";
 import FormControl from "../../components/common/FormControl";
 import shared, { days, recommended, trialPeriodData } from "./shared";
 import { useSelector } from "react-redux";
-import Select from 'react-select'
 
 const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
-    recomended:"",
-    trialPeriod:""
+    recomended: "",
+    type: '',
+    trialPeriod: "",
+    discountOption:'no',
     // type:''
   });
 
@@ -42,7 +43,7 @@ const AddEdit = () => {
     let value = {
       ...form,
       ...images,
-      feature:sfeatures,
+      feature: sfeatures,
       id: id,
     };
     if (id) {
@@ -52,34 +53,38 @@ const AddEdit = () => {
       delete value.id;
     }
 
-    value.pricing=[
+    value.pricing = [
       {
         "interval": "month",
         "interval_count": 1,
         "currency": "aud",
-        "unit_amount": Number(form.monthlyAmount)
+        "unit_amount": Number(form.monthlyAmount||0),
+        "discount_amount": Number(form.monthlyAmountDiscount||0)
       },
       {
         "interval": "month",
         "interval_count": 3,
         "currency": "aud",
-        "unit_amount": Number(form.threeMonthAmount)
+        "unit_amount": Number(form.threeMonthAmount||0),
+        "discount_amount": Number(form.threeMonthAmountDiscount||0)
       },
       {
         "interval": "month",
         "interval_count": 6,
         "currency": "aud",
-        "unit_amount": Number(form.sixMonthAmount)
+        "unit_amount": Number(form.sixMonthAmount||0),
+        "discount_amount": Number(form.sixMonthAmountDiscount||0)
       },
       {
         "interval": "month",
         "interval_count": 12,
         "currency": "aud",
-        "unit_amount": Number(form.yearlyAmount)
+        "unit_amount": Number(form.yearlyAmount||0),
+        "discount_amount": Number(form.yearlyAmountDiscount||0)
       }
     ]
-    value.monthlyPrice={
-      usd:Number(form.monthlyAmount)
+    value.monthlyPrice = {
+      aud: Number(form.monthlyAmount)
     }
 
     loader(true);
@@ -93,9 +98,9 @@ const AddEdit = () => {
   };
 
 
-  const getFeatures=()=>{
-    ApiClient.get('feature/get-feature-list',{status:'active'}).then(res=>{
-      if(res.success){
+  const getFeatures = () => {
+    ApiClient.get('feature/get-feature-list', { status: 'active' }).then(res => {
+      if (res.success) {
         setFeatures(res.data)
       }
     })
@@ -107,17 +112,22 @@ const AddEdit = () => {
       ApiClient.get(shared.detailApi, { id }).then((res) => {
         if (res.success) {
           let value = res.data;
-          let pricing=res.data.pricing
+          let pricing = res.data.pricing
           let payload = form;
           payload.id = id;
           Object.keys(payload).map((itm) => {
             payload[itm] = value[itm];
           });
 
-          let monthlyAmount=pricing.find(itm=>itm?.interval_count==1)?.unit_amount||0
-          let threeMonthAmount=pricing.find(itm=>itm?.interval_count==3)?.unit_amount||0
-          let sixMonthAmount=pricing.find(itm=>itm?.interval_count==6)?.unit_amount||0
-          let yearlyAmount=pricing.find(itm=>itm?.interval_count==12)?.unit_amount||0
+          let monthlyAmount = pricing.find(itm => itm?.interval_count == 1)?.unit_amount || 0
+          let threeMonthAmount = pricing.find(itm => itm?.interval_count == 3)?.unit_amount || 0
+          let sixMonthAmount = pricing.find(itm => itm?.interval_count == 6)?.unit_amount || 0
+          let yearlyAmount = pricing.find(itm => itm?.interval_count == 12)?.unit_amount || 0
+
+          let monthlyAmountDiscount = pricing.find(itm => itm?.interval_count == 1)?.discount_amount || 0
+          let threeMonthAmountDiscount = pricing.find(itm => itm?.interval_count == 3)?.discount_amount || 0
+          let sixMonthAmountDiscount = pricing.find(itm => itm?.interval_count == 6)?.discount_amount || 0
+          let yearlyAmountDiscount = pricing.find(itm => itm?.interval_count == 12)?.discount_amount || 0
 
           payload.id = id;
           setform({
@@ -125,12 +135,16 @@ const AddEdit = () => {
             monthlyAmount,
             threeMonthAmount,
             sixMonthAmount,
-            yearlyAmount
+            yearlyAmount,
+            monthlyAmountDiscount,
+            threeMonthAmountDiscount,
+            sixMonthAmountDiscount,
+            yearlyAmountDiscount,
           });
 
-          console.log("value",value)
+          console.log("value", value)
 
-          setSFeatures(value.feature.map(itm=>String(itm)))
+          setSFeatures(value.feature.map(itm => String(itm)))
 
           let img = images;
           Object.keys(img).map((itm) => {
@@ -167,9 +181,15 @@ const AddEdit = () => {
   }
 
   const recommendedArray = [
-    {name:"Yes", id:"Yes"}, {name:"No",id:"No"}
+    { name: "Yes", id: "Yes" }, { name: "No", id: "No" }
   ]
   const trialPeriodOptions = shared.options.map(option => ({ value: option.value, label: option.label }));
+
+  const planType = [
+    { id: 'stripe', name: 'Stripe' },
+    { id: 'frontend', name: 'Frontend' },
+  ]
+
   return (
     <>
       <Layout>
@@ -209,106 +229,143 @@ const AddEdit = () => {
                   required
                 />
               </div>
-            
-              {/* <div className="lg:col-span-6 col-span-12 mb-3">
-                <FormControl
-                  type="select"
-                  label="Recommended"
-                  value={form.recomended}
-                  options={recommendedArray}
-                  theme="search"
-                  onChange={(e) => setform({ ...form, recomended: e })}
-                  required
-                />
-              </div> */}
-              {/* </div> */}
+
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="select"
-                  label="Trial Period"
+                  label="Type"
                   theme="search"
-                  value={form.trialPeriod}
-                  onChange={(e) => setform({ ...form, trialPeriod: e})}
-                  options={shared.options}
-                  // required
-                      />
-                    </div>
+                  value={form.type}
+                  onChange={(e) => setform({ ...form, type: e })}
+                  options={planType}
+                  required
+                />
+              </div>
+
+              <div className="lg:col-span-6 col-span-12 mb-3">
+                <FormControl
+                  type="radio"
+                  label="Discount"
+                  value={form.discountOption}
+                  onChange={(e) => {
+                   
+                    if(e=='no'){
+                      setform({ 
+                        ...form, 
+                        discountOption: e,
+                        monthlyAmountDiscount:0,
+                        threeMonthAmountDiscount:0,
+                        sixMonthAmountDiscount:0,
+                        yearlyAmountDiscount:0,
+                       })
+                    }else{
+                      setform({ ...form, discountOption: e })
+                    }
+                  }}
+                  options={[
+                    {id:'yes',name:'Yes'},
+                    {id:'no',name:'No'},
+                  ]}
+                  required
+                />
+              </div>
+
               <div className="col-span-full">
                 <div className="grid grid-cols-12 gap-3">
-                  {/* <div className="">
-                 
-                  </div>
-                  <div className="">
-                    
-                  </div>
-                  <div className="">
-                
-                  </div>
-                  <div className="">
-              
-                  </div> */}
                   <div className="lg:col-span-12 col-span-12 mb-3">
 
 
-                  <div class="relative overflow-x-auto">
-    <table class="w-full border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-10 border py-3 text-center">
-                   Duration
-                </th>
-                <th scope="col" class="px-10 border py-3 text-center">
-                    AUD
-                </th>
-             
-            </tr>
-        </thead>
-        <tbody>
-         <tr>
-          <th class="px-10 py-4 border text-center">1 Month</th>
-          <td class="px-4 py-4 border text-center">   <FormControl
-                      type="number"
-                      value={form.monthlyAmount}
-                      onChange={(e) => setform({ ...form, monthlyAmount: e })}
-                      // required
-                    /></td>
-         </tr>
-         <tr>
-          <th  class="px-10 py-4 border text-center">
-            3 Month
-          </th>
-          <td  class="px-4 border py-4 text-center">
-          <FormControl
-                      type="number"
-                      value={form.threeMonthAmount}
-                      onChange={(e) => setform({ ...form, threeMonthAmount: e })}
-                      
-                    />
-          </td>
-         </tr>
-         <tr>
-          <th  class="px-10 py-4 border text-center">6 Month</th>
-<td  class="px-4 py-4 border text-center">    <FormControl
-                      type="number"
-                    
-                      value={form.sixMonthAmount}
-                      onChange={(e) => setform({ ...form, sixMonthAmount: e })}
-                      
-                    /></td>
-         </tr>
-         <tr>
-          <th  class="px-10 py-4 border text-center">12 Month</th>
-          <td  class="px-4 py-4 border text-center">    
-              <FormControl
-                      type="number"
-                      value={form.yearlyAmount}
-                      onChange={(e) => setform({ ...form, yearlyAmount: e })}
-                      
-                    /></td>
-         </tr>
-        </tbody>
-    </table>
-</div>
+                    <div class="relative overflow-x-auto">
+                      <table class="w-full border text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                          <tr>
+                            <th scope="col" class="px-10 border py-3 text-center">
+                              Duration
+                            </th>
+                            <th scope="col" class="px-10 border py-3 text-center">
+                             Price (AUD)
+                            </th>
+                            {form.discountOption == 'yes' ? <>
+                              <th scope="col" class="px-10 border py-3 text-center">
+                                Discount Price (AUD)
+                              </th>
+                            </> : <></>}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th class="px-10 py-4 border text-center">1 Month</th>
+                            <td class="px-4 py-4 border text-center">   <FormControl
+                              type="number"
+                              value={form.monthlyAmount}
+                              onChange={(e) => setform({ ...form, monthlyAmount: e })}
+                            // required
+                            /></td>
+                             {form.discountOption == 'yes' ? <>
+                              <td class="px-4 py-4 border text-center">   <FormControl
+                              type="number"
+                              value={form.monthlyAmountDiscount}
+                              onChange={(e) => setform({ ...form, monthlyAmountDiscount: e })}
+                            /></td>
+                            </> : <></>}
+                          </tr>
+                          <tr>
+                            <th class="px-10 py-4 border text-center">
+                              3 Month
+                            </th>
+                            <td class="px-4 border py-4 text-center">
+                              <FormControl
+                                type="number"
+                                value={form.threeMonthAmount}
+                                onChange={(e) => setform({ ...form, threeMonthAmount: e })}
+
+                              />
+                            </td>
+                            {form.discountOption == 'yes' ? <>
+                              <td class="px-4 py-4 border text-center">   <FormControl
+                              type="number"
+                              value={form.threeMonthAmountDiscount}
+                              onChange={(e) => setform({ ...form, threeMonthAmountDiscount: e })}
+                            /></td>
+                            </> : <></>}
+                          </tr>
+                          <tr>
+                            <th class="px-10 py-4 border text-center">6 Month</th>
+                            <td class="px-4 py-4 border text-center">    <FormControl
+                              type="number"
+
+                              value={form.sixMonthAmount}
+                              onChange={(e) => setform({ ...form, sixMonthAmount: e })}
+
+                            /></td>
+                             {form.discountOption == 'yes' ? <>
+                              <td class="px-4 py-4 border text-center">   <FormControl
+                              type="number"
+                              value={form.sixMonthAmountDiscount}
+                              onChange={(e) => setform({ ...form, sixMonthAmountDiscount: e })}
+                            /></td>
+                            </> : <></>}
+                          </tr>
+                          <tr>
+                            <th class="px-10 py-4 border text-center">12 Month</th>
+                            <td class="px-4 py-4 border text-center">
+                              <FormControl
+                                type="number"
+                                value={form.yearlyAmount}
+                                onChange={(e) => setform({ ...form, yearlyAmount: e })}
+
+                              /></td>
+                               {form.discountOption == 'yes' ? <>
+                              <td class="px-4 py-4 border text-center">   <FormControl
+                              type="number"
+                              value={form.yearlyAmountDiscount}
+                              onChange={(e) => setform({ ...form, yearlyAmountDiscount: e })}
+                            /></td>
+                            </> : <></>}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
 
                   </div>
                 </div>
@@ -396,11 +453,11 @@ const AddEdit = () => {
               <div className="col-span-full ">
                 <label className="text-sm mb-2 block">Feature Text</label>
                 <div className="flex justify-between  items-center rounded p-4">
-                  {features.map(itm=>{
-                    return  <label class="flex items-center " key={itm.id}>
-                    <input onChange={e=>selectF(e)} checked={sfeatures.includes(String(itm.id))} value={itm.id} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                    <span class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{itm.name}</span>
-                  </label>
+                  {features.map(itm => {
+                    return <label class="flex items-center " key={itm.id}>
+                      <input onChange={e => selectF(e)} checked={sfeatures.includes(String(itm.id))} value={itm.id} type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                      <span class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{itm.name}</span>
+                    </label>
                   })}
                 </div>
               </div>
