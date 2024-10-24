@@ -66,7 +66,15 @@ const View = () => {
                   <p className="text-[14px] text-black font-medium capitalize">
                     {" "}
                     {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
-                    {data && data.name}
+                    {data && data.name ? data.name : "--"}
+                  </p>
+                </div>
+                <div className="col-span-6 flex flex-col mb-5">
+                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Name:</label>
+                  <p className="text-[14px] text-black font-medium capitalize">
+                    {" "}
+                    {/* <LiaUserSolid className="text-xl text-[#1E5DBC]" /> */}
+                    {data && data.description ? data.description : "--"}
                   </p>
                 </div>
                </div>

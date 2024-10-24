@@ -46,33 +46,38 @@ const Html = ({
     },
     {
       key: "email",
-      name: "Email",
+      name: "Customer Email",
       sort: true,
       render: (row) => {
         return <span className="">{row?.email}</span>;
       },
     },
-    // {
-    //   key: "mobileNo",
-    //   name: "Mobile No",
-    //   render: (row) => {
-    //     return (
-    //       <>
-    //         <p className="capitalize">
-    //           {row?.mobileNo ? "+" : ""}
-    //           {row?.mobileNo}
-    //         </p>
-    //       </>
-    //     );
-    //   },
-    // },
-    /* {
-      key: "timezone",
-      name: "Timezone",
+    {
+      key: "company",
+      name: "Company Name",
+      sort: true,
       render: (row) => {
-        return <>{row?.timezone}</>;
+        return <span className="">{row?.company}</span>;
       },
-    }, */
+    },
+    {
+      key: "CompanyEmail",
+      name: "Company Email",
+      // sort: true,
+      render: (row) => {
+        return <span className="">{row?.CompanyEmail}</span>;
+      },
+    },
+    {
+      key: "companyMobile",
+      name: "Company Mobile No",
+      // sort: true,
+      render: (row) => {
+        return <span className="">{row?.companyMobileNo}</span>;
+      },
+    },
+    
+   
     {
       key: "status",
       name: "Status",
@@ -150,7 +155,6 @@ const Html = ({
       <div className="flex flex-wrap justify-between items-center gap-y-4">
         <div>
           <h3 className="text-2xl font-semibold text-[#111827]">
-            {" "}
             {shared.title}
           </h3>
           <p class="text-sm font-normal text-[#75757A]">

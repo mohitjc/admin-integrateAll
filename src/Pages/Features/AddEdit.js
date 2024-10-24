@@ -14,7 +14,7 @@ const AddEdit = () => {
   const { id } = useParams();
   const [form, setform] = useState({
     name: "",
-    // type:''
+    description:""
   });
   const [images, setImages] = useState({ image: "" });
   const history = useNavigate();
@@ -45,7 +45,9 @@ const AddEdit = () => {
     } else {
 
       value.features=[{
-        name:form.name
+        name:form.name,
+        description:form.description,
+        ...images
       }]      
       delete value.id;
     }
@@ -130,6 +132,15 @@ const AddEdit = () => {
                   label="Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
+                  required
+                />
+              </div>
+              <div className="lg:col-span-12 col-span-12 mb-3">
+                <FormControl
+                  type="textarea"
+                  label="Description"
+                  value={form.description}
+                  onChange={(e) => setform({ ...form, description: e })}
                   required
                 />
               </div>
