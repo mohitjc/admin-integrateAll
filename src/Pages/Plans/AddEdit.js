@@ -16,7 +16,7 @@ const AddEdit = () => {
   const [form, setform] = useState({
     name: "",
     recomended: "",
-    type: '',
+    internalName: '',
     trialPeriod: "",
     discountOption:'no',
     start_date:'',
@@ -224,7 +224,7 @@ const AddEdit = () => {
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
                   type="text"
-                  label="Name"
+                  label="General Name"
                   value={form.name}
                   onChange={(e) => setform({ ...form, name: e })}
                   required
@@ -233,16 +233,15 @@ const AddEdit = () => {
 
               <div className="lg:col-span-6 col-span-12 mb-3">
                 <FormControl
-                  type="select"
-                  label="Type"
-                  theme="search"
-                  value={form.type}
-                  onChange={(e) => setform({ ...form, type: e })}
-                  options={planType}
+                  type="text"
+                  label="Internal Name"
+                  // theme="search"
+                  value={form.internalName}
+                  onChange={(e) => setform({ ...form, internalName: e })}
+                  // options={planType}
                   required
                 />
               </div>
-
               <div className="lg:col-span-6 col-span-12 mb-3">
                <DateRangePicker
                value={{startDate:form.start_date,endDate:form.end_date}}

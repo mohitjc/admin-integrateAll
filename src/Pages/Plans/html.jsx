@@ -40,7 +40,7 @@ const Html = ({
   const columns = [
     {
       key: "name",
-      name: "Name",
+      name: "General Name",
       sort: true,
       render: (row) => {
         return <span className="capitalize">{row?.name}</span>;
@@ -48,10 +48,10 @@ const Html = ({
     },
     {
       key: "type",
-      name: "Type",
+      name: "Internal Name",
       // sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.type}</span>;
+        return <span className="capitalize">{row?.internalName}</span>;
       },
     },
     {

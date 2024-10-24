@@ -168,7 +168,6 @@ const SiteDetails = () => {
     });
   };
 
-
   return (
     <Layout>
       <form onSubmit={handleSubmit}>
@@ -234,20 +233,20 @@ const SiteDetails = () => {
               />
             </div>
             <div className="lg:col-span-12 col-span-12 mb-3">
+              <button
+                type="button"
+                onClick={handleAddSocialMedia}
+                className="flex items-center text-[#1E5DBC] font-[600]"
+              >
+                Add Another Social Media{" "}
+                <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
+              </button>
               {form.socialMedia.map((entry, index) => (
                 <div
                   key={index}
                   className="grid grid-cols-12 gap-4 bg-white shadow-lg p-5 border rounded-lg mb-3 "
                 >
                   <div className="lg:col-span-12 col-span-12 mb-3 border-b pb-3 flex justify-between gap-5 ">
-                    <button
-                      type="button"
-                      onClick={handleAddSocialMedia}
-                      className="flex items-center text-[#1E5DBC] font-[600]"
-                    >
-                      Add Another Social Media{" "}
-                      <IoIosAddCircleOutline className="ml-3 text-[21px] text-[#1e5dbc]" />
-                    </button>
                     {index >= 1 && (
                       <MdDelete
                         className="text-[red] shadow-lg w-[30px] h-[30px] border rounded-full p-2 cursor-pointer"
@@ -258,9 +257,8 @@ const SiteDetails = () => {
 
                   <div className="lg:col-span-6 col-span-12 mb-3">
                     <div className="flex justify-between	">
-                      <label className="mb-2">Social Media</label>
                     </div>
-                    <Select
+                    {/* <Select
                       options={socialOptions}
                       onChange={(selectedOption) =>
                         handleInputChange(index, "name", selectedOption.value)
@@ -270,7 +268,17 @@ const SiteDetails = () => {
                       value={socialOptions.find(
                         (option) => option.value === entry.name
                       )}
+                    /> */}
+                    {/* <div className="lg:col-span-6 col-span-12 mb-3"> */}
+                    <FormControl
+                      name="name"
+                      type="text"
+                      label="Social Media Name"
+                      value={entry.name}
+                      onChange={(e) => handleInputChange(index, "name", e)}
+                      required
                     />
+                    {/* </div> */}
                   </div>
                   <div className="lg:col-span-6 col-span-12 mb-3">
                     <FormControl
@@ -326,9 +334,7 @@ const SiteDetails = () => {
                       name={`script${index + 1}`}
                       type="textarea"
                       value={scriptEntry.script}
-                      onChange={(e) =>
-                        handleScriptChange(index, e)
-                      }
+                      onChange={(e) => handleScriptChange(index, e)}
                       required
                     />
                   </div>
