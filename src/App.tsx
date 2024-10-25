@@ -99,6 +99,7 @@ function App() {
     { url: "/sitedetails/add", path: "SiteDetails/AddEdit" },
     { url: "/sitedetails/detail/:id", path: "SiteDetails/View" },
     { url: "/newsletter", path: "Newsletter" },
+    { url: "/billing", path: "Billing" },
   ];
 
   sessionStorage.clear();

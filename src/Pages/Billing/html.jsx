@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { LiaEdit, LiaTrashAlt } from "react-icons/lia";
 import environment from "../../environment";
+import moment from "moment";
 const Html = ({
   sorting,
   filter,
@@ -39,99 +40,86 @@ const Html = ({
   const user = useSelector((state) => state.user);
   const columns = [
     {
-      key: "name",
-      name: "General Name",
-      sort: true,
-      render: (row) => {
-        return <span className="capitalize">{row?.name}</span>;
-      },
-    },
-    {
-      key: "type",
-      name: "Internal Name",
+      key: "invoice",
+      name: "Invoice Number",
       // sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.internalName}</span>;
+        return <span className="capitalize">{row?.invoiceNumber}</span>;
       },
     },
     {
-      key: "discountOption",
-      name: "Discount",
+      key: "plan",
+      name: "Plan Name",
       // sort: true,
       render: (row) => {
-        return <span className="capitalize">{row?.discountOption}</span>;
+        return <span className="capitalize">{row?.planName}</span>;
       },
     },
     {
-      key: "status",
-      name: "Status",
+      key: "amount",
+      name: "Amount",
+      // sort: true,
       render: (row) => {
-        return (
-          <>
-            <div className="w-32" onClick={() => statusChange(row)}>
-              <span
-                className={`bg-[#1E5DBC] cursor-pointer text-sm !px-3 h-[30px] w-[100px] flex items-center justify-center border border-[#EBEBEB] text-[#3C3E49A3] !rounded capitalize 
-                          ${
-                            row.status == "deactive"
-                              ? " bg-gray-200 text-black"
-                              : "bg-[#1E5DBC] text-white"
-                          }`}
-              >
-                {row.status == "deactive" ? "inactive" : "active"}
-              </span>
-            </div>
-          </>
-        );
+        return <span className="capitalize">{row?.amount}</span>;
       },
     },
     {
-      key: "action",
-      name: "Actions",
-      render: (itm) => {
-        return (
-          <>
-            <div className="flex items-center justify-start gap-1.5">
-              {isAllow(`read${shared.check}`) ? (
-                <Tooltip placement="top" title="View">
-                  <a
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                    onClick={(e) => view(itm.id)}
-                  >
-                    <PiEyeLight />
-                  </a>
-                </Tooltip>
-              ) : (
-                <></>
-              )}
-              {/* {isAllow(`edit${shared.check}`) ? (
-                <Tooltip placement="top" title="Edit">
-                  <a
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                    onClick={(e) => edit(itm.id)}
-                  >
-                    <LiaEdit />
-                  </a>
-                </Tooltip>
-              ) : (
-                <></>
-              )} */}
-              {isAllow(`delete${shared.check}`) ? (
-                <Tooltip placement="top" title="Delete">
-                  <span
-                    className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
-                    onClick={() => deleteItem(itm.id)}
-                  >
-                    <LiaTrashAlt />
-                  </span>
-                </Tooltip>
-              ) : (
-                <></>
-              )}
-            </div>
-          </>
-        );
+      key: "date",
+      name: "Paid Date",
+      // sort: true,
+      render: (row) => {
+        return <span className="capitalize">{moment(row?.paidDate).format("DD-MM-YYYY")}</span>;
       },
     },
+
+    // {
+    //   key: "action",
+    //   name: "Actions",
+    //   render: (itm) => {
+    //     return (
+    //       <>
+    //         <div className="flex items-center justify-start gap-1.5">
+    //           {isAllow(`read${shared.check}`) ? (
+    //             <Tooltip placement="top" title="View">
+    //               <a
+    //                 className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+    //                 onClick={(e) => view(itm.id)}
+    //               >
+    //                 <PiEyeLight />
+    //               </a>
+    //             </Tooltip>
+    //           ) : (
+    //             <></>
+    //           )}
+    //           {isAllow(`edit${shared.check}`) ? (
+    //             <Tooltip placement="top" title="Edit">
+    //               <a
+    //                 className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+    //                 onClick={(e) => edit(itm.id)}
+    //               >
+    //                 <LiaEdit />
+    //               </a>
+    //             </Tooltip>
+    //           ) : (
+    //             <></>
+    //           )}
+    //           {isAllow(`delete${shared.check}`) ? (
+    //             <Tooltip placement="top" title="Delete">
+    //               <span
+    //                 className="border cursor-pointer  hover:opacity-70 rounded-lg bg-[#1E5DBC14] w-10 h-10 !text-primary flex items-center justify-center text-lg"
+    //                 onClick={() => deleteItem(itm.id)}
+    //               >
+    //                 <LiaTrashAlt />
+    //               </span>
+    //             </Tooltip>
+    //           ) : (
+    //             <></>
+    //           )}
+    //         </div>
+    //       </>
+    //     );
+    //   },
+    // },
   ];
 
   return (
@@ -149,10 +137,8 @@ const Html = ({
 
         <a id="downloadFile"></a>
 
-        <div className="flex">
-          {/* <button className="!px-2.5 text-[#3C3E49] text-sm font-normal py-2.5 flex items-center justify-center gap-2 bg-[#fff] rounded-lg shadow-btn hover:bg-[#F3F2F5] border border-[#D0D5DD] transition-all focus:ring-2 ring-[#F1F2F3] disabled:bg-[#F3F2F5] disabled:cursor-not-allowed mr-3" onClick={() => exportfun()}>
-                        <PiFileCsv className="text-typo text-xl" />  Export CSV
-                    </button> */}
+        {/* <div className="flex">
+
 
           {isAllow(`add${shared.check}`) ? (
             <Link
@@ -164,11 +150,11 @@ const Html = ({
           ) : (
             <></>
           )}
-        </div>
+        </div> */}
       </div>
 
       <div className="shadow-box p-4 w-full bg-white rounded-lg mt-6">
-        <div className="flex mb-3 p-4 items-center flex-wrap">
+        {/* <div className="flex mb-3 p-4 items-center flex-wrap">
           <form
             class="flex items-center max-w-sm"
             onSubmit={(e) => {
@@ -180,11 +166,7 @@ const Html = ({
               Search
             </label>
             <div class="relative w-full">
-              {/* <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2"/>
-                                </svg>
-                            </div> */}
+             
               <input
                 type="text"
                 id="simple-search"
@@ -194,7 +176,6 @@ const Html = ({
                 }}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-[#1E5DBC]block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500 pr-10"
                 placeholder="Search"
-                // required
               />
               {filters?.search && (
                 <i
@@ -263,7 +244,7 @@ const Html = ({
               <></>
             )}
           </div>
-        </div>
+        </div> */}
 
         {!loaging ? (
           <>

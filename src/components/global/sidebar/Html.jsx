@@ -180,6 +180,13 @@ const Html = ({ ListItemLink, tabclass, isAllow, route, isOpen, user }) => {
       key: "readSite",
     },
     {
+      name: "Billing",
+      icon: <TbListDetails className="text-[20px]" />,
+      activeIcon: <TbListDetails className="text-[20px]" />,
+      url: "/billing",
+      key: "readBilling",
+    },
+    {
       name: "Content Management",
       icon: <MdOutlineManageAccounts className="text-[20px]" />,
       activeIcon: <MdOutlineManageAccounts className="text-[20px]" />,

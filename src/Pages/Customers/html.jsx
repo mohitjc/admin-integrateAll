@@ -61,11 +61,11 @@ const Html = ({
       },
     },
     {
-      key: "CompanyEmail",
-      name: "Company Email",
+      key: "companyType",
+      name: "Business Type",
       // sort: true,
       render: (row) => {
-        return <span className="">{row?.CompanyEmail}</span>;
+        return <span className="">{row?.businessName}</span>;
       },
     },
     {

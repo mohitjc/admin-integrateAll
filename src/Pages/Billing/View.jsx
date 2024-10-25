@@ -104,22 +104,6 @@ const View = () => {
                   </p>
                 </div>
                 
-                <div className="col-span-12 flex flex-col mb-5">
-                  <label className="text-[14px] text-[#0000009c] tracking-wider mb-1 ">Features:-</label>
-                  <p className="text-[14px] text-black font-medium capitalize">
-                  </p>
-                </div>
-               
-                  {data && data.features.map((item, index) => (
-                <div className="col-span-6 flex flex-col mb-5">
-                  <p className="text-[14px] text-black font-medium capitalize">
-                       {index + 1}.      {item.name}
-                  </p>
-                  <p className="text-[14px] text-black font-medium capitalize">
-           Description:- {item.description}
-                  </p>
-                </div>
-                 ))}
                </div>
               </div>
              
